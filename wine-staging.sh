@@ -7,7 +7,7 @@ if [[ $EUID -ne 0 ]]; then
     echo -e "\n---------------------------------------\n"
 	exit 1
 
-echo "Job start : Installing deb-get"
+echo "Job start : Installing wine-staging"
 sleep 2
 
 wget -O /etc/apt/keyrings/winehq-archive.key https://dl.winehq.org/wine-builds/winehq.key
