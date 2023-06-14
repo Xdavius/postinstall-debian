@@ -10,6 +10,7 @@ if [[ $EUID -ne 0 ]]; then
 echo "Job start : Installing wine-staging"
 sleep 2
 
+dpkg --add-architecture i386
 wget -O /etc/apt/keyrings/winehq-archive.key https://dl.winehq.org/wine-builds/winehq.key
 wget -NP /etc/apt/sources.list.d/ https://dl.winehq.org/wine-builds/debian/dists/bookworm/winehq-bookworm.sources
 apt update
