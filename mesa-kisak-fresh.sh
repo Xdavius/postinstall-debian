@@ -8,7 +8,7 @@ if [[ $EUID -ne 0 ]]; then
 	exit 1
 fi
 
-echo "Job started"
+echo "Job start : Installing mesa-kisak-fresh"
 sleep 2
 
 echo "deb https://ppa.launchpadcontent.net/kisak/kisak-mesa/ubuntu jammy main" > /etc/apt/sources.list.d/mesa-kisak-fresh.list && \
