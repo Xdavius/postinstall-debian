@@ -6,6 +6,7 @@ if [[ $EUID -ne 0 ]]; then
     echo -e "You need to be logged as root (su- / sudo -i)" 1>&2
     echo -e "\n---------------------------------------\n"
 	exit 1
+fi
 
 echo "Job start : Installing wine-staging"
 sleep 2
