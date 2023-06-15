@@ -9,9 +9,9 @@ Décompressez le zip, ouvrez un terminal puis rendre exécutable tous les script
 Vous devez exécuter les script depuis un terminal en root :
 Pour passer root : 
 
-  sudo -i (ou su )
+  sudo -i (ou su) (ou en sudo)
 
 pour exécuter un script :
 
-  ./ nom_du_script.sh
+  ./nom_du_script.sh
 
