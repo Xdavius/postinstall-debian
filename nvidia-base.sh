@@ -8,6 +8,8 @@ if [[ $EUID -ne 0 ]]; then
 	exit 1
 fi
 
+clear
+
 echo "Job start : Installing Nvidia Pro Drivers + Cuda
 "
 sleep 2
@@ -21,12 +23,13 @@ NOTE : Un clean de vulkan/mesa/nvidia sera effectué pour éviter tout conflit. 
 
 
 "
-sleep 10
+sleep 5
 
-apt purge -y raspi-firmware
+apt autopurge -y raspi-firmware
 rm /etc/initramfs/post-update.d/z50-raspi-firmware
 
-echo "Préparation des dépendances :
+echo "
+Préparation des dépendances :
 "
 sleep 2
 
@@ -34,21 +37,34 @@ dpkg --add-architecture i386
 add-apt-repository -y contrib
 add-apt-repository -y non-free
 
+apt install -y linux-headers-amd64 build-essential dkms libglvnd-dev firmware-misc-nonfree pkg-config
+
+echo "
+Nettoyage du système :
+"
+sleep 2
+
 apt autopurge -y libgl1-mesa-dri:i386 mesa-vulkan-drivers mesa-vulkan-drivers:i386 nvidia* nvidia*:i386
 
-apt install -y linux-headers-amd64 build-essential dkms libglvnd-dev firmware-misc-nonfree
-apt install -y nvidia-driver libvulkan* libvulkan*:i386 nvidia-cuda-toolkit nvidia-cuda-dev
+echo "
+Installation du driver 64Bit + Lib32 :
+"
+sleep 2
 
-echo "Job done"
+apt install -y nvidia-driver libvulkan* 
+apt install -y libvulkan*:i386 nvidia-driver-libs:i386
 
-echo "Veuillez REBOOT la machine !!"
+echo "
+Installation de Cuda :
+"
 
+apt install -y nvidia-cuda-toolkit nvidia-cuda-dev
 
+echo "
 
+Job done
+"
 
-
-
-
-
-
-
+echo "
+Veuillez REBOOT la machine !!
+"
