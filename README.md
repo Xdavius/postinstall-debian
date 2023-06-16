@@ -23,5 +23,5 @@ pour exécuter un script :
 - mesa-kisak-fresh : Installer le dernier Mesa pour AMD/INTEL
 - nvidia-base : Installer le driver Nvidia officiel Debian
 - nvidia-upgrade : Installer le dépôt officiel Nvidia pour debian pour avoir le dernier driver Stable officiel
-- wine-staging : Installer la dernière version de wine
+- wine-staging : Installer la dernière version de wine ainsi que toutes les dépendances nécessaire
 - deb-get : Installer deb-get pour installer facilement des logiciels .deb externe aux dépots Debian (heroic, discord, lutris (github version), et d'autres)
