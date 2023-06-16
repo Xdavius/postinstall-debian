@@ -17,4 +17,13 @@ mv /etc/apt/trusted.gpg /etc/apt/trusted.gpg.d/mesa-kisak-fresh.gpg &&\
 apt-get update &&\
 apt-get full-upgrade -y
 
-echo "Job done."
+echo "
+Installation de Mesa + Drivers AMD/Intell Vulkan
+"
+sleep 2
+
+sudo apt install -y libgl1-mesa-dri:i386 mesa-vulkan-drivers mesa-vulkan-drivers:i386
+
+echo "
+Job done.
+"
