@@ -20,7 +20,7 @@ pour exécuter un script :
 
 # Contenu des scripts :
 
-- mesa-kisak-fresh : Installer le dernier Mesa pour AMD/INTEL
+- mesa-kisak-fresh : Installer le dernier Mesa Stable pour AMD/INTEL/NVIDIA
 - nvidia-base : Installer le driver Nvidia officiel Debian
 - nvidia-upgrade : Installer le dépôt officiel Nvidia pour debian pour avoir le dernier driver Stable officiel
 - wine-staging : Installer la dernière version de wine ainsi que toutes les dépendances nécessaire
