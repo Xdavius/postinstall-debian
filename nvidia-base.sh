@@ -47,7 +47,7 @@ sleep 2
 apt autopurge -y libgl1-mesa-dri:i386 mesa-vulkan-drivers mesa-vulkan-drivers:i386 nvidia* nvidia*:i386
 
 echo "
-Installation du driver 64Bit + Lib32 :
+Installation du driver et de Vulkan + Lib32 :
 "
 sleep 2
 
