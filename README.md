@@ -12,7 +12,7 @@ Décompressez le zip, ouvrez un terminal puis rendre exécutable tous les script
 Vous devez exécuter les script depuis un terminal en root :
 Pour passer root : 
 
-    sudo -i (ou su) (ou en sudo)
+    sudo -i (ou su -)
 
 pour exécuter un script :
 
@@ -20,8 +20,13 @@ pour exécuter un script :
 
 # Contenu des scripts :
 
-- mesa-kisak-fresh : Installer le dernier Mesa Stable pour AMD/INTEL/NVIDIA
+- secureboot : Crée la clé MOK, configure l'auto-signature pour DKMS, et l'enroll (Indispensable pour Nvidia avec Secureboot)
 - nvidia-base : Installer le driver Nvidia officiel Debian
 - nvidia-upgrade : Installer le dépôt officiel Nvidia pour debian pour avoir le dernier driver Stable officiel
+  
+- mesa-kisak-fresh : Installer le dernier Mesa Stable pour AMD/INTEL/NVIDIA
+
+- amd-vulkan : Installe Vulkan pour les GPU AMD/INTEL
+
 - wine-staging : Installer la dernière version de wine ainsi que toutes les dépendances nécessaire
 - deb-get : Installer deb-get pour installer facilement des logiciels .deb externe aux dépots Debian (heroic, discord, lutris (github version), et d'autres)
