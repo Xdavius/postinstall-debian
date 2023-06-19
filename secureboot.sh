@@ -20,8 +20,21 @@ apt install -y sbsigntool dkms
 
 mkdir -p /var/lib/shim-signed/mok/
 cd /var/lib/shim-signed/mok/
-openssl req -new -x509 -nodes -newkey rsa:2048 -keyout MOK.priv -outform DER -addext "extendedKeyUsage=codeSigning" -out MOK.der -days 36500 -subj "/CN=Pandazaurus/"
+
+echo "
+"
+read -p "Saisissez votre nom pour la signature : " sign_name
+
+if [[ $sign_name == "" ]]
+	then sign_name="NoName"
+fi
+echo "
+"
+
+openssl req -new -x509 -nodes -newkey rsa:2048 -keyout MOK.priv -outform DER -addext "extendedKeyUsage=codeSigning" -out MOK.der -days 36500 -subj "/CN=$sign_name/"
 openssl x509 -inform der -in MOK.der -out MOK.pem
+
+
 }
 
 function import_mok() {
