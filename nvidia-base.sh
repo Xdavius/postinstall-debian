@@ -57,6 +57,7 @@ apt install -y libvulkan*:i386 nvidia-driver-libs:i386
 echo "
 Installation de Cuda :
 "
+sleep 2
 
 apt install -y nvidia-cuda-toolkit nvidia-cuda-dev
 
