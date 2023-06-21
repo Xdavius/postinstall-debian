@@ -24,8 +24,7 @@ pour exécuter un script :
 - nvidia-base : Installer le driver Nvidia officiel Debian
 - nvidia-upgrade : Installer le dépôt officiel Nvidia pour debian pour avoir le dernier driver Stable officiel
   
-- mesa-kisak-fresh : Installer le dernier Mesa Stable pour AMD/INTEL/NVIDIA
-
+- mesa-kisak-fresh : Installer le dernier Mesa Stable pour AMD/INTEL
 - amd-vulkan : Installe Vulkan pour les GPU AMD/INTEL
 
 - wine-staging : Installer la dernière version de wine ainsi que toutes les dépendances nécessaire
