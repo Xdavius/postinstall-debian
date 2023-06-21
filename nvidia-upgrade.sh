@@ -8,6 +8,12 @@ if [[ $EUID -ne 0 ]]; then
 	exit 1
 fi
 
+echo "Job start : Cleaning previous Nvidia Pro Drivers
+"
+sleep 1
+
+apt autopurge -y cuda-keyring
+
 echo "Job start : Installing Nvidia Pro Drivers
 "
 sleep 2
