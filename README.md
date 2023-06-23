@@ -23,6 +23,8 @@ pour exécuter un script :
 - secureboot : Crée la clé MOK, configure l'auto-signature pour DKMS, et l'enroll (Indispensable pour Nvidia avec Secureboot)
 - nvidia-base : Installer le driver Nvidia officiel Debian
 - nvidia-stable-upgrade : Installer le dépôt officiel Nvidia pour debian pour avoir le dernier driver Stable officiel (Uniquement pour Debian STABLE !!)
+- nvidia-testing : Installer le dépôt EXPERIMENTAL pour debian pour avoir le dernier driver EXPERIMENTAL (Uniquement pour Debian TESTING !!)
+- nvidia-rollback : Desinstaller nvidia-base-upgrade et/ou nvidia-testing
   
 - mesa-kisak-fresh : Installer le dernier Mesa Stable pour AMD/INTEL
 - amd-vulkan : Installe Vulkan pour les GPU AMD/INTEL
