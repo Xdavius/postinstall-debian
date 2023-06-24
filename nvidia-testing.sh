@@ -19,6 +19,12 @@ Job start : Installing Nvidia Experimental Drivers
 "
 sleep 2
 
+dpkg --add-architecture i386
+add-apt-repository -y contrib
+add-apt-repository -y non-free
+
+apt install -y linux-headers-amd64 build-essential dkms libglvnd-dev firmware-misc-nonfree pkg-config
+
 read -n 1 -p "Appuyez sur ENTRER pour CONTINUER, CTRL+C pour ANNULER *** " select
 
 if [[ $select == "" ]];
