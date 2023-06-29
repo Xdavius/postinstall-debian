@@ -30,3 +30,7 @@ pour exécuter un script :
 
 - wine-staging : Installer la dernière version de wine ainsi que toutes les dépendances nécessaire
 - deb-get : Installer deb-get pour installer facilement des logiciels .deb externe aux dépots Debian (heroic, discord, lutris (github version), et d'autres)
+
+# REMERCIELENTS :
+
+Merci à Alternatux, Bazogueur Tobal, cptcavern, Pandatomikk et la Team GLF Pour leur participations et tests sur ce projet !
