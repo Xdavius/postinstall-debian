@@ -13,7 +13,7 @@ echo "Job start : Uninstalling Nvidia Drivers
 sleep 2
 
 clear
-echo"---------------------------------------------------------------------
+echo "---------------------------------------------------------------------
 
 POUR REINSTALLER LA VERSION ORIGINALE DE VOTRE BRANCHE RELANCEZ :
 
