@@ -32,7 +32,7 @@ if [[ $select == "" ]];
 	apt install -y wget
 	echo "deb http://deb.debian.org/debian experimental non-free-firmware contrib non-free main" > /etc/apt/sources.list.d/experimental.list
 	apt update
-	apt install -y -t experimental nvidia-driver libvulkan* firmware-misc-nonfree
+	apt install -y -t experimental nvidia-driver libvulkan* firmware-misc-nonfree nvidia-settings
 	apt install -y -t experimental libvulkan*:i386 nvidia-driver-libs:i386
 	apt install -y -t experimental nvidia-cuda-toolkit nvidia-cuda-dev
 	apt autoremove -y
