@@ -2,7 +2,7 @@
 
 Scripts to quickly setting up Debian for gaming !
 
-
+## LES SCRIPTS SONT DANS LE DOSSIER DATA, LE GUI EST ENCORE EN TRAVAUX ! MERCI !
 
 
 Décompressez le zip, ouvrez un terminal puis rendre exécutable tous les scripts :
