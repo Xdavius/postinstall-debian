@@ -2,10 +2,21 @@
 
 Scripts to quickly setting up Debian for gaming !
 
+## via le GUI
+Décompressez le zip, allez ouvrez un terminal puis rendre exécutable le script ;
 
+    sudo chmod +x postinstall-debian-gui.sh
+    
+Installez zenity s'il n'est pas déjà présent : ( présent par défaut dans GNOME et s'installe automatiquement avec steam)
 
+        sudo apt install zenity -y
 
-Décompressez le zip, ouvrez un terminal puis rendre exécutable tous les scripts :
+Exécutez le script depuis le terminal ou en cliquant dessus dans le gestionnaire de fichiers
+
+        ./postinstall-debian-gui.sh
+
+## via la CLI
+Décompressez le zip, allez dans data, ouvrez un terminal puis rendre exécutable tous les scripts :
 
     sudo chmod +x *.sh
   
