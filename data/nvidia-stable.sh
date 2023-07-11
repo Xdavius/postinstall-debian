@@ -37,7 +37,7 @@ dpkg --add-architecture i386
 add-apt-repository -y contrib
 add-apt-repository -y non-free
 
-apt install -y linux-headers-amd64 build-essential dkms libglvnd-dev firmware-misc-nonfree pkg-config
+apt install -y linux-headers-amd64 build-essential dkms libglvnd-dev firmware-misc-nonfree pkg-config wget
 
 echo "
 Nettoyage du système :
@@ -51,7 +51,7 @@ Installation du driver et de Vulkan + Lib32 :
 "
 sleep 2
 
-apt install -y nvidia-driver libvulkan* 
+apt install -y nvidia-driver libvulkan* vulkan-tools
 apt install -y libvulkan*:i386 nvidia-driver-libs:i386
 
 echo "
