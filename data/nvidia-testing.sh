@@ -54,6 +54,7 @@ if [ ! -x /etc/apt/sources.list.d/experimental.list ]
 then
     echo "deb http://deb.debian.org/debian experimental non-free-firmware contrib non-free main" > /etc/apt/sources.list.d/experimental.list
 fi
+apt update
 
 echo "
 Installation du driver et de Vulkan + Lib32 :
