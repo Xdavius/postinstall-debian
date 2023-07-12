@@ -1,4 +1,13 @@
 #!/bin/bash
+
+## ON AJOUTE ICI LES SOURCES
+## CHAQUE SOURCE CONTIENT UNE FONCTION QUI EST CALL DANS LE MAIN
+
+source ./source/menu.sh
+
+## ON DECLARE LE MAIN
+
+function main() {
 # Script need curl
 if test -x "$(command -v yad 2>/dev/null)"; then
   apt install yad
@@ -15,4 +24,10 @@ elif [ "$chkroot" != "root" ]; then
 zenity --error --title "Wrong password" --text="Mauvais mot de passe"
 exit
 fi
-. ./data/menu.sh
+
+## ON CALL LA FONCTION CONTENU DANS ./source/menu.sh
+menu
+}
+
+## EN FIN DE FICHIER ON CALL LE MAIN
+main
