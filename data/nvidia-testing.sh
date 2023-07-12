@@ -50,7 +50,7 @@ sleep 2
 
 apt autopurge -y libgl1-mesa-dri:i386 mesa-vulkan-drivers mesa-vulkan-drivers:i386 nvidia* nvidia*:i386
 
-if [ ! -x /usr/bin/$1 ]
+if [ ! -x /etc/apt/sources.list.d/experimental.list ]
 then
     echo "deb http://deb.debian.org/debian experimental non-free-firmware contrib non-free main" > /etc/apt/sources.list.d/experimental.list
 fi
