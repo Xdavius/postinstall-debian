@@ -1,0 +1,143 @@
+#!/bin/bash
+
+###### ADD SOURCE HERE ######
+source ./source/scripts.sh
+######
+
+clear
+# Root checker
+if [[ $EUID -ne 0 ]]; then
+	echo -e "\n---------------------------------------\n"
+    echo -e "Setup: must be run logged as root (su - / sudo -i)" 1>&2
+    echo -e "\n---------------------------------------\n"
+	exit 1
+fi
+
+chmod +x ./data/*.sh
+
+function menu1() {
+clear
+echo "          ------------------ POSTINSTALL DEBIAN TUI ------------------
+
+1 - Nvidia
+2 - AMD
+3 - Utilitaires
+
+9- Quitter
+
+"
+
+read -n1 -p "Choix ? " choix
+
+case "$choix" in
+
+1)  nvidia1
+    ;;
+2)  amd1
+    ;;
+3)  tools1
+    ;;
+9)  clear && exit 1
+    ;;
+*)  menu1
+    ;;
+esac
+
+
+}
+
+function nvidia1() {
+clear
+echo "          -------------------------- NVIDIA --------------------------
+
+1- Installer driver nvidia Stable
+2- Installer driver nvidia Testing
+3- Supprimer driver nvidia
+4- Configurer secureboot pour nvidia
+
+9- Retour
+
+"
+
+read -n1 -p "Choix ? " choix
+
+case "$choix" in
+
+1)  nvidia-stable
+    ;;
+2)  nvidia-testing
+    ;;
+3)  nvidia-rollback
+    ;;
+4)  secureboot
+    ;;
+9)  menu1
+    ;;
+*)  nvidia1
+    ;;
+esac
+
+}
+
+function amd1() {
+clear
+echo "          ---------------------------- AMD ---------------------------
+
+1- Installer Mesa Kisak Fresh
+2- Installer AMD Vulkan
+
+9- Retour
+
+"
+
+read -n1 -p "Choix ? " choix
+
+case "$choix" in
+
+1)  mesa-kisak
+    ;;
+2)  amd-vulkan
+    ;;
+9)  menu1
+    ;;
+*)  amd1
+    ;;
+esac
+
+}
+
+
+function tools1() {
+clear
+echo "          ---------------------------- TOOLS --------------------------
+
+1- Installer deb-get
+2- Installer wine-staging
+3- Utiliser l'outil d'ajout de PPA pour Debian
+4- Installer les repository de Sid (pin 10) pour Debian Testing
+
+9- Retour
+
+"
+
+read -n1 -p "Choix ? " choix
+
+case "$choix" in
+
+1)  deb-get
+    ;;
+2)  wine-staging
+    ;;
+3)  add-ppa-debian
+    ;;
+4)  install-sid
+    ;;
+9)  menu1
+    ;;
+*)  tools1
+    ;;
+esac
+
+}
+
+menu1
