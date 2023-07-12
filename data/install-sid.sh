@@ -22,9 +22,9 @@ fi
 
 if [ ! -x /etc/apt/preferences.d/sid ]
 then
-	echo "Package : *" > /etc/apt/sources.list.d/sid.list
-	echo "Pin : release a=unstable" >> /etc/apt/sources.list.d/sid.list
-	echo "Pin-Priority : 10" >> /etc/apt/sources.list.d/sid.list
+	echo "Package : *" > /etc/apt/preferences.d/sid
+	echo "Pin : release a=unstable" >> /etc/apt/preferences.d/sid
+	echo "Pin-Priority : 10" >> /etc/apt/preferences.d/sid
 else
 	echo "Le fichier /etc/apt/preferences.d/sid existe déjà !!"
 fi
