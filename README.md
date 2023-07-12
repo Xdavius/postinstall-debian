@@ -1,22 +1,25 @@
 # postinstall-debian
 
-Scripts to quickly setting up Debian for gaming !
+## ATTENTION : Seul postinstall-debian-tui est fonctionnel, postinstall-gui est toujours en travaux, ne pas l'utiliser encore !!!!
 
-## LES SCRIPTS SONT DANS LE DOSSIER DATA, LE GUI EST ENCORE EN TRAVAUX ! MERCI !
+Configurer Facilement sa Debian !!!
 
+Décompressez le zip, ouvrez un terminal puis rendre exécutable l'application :
 
-Décompressez le zip, ouvrez un terminal puis rendre exécutable tous les scripts :
-
-    sudo chmod +x *.sh
+    sudo chmod +x postinstall-debian-tui
   
-Vous devez exécuter les script depuis un terminal en root :
+Vous devez exécuter l'application depuis un terminal en root :
 Pour passer root : 
 
     sudo -i (ou su -)
 
-pour exécuter un script :
+pour exécuter l'application :
 
-    ./nom_du_script.sh
+    ./postinstall-debian-tui
+
+Alternativement, vous pouvez aussi lancer en sudo :
+    
+    sudo postinstalldebian-tui
 
 # Contenu des scripts :
 
@@ -33,4 +36,4 @@ pour exécuter un script :
 
 # REMERCIEMENTS :
 
-Merci à Alternatux, Bazogueur Tobal, cptcavern, Pandatomikk et la Team GLF Pour leur participations et tests sur ce projet !
+Merci à Alternatux, Bazogueur Tobal, cptcavern, Pandatomikk, christophe et la Team GLF Pour leur participations et tests sur ce projet !
