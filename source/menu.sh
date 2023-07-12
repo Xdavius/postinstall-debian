@@ -31,6 +31,7 @@ elif [ "$(echo "$Utilitaire" | cut -d'|' -f2)" = "SECUREBOOT" ]; then
 fi
 }
 
+function menu() {
 export -f ferme_yad
 export -f NVIDIA
 export -f AMD
@@ -43,3 +44,4 @@ CG=$(yad --title="Driver installer" --width 500 --height 170 --text-align="cente
  --field "Gestion des programmes utilitaires:btn" "bash -c Utilitaire" \
  "echo 'NVIDIA'" "echo 'AMD'" "echo 'Utilitaire'"
  )
+}
