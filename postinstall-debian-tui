@@ -50,10 +50,10 @@ function nvidia1() {
 clear
 echo "          -------------------------- NVIDIA --------------------------
 
-1- Installer driver nvidia Stable
-2- Installer driver nvidia Testing
-3- Supprimer driver nvidia
-4- Configurer secureboot pour nvidia
+1- Installer driver Nvidia Stable (Recommandé)
+2- Installer driver Nvidia Testing (Experimental)
+3- Supprimer driver Nvidia
+4- Configurer Secureboot pour Nvidia
 
 0- Retour
 
