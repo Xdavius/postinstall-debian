@@ -35,4 +35,4 @@ if [[ $select == "" ]];
 	exit 2
 fi
 
-exit 1
+sleep 10
