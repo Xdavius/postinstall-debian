@@ -20,3 +20,5 @@ apt-get full-upgrade -y
 echo "
 Job done.
 "
+
+sleep 10
