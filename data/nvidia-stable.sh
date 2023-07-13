@@ -69,3 +69,5 @@ Job done
 echo "
 Veuillez REBOOT la machine !!
 "
+
+sleep 10
