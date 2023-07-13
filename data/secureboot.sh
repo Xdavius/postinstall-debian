@@ -60,6 +60,8 @@ echo "
 REBOOTEZ LA MACHINE MAINTENANT POUR ENROLL LA CLE
 
 "
+
+sleep 10
 }
 
 
