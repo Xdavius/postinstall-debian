@@ -23,7 +23,7 @@ echo "          ------------------ POSTINSTALL DEBIAN TUI ------------------
 2 - AMD
 3 - Utilitaires
 
-9- Quitter
+0- Quitter
 
 "
 
@@ -37,7 +37,7 @@ case "$choix" in
     ;;
 3)  tools1
     ;;
-9)  clear && exit 1
+0)  clear && exit 1
     ;;
 *)  menu1
     ;;
@@ -55,7 +55,7 @@ echo "          -------------------------- NVIDIA --------------------------
 3- Supprimer driver nvidia
 4- Configurer secureboot pour nvidia
 
-9- Retour
+0- Retour
 
 "
 
@@ -71,7 +71,7 @@ case "$choix" in
     ;;
 4)  secureboot
     ;;
-9)  menu1
+0)  menu1
     ;;
 *)  nvidia1
     ;;
@@ -86,7 +86,7 @@ echo "          ---------------------------- AMD ---------------------------
 1- Installer Mesa Kisak Fresh
 2- Installer AMD Vulkan
 
-9- Retour
+0- Retour
 
 "
 
@@ -98,7 +98,7 @@ case "$choix" in
     ;;
 2)  amd-vulkan
     ;;
-9)  menu1
+0)  menu1
     ;;
 *)  amd1
     ;;
@@ -111,12 +111,14 @@ function tools1() {
 clear
 echo "          ---------------------------- TOOLS --------------------------
 
-1- Installer deb-get
+1- Installer deb-get (Debian Stable uniquement)
 2- Installer wine-staging
-3- Utiliser l'outil d'ajout de PPA pour Debian
-4- Installer les repository de Sid (pin 10) pour Debian Testing
+3- Installer pacstall
 
-9- Retour
+8- Installer les repository de Sid (pin 10) pour Debian Testing
+9- Utiliser l'outil d'ajout de PPA pour Debian
+
+0- Retour
 
 "
 
@@ -128,11 +130,13 @@ case "$choix" in
     ;;
 2)  wine-staging
     ;;
-3)  add-ppa-debian
+3)  pacstall
     ;;
-4)  install-sid
+8)  install-sid
     ;;
-9)  menu1
+9)  add-ppa-debian
+    ;;
+0)  menu1
     ;;
 *)  tools1
     ;;
