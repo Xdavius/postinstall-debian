@@ -23,3 +23,5 @@ apt install -y libgl1-mesa-dri libgl1-mesa-dri:i386 mesa-vulkan-drivers mesa-vul
 echo "
 Job done.
 "
+
+sleep 10
