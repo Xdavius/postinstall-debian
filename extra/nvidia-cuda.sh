@@ -9,8 +9,13 @@ if [[ $EUID -ne 0 ]]; then
 fi
 
 clear
+echo "
+-----------------------------------------------------------------
 
-echo "Job start : Installing Nvidia Drivers + Cuda
+Job start : Installing Nvidia Cuda LTS Drivers + Secureboot Sign
+
+-----------------------------------------------------------------
+
 "
 sleep 2
 
@@ -32,34 +37,33 @@ echo "
 Préparation des dépendances :
 "
 sleep 2
-
 dpkg --add-architecture i386
 add-apt-repository -y contrib
 add-apt-repository -y non-free
 
-apt install -y linux-headers-amd64 build-essential dkms libglvnd-dev firmware-misc-nonfree pkg-config wget
+apt install -y linux-headers-amd64 build-essential dkms firmware-misc-nonfree pkg-config wget
 
 echo "
 Nettoyage du système :
 "
 sleep 2
 
-apt autopurge -y libgl1-mesa-dri:i386 mesa-vulkan-drivers mesa-vulkan-drivers:i386 nvidia* nvidia*:i386
+apt autopurge -y nvidia-driver nvidia-settings nvidia-driver-libs:i386 cuda nvidia-gds
+
 
 echo "
-Installation du driver et de Vulkan + Lib32 :
+Installation du driver Nvidia LTS Cuda FROM Nvidia, Vulkan + Lib32 :
 "
 sleep 2
 
-apt install -y nvidia-driver libvulkan* vulkan-tools
-apt install -y libvulkan*:i386 nvidia-driver-libs:i386
+wget https://developer.download.nvidia.com/compute/cuda/repos/debian11/x86_64/cuda-keyring_1.1-1_all.deb
+dpkg -i cuda-keyring_1.1-1_all.deb
+rm cuda-keyring_1.1-1_all.deb
+apt update
+apt full-upgrade -y
+mkdir -p /var/run/nvpd/
+apt install -y cuda nvidia-driver nvidia-settings libvulkan* libvulkan*:i386 libglvnd-dev nvidia-gds
 
-echo "
-Installation de Cuda :
-"
-sleep 2
-
-apt install -y nvidia-cuda-toolkit nvidia-cuda-dev
 
 echo "
 

@@ -51,7 +51,7 @@ clear
 echo "          -------------------------- NVIDIA --------------------------
 
 1- Installer driver Nvidia Stable (Recommandé)
-2- Installer driver Nvidia Testing (Experimental)
+2- Autres drivers Nvidia (Pour utilisateurs Expérimentés !!)
 3- Supprimer driver Nvidia
 4- Configurer Secureboot pour Nvidia
 
@@ -65,7 +65,7 @@ case "$choix" in
 
 1)  nvidia-stable
     ;;
-2)  nvidia-testing
+2)  nvidia2
     ;;
 3)  nvidia-rollback
     ;;
@@ -78,6 +78,42 @@ case "$choix" in
 esac
 
 }
+
+function nvidia2() {
+clear
+echo "          -------------------------- NVIDIA --------------------------
+
+1- Installer driver Nvidia Experimental
+2- Installer driver depuis le depot Nvidia Cuda (Compatible Secureboot)
+3- Installer driver Nvidia de Testing en pin 10 (Pour Debian Stable)
+
+0- Retour
+
+"
+
+read -n1 -p "Choix ? " choix
+
+case "$choix" in
+
+1)  nvidia-experimental
+    ;;
+2)  nvidia-cuda
+    ;;
+3)  nvidia-testing-on-stable
+    ;;
+0)  menu1
+    ;;
+*)  nvidia2
+    ;;
+esac
+
+}
+
+
+
+
+
+
 
 function amd1() {
 clear

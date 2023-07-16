@@ -9,13 +9,8 @@ if [[ $EUID -ne 0 ]]; then
 fi
 
 clear
-echo "
-----------------------------------------------------
 
-Job start : Installing Nvidia Experimental Drivers
-
-----------------------------------------------------
-
+echo "Job start : Installing Nvidia Testing Driver ON STABLE + Cuda
 "
 sleep 2
 
@@ -37,6 +32,7 @@ echo "
 Préparation des dépendances :
 "
 sleep 2
+
 dpkg --add-architecture i386
 add-apt-repository -y contrib
 add-apt-repository -y non-free
@@ -48,12 +44,28 @@ Nettoyage du système :
 "
 sleep 2
 
-apt autopurge -y libgl1-mesa-dri:i386 mesa-vulkan-drivers mesa-vulkan-drivers:i386 nvidia* nvidia*:i386
+apt autopurge -y nvidia-driver nvidia-settings nvidia-driver-libs:i386 cuda nvidia-gds
 
-if [ ! -x /etc/apt/sources.list.d/experimental.list ]
+echo "
+Ajout de testing :
+"
+
+if [ ! -x /etc/apt/sources.list.d/testing.list ]
 then
-    echo "deb http://deb.debian.org/debian experimental non-free-firmware contrib non-free main" > /etc/apt/sources.list.d/experimental.list
+	echo "deb http://deb.debian.org/debian/ testing main contrib non-free-firmware non-free" >> /etc/apt/sources.list.d/testing.list
+else
+	echo "Le fichier /etc/apt/sources.list.d/testing.list existe déjà !!"
 fi
+
+if [ ! -x /etc/apt/preferences.d/testing ]
+then
+	echo "Package : *" > /etc/apt/preferences.d/testing
+	echo "Pin : release a=testing" >> /etc/apt/preferences.d/testing
+	echo "Pin-Priority : -1" >> /etc/apt/preferences.d/testing
+else
+	echo "Le fichier /etc/apt/preferences.d/testing existe déjà !!"
+fi
+
 apt update
 
 echo "
@@ -61,17 +73,15 @@ Installation du driver et de Vulkan + Lib32 :
 "
 sleep 2
 
-apt update
-apt install -y -t experimental nvidia-driver vulkan-tools libvulkan* firmware-misc-nonfree nvidia-settings libglvnd-dev
-apt install -y -t experimental libvulkan*:i386 nvidia-driver-libs:i386
+apt install -y -t testing nvidia-driver libvulkan* vulkan-tools libglvnd-dev firmware-misc-nonfree linux-headers-amd64 linux-image-amd64
+apt install -y -t testing libvulkan*:i386 nvidia-driver-libs:i386
 
 echo "
 Installation de Cuda :
 "
 sleep 2
 
-apt install -y -t experimental nvidia-cuda-toolkit nvidia-cuda-dev nvidia-cuda-mps
-apt autoremove -y
+apt install -y -t testing nvidia-cuda-toolkit nvidia-cuda-dev
 
 echo "
 
@@ -82,4 +92,3 @@ echo "
 Veuillez REBOOT la machine !!
 "
 
-sleep 10
