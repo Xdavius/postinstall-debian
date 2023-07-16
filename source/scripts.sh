@@ -6,12 +6,6 @@ sleep 2
 nvidia1
 }
 
-function nvidia-testing() {
-bash ./data/nvidia-testing.sh
-sleep 2
-nvidia1
-}
-
 function nvidia-rollback() {
 bash ./data/nvidia-rollback.sh
 sleep 2
@@ -73,4 +67,24 @@ read -p 'Saisir le nom du ppa au format "ppa:nom/repository" : ' $1
 bash ./data/add-ppa-debian.sh $1
 sleep 2
 tools1
+}
+
+############################## EXTRAS !! ############################
+
+function nvidia-experimental() {
+bash ./extra/nvidia-experimental.sh
+sleep 2
+nvidia2
+}
+
+function nvidia-testing() {
+bash ./extra/nvidia-cuda.sh
+sleep 2
+nvidia2
+}
+
+function nvidia-testing-on-stable() {
+bash ./extra/nvidia-testing-on-stable.sh
+sleep 2
+nvidia2
 }
