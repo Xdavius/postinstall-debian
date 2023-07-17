@@ -2,13 +2,15 @@ su -
 
 usermod -aG sudo $(who | cut -d " " -f 1)
 
-apt autopurge firefox* libreoffice* gnome-games* && apt install firefox-esr-l10n-fr gnome-shell-extension-appindicator gnome-shell-extension-dashtodock bash-completion dkms wget curl
+apt autopurge firefox* libreoffice* gnome-games*
 
-sudo apt install --install-recommends steam steam-libs:i386 mesa-vulkan-drivers mesa-vulkan-drivers:i386 vulkan-tools
+apt install firefox-esr-l10n-fr gnome-shell-extension-appindicator gnome-shell-extension-dashtodock bash-completion dkms wget curl
 
 dpkg --add-architecture i386
 apt-add-repository -y contrib
 apt-add-repository -y non-fre
+
+sudo apt install --install-recommends steam steam-libs:i386 mesa-vulkan-drivers mesa-vulkan-drivers:i386 vulkan-tools
 
 sudo apt install --install-recommends steam steam-libs:i386 mesa-vulkan-drivers mesa-vulkan-drivers:i386 vulkan-tools python3-gi-cairo
 
