@@ -1,0 +1,3 @@
+#!/bin/bash
+chmod +x postinstall-debian-tui
+su root -c "bash $(pwd)/postinstall-debian-tui"
