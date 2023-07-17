@@ -51,8 +51,8 @@ Installation du driver et de Vulkan + Lib32 :
 "
 sleep 2
 
-apt install -y nvidia-driver libvulkan* vulkan-tools
-apt install -y libvulkan*:i386 nvidia-driver-libs:i386
+apt install -y nvidia-driver vulkan-tools nvidia-settings
+apt install -y vulkan-tools:i386 nvidia-driver-libs:i386
 
 echo "
 Installation de Cuda :
