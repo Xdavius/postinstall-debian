@@ -18,7 +18,7 @@ dpkg --add-architecture i386
 apt-add-repository -y contrib
 apt-add-repository -y non-free
 
-apt install -y libgl1-mesa-dri libgl1-mesa-dri:i386 mesa-vulkan-drivers mesa-vulkan-drivers:i386
+apt install -y libgl1-mesa-dri libgl1-mesa-dri:i386 mesa-vulkan-drivers mesa-vulkan-drivers:i386 vulkan-tools
 
 echo "
 Job done.
