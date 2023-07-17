@@ -1,0 +1,2 @@
+usermod -aG sudo $(who | cut -d " " -f 1)
+apt autopurge firefox* libreoffice* gnome-games* && apt install firefox-esr-l10n-fr gnome-shell-extension-appindicator gnome-shell-extension-dashtodock bash-completion dkms
