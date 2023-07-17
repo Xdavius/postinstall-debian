@@ -1,0 +1,3 @@
+#!/bin/bash
+chmod +x postinstall-debian-tui
+su root -c "apt install -y xterm zenity yad && xterm -e bash $(pwd)/postinstall-debian-tui" 
