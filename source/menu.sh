@@ -4,15 +4,15 @@
 
 function yad_progress () {
 yadid=$(pgrep yad)
-sudo -S kill $yadid
+kill $yadid
 yad --progress --pulsate --title "installation de $app_name" --progress-text="installation en cours " --width 300 --height 50 --no-buttons &
 yadid=$(pgrep yad)
-echo $password | sudo -S "$data_loc"
-sudo -S kill $yadid
+$data_loc
+kill $yadid
 yad --info --width 500 --height 170 --text="installation terminée"
 }
 
-function ferme_yad () { PidYad=$(pgrep yad); sudo -S kill $PidYad;}
+function ferme_yad () { PidYad=$(pgrep yad); kill $PidYad;}
 
 function NVIDIA () {
 ferme_yad
