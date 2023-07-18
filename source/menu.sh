@@ -127,7 +127,14 @@ export -f Utilitaire
 export -f yad_progress
 export -f NVIDIA2
 export -f menu
+
+export count
+
+if [[ $count == 1 ]] ; then
 ferme_yad
+fi
+count=1
+
 CG=$(yad --title="Driver installer" --width 500 --height 140 --text-align="center" --no-buttons \
  --form \
  --field "Gesiton des pilotes Nvidia:btn" "bash -c NVIDIA" \
