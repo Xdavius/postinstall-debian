@@ -1,5 +1,7 @@
 #!/bin/bash
 # foncitons
+
+
 function yad_progress () {
 yadid=$(pgrep yad)
 sudo -S kill $yadid
@@ -7,6 +9,7 @@ yad --progress --pulsate --title "installation de $app_name" --progress-text="in
 yadid=$(pgrep yad)
 echo $password | sudo -S "$data_loc"
 sudo -S kill $yadid
+yad --info --width 500 --height 170 --text="installation terminée"
 }
 
 function ferme_yad () { PidYad=$(pgrep yad); kill -s SIGUSR1 "$PidYad";}
