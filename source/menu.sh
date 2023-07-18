@@ -1,6 +1,6 @@
 #!/bin/bash
-# foncitons
 
+# FONCTIONS
 
 function yad_progress () {
 yadid=$(pgrep yad)
@@ -136,3 +136,4 @@ CG=$(yad --title="Driver installer" --width 500 --height 140 --text-align="cente
  "echo 'NVIDIA'" "echo 'AMD'" "echo 'Utilitaire'"
  )
 }
+menu
