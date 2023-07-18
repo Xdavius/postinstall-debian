@@ -12,14 +12,15 @@ sudo -S kill $yadid
 yad --info --width 500 --height 170 --text="installation terminée"
 }
 
-function ferme_yad () { PidYad=$(pgrep yad); kill -s SIGUSR1 "$PidYad";}
+function ferme_yad () { PidYad=$(pgrep yad); sudo -S kill $PidYad;}
 
 function NVIDIA () {
+ferme_yad
 COM_STABLE="Installer driver Nvidia Stable (Recommandé)"
 COM_AUTRE="Autres drivers Nvidia (Pour utilisateurs Expérimentés !!)"
 COM_SECUREBOOT="Configurer Secureboot pour Nvidia"
 COM_REMOVE="Supprimer driver Nvidia"
-NVIDIA=$(yad --title="Gestionnaire NVIDIA" --width 500 --height 170 --text-align="center" --list --radiolist --column=" " --column="installer" --column="espace" --column="commentaire" True "STABLE" "   " "$COM_STABLE" False "AUTRE" "   " "$COM_AUTRE" False "SECUREBOOT" "   " "$COM_SECUREBOOT" False "REMOVE" "   " "$COM_REMOVE"  --no-headers )
+NVIDIA=$(yad --title="Gestionnaire NVIDIA" --width 500 --height 170 --text-align="center" --button="Retour:bash -c menu" --button="OK:0" --button="Cancel:1" --list --radiolist --column=" " --column="installer" --column="espace" --column="commentaire" True "STABLE" "   " "$COM_STABLE" False "AUTRE" "   " "$COM_AUTRE" False "SECUREBOOT" "   " "$COM_SECUREBOOT" False "REMOVE" "   " "$COM_REMOVE"  --no-headers )
 if [ "$(echo "$NVIDIA" | cut -d'|' -f2)" = "STABLE" ]; then
     app_name="STABLE"
     data_loc="./data/nvidia-stable.sh"
@@ -34,33 +35,42 @@ elif [ "$(echo "$NVIDIA" | cut -d'|' -f2)" = "SECUREBOOT" ]; then
     app_name="SECUREBOOT"
     data_loc="./data/secureboot.sh"
     yad_progress
+elif [ "$NVIDIA" = "Retour" ]; then
+echo $NVIDIA
+    sudo -S kill $yadid
+    menu
 fi
 }
 
 function NVIDIA2 () {
+ferme_yad
 COM_EXPERIMENTAL="Installer driver Nvidia Experimental"
 COM_CUDA="Installer driver depuis le depot Nvidia Cuda (Compatible Secureboot)"
 COM_TESTING="nstaller driver Nvidia de Testing en pin 10 (Pour Debian Stable)"
-NVIDIA2=$(yad --title="Gestionnaire NVIDIA" --width 500 --height 170 --text-align="center" --list --radiolist --column=" " --column="installer" --column="espace" --column="commentaire" True "EXPERIMENTAL" "   " "$COM_STABLE" False "CUDA" "   " "$COM_AUTRE" False "TESTING" "   " "$COM_SECUREBOOT" --no-headers )
+NVIDIA2=$(yad --title="Gestionnaire NVIDIA" --width 500 --height 170 --text-align="center" --button="Retour:bash -c NVIDIA" --button="OK:0" --button="Cancel:1" --list --radiolist --column=" " --column="installer" --column="espace" --column="commentaire" True "EXPERIMENTAL" "   "  "$COM_EXPERIMENTAL" False "CUDA" "   " "$COM_CUDA" False "TESTING" "   " "$COM_TESTING" --no-headers)
 if [ "$(echo "$NVIDIA2" | cut -d'|' -f2)" = "EXPERIMENTAL" ]; then
-    app_name="STABLE"
+    app_name="EXPERIMENTAL"
     data_loc="./extra/nvidia-experimental.sh"
     yad_progress
 elif [ "$(echo "$NVIDIA2" | cut -d'|' -f2)" = "CUDA" ]; then
-    app_name="REMOVE"
+    app_name="CUDA"
     data_loc="./extra/nvidia-cuda.sh"
     yad_progress
 elif [ "$(echo "$NVIDIA2" | cut -d'|' -f2)" = "TESTING" ]; then
-    app_name="REMOVE"
+    app_name="TESTING"
     data_loc="./extra/nvidia-testing-on-stable.sh"
     yad_progress
+elif [ "$NVIDIA2" = "1" ]; then
+    sudo -S kill $yadid
+    NVIDIA
 fi
 }
 
 function AMD () {
+ferme_yad
 COM_VULKAN="Installer Mesa Kisak Fresh"
 COM_KISAK="Installer AMD Vulkan"
-AMD=$(yad --title="Gestionnaire AMD" --width 500 --height 170 --text-align="center" --list --radiolist --column=" " --column="installer" --column="espace" --column="commentaire" True "AMD_VULKAN" "   " "$COM_VULKAN" False "MESA_KISAK_FRESH" "   " "$COM_KISAK" --no-headers)
+AMD=$(yad --title="Gestionnaire AMD" --width 500 --height 170 --text-align="center" --button="Retour:bash -c menu" --button="OK:0" --button="Cancel:1" --list --radiolist --column=" " --column="installer" --column="espace" --column="commentaire" True "AMD_VULKAN" "   " "$COM_VULKAN" False "MESA_KISAK_FRESH" "   " "$COM_KISAK" --no-headers)
 if [ "$(echo "$AMD" | cut -d'|' -f2)" = "AMD_VULKAN" ]; then
     app_name="backport"
     data_loc="./data/amd-vulkan.sh"
@@ -69,16 +79,20 @@ elif [ "$(echo "$AMD" | cut -d'|' -f2)" = "MESA_KISAK_FRESH" ]; then
     app_name="backport"
     data_loc="./data/mesa-kisak-fresh.sh"
     yad_progress
+elif [ "$AMD" = "Retour" ]; then
+    sudo -S kill $yadid
+    menu
 fi
 }
 
 function Utilitaire () {
+ferme_yad
 COM_DEBGET="Installer deb-get (Debian Stable uniquement)"
 COM_WINE="Installer wine-staging"
 COM_PACSTALL="Installer pacstall"
 COM_PPA="Utiliser l'outil d'ajout de PPA pour Debian"
 COM_SID="Installer les repository de Sid (pin 10) pour Debian Testing"
-Utilitaire=$(yad --title="Gestionnaire des app utilitaires" --width 500 --height 170 --text-align="center" --list --radiolist --column=" " --column="installer" --column="espace" --column="commentaire" True "DEB-GET" "   " "$COM_DEBGET" False "WINE" "   " "$COM_WINE" False "PACSTALL" "   " "$COM_PACSTALL" False "PPA" "   " "$COM_PPA" False "SID" "   " "$COM_SID" --no-headers)
+Utilitaire=$(yad --title="Gestionnaire des app utilitaires" --width 500 --height 170 --text-align="center" --button="Retour:bash -c menu" --button="OK:0" --button="Cancel:1" --list --radiolist --column=" " --column="installer" --column="espace" --column="commentaire" True "DEB-GET" "   " "$COM_DEBGET" False "WINE" "   " "$COM_WINE" False "PACSTALL" "   " "$COM_PACSTALL" False "PPA" "   " "$COM_PPA" False "SID" "   " "$COM_SID" --no-headers)
 if [ "$(echo "$Utilitaire" | cut -d'|' -f2)" = "DEB-GET" ]; then
     app_name="deb-get"
     data_loc="./data/deb-get.sh"
@@ -99,6 +113,9 @@ elif [ "$(echo "$Utilitaire" | cut -d'|' -f2)" = "SID" ]; then
     app_name="SID"
     data_loc="./data/install-sid.sh"
     yad_progress
+elif [ "$Utilitaire" = "Retour" ]; then
+    sudo -S kill $yadid
+    menu
 fi
 }
 
@@ -109,8 +126,9 @@ export -f AMD
 export -f Utilitaire
 export -f yad_progress
 export -f NVIDIA2
-
-CG=$(yad --title="Driver installer" --width 500 --height 170 --text-align="center" \
+export -f menu
+ferme_yad
+CG=$(yad --title="Driver installer" --width 500 --height 140 --text-align="center" --no-buttons \
  --form \
  --field "Gesiton des pilotes Nvidia:btn" "bash -c NVIDIA" \
  --field "Gesiton des pilotes AMD:btn" "bash -c AMD" \
