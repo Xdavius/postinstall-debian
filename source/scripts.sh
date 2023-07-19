@@ -77,7 +77,7 @@ sleep 2
 nvidia2
 }
 
-function nvidia-testing() {
+function nvidia-cuda() {
 bash ./extra/nvidia-cuda.sh
 sleep 2
 nvidia2
