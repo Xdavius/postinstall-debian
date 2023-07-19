@@ -27,7 +27,7 @@ if [[ $select == "" ]];
 	then
 	# rm /etc/apt/sources.list.d/experimental.list
 	
-	apt autopurge -y cuda-keyring* nvidia-cuda-toolkit nvidia-cuda-dev nvidia-cuda-mps
+	apt autopurge -y cuda-keyring nvidia-cuda-toolkit nvidia-cuda-dev nvidia-cuda-mps
 	apt autopurge -y nvidia-driver vulkan-tools firmware-misc-nonfree nvidia-settings libglvnd-dev libvulkan*:i386 nvidia-driver-libs:i386 nvidia-cuda-toolkit nvidia-cuda-dev nvidia-cuda-mps
 	echo "Job done"
 	echo "Veuillez REBOOT la machine !!"
