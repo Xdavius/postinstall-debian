@@ -40,11 +40,12 @@ Pour passer root :
 
 pour exécuter l'application :
 
+    chmod +x postinstall-debian-tui
     ./postinstall-debian-tui
 
 Alternativement, vous pouvez aussi lancer en sudo :
     
-    sudo postinstalldebian-tui
+    sudo postinstall-debian-tui
 
 
 ## Contenu des scripts :
