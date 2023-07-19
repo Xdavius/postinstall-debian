@@ -1,7 +1,7 @@
-## POSTINSTALL-DEBIAN - Configurer Facilement sa Debian !!!
+# POSTINSTALL-DEBIAN - Configurer Facilement sa Debian !!!
 
 
-# AVANT DE COMMENCER :
+## AVANT DE COMMENCER :
 
 
 Il est nécessaire d'avoir configuré SUDO pour utiliser ce logiciel.
@@ -17,7 +17,7 @@ Puis redémarrez la machine.
 SI VOUS AVEZ INSTALLÉ DEBIAN DEPUIS UNE ISO LIVE, SUDO EST DÉjÀ CONFIGURÉ !
 
 
-# INSTALLATION
+## INSTALLATION
 
 
 - UTILISATION AVEC INTERFACE GRAPHIQUE :
@@ -45,7 +45,7 @@ Alternativement, vous pouvez aussi lancer en sudo :
     sudo postinstalldebian-tui
 
 
-# Contenu des scripts :
+## Contenu des scripts :
 
 
 - secureboot : Crée la clé MOK, configure l'auto-signature pour DKMS, et l'enroll (Indispensable pour Nvidia avec Secureboot)
@@ -61,6 +61,6 @@ Alternativement, vous pouvez aussi lancer en sudo :
 - pacstall : Une alternative à deb-get, parmet d'accèder à de nombreux logiciels supplémentaires et de les maintenir à jour
 
 
-# REMERCIEMENTS :
+## REMERCIEMENTS :
 
 Merci à Alternatux, Bazogueur Tobal, cptcavern, Pandatomikk, christophe et la Team GLF Pour leur participations et tests sur ce projet !
