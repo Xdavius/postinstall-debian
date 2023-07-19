@@ -1,4 +1,4 @@
-# POSTINSTALL-DEBIAN - Configurer Facilement sa Debian !!!
+# POSTINSTALL-DEBIAN - Configurer Facilement sa Debian !
 
 
 ## AVANT DE COMMENCER :
@@ -26,6 +26,8 @@ SI VOUS AVEZ INSTALLÉ DEBIAN DEPUIS UNE ISO LIVE, SUDO EST DÉjÀ CONFIGURÉ !
 Rendez-vous dans la section "Releases" puis télécharger le logiciel (postinstall-debian.zip)
 
 Décompressez le zip, puis double cliquez sur "postinstall-debian-gui.run"
+
+* Ce logiciel dépend de YAD. Son installation s'effectue automatiquement de façon transparente. *
 
 
 - POUR CEUX SOUHAITANT UTILISER L'INTERFACE TUI :
