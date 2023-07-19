@@ -3,13 +3,7 @@
 # FONCTIONS
 
 function yad_progress () {
-yadid=$(pgrep yad)
-kill $yadid
-yad --progress --pulsate --title "installation de $app_name" --progress-text="installation en cours " --width 300 --height 50 --no-buttons &
-yadid=$(pgrep yad)
-$data_loc
-kill $yadid
-yad --info --width 500 --height 170 --text="installation terminée"
+$data_loc | while read -r line ; do echo "# ${line}" ; if [ "${line}" = "Job done" ]; then ferme_yad; yad --width 300 --height 170 --title="FINI" --text-align="center" --text="Installation terminée" -button="OK:0"; fi; done | yad --progress --pulsate --title "installation de $app_name" --progress-text="installation en cours " --width 500 --height 200 --no-buttons --enable-log --log-expanded
 }
 
 function ferme_yad () { PidYad=$(pgrep yad); kill $PidYad;}
@@ -43,7 +37,6 @@ fi
 }
 
 function NVIDIA2 () {
-ferme_yad
 COM_EXPERIMENTAL="Installer driver Nvidia Experimental"
 COM_CUDA="Installer driver depuis le depot Nvidia Cuda (Compatible Secureboot)"
 COM_TESTING="nstaller driver Nvidia de Testing en pin 10 (Pour Debian Stable)"
