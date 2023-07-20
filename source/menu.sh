@@ -1,20 +1,27 @@
 #!/bin/bash
-
 # FONCTIONS
+function logo () {
+logo="./source/logo.png"
+}
 
 function yad_progress () {
-$data_loc | while read -r line ; do echo "# ${line}" ; if [ "${line}" = "Job done" ]; then ferme_yad; yad --width 300 --height 170 --title="FINI" --text-align="center" --text="Installation terminée" -button="OK:0"; fi; done | yad --progress --pulsate --title "installation de $app_name" --progress-text="installation en cours " --width 500 --height 200 --no-buttons --enable-log --log-expanded
+$data_loc | while read -r line ; do echo "# ${line}" ; if [ "${line}" = "Job done" ]; then
+        ferme_yad
+        yad --window-icon="$logo" --width 300 --height 170 --title="FINI" --text-align="center" --text="Installation terminée" -button="OK:0"
+    fi
+done | yad --progress --pulsate --title "installation de $app_name" --progress-text="installation en cours " --width 500 --height 200 --no-buttons --enable-log --log-expanded
 }
 
 function ferme_yad () { PidYad=$(pgrep yad); kill $PidYad;}
 
 function NVIDIA () {
+logo
 ferme_yad
 COM_STABLE="Installer driver Nvidia Stable (Recommandé)"
 COM_AUTRE="Autres drivers Nvidia (Pour utilisateurs Expérimentés !!)"
 COM_SECUREBOOT="Configurer Secureboot pour Nvidia"
 COM_REMOVE="Supprimer driver Nvidia"
-NVIDIA=$(yad --title="Gestionnaire NVIDIA" --width 500 --height 170 --text-align="center" --button="Retour:bash -c menu" --button="OK:0" --button="Cancel:1" --list --radiolist --column=" " --column="installer" --column="espace" --column="commentaire" True "STABLE" "   " "$COM_STABLE" False "AUTRE" "   " "$COM_AUTRE" False "SECUREBOOT" "   " "$COM_SECUREBOOT" False "REMOVE" "   " "$COM_REMOVE"  --no-headers )
+NVIDIA=$(yad --window-icon="$logo" --title="Gestionnaire NVIDIA" --width 500 --height 170 --text-align="center" --button="Retour:bash -c menu" --button="OK:0" --button="Cancel:1" --list --radiolist --column=" " --column="installer" --column="espace" --column="commentaire" True "STABLE" "   " "$COM_STABLE" False "AUTRE" "   " "$COM_AUTRE" False "SECUREBOOT" "   " "$COM_SECUREBOOT" False "REMOVE" "   " "$COM_REMOVE"  --no-headers )
 if [ "$(echo "$NVIDIA" | cut -d'|' -f2)" = "STABLE" ]; then
     app_name="STABLE"
     data_loc="./data/nvidia-stable.sh"
@@ -37,10 +44,11 @@ fi
 }
 
 function NVIDIA2 () {
+logo
 COM_EXPERIMENTAL="Installer driver Nvidia Experimental"
 COM_CUDA="Installer driver depuis le depot Nvidia Cuda (Compatible Secureboot)"
 COM_TESTING="nstaller driver Nvidia de Testing en pin 10 (Pour Debian Stable)"
-NVIDIA2=$(yad --title="Gestionnaire NVIDIA" --width 500 --height 170 --text-align="center" --button="Retour:bash -c NVIDIA" --button="OK:0" --button="Cancel:1" --list --radiolist --column=" " --column="installer" --column="espace" --column="commentaire" True "EXPERIMENTAL" "   "  "$COM_EXPERIMENTAL" False "CUDA" "   " "$COM_CUDA" False "TESTING" "   " "$COM_TESTING" --no-headers)
+NVIDIA2=$(yad --window-icon="$logo" --title="Gestionnaire NVIDIA" --width 500 --height 170 --text-align="center" --button="Retour:bash -c NVIDIA" --button="OK:0" --button="Cancel:1" --list --radiolist --column=" " --column="installer" --column="espace" --column="commentaire" True "EXPERIMENTAL" "   "  "$COM_EXPERIMENTAL" False "CUDA" "   " "$COM_CUDA" False "TESTING" "   " "$COM_TESTING" --no-headers)
 if [ "$(echo "$NVIDIA2" | cut -d'|' -f2)" = "EXPERIMENTAL" ]; then
     app_name="EXPERIMENTAL"
     data_loc="./extra/nvidia-experimental.sh"
@@ -60,10 +68,11 @@ fi
 }
 
 function AMD () {
+logo
 ferme_yad
 COM_VULKAN="Installer Mesa Kisak Fresh"
 COM_KISAK="Installer AMD Vulkan"
-AMD=$(yad --title="Gestionnaire AMD" --width 500 --height 170 --text-align="center" --button="Retour:bash -c menu" --button="OK:0" --button="Cancel:1" --list --radiolist --column=" " --column="installer" --column="espace" --column="commentaire" True "AMD_VULKAN" "   " "$COM_VULKAN" False "MESA_KISAK_FRESH" "   " "$COM_KISAK" --no-headers)
+AMD=$(yad --window-icon="$logo" --title="Gestionnaire AMD" --width 500 --height 170 --text-align="center" --button="Retour:bash -c menu" --button="OK:0" --button="Cancel:1" --list --radiolist --column=" " --column="installer" --column="espace" --column="commentaire" True "AMD_VULKAN" "   " "$COM_VULKAN" False "MESA_KISAK_FRESH" "   " "$COM_KISAK" --no-headers)
 if [ "$(echo "$AMD" | cut -d'|' -f2)" = "AMD_VULKAN" ]; then
     app_name="backport"
     data_loc="./data/amd-vulkan.sh"
@@ -79,13 +88,14 @@ fi
 }
 
 function Utilitaire () {
+logo
 ferme_yad
 COM_DEBGET="Installer deb-get (Debian Stable uniquement)"
 COM_WINE="Installer wine-staging"
 COM_PACSTALL="Installer pacstall"
 COM_PPA="Utiliser l'outil d'ajout de PPA pour Debian"
 COM_SID="Installer les repository de Sid (pin 10) pour Debian Testing"
-Utilitaire=$(yad --title="Gestionnaire des app utilitaires" --width 500 --height 170 --text-align="center" --button="Retour:bash -c menu" --button="OK:0" --button="Cancel:1" --list --radiolist --column=" " --column="installer" --column="espace" --column="commentaire" True "DEB-GET" "   " "$COM_DEBGET" False "WINE" "   " "$COM_WINE" False "PACSTALL" "   " "$COM_PACSTALL" False "PPA" "   " "$COM_PPA" False "SID" "   " "$COM_SID" --no-headers)
+Utilitaire=$(yad --window-icon="$logo" --title="Gestionnaire des app utilitaires" --width 500 --height 170 --text-align="center" --button="Retour:bash -c menu" --button="OK:0" --button="Cancel:1" --list --radiolist --column=" " --column="installer" --column="espace" --column="commentaire" True "DEB-GET" "   " "$COM_DEBGET" False "WINE" "   " "$COM_WINE" False "PACSTALL" "   " "$COM_PACSTALL" False "PPA" "   " "$COM_PPA" False "SID" "   " "$COM_SID" --no-headers)
 if [ "$(echo "$Utilitaire" | cut -d'|' -f2)" = "DEB-GET" ]; then
     app_name="deb-get"
     data_loc="./data/deb-get.sh"
@@ -120,15 +130,15 @@ export -f Utilitaire
 export -f yad_progress
 export -f NVIDIA2
 export -f menu
-
+export -f logo
 export count
 
 if [[ $count == 1 ]] ; then
 ferme_yad
 fi
 count=1
-
-CG=$(yad --title="Driver installer" --width 500 --height 140 --text-align="center" --no-buttons \
+logo
+CG=$(yad --window-icon="$logo" --title="Driver installer" --width 500 --height 140 --text-align="center" --no-buttons \
  --form \
  --field "Gesiton des pilotes Nvidia:btn" "bash -c NVIDIA" \
  --field "Gesiton des pilotes AMD:btn" "bash -c AMD" \
