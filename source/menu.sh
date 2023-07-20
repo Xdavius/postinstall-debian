@@ -4,6 +4,12 @@ function logo () {
 logo="./source/logo.png"
 }
 
+#--------------------------------------------------------------------------------------------------------------------------------------------------
+#
+#                   FONCIOTNS POUR LANCER LES INSTALLATIONS ET LES CHARGEMENTS
+#
+#--------------------------------------------------------------------------------------------------------------------------------------------------
+
 function yad_progress () {
 $data_loc | while read -r line ; do echo "# ${line}" ; if [ "${line}" = "Job done" ]; then
         ferme_yad
@@ -13,124 +19,190 @@ done | yad --progress --pulsate --title "installation de $app_name" --progress-t
 }
 
 function ferme_yad () { PidYad=$(pgrep yad); kill $PidYad;}
+#--------------------------------------------------------------------------------------------------------------------------------------------------
+#
+#                   FONCIOTNS POUR BOUTTONS DU MENU nvidia
+#
+#--------------------------------------------------------------------------------------------------------------------------------------------------
 
-function NVIDIA () {
+function nvidia_stable () {
+    app_name="STABLE"
+    data_loc="./data/nvidia-stable.sh"
+    yad_progress
+}
+function nvidia_autre() {
+    nvidia2
+}
+function nvidia_remove () {
+    app_name="REMOVE"
+    data_loc="./data/nvidia-rollback.sh"
+    yad_progress
+}
+function nvidia_secureboot () {
+    app_name="SECUREBOOT"
+    data_loc="./data/secureboot.sh"
+    yad_progress
+}
+#--------------------------------------------------------------------------------------------------------------------------------------------------
+#
+#                   FONCIOTNS POUR BOUTTONS DU MENU nvidia2
+#
+#--------------------------------------------------------------------------------------------------------------------------------------------------
+
+function nvidia_exp () {
+    app_name="EXPERIMENTAL"
+    data_loc="./extra/nvidia-experimental.sh"
+    yad_progress
+}
+function nvidia_cuda () {
+    app_name="CUDA"
+    data_loc="./extra/nvidia-cuda.sh"
+    yad_progress
+}
+function nvidia_test () {
+    app_name="TESTING"
+    data_loc="./extra/nvidia-testing-on-stable.sh"
+    yad_progress
+}
+#--------------------------------------------------------------------------------------------------------------------------------------------------
+#
+#                   FONCIOTNS POUR BOUTTONS DU MENU amd
+#
+#--------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+function amd_vulkan () {
+    app_name="backport"
+    data_loc="./data/amd-vulkan.sh"
+    yad_progress
+}
+function amd_kisak () {
+    app_name="backport"
+    data_loc="./data/mesa-kisak-fresh.sh"
+    yad_progress
+}
+#--------------------------------------------------------------------------------------------------------------------------------------------------
+#
+#                   FONCIOTNS POUR BOUTTONS DU MENU UTILITAIRES
+#
+#--------------------------------------------------------------------------------------------------------------------------------------------------
+function deb_get () {
+    app_name="deb-get"
+    data_loc="./data/deb-get.sh"
+    yad_progress
+}
+function wine () {
+    app_name="backport"
+    data_loc="./data/wine-staging.sh"
+    yad_progress
+}
+function pacstall () {
+    app_name="pacstall"
+    data_loc="./data/pacstall.sh"
+    yad_progress
+}
+function backport () {
+    app_name="backport"
+    data_loc="./data/add-ppa-debian.sh"
+    yad_progress
+}
+function sid () {
+    app_name="sid"
+    data_loc="./data/install-sid.sh"
+    yad_progress
+}
+
+#--------------------------------------------------------------------------------------------------------------------------------------------------
+#
+#                   SOUS MENU POUR ACCEDER A L'EXECUTION DES SCTIPTS
+#
+#--------------------------------------------------------------------------------------------------------------------------------------------------
+function nvidia() {
 logo
 ferme_yad
 COM_STABLE="Installer driver Nvidia Stable (Recommandé)"
 COM_AUTRE="Autres drivers Nvidia (Pour utilisateurs Expérimentés !!)"
 COM_SECUREBOOT="Configurer Secureboot pour Nvidia"
 COM_REMOVE="Supprimer driver Nvidia"
-NVIDIA=$(yad --window-icon="$logo" --title="Gestionnaire NVIDIA" --width 500 --height 170 --text-align="center" --button="Retour:bash -c menu" --button="OK:0" --button="Cancel:1" --list --radiolist --column=" " --column="installer" --column="espace" --column="commentaire" True "STABLE" "   " "$COM_STABLE" False "AUTRE" "   " "$COM_AUTRE" False "SECUREBOOT" "   " "$COM_SECUREBOOT" False "REMOVE" "   " "$COM_REMOVE"  --no-headers )
-if [ "$(echo "$NVIDIA" | cut -d'|' -f2)" = "STABLE" ]; then
-    app_name="STABLE"
-    data_loc="./data/nvidia-stable.sh"
-    yad_progress
-elif [ "$(echo "$NVIDIA" | cut -d'|' -f2)" = "AUTRE" ]; then
-    NVIDIA2
-elif [ "$(echo "$NVIDIA" | cut -d'|' -f2)" = "REMOVE" ]; then
-    app_name="REMOVE"
-    data_loc="./data/nvidia-rollback.sh"
-    yad_progress
-elif [ "$(echo "$NVIDIA" | cut -d'|' -f2)" = "SECUREBOOT" ]; then
-    app_name="SECUREBOOT"
-    data_loc="./data/secureboot.sh"
-    yad_progress
-elif [ "$NVIDIA" = "Retour" ]; then
-echo $NVIDIA
-    sudo -S kill $yadid
-    menu
-fi
+nvidia=$(yad --window-icon="$logo" --title="Gestionnaire nvidia" --width 500 --height 170 --text-align="center" --button="Retour:bash -c menu" --button="OK:0" --button="Cancel:1" \
+ --form \
+ --field "Stable ! ! $COM_STABLE:fbtn" "bash -c nvidia_stable" \
+ --field "Autre ! ! $COM_AUTRE:fbtn" "bash -c nvidia_autre" \
+ --field "Secureboot ! ! $COM_SECUREBOOT:fbtn" "bash -c nvidia_remove" \
+ --field "Remove ! ! $COM_REMOVE:fbtn" "bash -c nvidia_secureboot" \
+ )
 }
 
-function NVIDIA2 () {
+function nvidia2 () {
 logo
 COM_EXPERIMENTAL="Installer driver Nvidia Experimental"
 COM_CUDA="Installer driver depuis le depot Nvidia Cuda (Compatible Secureboot)"
 COM_TESTING="nstaller driver Nvidia de Testing en pin 10 (Pour Debian Stable)"
-NVIDIA2=$(yad --window-icon="$logo" --title="Gestionnaire NVIDIA" --width 500 --height 170 --text-align="center" --button="Retour:bash -c NVIDIA" --button="OK:0" --button="Cancel:1" --list --radiolist --column=" " --column="installer" --column="espace" --column="commentaire" True "EXPERIMENTAL" "   "  "$COM_EXPERIMENTAL" False "CUDA" "   " "$COM_CUDA" False "TESTING" "   " "$COM_TESTING" --no-headers)
-if [ "$(echo "$NVIDIA2" | cut -d'|' -f2)" = "EXPERIMENTAL" ]; then
-    app_name="EXPERIMENTAL"
-    data_loc="./extra/nvidia-experimental.sh"
-    yad_progress
-elif [ "$(echo "$NVIDIA2" | cut -d'|' -f2)" = "CUDA" ]; then
-    app_name="CUDA"
-    data_loc="./extra/nvidia-cuda.sh"
-    yad_progress
-elif [ "$(echo "$NVIDIA2" | cut -d'|' -f2)" = "TESTING" ]; then
-    app_name="TESTING"
-    data_loc="./extra/nvidia-testing-on-stable.sh"
-    yad_progress
-elif [ "$NVIDIA2" = "1" ]; then
-    sudo -S kill $yadid
-    NVIDIA
-fi
+nvidia2=$(yad --window-icon="$logo" --title="Gestionnaire nvidia" --width 500 --height 170 --text-align="center" --button="Retour:bash -c nvidia" --button="OK:0" --button="Cancel:1" \
+ --form \
+ --field "Experimental ! ! $COM_EXPERIMENTAL:fbtn" "bash -c nvidia_exp" \
+ --field "Cuda ! ! $COM_CUDA:fbtn" "bash -c nvidia_cuda" \
+ --field "Testing ! ! $COM_TESTING:fbtn" "bash -c nvidia_test" \
+ )
 }
 
-function AMD () {
+function amd () {
 logo
 ferme_yad
 COM_VULKAN="Installer Mesa Kisak Fresh"
-COM_KISAK="Installer AMD Vulkan"
-AMD=$(yad --window-icon="$logo" --title="Gestionnaire AMD" --width 500 --height 170 --text-align="center" --button="Retour:bash -c menu" --button="OK:0" --button="Cancel:1" --list --radiolist --column=" " --column="installer" --column="espace" --column="commentaire" True "AMD_VULKAN" "   " "$COM_VULKAN" False "MESA_KISAK_FRESH" "   " "$COM_KISAK" --no-headers)
-if [ "$(echo "$AMD" | cut -d'|' -f2)" = "AMD_VULKAN" ]; then
-    app_name="backport"
-    data_loc="./data/amd-vulkan.sh"
-    yad_progress
-elif [ "$(echo "$AMD" | cut -d'|' -f2)" = "MESA_KISAK_FRESH" ]; then
-    app_name="backport"
-    data_loc="./data/mesa-kisak-fresh.sh"
-    yad_progress
-elif [ "$AMD" = "Retour" ]; then
-    sudo -S kill $yadid
-    menu
-fi
+COM_KISAK="Installer amd Vulkan"
+amd=$(yad --window-icon="$logo" --title="Gestionnaire amd" --width 500 --height 170 --text-align="center" --button="Retour:bash -c menu" --button="OK:0" --button="Cancel:1" \
+ --form \
+ --field "Vulkan ! ! $COM_VULKAN:fbtn" "bash -c amd_vulkan" \
+ --field "Mesa Kisak ! ! $COM_KISAK:fbtn" "bash -c amd_kisak" \
+ )
 }
 
-function Utilitaire () {
+function utilitaire () {
 logo
 ferme_yad
 COM_DEBGET="Installer deb-get (Debian Stable uniquement)"
-COM_WINE="Installer wine-staging"
-COM_PACSTALL="Installer pacstall"
+COM_wine="Installer wine-staging"
+COM_pacstall="Installer pacstall"
 COM_PPA="Utiliser l'outil d'ajout de PPA pour Debian"
-COM_SID="Installer les repository de Sid (pin 10) pour Debian Testing"
-Utilitaire=$(yad --window-icon="$logo" --title="Gestionnaire des app utilitaires" --width 500 --height 170 --text-align="center" --button="Retour:bash -c menu" --button="OK:0" --button="Cancel:1" --list --radiolist --column=" " --column="installer" --column="espace" --column="commentaire" True "DEB-GET" "   " "$COM_DEBGET" False "WINE" "   " "$COM_WINE" False "PACSTALL" "   " "$COM_PACSTALL" False "PPA" "   " "$COM_PPA" False "SID" "   " "$COM_SID" --no-headers)
-if [ "$(echo "$Utilitaire" | cut -d'|' -f2)" = "DEB-GET" ]; then
-    app_name="deb-get"
-    data_loc="./data/deb-get.sh"
-    yad_progress
-elif [ "$(echo "$Utilitaire" | cut -d'|' -f2)" = "WINE" ]; then
-    app_name="backport"
-    data_loc="./data/wine-staging.sh"
-    yad_progress
-elif [ "$(echo "$Utilitaire" | cut -d'|' -f2)" = "PACSTALL" ]; then
-    app_name="PACSTALL"
-    data_loc="./data/pacstall.sh"
-    yad_progress
-elif [ "$(echo "$Utilitaire" | cut -d'|' -f2)" = "PPA" ]; then
-    app_name="backport"
-    data_loc="./data/add-ppa-debian.sh"
-    yad_progress
-elif [ "$(echo "$Utilitaire" | cut -d'|' -f2)" = "SID" ]; then
-    app_name="SID"
-    data_loc="./data/install-sid.sh"
-    yad_progress
-elif [ "$Utilitaire" = "Retour" ]; then
-    sudo -S kill $yadid
-    menu
-fi
+COM_sid="Installer les repository de Sid (pin 10) pour Debian Testing"
+utilitaire=$(yad --window-icon="$logo" --title="Gestionnaire des app utilitaires" --width 500 --height 170 --text-align="center" --button="Retour:bash -c menu" --button="OK:0" --button="Cancel:1" \
+ --form \
+ --field "Deb-get ! ! $COM_DEBGET:fbtn" "bash -c deb_get" \
+ --field "Wine ! ! $COM_wine:fbtn" "bash -c wine" \
+ --field "Pacstall ! ! $CCOM_pacstall:fbtn" "bash -c pacstall" \
+ --field "PPA ! ! $COM_PPA:fbtn" "bash -c backport" \
+ --field "sid ! ! $COM_sid:fbtn" "bash -c sid" \
+ )
 }
-
+#--------------------------------------------------------------------------------------------------------------------------------------------------
+#
+#                   FONCIOTNS POUR MENU PRINCIPALE
+#
+#--------------------------------------------------------------------------------------------------------------------------------------------------
 function menu() {
 export -f ferme_yad
-export -f NVIDIA
-export -f AMD
-export -f Utilitaire
+export -f nvidia
+export -f amd
+export -f utilitaire
 export -f yad_progress
-export -f NVIDIA2
+export -f nvidia2
 export -f menu
 export -f logo
+export -f nvidia_stable
+export -f nvidia_autre
+export -f nvidia_remove
+export -f nvidia_secureboot
+export -f nvidia_exp
+export -f nvidia_cuda
+export -f nvidia_test
+export -f amd_vulkan
+export -f amd_kisak
+export -f deb_get
+export -f wine
+export -f pacstall
+export -f backport
+export -f sid
 export count
 
 if [[ $count == 1 ]] ; then
@@ -140,10 +212,10 @@ count=1
 logo
 CG=$(yad --window-icon="$logo" --title="Driver installer" --width 500 --height 140 --text-align="center" --no-buttons \
  --form \
- --field "Gesiton des pilotes Nvidia:btn" "bash -c NVIDIA" \
- --field "Gesiton des pilotes AMD:btn" "bash -c AMD" \
- --field "Gestion des programmes utilitaires:btn" "bash -c Utilitaire" \
- "echo 'NVIDIA'" "echo 'AMD'" "echo 'Utilitaire'"
+ --field "Gesiton des pilotes Nvidia:fbtn" "bash -c nvidia" \
+ --field "Gesiton des pilotes amd:fbtn" "bash -c amd" \
+ --field "Gestion des programmes utilitaires:fbtn" "bash -c utilitaire" \
+ "echo 'nvidia'" "echo 'amd'" "echo 'utilitaire'"
  )
 }
 menu
