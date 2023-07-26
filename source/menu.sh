@@ -11,11 +11,42 @@ logo="./source/logo.png"
 #--------------------------------------------------------------------------------------------------------------------------------------------------
 
 function yad_progress () {
-$data_loc | while read -r line ; do echo "# ${line}" ; if [ "${line}" = "Job done" ]; then
+
+# Variable pour stocker le nombre de lignes dans temp_script.sh
+#max_line=0
+
+# Compter le nombre de lignes dans temp_script.sh
+#max_line=$(wc -l .$data_loc | cut -d " " -f 1)
+
+# Calculer le pourcentage correspondant à une seule ligne avec bc
+#one_line_percent=$(echo "scale=4; 100 / $max_line" | bc)
+
+#     max_line=$(wc -l $data_loc | cut -d " " -f 1)
+#     one_line_percent=$(echo "scale=4; 100 / $max_line" | bc -l)
+#     counter=$(echo "$counter + $one_line_percent" | bc -l)
+#     counter=$(echo $counter | cut -d "." -f 1)
+
+# Compteur pour afficher le chiffre dans le sous-processus
+counter=0
+
+$data_loc | while read -r line ;
+    do
+    echo "# ${line}"
+    max_line=$(wc -l $data_loc | cut -d " " -f 1)
+    max_line2=$(echo "$max_line / 2" | bc -l)
+    one_line_percent=$(echo "scale=4; 100 / $max_line2" | bc -l)
+    counter=$(echo "$counter + $one_line_percent" | bc -l)
+    counter=$(echo $counter | cut -d "." -f 1)
+    echo $counter ;
+        if [ "${line}" = "Job done" ]; then
+        counter="100"
+        echo $counter
+        fi
+        if [ "${line}" = "END" ]; then
         ferme_yad
         yad --window-icon="$logo" --width 300 --height 170 --title="FINI" --text-align="center" --text="Installation terminée" -button="OK:0"
-    fi
-done | yad --progress --pulsate --title "installation de $app_name" --progress-text="installation en cours " --width 500 --height 200 --no-buttons --enable-log --log-expanded
+        fi
+    done | yad --progress --percentage=$counter --title "installation de $app_name" --progress-text="installation en cours " --width 500 --height 200 --no-buttons --enable-log --log-expanded
 }
 
 function ferme_yad () { PidYad=$(pgrep yad); kill $PidYad;}
