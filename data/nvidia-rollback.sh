@@ -8,31 +8,18 @@ if [[ $EUID -ne 0 ]]; then
 	exit 1
 fi
 
+clear > /var/log/$LOGNAME.auto-update.txt 2>&1
 echo "Job start : Uninstalling Nvidia Drivers
 "
 sleep 2
 
-clear
-echo "---------------------------------------------------------------------
-
-POUR REINSTALLER LA VERSION ORIGINALE DE VOTRE BRANCHE RELANCEZ :
-
-nvidia-base.sh
-
--------------------------------------------------------------------------
-"
-read -n 1 -p "Appuyez sur ENTRER pour CONTINUER, CTRL+C pour ANNULER *** " select
-
-if [[ $select == "" ]];
-	then
-	# rm /etc/apt/sources.list.d/experimental.list
+# rm /etc/apt/sources.list.d/experimental.list
 	
-	apt autopurge -y cuda-keyring nvidia-cuda-toolkit nvidia-cuda-dev nvidia-cuda-mps
-	apt autopurge -y nvidia-driver vulkan-tools firmware-misc-nonfree nvidia-settings libglvnd-dev libvulkan*:i386 nvidia-driver-libs:i386 nvidia-cuda-toolkit nvidia-cuda-dev nvidia-cuda-mps
-	echo "Job done"
-	echo "Veuillez REBOOT la machine !!"
-	else
-	exit 2
-fi
+apt autopurge -y cuda-keyring nvidia-cuda-toolkit nvidia-cuda-dev nvidia-cuda-mps >> /var/log/$LOGNAME.auto-update.txt 2>&1
+apt autopurge -y nvidia-driver vulkan-tools firmware-misc-nonfree nvidia-settings libglvnd-dev libvulkan*:i386 nvidia-driver-libs:i386 nvidia-cuda-toolkit nvidia-cuda-dev nvidia-cuda-mps >> /var/log/$LOGNAME.auto-update.txt 2>&1
 
-sleep 10
+echo "Veuillez REBOOT la machine !!"
+echo "Job done"
+
+
+
