@@ -35,3 +35,4 @@ apt update
 echo "
 Job done.
 "
+sleep 1
