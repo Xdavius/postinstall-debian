@@ -160,7 +160,7 @@ nvidia=$(yad --window-icon="$logo" --title="Gestionnaire nvidia" --width 500 --h
  --form \
  --field "Stable ! ! $COM_STABLE:fbtn" "bash -c nvidia_stable" \
  --field "Autre ! ! $COM_AUTRE:fbtn" "bash -c nvidia_autre" \
- --field "Secureboot ! ! $COM_SECUREBOOT:fbtn" "bash -c nvidia_secureboot" \
+ #--field "Secureboot ! ! $COM_SECUREBOOT:fbtn" "bash -c nvidia_secureboot" \
  --field "Remove ! ! $COM_REMOVE:fbtn" "bash -c nvidia_remove" \
  )
 }
