@@ -8,6 +8,7 @@ if [[ $EUID -ne 0 ]]; then
 	exit 1
 fi
 
+clear
 echo "
 Installation des repos Sid en pin 10 pour Debian Testing
 "
@@ -30,10 +31,6 @@ else
 fi
 
 apt update
-
-echo "
-Job done.
-"
 
 echo "
 Job done.
