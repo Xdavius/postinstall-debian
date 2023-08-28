@@ -21,5 +21,4 @@ apt autopurge -y nvidia-driver vulkan-tools firmware-misc-nonfree nvidia-setting
 echo "Veuillez REBOOT la machine !!"
 echo "Job done"
 
-
-
+sleep 1
