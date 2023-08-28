@@ -24,4 +24,4 @@ echo "
 Job done.
 "
 
-sleep 10
+sleep 1
