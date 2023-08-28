@@ -41,11 +41,12 @@ $data_loc | while read -r line ;
         if [ "${line}" = "Job done" ]; then
         counter="100"
         echo $counter
-        fi
-        if [ "${line}" = "END" ]; then
+        sleep 5
         ferme_yad
         yad --window-icon="$logo" --width 300 --height 170 --title="FINI" --text-align="center" --text="Installation terminée" -button="OK:0"
         fi
+        #if [ "${line}" = "END" ]; then
+        #fi
     done | yad --progress --percentage=$counter --title "installation de $app_name" --progress-text="installation en cours " --width 500 --height 200 --no-buttons --enable-log --log-expanded
 }
 
