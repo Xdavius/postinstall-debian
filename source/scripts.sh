@@ -88,3 +88,9 @@ bash ./extra/nvidia-testing-on-stable.sh
 sleep 2
 nvidia2
 }
+
+function backports() {
+bash ./extra/backports.sh
+sleep 2
+tools1
+}
