@@ -48,7 +48,7 @@ Nettoyage du système :
 "
 sleep 2
 
-apt autopurge -y nvidia-driver nvidia-settings nvidia-driver-libs:i386 cuda nvidia-gds
+apt autopurge -y nvidia-driver nvidia-settings nvidia-driver-libs:i386 cuda #nvidia-gds
 
 if [ ! -x /etc/apt/sources.list.d/experimental.list ]
 then
