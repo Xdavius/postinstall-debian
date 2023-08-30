@@ -48,7 +48,7 @@ Nettoyage du système :
 "
 sleep 2
 
-apt autopurge -y nvidia-driver nvidia-settings nvidia-driver-libs:i386 cuda #nvidia-gds
+apt autopurge -y nvidia-driver nvidia-settings nvidia-driver-libs:i386 cuda nvidia-gds
 
 if [ ! -x /etc/apt/sources.list.d/experimental.list ]
 then
@@ -63,7 +63,7 @@ sleep 2
 
 apt update
 apt install -y -t experimental nvidia-driver vulkan-tools vulkan-tools firmware-misc-nonfree nvidia-settings libglvnd-dev
-apt install -y -t experimental vulkan-tools:i386 nvidia-driver-libs:i386
+apt install -y -t experimental nvidia-driver-libs:i386
 
 echo "
 Installation de Cuda :
