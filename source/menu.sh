@@ -104,12 +104,12 @@ function nvidia_test () {
 
 
 function amd_vulkan () {
-    app_name="backport"
+    app_name="AMD-VULKAN"
     data_loc="./data/amd-vulkan.sh"
     yad_progress
 }
 function amd_kisak () {
-    app_name="backport"
+    app_name="MESA-KISAK"
     data_loc="./data/mesa-kisak-fresh.sh"
     yad_progress
 }
@@ -133,8 +133,8 @@ function pacstall () {
     data_loc="./data/pacstall.sh"
     yad_progress
 }
-function backport () {
-    app_name="backport"
+function ppa () {
+    app_name="ADD-PPA"
     data_loc="./data/add-ppa-debian.sh"
     yad_progress
 }
@@ -204,7 +204,7 @@ utilitaire=$(yad --window-icon="$logo" --title="Gestionnaire des app utilitaires
  --field "Deb-get ! ! $COM_DEBGET:fbtn" "bash -c deb_get" \
  --field "Wine ! ! $COM_wine:fbtn" "bash -c wine" \
  --field "Pacstall ! ! $CCOM_pacstall:fbtn" "bash -c pacstall" \
- --field "PPA ! ! $COM_PPA:fbtn" "bash -c backport" \
+ --field "PPA ! ! $COM_PPA:fbtn" "bash -c ppa" \
  --field "sid ! ! $COM_sid:fbtn" "bash -c sid" \
  )
 }
