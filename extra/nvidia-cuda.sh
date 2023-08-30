@@ -62,7 +62,9 @@ rm cuda-keyring_1.1-1_all.deb
 apt update
 apt full-upgrade -y
 mkdir -p /var/run/nvpd/
-apt install -y cuda nvidia-driver nvidia-settings vulkan-tools vulkan-tools:i386 libglvnd-dev nvidia-gds
+apt install -y cuda nvidia-driver nvidia-settings vulkan-tools libglvnd-dev 
+
+# apt install nvidia-gds
 
 
 echo "
