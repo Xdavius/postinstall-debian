@@ -15,6 +15,7 @@ elif  [ $DESKTOP_SESSION == "gnome" ]; then
 fi
 password=$(echo $pwd)
 chmod +x data/*.sh
+chmod +x extra/*.sh
 chkroot=$(echo $password | sudo -S whoami)
 if [ "$password" = "" ]; then
 exit
