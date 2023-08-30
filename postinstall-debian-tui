@@ -151,6 +151,7 @@ echo "          ---------------------------- TOOLS --------------------------
 2- Installer wine-staging
 3- Installer pacstall
 
+7- Ajouter les dépôts Backports pour Debian Stable
 8- Installer les repository de Sid (pin 10) pour Debian Testing
 9- Utiliser l'outil d'ajout de PPA pour Debian
 
@@ -167,6 +168,8 @@ case "$choix" in
 2)  wine-staging
     ;;
 3)  pacstall
+    ;;
+7)  backports
     ;;
 8)  install-sid
     ;;
