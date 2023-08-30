@@ -167,6 +167,7 @@ nvidia=$(yad --window-icon="$logo" --title="Gestionnaire nvidia" --width 500 --h
 
 function nvidia2 () {
 logo
+ferme_yad
 COM_EXPERIMENTAL="Installer driver Nvidia Experimental"
 COM_CUDA="Installer driver depuis le depot Nvidia Cuda (Compatible Secureboot)"
 COM_TESTING="nstaller driver Nvidia de Testing en pin 10 (Pour Debian Stable)"
