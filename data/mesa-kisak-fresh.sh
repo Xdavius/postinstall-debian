@@ -19,7 +19,7 @@ apt-get update >> /var/log/$LOGNAME.auto-update.txt 2>&1 &&\
 apt-get full-upgrade -y >> /var/log/$LOGNAME.auto-update.txt 2>&1
 
 echo "
-Job done.
+Job done
 "
 
 sleep 2
