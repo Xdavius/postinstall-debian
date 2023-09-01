@@ -75,11 +75,11 @@ apt autoremove -y
 
 echo "
 
-Job done
+Job done.
 "
 
 echo "
 Veuillez REBOOT la machine !!
 "
 
-sleep 10
+sleep 2
