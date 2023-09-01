@@ -16,4 +16,4 @@ bash -c "$(curl -fsSL https://pacstall.dev/q/install)"
 
 echo "Job done"
 
-sleep 10
+sleep 2
