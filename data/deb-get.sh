@@ -16,3 +16,5 @@ apt-get install -y curl lsb-release wget
 curl -sL https://raw.githubusercontent.com/wimpysworld/deb-get/main/deb-get | bash -s install deb-get
 
 echo "Job done"
+
+sleep 2
