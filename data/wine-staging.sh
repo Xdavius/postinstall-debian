@@ -22,3 +22,5 @@ apt install -y python3-gi-cairo >> /var/log/$LOGNAME.auto-update.txt 2>&1
 apt install -y --install-recommends winehq-staging >> /var/log/$LOGNAME.auto-update.txt 2>&1
 
 echo "Job done"
+
+sleep 2
