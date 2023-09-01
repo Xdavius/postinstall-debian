@@ -24,7 +24,7 @@ fi
 sudo apt update > /var/log/$LOGNAME.auto-update.txt 2>&1
 
 echo "
-Job Done
+Job done
 "
 echo "
 Pensez à REBOOT !
