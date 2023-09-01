@@ -241,9 +241,9 @@ export -f amd_kisak
 export -f deb_get
 export -f wine
 export -f pacstall
-export -f backport
-export -f sid
 export -f update-firmware
+export -f ppa
+export -f sid
 export count
 
 if [[ $count == 1 ]] ; then
