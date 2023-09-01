@@ -33,6 +33,6 @@ fi
 apt update
 
 echo "
-Job done.
+Job done
 "
-sleep 1
+sleep 2
