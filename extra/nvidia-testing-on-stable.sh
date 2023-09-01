@@ -85,10 +85,11 @@ apt install -y -t testing nvidia-cuda-toolkit nvidia-cuda-dev
 
 echo "
 
-Job done
+Job done.
 "
 
 echo "
 Veuillez REBOOT la machine !!
 "
 
+sleep 2
