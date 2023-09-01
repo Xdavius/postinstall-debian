@@ -7,11 +7,11 @@
 function main() {
 # Script need curl
 if [ $DESKTOP_SESSION == "plasma" ]; then
-  pwd=$( kdialog --password "Entrez votre mot de passe root" )
+  pwd=$( kdialog --password "Entrez votre mot de passe SUDO" )
 elif  [ $DESKTOP_SESSION == "plasmawayland" ]; then
-  pwd=$( kdialog --password "Entrez votre mot de passe root" )
+  pwd=$( kdialog --password "Entrez votre mot de passe SUDO" )
 elif  [ $DESKTOP_SESSION == "gnome" ]; then
-  pwd=$( zenity --password --text="Entrez votre mot de passe root" )
+  pwd=$( zenity --password --text="Entrez votre mot de passe SUDO" )
 fi
 password=$(echo $pwd)
 chmod +x data/*.sh
