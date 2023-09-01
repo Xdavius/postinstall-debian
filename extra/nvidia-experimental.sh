@@ -75,7 +75,7 @@ apt autoremove -y
 
 echo "
 
-Job done.
+Job done
 "
 
 echo "
