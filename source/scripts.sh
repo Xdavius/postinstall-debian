@@ -94,3 +94,9 @@ bash ./extra/backports.sh
 sleep 2
 tools1
 }
+
+function update-firmware() {
+bash ./extra/update-firmware.sh
+sleep 2
+tools1
+}
