@@ -133,6 +133,11 @@ function pacstall () {
     data_loc="./data/pacstall.sh"
     yad_progress
 }
+function update-firmware () {
+    app_name="ADD-PPA"
+    data_loc="./extra/update-firmware.sh"
+    yad_progress
+}
 function ppa () {
     app_name="ADD-PPA"
     data_loc="./data/add-ppa-debian.sh"
@@ -194,15 +199,17 @@ amd=$(yad --window-icon="$logo" --title="Gestionnaire amd" --width 500 --height 
 function utilitaire () {
 logo
 ferme_yad
-COM_DEBGET="Installer deb-get (Debian Stable uniquement)"
-COM_wine="Installer wine-staging"
-COM_pacstall="Installer pacstall"
+COM_Deb-get="Installer deb-get (Debian Stable uniquement)"
+COM_Wine="Installer wine-staging"
+COM_Pacstall="Installer pacstall"
+COM_Linux-Firmware-GIT="Mettre à jour les firmwares Linux pour le support du matériel dernière génération"
 COM_PPA="Utiliser l'outil d'ajout de PPA pour Debian"
 COM_sid="Installer les repository de Sid (pin 10) pour Debian Testing"
 utilitaire=$(yad --window-icon="$logo" --title="Gestionnaire des app utilitaires" --width 500 --height 170 --text-align="center" --button="Retour:bash -c menu" --button="OK:0" --button="Cancel:1" \
  --form \
  --field "Deb-get ! ! $COM_DEBGET:fbtn" "bash -c deb_get" \
  --field "Wine ! ! $COM_wine:fbtn" "bash -c wine" \
+ --field "Linux-Firmware-GIT ! ! $COM_wine:fbtn" "bash -c update-firmware" \
  --field "Pacstall ! ! $CCOM_pacstall:fbtn" "bash -c pacstall" \
  --field "PPA ! ! $COM_PPA:fbtn" "bash -c ppa" \
  --field "sid ! ! $COM_sid:fbtn" "bash -c sid" \
@@ -236,6 +243,7 @@ export -f wine
 export -f pacstall
 export -f backport
 export -f sid
+export -f update-firmware
 export count
 
 if [[ $count == 1 ]] ; then
