@@ -76,4 +76,4 @@ echo "
 Veuillez REBOOT la machine !!
 "
 
-sleep 10
+sleep 2
