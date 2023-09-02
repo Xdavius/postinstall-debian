@@ -47,7 +47,7 @@ $data_loc | while read -r line ;
         fi
         #if [ "${line}" = "END" ]; then
         #fi
-    done | yad --progress --percentage=$counter --title "installation de $app_name" --progress-text="installation en cours " --width 500 --height 250 --no-buttons --enable-log --log-expanded
+    done | yad --progress --percentage=$counter --title "installation de $app_name" --progress-text="installation en cours " --width 500 --height 200 --no-buttons --enable-log --log-expanded
 }
 
 function ferme_yad () { PidYad=$(pgrep yad); kill $PidYad;}
@@ -82,17 +82,17 @@ function nvidia_secureboot () {
 #--------------------------------------------------------------------------------------------------------------------------------------------------
 
 function nvidia_exp () {
-    app_name="EXPERIMENTAL"
+    app_name="NVIDIA-EXPERIMENTAL"
     data_loc="./extra/nvidia-experimental.sh"
     yad_progress
 }
 function nvidia_cuda () {
-    app_name="CUDA"
+    app_name="NVIDIA-CUDA"
     data_loc="./extra/nvidia-cuda.sh"
     yad_progress
 }
 function nvidia_test () {
-    app_name="TESTING"
+    app_name="NVIDIA-TESTING"
     data_loc="./extra/nvidia-testing-on-stable.sh"
     yad_progress
 }
@@ -119,12 +119,12 @@ function amd_kisak () {
 #
 #--------------------------------------------------------------------------------------------------------------------------------------------------
 function deb_get () {
-    app_name="deb-get"
+    app_name="DEB-GET"
     data_loc="./data/deb-get.sh"
     yad_progress
 }
 function wine () {
-    app_name="backport"
+    app_name="WINE-STAGING"
     data_loc="./data/wine-staging.sh"
     yad_progress
 }
@@ -134,7 +134,7 @@ function pacstall () {
     yad_progress
 }
 function update-firmware () {
-    app_name="ADD-PPA"
+    app_name="LINUX-FIRMWARE-GIT"
     data_loc="./extra/update-firmware.sh"
     yad_progress
 }
@@ -144,7 +144,7 @@ function ppa () {
     yad_progress
 }
 function sid () {
-    app_name="sid"
+    app_name="SID (PIN 10)"
     data_loc="./data/install-sid.sh"
     yad_progress
 }
@@ -199,20 +199,20 @@ amd=$(yad --window-icon="$logo" --title="Gestionnaire amd" --width 500 --height 
 function utilitaire () {
 logo
 ferme_yad
-COM_Deb-get="Installer deb-get (Debian Stable uniquement)"
+COM_Deb_get="Installer deb-get (Debian Stable uniquement)"
 COM_Wine="Installer wine-staging"
 COM_Pacstall="Installer pacstall"
-COM_Linux-Firmware-GIT="Mettre à jour les firmwares Linux pour le support du matériel dernière génération"
+COM_Linux_Firmware_GIT="Mettre à jour les firmwares Linux pour le support du matériel dernière génération"
 COM_PPA="Utiliser l'outil d'ajout de PPA pour Debian"
 COM_sid="Installer les repository de Sid (pin 10) pour Debian Testing"
 utilitaire=$(yad --window-icon="$logo" --title="Gestionnaire des app utilitaires" --width 500 --height 170 --text-align="center" --button="Retour:bash -c menu" --button="OK:0" --button="Cancel:1" \
  --form \
- --field "Deb-get ! ! $COM_DEBGET:fbtn" "bash -c deb_get" \
- --field "Wine ! ! $COM_wine:fbtn" "bash -c wine" \
- --field "Linux-Firmware-GIT ! ! $COM_wine:fbtn" "bash -c update-firmware" \
- --field "Pacstall ! ! $CCOM_pacstall:fbtn" "bash -c pacstall" \
- --field "PPA ! ! $COM_PPA:fbtn" "bash -c ppa" \
- --field "sid ! ! $COM_sid:fbtn" "bash -c sid" \
+ --field "Deb-get ! ! $COM_Deb_get:fbtn" "bash -c deb_get" \
+ --field "Wine ! ! $COM_Wine:fbtn" "bash -c wine" \
+ --field "Linux-Firmware-GIT ! ! $COM_Linux_Firmware_GIT:fbtn" "bash -c update-firmware" \
+ --field "Pacstall ! ! $CCOM_Pacstall:fbtn" "bash -c pacstall" \
+ # --field "PPA ! ! $COM_PPA:fbtn" "bash -c ppa" \
+ --field "Sid-for-Testing ! ! $COM_sid:fbtn" "bash -c sid" \
  )
 }
 #--------------------------------------------------------------------------------------------------------------------------------------------------
@@ -251,7 +251,7 @@ ferme_yad
 fi
 count=1
 logo
-CG=$(yad --window-icon="$logo" --title="Driver installer" --width 500 --height 140 --text-align="center" --no-buttons \
+CG=$(yad --window-icon="$logo" --title="POSTINSTALL FOR DEBIAN" --width 500 --height 140 --text-align="center" --no-buttons \
  --form \
  --field "Gesiton des pilotes Nvidia:fbtn" "bash -c nvidia" \
  --field "Gesiton des pilotes amd:fbtn" "bash -c amd" \
