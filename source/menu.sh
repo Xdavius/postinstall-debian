@@ -253,9 +253,9 @@ count=1
 logo
 CG=$(yad --window-icon="$logo" --title="POSTINSTALL FOR DEBIAN" --width 500 --height 140 --text-align="center" --no-buttons \
  --form \
- --field "Gesiton des pilotes Nvidia:fbtn" "bash -c nvidia" \
- --field "Gesiton des pilotes amd:fbtn" "bash -c amd" \
- --field "Gestion des programmes utilitaires:fbtn" "bash -c utilitaire" \
+ --field "Gesiton des pilotes NVIDIA:fbtn" "bash -c nvidia" \
+ --field "Gesiton des pilotes AMD:fbtn" "bash -c amd" \
+ --field "Boîte à outils:fbtn" "bash -c utilitaire" \
  "echo 'nvidia'" "echo 'amd'" "echo 'utilitaire'"
  )
 }
