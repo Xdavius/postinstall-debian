@@ -6,15 +6,13 @@
 
 Il est nécessaire d'avoir configuré SUDO pour utiliser ce logiciel.
 
-Ouvrez un terminal puis copier coller cette commande :
+SI VOUS AVEZ INSTALLÉ DEBIAN DEPUIS UNE ISO LIVE, SUDO EST DÉjÀ CONFIGURÉ !
+
+- Ouvrez un terminal puis copier coller cette commande :
 
     su - -c "usermod -aG sudo $(who | grep tty | cut -d " " -f 1)"
 
-Entrez le mot de passe ROOT (Super Utilisateur) pour valider la commande.
-
-Puis redémarrez la machine.
-
-SI VOUS AVEZ INSTALLÉ DEBIAN DEPUIS UNE ISO LIVE, SUDO EST DÉjÀ CONFIGURÉ !
+- Entrez le mot de passe ROOT (Super Utilisateur) pour valider la commande puis redémarrez la machine.
 
 
 ## INSTALLATION
@@ -50,8 +48,8 @@ Alternativement, vous pouvez aussi lancer en sudo :
 
 ## Contenu des scripts :
 
+Certains scripts ne sont pas accessible via l'application GUI (bugs) Mais ils sont utilisables via le TUI ou en stand-alone.
 
-- secureboot : Crée la clé MOK, configure l'auto-signature pour DKMS, et l'enroll (Indispensable pour Nvidia avec Secureboot)
 - nvidia-stable : Installer le driver Nvidia officiel Debian Stable
 - nvidia-testing : Installer le dépôt EXPERIMENTAL pour debian pour avoir le dernier driver EXPERIMENTAL
 - nvidia-rollback : Desinstaller nvidia-base-upgrade et/ou nvidia-testing
@@ -62,7 +60,8 @@ Alternativement, vous pouvez aussi lancer en sudo :
 - wine-staging : Installer la dernière version de wine ainsi que toutes les dépendances nécessaire
 - deb-get : Installer deb-get pour installer facilement des logiciels .deb externe aux dépots Debian (heroic, discord, lutris (github version), et d'autres) (UNIQUEMENT POUR DEBIAN STABLE)
 - pacstall : Une alternative à deb-get, parmet d'accèder à de nombreux logiciels supplémentaires et de les maintenir à jour
-
+- secureboot : Crée la clé MOK, configure l'auto-signature pour DKMS, et l'enroll (Indispensable pour Nvidia avec Secureboot)
+- install-sid : Configure Sid avec un Pin 10 (UNIQUEMENT POUR DEBIAN TESTING)
 
 ## REMERCIEMENTS :
 
