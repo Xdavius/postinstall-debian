@@ -60,6 +60,8 @@ Certains scripts ne sont pas accessible via l'application GUI (bugs) Mais ils so
 - wine-staging : Installer la dernière version de wine ainsi que toutes les dépendances nécessaire
 - deb-get : Installer deb-get pour installer facilement des logiciels .deb externe aux dépots Debian (heroic, discord, lutris (github version), et d'autres) (UNIQUEMENT POUR DEBIAN STABLE)
 - pacstall : Une alternative à deb-get, parmet d'accèder à de nombreux logiciels supplémentaires et de les maintenir à jour
+
+- update-firmware : Met à jour les firmwares Linux à la dernière version GIT (Support du matériel très récent comme les dernière cartes Wifi ou les derniers GPU)
 - secureboot : Crée la clé MOK, configure l'auto-signature pour DKMS, et l'enroll (Indispensable pour Nvidia avec Secureboot)
 - install-sid : Configure Sid avec un Pin 10 (UNIQUEMENT POUR DEBIAN TESTING)
 
