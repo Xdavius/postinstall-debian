@@ -23,7 +23,7 @@ apt get install wget tar gzip > /var/log/$LOGNAME.auto-update.txt 2>&1
 echo "Téléchargement en cours..."
 wget --no-check-certificate -c https://gitlab.com/kernel-firmware/linux-firmware/-/archive/main/linux-firmware-main.tar.gz -O - | tar -xz
 echo "Installation..."
-mv -f linux-firmware-main/* /usr/lib/firmware
+cp -rf linux-firmware-main/* /usr/lib/firmware
 echo "Nettoyage..."
 rm -rf linux-firmware-main
 
@@ -35,3 +35,16 @@ echo "
 Veuillez REBOOT la machine !!
 "
 sleep 2
+
+
+
+
+
+
+
+
+
+
+
+
+exit 1
