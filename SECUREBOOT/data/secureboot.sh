@@ -71,10 +71,15 @@ sign1='mok_signing_key="/var/lib/shim-signed/mok/MOK.priv"'
 sign2='mok_certificate="/var/lib/shim-signed/mok/MOK.der"'
 sign3='sign_tool="/etc/dkms/sign_helper.sh"'
 sign4='sign_file="/opt/signtool/sign-file"'
+sign5='autoinstall_all_kernels="true"'
+sign6='modprobe_on_install="true"'
+
 echo $sign1 > /etc/dkms/framework.conf
 echo $sign2 >> /etc/dkms/framework.conf
 echo $sign3 >> /etc/dkms/framework.conf
 echo $sign4 >> /etc/dkms/framework.conf
+echo $sign5 >> etc/dkms/framework.conf
+echo $sign6 >> etc/dkms/framework.conf
 
 sign_helper='/opt/signtool/sign-file sha512 /var/lib/shim-signed/mok/MOK.priv /var/lib/shim-signed/mok/MOK.der "$2"'
 echo $sign_helper > /etc/dkms/sign_helper.sh
