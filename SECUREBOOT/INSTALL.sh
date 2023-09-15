@@ -9,7 +9,7 @@ if [[ $EUID -ne 0 ]]; then
 fi
 apt install -f dkms
 
-kernel_ver=(uname -r)
+kernel_ver=$(uname -r)
 srcdir=$(pwd)
 chmod +x data/*.sh
 chmod +x data/src/zz-signing
