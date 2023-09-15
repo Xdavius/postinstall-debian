@@ -14,6 +14,23 @@ SI VOUS AVEZ INSTALLÉ DEBIAN DEPUIS UNE ISO LIVE, SUDO EST DÉjÀ CONFIGURÉ !
 
 - Entrez le mot de passe ROOT (Super Utilisateur) pour valider la commande puis redémarrez la machine.
 
+## INSTALLATION AVEC SECUREBOOT ACTIF (A EFFECTUER AVANT TOUT AUTRE INSTALLATION DE KERNEL OU DRIVER) :
+
+La procédure est la suivante :
+
+- Rendez-vous dans le dossier SECUREBOOT puis ouvrez un terminal et exécutez ces lignes :
+
+      chmod +x INSTALL.sh
+      sudo ./INSTALL.sh
+
+- Suivez les indication à l'écran. Renseignez votre nom lorsque demandé puis, renseignez le mot de passe à usage unique.
+
+  ATTENTION A QWERTY/AZERTY ! Vous pouvez utiliser uniquement la lettre "t" ou "r" ou bien le mot "root". Ce mot de passe ne servant qu'une seule fois.
+
+- Redémarrez la machine. Vous aurais un écran bleu. Appuyez sur une touche dans les 10 secondes puis
+  choissez ENROLL MOK, puis CONTINUE, puis YES (Suivez les instructions en Anglais hélas) le mot de passe à usage unique vous sera demandé.
+  
+- Il n'y a pas d'avertissement de reussite mais la première option aura disparu, choisissez REBOOT
 
 ## INSTALLATION
 
@@ -62,7 +79,6 @@ Certains scripts ne sont pas accessible via l'application GUI (bugs) Mais ils so
 - pacstall : Une alternative à deb-get, parmet d'accèder à de nombreux logiciels supplémentaires et de les maintenir à jour
 
 - update-firmware : Met à jour les firmwares Linux à la dernière version GIT (Support du matériel très récent comme les dernière cartes Wifi ou les derniers GPU)
-- secureboot : Crée la clé MOK, configure l'auto-signature pour DKMS, et l'enroll (Indispensable pour Nvidia avec Secureboot)
 - install-sid : Configure Sid avec un Pin 10 (UNIQUEMENT POUR DEBIAN TESTING)
 
 ## REMERCIEMENTS :
