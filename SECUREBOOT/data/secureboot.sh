@@ -76,7 +76,7 @@ echo $sign2 >> /etc/dkms/framework.conf
 echo $sign3 >> /etc/dkms/framework.conf
 echo $sing4 >> /etc/dkms/framework.conf
 
-sign_helper='/lib/modules/"$1"/build/scripts/sign-file sha512 /var/lib/shim-signed/mok/MOK.priv /var/lib/shim-signed/mok/MOK.der "$2"'
+sign_helper='/opt/signtool/sign-file sha512 /var/lib/shim-signed/mok/MOK.priv /var/lib/shim-signed/mok/MOK.der "$2"'
 echo $sign_helper > /etc/dkms/sign_helper.sh
 chmod +x /etc/dkms/sign_helper.sh
 }
