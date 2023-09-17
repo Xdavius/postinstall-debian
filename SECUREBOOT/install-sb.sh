@@ -17,6 +17,7 @@ apt install -f dkms patch > /var/log/$LOGNAME.auto-update.txt 2>&1
 
 kernel_ver=$(uname -r)
 srcdir=$(pwd)
+export srcdir
 chmod +x data/*.sh
 chmod +x data/src/zz-signing
 
@@ -32,14 +33,16 @@ Patch de dkms pour les kernels Customs, blocage des mises à jour du paquet
 # patch -i $srcdir/data/dkms.patch /usr/sbin/dkms
 # En cas de changement de version de dkms
 cp $srcdir/data/dkms.patched /usr/sbin/dkms
-chmod +x /usr/bin/dkms
+chmod +x /usr/sbin/dkms
 apt-mark hold dkms
 
 echo "
 Installation...
 " ; sleep 1
-source $srcdir/data/secureboot.sh
-source $srcdir/data/install-kernel-autosign.sh
+cd $srcdir
+
+source ./data/secureboot.sh
+source ./data/install-kernel-autosign.sh
 
 echo "
 Job done
