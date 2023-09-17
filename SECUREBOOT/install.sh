@@ -27,5 +27,6 @@ echo "Patch de dkms pour les kernels Customs, blocage des mises à jour du paque
 patch -i $srcdir/data/dkms.patch /usr/sbin/dkms
 apt-mark hold dkms
 
+echo "Installation..."
 source $srcdir/data/secureboot.sh
 source $srcdir/data/install-kernel-autosign.sh
