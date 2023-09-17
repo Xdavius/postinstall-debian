@@ -29,10 +29,10 @@ cp /lib/modules/$kernel_ver/build/scripts/sign-file /opt/signtool
 echo "
 Patch de dkms pour les kernels Customs, blocage des mises à jour du paquet
 " ; sleep 1
-patch -i $srcdir/data/dkms.patch /usr/sbin/dkms
+# patch -i $srcdir/data/dkms.patch /usr/sbin/dkms
 # En cas de changement de version de dkms
-# cp $srcdir/data/dkms.patched /usr/sbin/dkms
-# chmod +x /usr/bin/dkms
+cp $srcdir/data/dkms.patched /usr/sbin/dkms
+chmod +x /usr/bin/dkms
 apt-mark hold dkms
 
 echo "
