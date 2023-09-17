@@ -20,9 +20,8 @@ La procédure est la suivante :
 
 - Rendez-vous dans le dossier SECUREBOOT puis ouvrez un terminal et exécutez ces lignes :
 
-      chmod +x INSTALL.sh
-      sudo ./INSTALL.sh
-
+      sudo bash install-sb.sh
+      
 - Suivez les indication à l'écran. Renseignez votre nom lorsque demandé puis, renseignez le mot de passe à usage unique.
 
   ATTENTION A QWERTY/AZERTY ! Vous pouvez utiliser uniquement la lettre "t" ou "r" ou bien le mot "root". Ce mot de passe ne servant qu'une seule fois.
@@ -55,12 +54,11 @@ Pour passer root :
 
 pour exécuter l'application :
 
-    chmod +x postinstall-debian-tui
-    ./postinstall-debian-tui
+    bash postinstall-debian-tui
 
 Alternativement, vous pouvez aussi lancer en sudo :
     
-    sudo postinstall-debian-tui
+    sudo bash postinstall-debian-tui
 
 
 ## Contenu des scripts :
