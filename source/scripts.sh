@@ -45,6 +45,13 @@ sleep 2
 tools1
 }
 
+function lutris() {
+clear
+bash ./data/lutris-latest.sh
+sleep 2
+tools1
+}
+
 function install-sid() {
 clear
 bash ./data/install-sid.sh
