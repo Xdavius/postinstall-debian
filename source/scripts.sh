@@ -13,7 +13,7 @@ nvidia1
 }
 
 function secureboot() {
-bash ./data/secureboot.sh
+bash ./SECUREBOOT/install-sb.sh
 sleep 2
 nvidia1
 }
