@@ -128,6 +128,11 @@ function wine () {
     data_loc="./data/wine-staging.sh"
     yad_progress
 }
+function lutris () {
+    app_name="LUTRIS-LATEST (Repos OBS)"
+    data_loc="./data/lutris-latest.sh"
+    yad_progress
+}
 function pacstall () {
     app_name="pacstall"
     data_loc="./data/pacstall.sh"
@@ -201,6 +206,7 @@ logo
 ferme_yad
 COM_Deb_get="Installer deb-get (Debian Stable uniquement)"
 COM_Wine="Installer wine-staging"
+COM_Lutris="Installer Lutris et son dépôt officiel de OBS"
 COM_Pacstall="Installer pacstall"
 COM_Linux_Firmware_GIT="Mettre à jour les firmwares Linux pour le support du matériel dernière génération"
 COM_PPA="Utiliser l'outil d'ajout de PPA pour Debian"
@@ -209,6 +215,7 @@ utilitaire=$(yad --window-icon="$logo" --title="Gestionnaire des app utilitaires
  --form \
  --field "Deb-get ! ! $COM_Deb_get:fbtn" "bash -c deb_get" \
  --field "Wine ! ! $COM_Wine:fbtn" "bash -c wine" \
+ --field "Lutris-latest ! ! $COM_Wine:fbtn" "bash -c lutris" \
  --field "Linux-Firmware-GIT ! ! $COM_Linux_Firmware_GIT:fbtn" "bash -c update-firmware" \
  --field "Pacstall ! ! $CCOM_Pacstall:fbtn" "bash -c pacstall" \
  # --field "PPA ! ! $COM_PPA:fbtn" "bash -c ppa" \
@@ -240,6 +247,7 @@ export -f amd_vulkan
 export -f amd_kisak
 export -f deb_get
 export -f wine
+export -f lutris
 export -f pacstall
 export -f update-firmware
 export -f ppa
