@@ -13,7 +13,7 @@ nvidia1
 }
 
 function secureboot() {
-bash ./data/secureboot.sh
+bash ./SECUREBOOT/install-sb.sh
 sleep 2
 nvidia1
 }
@@ -41,6 +41,13 @@ tools1
 function wine-staging() {
 clear
 bash ./data/wine-staging.sh
+sleep 2
+tools1
+}
+
+function lutris() {
+clear
+bash ./data/lutris-latest.sh
 sleep 2
 tools1
 }

@@ -19,9 +19,10 @@ function menu1() {
 clear
 echo "          ------------------ POSTINSTALL DEBIAN TUI ------------------
 
-1 - Nvidia
-2 - AMD
-3 - Utilitaires
+1- Configurer SECUREBOOT et installer les Signatures 
+2- Installer les drivers Nvidia
+3- Installer les drivers AMD
+4- Programmes Utilitaires / Additionnels 
 
 0- Quitter
 
@@ -31,11 +32,13 @@ read -n1 -p "Choix ? " choix
 
 case "$choix" in
 
-1)  nvidia1
+1)  secureboot
     ;;
-2)  amd1
+2)  nvidia1
     ;;
-3)  tools1
+3)  amd1
+    ;;
+4)  tools1
     ;;
 0)  clear && exit 1
     ;;
@@ -50,10 +53,9 @@ function nvidia1() {
 clear
 echo "          -------------------------- NVIDIA --------------------------
 
-1- Installer driver Nvidia Stable (Recommandé)
+1- Installer driver Nvidia Stable LTS (Recommandé)
 2- Autres drivers Nvidia (Pour utilisateurs Expérimentés !!)
 3- Supprimer driver Nvidia
-4- Configurer Secureboot pour Nvidia
 
 0- Retour
 
@@ -69,8 +71,6 @@ case "$choix" in
     ;;
 3)  nvidia-rollback
     ;;
-4)  secureboot
-    ;;
 0)  menu1
     ;;
 *)  nvidia1
@@ -83,8 +83,8 @@ function nvidia2() {
 clear
 echo "          -------------------------- NVIDIA --------------------------
 
-1- Installer driver Nvidia Experimental
-2- Installer driver depuis le depot Nvidia Cuda (Compatible Secureboot)
+1- Installer driver Nvidia Experimental (Nvidia-dev)
+2- Installer driver depuis le depot Nvidia Cuda (Nvidia-Latest Stable)
 3- Installer driver Nvidia de Testing en pin 10 (Pour Debian Stable)
 
 0- Retour
@@ -110,17 +110,13 @@ esac
 }
 
 
-
-
-
-
-
 function amd1() {
 clear
 echo "          ---------------------------- AMD ---------------------------
 
 1- Installer Mesa Kisak Fresh
 2- Installer AMD Vulkan
+3- Installer ROCM opencl et ROCM HIP
 
 0- Retour
 
@@ -133,6 +129,8 @@ case "$choix" in
 1)  mesa-kisak
     ;;
 2)  amd-vulkan
+    ;;
+3)  rocm
     ;;
 0)  menu1
     ;;
@@ -147,14 +145,16 @@ function tools1() {
 clear
 echo "          ---------------------------- TOOLS --------------------------
 
-1- Installer deb-get (Debian Stable uniquement)
-2- Installer wine-staging
-3- Installer pacstall
+1- Installer Deb-Get (Debian Stable uniquement)
+2- Installer Pacstall (AUR pour Debian)
+
+3- Installer Lutris (Dépôt additionnel OBS officiel)
+4- Installer Wine-Staging (Dépôt additionnel officiel)
 
 6- Mettre à jour les Firmware-Linux à la dernière version GIT
 7- Ajouter les dépôts Backports pour Debian Stable
 8- Installer les repository de Sid (pin 10) pour Debian Testing
-9- Utiliser l'outil d'ajout de PPA pour Debian
+9- Utiliser l'outil d'ajout de PPA pour Debian (EXPERTS !!)
 
 0- Retour
 
@@ -166,9 +166,11 @@ case "$choix" in
 
 1)  deb-get
     ;;
-2)  wine-staging
+2)  pacstall
     ;;
-3)  pacstall
+3)  lutris
+    ;;
+4)  wine-staging
     ;;
 6)  update-firmware
     ;;
