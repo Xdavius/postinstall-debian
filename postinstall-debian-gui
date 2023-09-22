@@ -16,6 +16,7 @@ fi
 password=$(echo $pwd)
 chmod +x data/*.sh
 chmod +x extra/*.sh
+chmod +x SECUREBOOT/*.sh
 chkroot=$(echo $password | sudo -S whoami)
 if [ "$password" = "" ]; then
 exit
