@@ -1,0 +1,20 @@
+--- dkms	2023-09-17 13:16:24.850754044 +0200
++++ dkms.patched	2023-09-17 13:34:30.999179699 +0200
+@@ -932,12 +932,12 @@
+         return
+     fi
+ 
+-    if ! grep -q "^CONFIG_MODULE_SIG_HASH=" "${kernel_config}"; then
+-        echo "The kernel is be built without module signing facility, modules won't be signed"
+-        return
+-    fi
++    #if ! grep -q "^CONFIG_MODULE_SIG_HASH=" "${kernel_config}"; then
++    #    echo "The kernel is be built without module signing facility, modules won't be signed"
++    #    return
++    #fi
+ 
+-    sign_hash=$(grep "^CONFIG_MODULE_SIG_HASH=" "${kernel_config}" | cut -f2 -d= | sed 's/"//g')
++    sign_hash="sha256"
+ 
+     # Lazy source in signing related configuration
+     read_framework_conf $dkms_framework_signing_variables
