@@ -8,7 +8,7 @@ if [[ $EUID -ne 0 ]]; then
 	exit 1
 fi
 
-cp $srcdir/data/src/zz-signing /etc/kernel/postinst.d
+cp $srcdir/SECUREBOOT/data/src/zz-signing /etc/kernel/postinst.d
 chown root:root /etc/kernel/postinst.d/zz-signing
 chmod u+rx /etc/kernel/postinst.d/zz-signing
 
