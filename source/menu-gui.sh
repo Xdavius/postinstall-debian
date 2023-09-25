@@ -42,11 +42,8 @@ $data_loc | while read -r line ;
         counter="100"
         echo $counter
         sleep 5
-        ferme_yad
         yad --window-icon="$logo" --width 300 --height 170 --title="FINI" --text-align="center" --text="Installation terminée" --button="OK:bash -c menu"
         fi
-        #if [ "${line}" = "END" ]; then
-        #fi
     done | yad --progress --percentage=$counter --title "installation de $app_name" --progress-text="installation en cours " --width 500 --height 200 --no-buttons --enable-log --log-expanded
 }
 
@@ -111,6 +108,11 @@ function amd_vulkan () {
 function amd_kisak () {
     app_name="MESA-KISAK"
     data_loc="./data/mesa-kisak-fresh.sh"
+    yad_progress
+}
+function amd_rocm () {
+    app_name="ROCM OPENCL & HIP"
+    data_loc="./data/rocm.sh"
     yad_progress
 }
 #--------------------------------------------------------------------------------------------------------------------------------------------------
@@ -212,10 +214,12 @@ logo
 ferme_yad
 COM_VULKAN="Installer Mesa Kisak Fresh"
 COM_KISAK="Installer amd Vulkan"
+COM_ROCM="Installer Rocm OpenCL et Hip (DavinciResolve, Blender,InvokeAI etc...)"
 amd=$(yad --window-icon="$logo" --title="Gestionnaire amd" --width 500 --height 170 --text-align="center" --button="Retour:bash -c menu" --button="OK:0" --button="Cancel:1" \
  --form \
  --field "Vulkan ! ! $COM_VULKAN:fbtn" "bash -c amd_vulkan" \
- --field "Mesa Kisak ! ! $COM_KISAK:fbtn" "bash -c amd_kisak"\
+ --field "Mesa Kisak ! ! $COM_KISAK:fbtn" "bash -c amd_kisak" \
+ --field "OpenCL et HIP ! ! $COM_ROCM:fbtn" "bash -c amd_rocm"\
 )
 }
 
@@ -264,6 +268,7 @@ export -f nvidia_cuda
 export -f nvidia_test
 export -f amd_vulkan
 export -f amd_kisak
+export -f amd_rocm
 export -f deb_get
 export -f wine
 export -f lutris
