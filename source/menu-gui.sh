@@ -166,6 +166,12 @@ if [[ -f /usr/bin/konsole ]] ; then
     var1="bash -c $localdir/SECUREBOOT/install-sb-gui.sh"
     konsole --noclose -e $var1
     menu
+elif [[ -f /usr/bin/konsole ]] ; then
+    ferme_yad
+    app_name="INSTALLATION DE SECUREBOOT"
+    var1="bash -c $localdir/SECUREBOOT/install-sb-gui.sh"
+    gnome-terminal -- $var1
+    menu
 else
 yad --window-icon="$logo" --width 300 --height 170 --title="Désolé..." --text-align="center" --text="La GUI ne supporte que KDE. Utilisez la version TUI." --button="OK:bash -c menu"
 fi
