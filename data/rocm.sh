@@ -24,12 +24,15 @@ echo "Package: *
 Pin: release o=repo.radeon.com
 Pin-Priority: 600" > /etc/apt/preferences.d/repo-radeon-pin-600
 
+echo "Rafraichissement des dépôts"
 apt update
 echo "Installation de OPENCL"
 apt install rocm-opencl-runtime
 echo "Installation de HIP. Cela peut être TRES long ! (2Go)"
 apt install rocm-hip-runtime
 
+echo "Ajout de l'utilisateur aux groupes Video et Render"
+usermod -aG video,render $(who | grep tty | cut -d " " -f 1)
 echo "
 Job done
 "
