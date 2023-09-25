@@ -31,6 +31,13 @@ sleep 2
 amd1
 }
 
+function rocm() {
+clear
+bash ./data/rocm.sh
+sleep 2
+amd1
+}
+
 function deb-get() {
 clear
 bash ./data/deb-get.sh
