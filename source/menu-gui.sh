@@ -166,7 +166,7 @@ if [[ -f /usr/bin/konsole ]] ; then
     var1="bash -c $localdir/SECUREBOOT/install-sb-gui.sh"
     konsole --noclose -e $var1
     menu
-elif [[ -f /usr/bin/konsole ]] ; then
+elif [[ -f /usr/bin/gnome-terminal ]] ; then
     ferme_yad
     app_name="INSTALLATION DE SECUREBOOT"
     var1="bash -c $localdir/SECUREBOOT/install-sb-gui.sh"
