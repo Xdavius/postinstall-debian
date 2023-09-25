@@ -32,7 +32,7 @@ Patch de dkms pour les kernels Customs, blocage des mises à jour du paquet
 " ; sleep 1
 # patch -i $srcdir/data/dkms.patch /usr/sbin/dkms
 # En cas de changement de version de dkms
-cp $srcdir/SECUREBOOT/data/dkms.patched /usr/sbin/dkms
+cp $srcdir/SECUREBOOT/data/src/dkms.patched /usr/sbin/dkms
 chmod +x /usr/sbin/dkms
 apt-mark hold dkms
 

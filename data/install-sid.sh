@@ -11,8 +11,7 @@ fi
 clear
 echo "
 Installation des repos Sid en pin 10 pour Debian Testing
-"
-sleep 2
+" ; sleep 2
 
 if [ ! -x /etc/apt/sources.list.d/sid.list ]
 then

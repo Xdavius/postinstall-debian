@@ -149,7 +149,7 @@ function ppa () {
     yad_progress
 }
 function sid () {
-    app_name="SID (PIN 10)"
+    app_name="Ajouter dépôt SID (PIN 10)"
     data_loc="./data/install-sid.sh"
     yad_progress
 }
@@ -159,6 +159,24 @@ function sid () {
 #                   SOUS MENU POUR ACCEDER A L'EXECUTION DES SCTIPTS
 #
 #--------------------------------------------------------------------------------------------------------------------------------------------------
+function secureboot () {
+if [[ -f /usr/bin/konsole ]] ; then
+    ferme_yad
+    app_name="INSTALLATION DE SECUREBOOT"
+    var1="bash -c $localdir/SECUREBOOT/install-sb-gui.sh"
+    konsole -- -e $var1
+    menu
+elif [[ -f /usr/bin/gnome-terminal ]] ; then
+    ferme_yad
+    app_name="INSTALLATION DE SECUREBOOT"
+    var1="bash -c $localdir/SECUREBOOT/install-sb-gui.sh"
+    gnome-terminal -e $var1
+    menu
+else
+yad --window-icon="$logo" --width 300 --height 170 --title="Désolé..." --text-align="center" --text="La GUI ne supporte que KDE. Utilisez la version TUI." --button="OK:bash -c menu"
+fi
+}
+
 function nvidia() {
 logo
 ferme_yad
@@ -171,22 +189,22 @@ nvidia=$(yad --window-icon="$logo" --title="Gestionnaire nvidia" --width 500 --h
  --field "Stable ! ! $COM_STABLE:fbtn" "bash -c nvidia_stable" \
  --field "Autre ! ! $COM_AUTRE:fbtn" "bash -c nvidia_autre" \
  #--field "Secureboot ! ! $COM_SECUREBOOT:fbtn" "bash -c nvidia_secureboot" \
- --field "Remove ! ! $COM_REMOVE:fbtn" "bash -c nvidia_remove" \
- )
+ --field "Remove ! ! $COM_REMOVE:fbtn" "bash -c nvidia_remove"\
+)
 }
 
 function nvidia2 () {
 logo
 ferme_yad
 COM_EXPERIMENTAL="Installer driver Nvidia Experimental"
-COM_CUDA="Installer driver depuis le depot Nvidia Cuda (Compatible Secureboot)"
-COM_TESTING="nstaller driver Nvidia de Testing en pin 10 (Pour Debian Stable)"
+COM_CUDA="Installer driver depuis le depot Nvidia Cuda"
+COM_TESTING="Installer driver Nvidia de Testing en pin 10 (Pour Debian Stable)"
 nvidia2=$(yad --window-icon="$logo" --title="Gestionnaire nvidia" --width 500 --height 170 --text-align="center" --button="Retour:bash -c nvidia" --button="OK:0" --button="Cancel:1" \
  --form \
  --field "Experimental ! ! $COM_EXPERIMENTAL:fbtn" "bash -c nvidia_exp" \
  --field "Cuda ! ! $COM_CUDA:fbtn" "bash -c nvidia_cuda" \
- --field "Testing ! ! $COM_TESTING:fbtn" "bash -c nvidia_test" \
- )
+ --field "Testing ! ! $COM_TESTING:fbtn" "bash -c nvidia_test"\
+)
 }
 
 function amd () {
@@ -197,8 +215,8 @@ COM_KISAK="Installer amd Vulkan"
 amd=$(yad --window-icon="$logo" --title="Gestionnaire amd" --width 500 --height 170 --text-align="center" --button="Retour:bash -c menu" --button="OK:0" --button="Cancel:1" \
  --form \
  --field "Vulkan ! ! $COM_VULKAN:fbtn" "bash -c amd_vulkan" \
- --field "Mesa Kisak ! ! $COM_KISAK:fbtn" "bash -c amd_kisak" \
- )
+ --field "Mesa Kisak ! ! $COM_KISAK:fbtn" "bash -c amd_kisak"\
+)
 }
 
 function utilitaire () {
@@ -215,12 +233,12 @@ utilitaire=$(yad --window-icon="$logo" --title="Gestionnaire des app utilitaires
  --form \
  --field "Deb-get ! ! $COM_Deb_get:fbtn" "bash -c deb_get" \
  --field "Wine ! ! $COM_Wine:fbtn" "bash -c wine" \
- --field "Lutris-latest ! ! $COM_Wine:fbtn" "bash -c lutris" \
+ --field "Lutris-latest ! ! $COM_Lutris:fbtn" "bash -c lutris" \
  --field "Linux-Firmware-GIT ! ! $COM_Linux_Firmware_GIT:fbtn" "bash -c update-firmware" \
- --field "Pacstall ! ! $CCOM_Pacstall:fbtn" "bash -c pacstall" \
+ --field "Pacstall ! ! $COM_Pacstall:fbtn" "bash -c pacstall" \
  # --field "PPA ! ! $COM_PPA:fbtn" "bash -c ppa" \
- --field "Sid-for-Testing ! ! $COM_sid:fbtn" "bash -c sid" \
- )
+ --field "Sid-for-Testing ! ! $COM_sid:fbtn" "bash -c sid"\
+)
 }
 #--------------------------------------------------------------------------------------------------------------------------------------------------
 #
@@ -229,6 +247,7 @@ utilitaire=$(yad --window-icon="$logo" --title="Gestionnaire des app utilitaires
 #--------------------------------------------------------------------------------------------------------------------------------------------------
 function menu() {
 export -f ferme_yad
+export -f secureboot
 export -f nvidia
 export -f amd
 export -f utilitaire
@@ -258,13 +277,17 @@ if [[ $count == 1 ]] ; then
 ferme_yad
 fi
 count=1
+localdir=$(pwd)
+echo $localdir
+export localdir
 logo
 CG=$(yad --window-icon="$logo" --title="POSTINSTALL FOR DEBIAN" --width 500 --height 140 --text-align="center" --no-buttons \
  --form \
+ --field "Configurer SECUREBOOT:fbtn" "bash -c secureboot" \
  --field "Gesiton des pilotes NVIDIA:fbtn" "bash -c nvidia" \
  --field "Gesiton des pilotes AMD:fbtn" "bash -c amd" \
- --field "Boîte à outils:fbtn" "bash -c utilitaire" \
- "echo 'nvidia'" "echo 'amd'" "echo 'utilitaire'"
- )
+ --field "Boîte à outils:fbtn" "bash -c utilitaire"\
+ #"echo 'nvidia'" "echo 'amd'" "echo 'utilitaire'"
+)
 }
 menu

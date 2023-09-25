@@ -31,8 +31,8 @@ elif [ "$chkroot" != "root" ]; then
 exit
 fi
 echo $password | sudo -S apt install yad
-## ON CALL LA FONCTION CONTENU DANS ./source/menu.sh
-echo $password | sudo -S bash -e ./source/menu.sh
+## ON CALL LA FONCTION CONTENU DANS ./source/menu-gui.sh
+echo $password | sudo -S bash -e ./source/menu-gui.sh
 }
 ## EN FIN DE FICHIER ON CALL LE MAIN
 main

@@ -15,7 +15,7 @@ nvidia1
 function secureboot() {
 bash ./SECUREBOOT/install-sb.sh
 sleep 2
-nvidia1
+menu1
 }
 
 function mesa-kisak() {

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ###### ADD SOURCE HERE ######
-source ./source/scripts.sh
+source ./source/scripts-tui.sh
 ######
 
 clear
