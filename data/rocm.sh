@@ -23,14 +23,14 @@ echo "deb [arch=amd64] https://repo.radeon.com/rocm/apt/latest jammy main" > /et
 echo "Package: *
 Pin: release o=repo.radeon.com
 Pin-Priority: 600" > /etc/apt/preferences.d/repo-radeon-pin-600
-
+sleep 10
 echo "Rafraichissement des dépôts"
 apt update
 echo "Installation de OPENCL"
-apt install rocm-opencl-runtime
+apt install -y rocm-opencl-runtime >> /var/log/$LOGNAME.auto-update.txt 2>&1
 echo "Installation de HIP. Cela peut être TRES long ! (2Go)"
-apt install rocm-hip-runtime
-
+apt install -y rocm-hip-runtime >> /var/log/$LOGNAME.auto-update.txt 2>&1
+sleep 10
 echo "Ajout de l'utilisateur aux groupes Video et Render"
 usermod -aG video,render $(who | grep tty | cut -d " " -f 1)
 echo "
