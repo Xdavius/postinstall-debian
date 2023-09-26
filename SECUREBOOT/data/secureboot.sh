@@ -81,7 +81,7 @@ echo $sign4 >> /etc/dkms/framework.conf
 echo $sign5 >> /etc/dkms/framework.conf
 echo $sign6 >> /etc/dkms/framework.conf
 
-sign_helper='/opt/signtool/sign-file sha512 /var/lib/shim-signed/mok/MOK.priv /var/lib/shim-signed/mok/MOK.der "$2"'
+sign_helper='/opt/signtool/sign-file sha256 /var/lib/shim-signed/mok/MOK.priv /var/lib/shim-signed/mok/MOK.der "$2"'
 echo $sign_helper > /etc/dkms/sign_helper.sh
 chmod +x /etc/dkms/sign_helper.sh
 }
