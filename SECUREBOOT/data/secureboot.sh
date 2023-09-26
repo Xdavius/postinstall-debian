@@ -31,7 +31,7 @@ fi
 echo "
 "
 
-openssl req -new -x509 -nodes -newkey rsa:2048 -keyout MOK.priv -outform DER -addext "extendedKeyUsage=codeSigning" -out MOK.der -days 36500 -subj "/CN=$sign_name/"
+openssl req -new -x509 -nodes -newkey rsa:2048 -keyout MOK.priv -outform DER -addext "extendedKeyUsage=codeSigning,1.3.6.1.4.1.2312.16.1.3,1.3.6.1.4.1.2312.16.1.2,1.3.6.1.4.1.2312.16.1.1,1.3.6.1.4.1.2312.16.1,1.3.6.1.4.1.2312.16" -out MOK.der -days 36500 -subj "/CN=$sign_name/"
 openssl x509 -inform der -in MOK.der -out MOK.pem
 
 
@@ -103,6 +103,6 @@ mv /boot/vmlinuz-$VERSION.tmp /boot/vmlinuz-$VERSION
 create_key
 sign_helper
 import_mok
-#sign_kernel
+sign_kernel
 #function
 #mokutil --import /var/lib/dkms/mok.pub
