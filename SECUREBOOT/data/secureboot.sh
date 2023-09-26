@@ -103,6 +103,6 @@ mv /boot/vmlinuz-$VERSION.tmp /boot/vmlinuz-$VERSION
 create_key
 sign_helper
 import_mok
-sign_kernel
+#sign_kernel
 #function
 #mokutil --import /var/lib/dkms/mok.pub
