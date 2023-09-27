@@ -235,7 +235,6 @@ COM_PPA="Utiliser l'outil d'ajout de PPA pour Debian"
 COM_sid="Installer les repository de Sid (pin 10) pour Debian Testing"
 utilitaire=$(yad --window-icon="$logo" --title="Gestionnaire des app utilitaires" --width 500 --height 170 --text-align="center" --button="Retour:bash -c menu" --button="OK:0" --button="Cancel:1" \
  --form \
- 
  --field "Wine-Staging ! ! $COM_Wine:fbtn" "bash -c wine" \
  --field "Lutris-latest ! ! $COM_Lutris:fbtn" "bash -c lutris" \
  --field "Deb-get ! ! $COM_Deb_get:fbtn" "bash -c deb_get" \
@@ -291,7 +290,7 @@ CG=$(yad --window-icon="$logo" --title="POSTINSTALL FOR DEBIAN" --width 500 --he
  --field "Configurer SECUREBOOT:fbtn" "bash -c secureboot" \
  --field "Gesiton des pilotes NVIDIA:fbtn" "bash -c nvidia" \
  --field "Gesiton des pilotes AMD:fbtn" "bash -c amd" \
- --field "Applications/Utilitaires:fbtn" "bash -c utilitaire"\
+ --field "Applications et Utilitaires:fbtn" "bash -c utilitaire"\
  #"echo 'nvidia'" "echo 'amd'" "echo 'utilitaire'"
 )
 }
