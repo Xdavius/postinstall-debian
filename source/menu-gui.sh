@@ -235,12 +235,12 @@ COM_PPA="Utiliser l'outil d'ajout de PPA pour Debian"
 COM_sid="Installer les repository de Sid (pin 10) pour Debian Testing"
 utilitaire=$(yad --window-icon="$logo" --title="Gestionnaire des app utilitaires" --width 500 --height 170 --text-align="center" --button="Retour:bash -c menu" --button="OK:0" --button="Cancel:1" \
  --form \
- --field "Deb-get ! ! $COM_Deb_get:fbtn" "bash -c deb_get" \
- --field "Wine ! ! $COM_Wine:fbtn" "bash -c wine" \
+ 
+ --field "Wine-Staging ! ! $COM_Wine:fbtn" "bash -c wine" \
  --field "Lutris-latest ! ! $COM_Lutris:fbtn" "bash -c lutris" \
- --field "Linux-Firmware-GIT ! ! $COM_Linux_Firmware_GIT:fbtn" "bash -c update-firmware" \
+ --field "Deb-get ! ! $COM_Deb_get:fbtn" "bash -c deb_get" \
  --field "Pacstall ! ! $COM_Pacstall:fbtn" "bash -c pacstall" \
- # --field "PPA ! ! $COM_PPA:fbtn" "bash -c ppa" \
+ --field "Linux-Firmware-GIT ! ! $COM_Linux_Firmware_GIT:fbtn" "bash -c update-firmware" \
  --field "Sid-for-Testing ! ! $COM_sid:fbtn" "bash -c sid"\
 )
 }
@@ -291,7 +291,7 @@ CG=$(yad --window-icon="$logo" --title="POSTINSTALL FOR DEBIAN" --width 500 --he
  --field "Configurer SECUREBOOT:fbtn" "bash -c secureboot" \
  --field "Gesiton des pilotes NVIDIA:fbtn" "bash -c nvidia" \
  --field "Gesiton des pilotes AMD:fbtn" "bash -c amd" \
- --field "Boîte à outils:fbtn" "bash -c utilitaire"\
+ --field "Applications/Utilitaires:fbtn" "bash -c utilitaire"\
  #"echo 'nvidia'" "echo 'amd'" "echo 'utilitaire'"
 )
 }
