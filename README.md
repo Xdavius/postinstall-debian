@@ -1,10 +1,10 @@
-# POSTINSTALL-DEBIAN - Configurer Facilement sa Debian !
+# POSTINSTALL-DEBIAN - Configurer Facilement Debian !
 
 
 ## AVANT DE COMMENCER :
 
 
-Il est nécessaire d'avoir configuré SUDO pour utiliser la version GUI.
+**Il est nécessaire d'avoir configuré SUDO pour utiliser la version GUI.**
 
 SI VOUS AVEZ INSTALLÉ DEBIAN DEPUIS UNE ISO LIVE, SUDO EST DÉjÀ CONFIGURÉ !
 
@@ -18,7 +18,7 @@ SI VOUS AVEZ INSTALLÉ DEBIAN DEPUIS UNE ISO LIVE, SUDO EST DÉjÀ CONFIGURÉ !
 ## INSTALLATION
 
 
-- UTILISATION AVEC INTERFACE GRAPHIQUE :
+**UTILISATION AVEC INTERFACE GRAPHIQUE :**
 
 
 L'interface graphique est optimisée pour GNOME et KDE uniquement.
@@ -31,7 +31,7 @@ L'interface graphique est optimisée pour GNOME et KDE uniquement.
 * Ce logiciel dépend de YAD. Son installation s'effectue automatiquement de façon transparente. *
 
 
-- POUR CEUX SOUHAITANT UTILISER L'INTERFACE TUI :
+**POUR CEUX SOUHAITANT UTILISER L'INTERFACE TUI :**
 
   
 Vous devez exécuter l'application depuis un terminal en root :
@@ -50,11 +50,11 @@ Alternativement, vous pouvez aussi lancer en sudo :
 
 ## INSTALLATION AVEC SECUREBOOT ACTIF (A EFFECTUER AVANT TOUT AUTRE INSTALLATION DE KERNEL OU DRIVER) :
 
-Pour GNOME/KDE :
+**Pour GNOME/KDE :**
 
 - Vous pouvez utiliser POSTINSTALL-DEBIAN-GUI.
 
-Pour les autres DE :
+**Pour les autres DE :**
 
 - Utilisez POSTINSTALL-DEBIAN-TUI
       
@@ -80,6 +80,7 @@ Certains scripts ne sont pas accessible via l'application GUI (bugs) Mais ils so
   
 - mesa-kisak-fresh : Installer le dernier Mesa Stable pour AMD/INTEL
 - amd-vulkan : Installe Vulkan pour les GPU AMD/INTEL
+- rocm : Installe le dépot AMD et installe ROCM Opencl et HIP.
 
 - lutris-latest : Installer la dernière version de lutris et le dépôt officiel 
 - wine-staging : Installer la dernière version de wine ainsi que toutes les dépendances nécessaire, et le dépôt officiel 
@@ -95,4 +96,4 @@ Certains scripts ne sont pas accessible via l'application GUI (bugs) Mais ils so
 
 Merci à Bazogueur Tobal, cptcavern, Pandatomikk, christophe et la Team GLF Pour leur participations et tests sur ce projet !
 
-Merci à tous les développeurs sur GitHub qui partagent leur travail sans lesquels ce projet n'aurait jamais abouti !
+**Merci à tous les développeurs sur GitHub qui partagent leur travail sans lesquels ce projet n'aurait jamais abouti !**

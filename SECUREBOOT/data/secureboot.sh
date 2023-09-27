@@ -8,12 +8,9 @@ if [[ $EUID -ne 0 ]]; then
 	exit 1
 fi
 
-
 echo "
 Configuration de Secureboot
-"
-sleep 2
-
+" ; sleep 2
 
 function create_key() {
 apt install -y sbsigntool dkms
@@ -30,11 +27,9 @@ if [[ $sign_name == "" ]]
 fi
 echo "
 "
-
-openssl req -new -x509 -nodes -newkey rsa:2048 -keyout MOK.priv -outform DER -addext "extendedKeyUsage=codeSigning" -out MOK.der -days 36500 -subj "/CN=$sign_name/"
+# -addext "extendedKeyUsage=codeSigning,1.3.6.1.4.1.2312.16.1.3,1.3.6.1.4.1.2312.16.1.2,1.3.6.1.4.1.2312.16.1.1,1.3.6.1.4.1.2312.16.1,1.3.6.1.4.1.2312.16"
+openssl req -new -x509 -nodes -newkey rsa:2048 -keyout MOK.priv -outform DER -out MOK.der -days 36500 -subj "/CN=$sign_name/"
 openssl x509 -inform der -in MOK.der -out MOK.pem
-
-
 }
 
 function import_mok() {
@@ -49,9 +44,7 @@ Pour ne pas faire d'erreur, vous pouvez utiliser - root - comme mot de passe.
 -----------------------------------------------------------------------------
 
 
-"
-
-sleep 5
+" ; sleep 5
 
 mokutil --import /var/lib/shim-signed/mok/MOK.der
 
@@ -59,11 +52,8 @@ echo "
 
 REBOOTEZ LA MACHINE MAINTENANT POUR ENROLL LA CLE
 
-"
-
-sleep 2
+" ; sleep 2
 }
-
 
 function sign_helper() {
 
@@ -81,7 +71,7 @@ echo $sign4 >> /etc/dkms/framework.conf
 echo $sign5 >> /etc/dkms/framework.conf
 echo $sign6 >> /etc/dkms/framework.conf
 
-sign_helper='/opt/signtool/sign-file sha512 /var/lib/shim-signed/mok/MOK.priv /var/lib/shim-signed/mok/MOK.der "$2"'
+sign_helper='/opt/signtool/sign-file sha256 /var/lib/shim-signed/mok/MOK.priv /var/lib/shim-signed/mok/MOK.der "$2"'
 echo $sign_helper > /etc/dkms/sign_helper.sh
 chmod +x /etc/dkms/sign_helper.sh
 }
