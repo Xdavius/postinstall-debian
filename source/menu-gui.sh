@@ -172,7 +172,7 @@ elif [[ -f /usr/bin/gnome-terminal ]] ; then
     ferme_yad
     app_name="INSTALLATION DE SECUREBOOT"
     var1="bash -c $localdir/SECUREBOOT/install-sb-gui.sh"
-    gnome-terminal -e $var1
+    gnome-terminal -x $var1
     menu
 else
 yad --window-icon="$logo" --width 300 --height 170 --title="Désolé..." --text-align="center" --text="La GUI ne supporte que KDE. Utilisez la version TUI." --button="OK:bash -c menu"
