@@ -21,7 +21,7 @@ chkroot=$(echo $password | sudo -S whoami)
 if [ "$password" = "" ]; then
 exit
 elif [ "$chkroot" != "root" ]; then
-  if  $DESKTOP_SESSION == "plasma" ]; then
+  if [ $DESKTOP_SESSION == "plasma" ]; then
     kdialog --error "Mauvais mot de passe"
   elif  [ $DESKTOP_SESSION == "plasmawayland" ]; then
     kdialog --error "Mauvais mot de passe"
