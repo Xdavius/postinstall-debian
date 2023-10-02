@@ -37,6 +37,7 @@ echo $password | sudo -S apt install yad bash-completion"
 
 $preinstall | yad --progress \
   --pulsate \
+  --title "Préparation de l'application" \
   --text="Démarrage en cours..." \
   --width=300 \
   --auto-kill
