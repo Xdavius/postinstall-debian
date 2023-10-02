@@ -30,6 +30,9 @@ elif [ "$chkroot" != "root" ]; then
   fi
 exit
 fi
+dpkg --add-architecture i386
+apt-add-repository -y contrib > /var/log/$LOGNAME.auto-update.txt 2>&1
+apt-add-repository -y non-free >> /var/log/$LOGNAME.auto-update.txt 2>&1
 echo $password | sudo -S apt install yad
 ## ON CALL LA FONCTION CONTENU DANS ./source/menu-gui.sh
 echo $password | sudo -S bash -e ./source/menu-gui.sh
