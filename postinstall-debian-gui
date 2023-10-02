@@ -30,17 +30,13 @@ elif [ "$chkroot" != "root" ]; then
   fi
 exit
 fi
-preinstall="echo $password | sudo -S dpkg --add-architecture i386 && \
-echo $password | sudo -S apt-add-repository -y contrib > /var/log/$LOGNAME.auto-update.txt 2>&1 && \
-echo $password | sudo -S apt-add-repository -y non-free >> /var/log/$LOGNAME.auto-update.txt 2>&1 && \
-echo $password | sudo -S apt install yad bash-completion"
 
-$preinstall | yad --progress \
-  --pulsate \
-  --title "Préparation de l'application" \
-  --text="Démarrage en cours..." \
-  --width=300 \
-  --auto-kill
+echo $password | sudo -S apt -y install yad bash-completion
+
+echo $password | sudo -S dpkg --add-architecture i386 && \
+echo $password | sudo -S apt-add-repository -y contrib > /tmp/$LOGNAME.auto-update.txt 2>&1 && \
+echo $password | sudo -S apt-add-repository -y non-free >> /tmp/$LOGNAME.auto-update.txt 2>&1
+
 ## ON CALL LA FONCTION CONTENU DANS ./source/menu-gui.sh
 echo $password | sudo -S bash -e ./source/menu-gui.sh
 }
