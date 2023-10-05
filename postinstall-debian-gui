@@ -33,10 +33,9 @@ fi
 
 echo $password | sudo -S apt -y install yad bash-completion
 
-echo $password | sudo -S dpkg --add-architecture i386 && \
-echo $password | sudo -S apt-add-repository -y contrib > /tmp/$LOGNAME.auto-update.txt 2>&1 && \
-echo $password | sudo -S apt-add-repository -y non-free >> /tmp/$LOGNAME.auto-update.txt 2>&1
-
+(echo $password | sudo -S dpkg --add-architecture i386 && \
+echo $password | sudo -S apt-add-repository -y contrib && \
+echo $password | sudo -S apt-add-repository -y non-free) | yad --progress --pulsate --title "Préparation de système" --progress-text="installation des dépôts additionnels" --width 500 --height 100 --no-buttons --auto-close
 ## ON CALL LA FONCTION CONTENU DANS ./source/menu-gui.sh
 echo $password | sudo -S bash -e ./source/menu-gui.sh
 }
