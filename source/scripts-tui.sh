@@ -45,6 +45,13 @@ sleep 2
 tools1
 }
 
+function steam() {
+clear
+bash ./data/steam.sh
+sleep 2
+tools1
+}
+
 function wine-staging() {
 clear
 bash ./data/wine-staging.sh
