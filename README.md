@@ -1,9 +1,6 @@
 # POSTINSTALL-DEBIAN - Configurer Facilement Debian !
 
 
----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-
 ## AVANT DE COMMENCER :
 
 
@@ -16,9 +13,6 @@ SI VOUS AVEZ INSTALLÉ DEBIAN DEPUIS UNE **ISO LIVE**, SUDO EST DÉjÀ CONFIGUR�
          su - -c "usermod -aG sudo $(who | grep tty | cut -d " " -f 1)"
 
    - Entrez le mot de passe ROOT (Super Utilisateur) pour valider la commande puis redémarrez la machine.
-
-
----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 ## INSTALLATION
@@ -61,10 +55,6 @@ Vous devez exécuter l'application depuis un terminal en root :
     sudo bash postinstall-debian-tui
 
 
----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-
-
 ## INSTALLATION AVEC SECUREBOOT ACTIF (A EFFECTUER AVANT TOUT AUTRE INSTALLATION DE KERNEL OU DRIVER) :
 
 **Pour GNOME/KDE :**
@@ -88,9 +78,6 @@ Vous devez exécuter l'application depuis un terminal en root :
   choissez ENROLL MOK, puis CONTINUE, puis YES (Suivez les instructions en Anglais hélas) le mot de passe à usage unique vous sera demandé.
   
 - Il n'y a pas d'avertissement de reussite mais la première option aura disparu, choisissez REBOOT
-
-
----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 ## Contenu des scripts :
@@ -121,9 +108,6 @@ Vous devez exécuter l'application depuis un terminal en root :
                      Il est recommandé de passer votre sources.list en branche Stable pour en profiter de façon optimale.
 - update-firmware :  Met à jour les firmwares Linux à la dernière version GIT (Support du matériel très récent comme les dernière cartes Wifi ou les derniers GPU)
 - install-sid :      Configure Sid avec un Pin 10 (UNIQUEMENT POUR DEBIAN TESTING)
-
-
----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 ## REMERCIEMENTS :
