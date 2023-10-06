@@ -28,10 +28,9 @@ L'interface graphique est optimisée pour GNOME et KDE uniquement.
    - Décompressez le zip, puis double cliquez sur **"postinstall-debian-gui.run"**
    
 
-< Ce logiciel dépend de YAD. Son installation s'effectue automatiquement de façon transparente. >
+<< Ce logiciel dépend de YAD. Son installation s'effectue automatiquement de façon transparente. >>
 
-< Le multib, Contrib et Non-free sont maintenant activés dès le lancement de la GUI pour des raisons pratiques. >
-
+<< L'activation du Multilib, Contrib et Non-free est effectuée au lancement de la GUI pour améliorer l'expérience utilisateur. Si vous ne le souhaitez pas, utilisez la TUI >>
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -59,14 +58,14 @@ Vous devez exécuter l'application depuis un terminal en root :
 
 **Pour GNOME/KDE :**
 
-- Vous pouvez utiliser POSTINSTALL-DEBIAN-GUI.
+- Vous pouvez utiliser **POSTINSTALL-DEBIAN-GUI**.
 
 
-* Une compatibilité existe si vous avez Zenity d'installé sur votre système. *
+<< Une compatibilité existe si vous avez Zenity d'installé sur votre système. >>
 
 **Pour les autres DE :**
 
-- Utilisez POSTINSTALL-DEBIAN-TUI
+- Utilisez **POSTINSTALL-DEBIAN-TUI**
 
 **Instruction et aide pour Secureboot :**
       
