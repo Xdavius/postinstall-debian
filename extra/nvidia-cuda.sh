@@ -48,13 +48,14 @@ Nettoyage du système :
 "
 sleep 2
 
-apt autopurge -y nvidia-driver nvidia-settings nvidia-driver-libs:i386 cuda nvidia-gds
+apt autopurge -y nvidia-driver nvidia-settings nvidia-driver-libs:i386 cuda nvidia-gds mesa-vulkan-drivers mesa-vulkan-drivers:i386
 
 
 echo "
 Installation du driver Nvidia LTS Cuda FROM Nvidia, Vulkan + Lib32 :
-"
-sleep 2
+
+OPERATION TRÈS LONGUE. NE PAS FERMER LA FENÊTRE !!!!
+"; sleep 2
 
 wget https://developer.download.nvidia.com/compute/cuda/repos/debian11/x86_64/cuda-keyring_1.1-1_all.deb
 dpkg -i cuda-keyring_1.1-1_all.deb
@@ -62,7 +63,7 @@ rm cuda-keyring_1.1-1_all.deb
 apt update
 apt full-upgrade -y
 mkdir -p /var/run/nvpd/
-apt install -y cuda nvidia-driver nvidia-settings vulkan-tools libglvnd-dev 
+apt install -y cuda nvidia-driver nvidia-settings vulkan-tools libglvnd-dev nvidia-driver-libs:i386
 
 # apt install nvidia-gds
 

@@ -1,9 +1,7 @@
 #!/bin/bash
 
 ## ON AJOUTE ICI LES SOURCES
-## CHAQUE SOURCE CONTIENT UNE FONCTION QUI EST CALL DANS LE MAIN
 
-## ON DECLARE LE MAIN
 function main() {
 # Script need curl
 if [ $DESKTOP_SESSION == "plasma" ]; then
@@ -11,6 +9,8 @@ if [ $DESKTOP_SESSION == "plasma" ]; then
 elif  [ $DESKTOP_SESSION == "plasmawayland" ]; then
   pwd=$( kdialog --password "Entrez votre mot de passe SUDO" )
 elif  [ $DESKTOP_SESSION == "gnome" ]; then
+  pwd=$( zenity --password --text="Entrez votre mot de passe SUDO" )
+elif [ -f /usr/bin/zenity ]; then
   pwd=$( zenity --password --text="Entrez votre mot de passe SUDO" )
 fi
 password=$(echo $pwd)
@@ -27,12 +27,19 @@ elif [ "$chkroot" != "root" ]; then
     kdialog --error "Mauvais mot de passe"
   elif  [ $DESKTOP_SESSION == "gnome" ]; then
     zenity --error --text="Mauvais mot de passe"
+  elif [ -f /usr/bin/zenity ]; then
+    zenity --error --text="Mauvais mot de passe"
   fi
 exit
 fi
-echo $password | sudo -S apt install yad
+
+echo $password | sudo -S apt -y install yad bash-completion
+
+(echo $password | sudo -S dpkg --add-architecture i386 && \
+echo $password | sudo -S apt-add-repository -y contrib && \
+echo $password | sudo -S apt-add-repository -y non-free) | yad --progress --pulsate --title "Préparation de système" --progress-text="installation des dépôts additionnels" --width 500 --height 100 --no-buttons --auto-close
 ## ON CALL LA FONCTION CONTENU DANS ./source/menu-gui.sh
 echo $password | sudo -S bash -e ./source/menu-gui.sh
 }
-## EN FIN DE FICHIER ON CALL LE MAIN
+
 main

@@ -145,11 +145,18 @@ function tools1() {
 clear
 echo "          ---------------------------- TOOLS --------------------------
 
+--- Gestionnaires de paquets ---
+
 1- Installer Deb-Get (Debian Stable uniquement)
 2- Installer Pacstall (AUR pour Debian)
 
-3- Installer Lutris (Dépôt additionnel OBS officiel)
-4- Installer Wine-Staging (Dépôt additionnel officiel)
+--- Applications Gaming ---
+
+3- Installer Steam
+4- Installer Lutris (Dépôt additionnel OBS officiel)
+5- Installer Wine-Staging (Dépôt additionnel officiel)
+
+--- Outils Supplémentaires ---
 
 6- Mettre à jour les Firmware-Linux à la dernière version GIT
 7- Ajouter les dépôts Backports pour Debian Stable
@@ -168,9 +175,11 @@ case "$choix" in
     ;;
 2)  pacstall
     ;;
-3)  lutris
+3)  steam
     ;;
-4)  wine-staging
+4)  lutris
+    ;;
+5)  wine-staging
     ;;
 6)  update-firmware
     ;;

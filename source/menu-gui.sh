@@ -125,6 +125,11 @@ function deb_get () {
     data_loc="./data/deb-get.sh"
     yad_progress
 }
+function steam () {
+    app_name="STEAM"
+    data_loc="./data/steam.sh"
+    yad_progress
+}
 function wine () {
     app_name="WINE-STAGING"
     data_loc="./data/wine-staging.sh"
@@ -138,6 +143,11 @@ function lutris () {
 function pacstall () {
     app_name="pacstall"
     data_loc="./data/pacstall.sh"
+    yad_progress
+}
+function backports () {
+    app_name="Stable Backports"
+    data_loc="./extra/backports.sh"
     yad_progress
 }
 function update-firmware () {
@@ -227,18 +237,22 @@ function utilitaire () {
 logo
 ferme_yad
 COM_Deb_get="Installer deb-get (Debian Stable uniquement)"
+COM_Steam="Installer Steam"
 COM_Wine="Installer wine-staging"
 COM_Lutris="Installer Lutris et son dépôt officiel de OBS"
 COM_Pacstall="Installer pacstall"
+COM_Backports="Installer le dépôt Backports pour debian Stable"
 COM_Linux_Firmware_GIT="Mettre à jour les firmwares Linux pour le support du matériel dernière génération"
 COM_PPA="Utiliser l'outil d'ajout de PPA pour Debian"
 COM_sid="Installer les repository de Sid (pin 10) pour Debian Testing"
 utilitaire=$(yad --window-icon="$logo" --title="Gestionnaire des app utilitaires" --width 500 --height 170 --text-align="center" --button="Retour:bash -c menu" --button="OK:0" --button="Cancel:1" \
  --form \
+ --field "Steam ! ! $COM_Steam:fbtn" "bash -c steam" \
  --field "Wine-Staging ! ! $COM_Wine:fbtn" "bash -c wine" \
  --field "Lutris-latest ! ! $COM_Lutris:fbtn" "bash -c lutris" \
  --field "Deb-get ! ! $COM_Deb_get:fbtn" "bash -c deb_get" \
  --field "Pacstall ! ! $COM_Pacstall:fbtn" "bash -c pacstall" \
+ --field "Debian Stable Backports ! ! $COM_Backports:fbtn" "bash -c backports" \
  --field "Linux-Firmware-GIT ! ! $COM_Linux_Firmware_GIT:fbtn" "bash -c update-firmware" \
  --field "Sid-for-Testing ! ! $COM_sid:fbtn" "bash -c sid"\
 )
@@ -269,9 +283,11 @@ export -f amd_vulkan
 export -f amd_kisak
 export -f amd_rocm
 export -f deb_get
+export -f steam
 export -f wine
 export -f lutris
 export -f pacstall
+export -f backports
 export -f update-firmware
 export -f ppa
 export -f sid
@@ -291,7 +307,6 @@ CG=$(yad --window-icon="$logo" --title="POSTINSTALL FOR DEBIAN" --width 500 --he
  --field "Gesiton des pilotes NVIDIA:fbtn" "bash -c nvidia" \
  --field "Gesiton des pilotes AMD:fbtn" "bash -c amd" \
  --field "Applications et Utilitaires:fbtn" "bash -c utilitaire"\
- #"echo 'nvidia'" "echo 'amd'" "echo 'utilitaire'"
 )
 }
 menu
