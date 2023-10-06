@@ -35,6 +35,7 @@ L'interface graphique est optimisée pour GNOME et KDE uniquement.
    
 
 < Ce logiciel dépend de YAD. Son installation s'effectue automatiquement de façon transparente. >
+
 < Le multib, Contrib et Non-free sont maintenant activés dès le lancement de la GUI pour des raisons pratiques. >
 
 
