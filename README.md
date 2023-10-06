@@ -6,7 +6,7 @@
 
 **Il est nécessaire d'avoir configuré SUDO pour utiliser la version GUI.**
 
-SI VOUS AVEZ INSTALLÉ DEBIAN DEPUIS UNE ISO LIVE, SUDO EST DÉjÀ CONFIGURÉ !
+SI VOUS AVEZ INSTALLÉ DEBIAN DEPUIS UNE **ISO LIVE**, SUDO EST DÉjÀ CONFIGURÉ !
 
    - Ouvrez un terminal puis copier coller cette commande :
 
@@ -23,40 +23,51 @@ SI VOUS AVEZ INSTALLÉ DEBIAN DEPUIS UNE ISO LIVE, SUDO EST DÉjÀ CONFIGURÉ !
 
 L'interface graphique est optimisée pour GNOME et KDE uniquement.
 
-   - Rendez-vous dans la section "Releases" puis télécharger le logiciel (postinstall-debian.zip)
+   - Rendez-vous dans la section **"Releases"** puis télécharger le logiciel (**postinstall-debian-{VERSION}.zip**)
 
-   - Décompressez le zip, puis double cliquez sur "postinstall-debian-gui.run"
+   - Décompressez le zip, puis double cliquez sur **"postinstall-debian-gui.run"**
    
 
-* Ce logiciel dépend de YAD. Son installation s'effectue automatiquement de façon transparente. *
+<< Ce logiciel dépend de YAD. Son installation s'effectue automatiquement de façon transparente. >>
+
+<< L'activation du Multilib, Contrib et Non-free est effectuée au lancement de la GUI pour améliorer l'expérience utilisateur. Si vous ne le souhaitez pas, utilisez la TUI >>
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 
 
 **POUR CEUX SOUHAITANT UTILISER L'INTERFACE TUI :**
 
   
 Vous devez exécuter l'application depuis un terminal en root :
-Pour passer root : 
 
-    sudo -i (ou su -)
+- Pour passer root : 
 
-pour exécuter l'application :
+       sudo -i (ou su -)
 
-    bash postinstall-debian-tui
+- pour exécuter l'application :
 
-Alternativement, vous pouvez aussi lancer en sudo :
-    
-    sudo bash postinstall-debian-tui
+       bash postinstall-debian-tui
+
+- Alternativement, vous pouvez aussi lancer en sudo :
+   
+       sudo bash postinstall-debian-tui
 
 
 ## INSTALLATION AVEC SECUREBOOT ACTIF (A EFFECTUER AVANT TOUT AUTRE INSTALLATION DE KERNEL OU DRIVER) :
 
 **Pour GNOME/KDE :**
 
-- Vous pouvez utiliser POSTINSTALL-DEBIAN-GUI.
+- Vous pouvez utiliser **POSTINSTALL-DEBIAN-GUI**.
+
+
+<< Une compatibilité existe si vous avez Zenity d'installé sur votre système. >>
 
 **Pour les autres DE :**
 
-- Utilisez POSTINSTALL-DEBIAN-TUI
+- Utilisez **POSTINSTALL-DEBIAN-TUI**
+
+**Instruction et aide pour Secureboot :**
       
 - Suivez les indication à l'écran. Renseignez votre nom lorsque demandé puis, renseignez le mot de passe à usage unique.
 
@@ -70,27 +81,33 @@ Alternativement, vous pouvez aussi lancer en sudo :
 
 ## Contenu des scripts :
 
-Certains scripts ne sont pas accessible via l'application GUI (bugs) Mais ils sont utilisables via le TUI ou en stand-alone.
 
-- install-sb : Installer la configuration pour utiliser Secureboot de façon transparente 
+- install-sb :       Installer la configuration pour utiliser Secureboot de façon transparente 
 
-- nvidia-stable : Installer le driver Nvidia officiel Debian Stable
-- nvidia-testing : Installer le dépôt EXPERIMENTAL pour debian pour avoir le dernier driver EXPERIMENTAL
-- nvidia-rollback : Desinstaller nvidia-base-upgrade et/ou nvidia-testing
+- nvidia-stable :    Installer le driver Nvidia officiel Debian Stable **RECOMMANDÉ** (Actuellement : Branche 525)
+- nvidia-cuda :      Installer le driver Nvidia Curent Stable en provenance des dépots de NVIDIA (Actuellement : Branche 535)
+- nvidia-testing :   Installer le dépôt EXPERIMENTAL pour debian pour avoir le dernier driver EXPERIMENTAL (Actuellement : Branche 530-dev)
+- nvidia-rollback :  Desinstaller vos drivers Nvidia et faire le ménage !
   
 - mesa-kisak-fresh : Installer le dernier Mesa Stable pour AMD/INTEL
-- amd-vulkan : Installe Vulkan pour les GPU AMD/INTEL
-- rocm : Installe le dépot AMD et installe ROCM Opencl et HIP.
+- amd-vulkan :       Installe Vulkan pour les GPU AMD/INTEL
+- rocm :             Installe le dépot AMD et installe ROCM Opencl et HIP.
 
-- lutris-latest : Installer la dernière version de lutris et le dépôt officiel 
-- wine-staging : Installer la dernière version de wine ainsi que toutes les dépendances nécessaire, et le dépôt officiel 
+- steam :            Installe le Steam-Installer pour procéder à l'installation de steam et des dépendances.
+- lutris-latest :    Installer la dernière version de lutris et le dépôt officiel 
+- wine-staging :     Installer la dernière version de wine ainsi que toutes les dépendances nécessaire, et le dépôt officiel 
 
-- deb-get : Installer deb-get pour installer facilement des logiciels .deb externe aux dépots Debian (heroic, discord, lutris (github version), et d'autres) (UNIQUEMENT POUR DEBIAN STABLE)
-- pacstall : Une alternative à deb-get, parmet d'accèder à de nombreux logiciels supplémentaires et de les maintenir à jour
+- deb-get :          Installer deb-get pour installer facilement des logiciels .deb externe aux dépots Debian (heroic, discord, lutris (github version), et d'autres) (UNIQUEMENT POUR DEBIAN STABLE)
+                     (https://github.com/wimpysworld/deb-get)
+  
+- pacstall :         Une alternative à deb-get, parmet d'accèder à de nombreux logiciels supplémentaires et de les maintenir à jour
+                     (https://github.com/pacstall/pacstall - https://pacstall.dev/packages?page=0&size=25&sortBy=default&sort=asc&filter=&filterBy=name)
 
+- backports :        Permet d'activer le dépôt stable-backports. Celui ci est activé en mode Rolling. Lorsque une nouvelle version de Debian sortira, il ne sera pas nécessaire de le reconfigurer.
+                     Il est recommandé de passer votre sources.list en branche Stable pour en profiter de façon optimale.
+- update-firmware :  Met à jour les firmwares Linux à la dernière version GIT (Support du matériel très récent comme les dernière cartes Wifi ou les derniers GPU)
+- install-sid :      Configure Sid avec un Pin 10 (UNIQUEMENT POUR DEBIAN TESTING)
 
-- update-firmware : Met à jour les firmwares Linux à la dernière version GIT (Support du matériel très récent comme les dernière cartes Wifi ou les derniers GPU)
-- install-sid : Configure Sid avec un Pin 10 (UNIQUEMENT POUR DEBIAN TESTING)
 
 ## REMERCIEMENTS :
 
