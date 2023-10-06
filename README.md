@@ -43,15 +43,15 @@ Vous devez exécuter l'application depuis un terminal en root :
 
 - Pour passer root : 
 
-    sudo -i (ou su -)
+       sudo -i (ou su -)
 
 - pour exécuter l'application :
 
-    bash postinstall-debian-tui
+       bash postinstall-debian-tui
 
 - Alternativement, vous pouvez aussi lancer en sudo :
-    
-    sudo bash postinstall-debian-tui
+   
+       sudo bash postinstall-debian-tui
 
 
 ## INSTALLATION AVEC SECUREBOOT ACTIF (A EFFECTUER AVANT TOUT AUTRE INSTALLATION DE KERNEL OU DRIVER) :
