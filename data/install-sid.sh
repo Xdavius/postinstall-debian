@@ -28,7 +28,7 @@ else
 	echo "Le fichier /etc/apt/preferences.d/sid existe déjà !!"
 fi
 
-echo "Raffraichissemtn des dépôts"; sleep 1
+echo "Rafraichissemnt des dépôts"; sleep 1
 apt update > /var/log/$LOGNAME.auto-update.txt 2>&1
 
 echo "
