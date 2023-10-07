@@ -8,12 +8,12 @@ if [[ $EUID -ne 0 ]]; then
 	exit 1
 fi
 
-echo "Job start : Installing pacstall"
-sleep 2
+echo "Installation de pacstall
+"; sleep 2
 
 apt install -y curl
 bash -c "$(curl -fsSL https://pacstall.dev/q/install)"
 
-echo "Job done"
-
-sleep 2
+echo "
+Job done
+"; sleep 2
