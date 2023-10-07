@@ -9,42 +9,28 @@ if [[ $EUID -ne 0 ]]; then
 fi
 
 clear
-echo "
------------------------------------------------------------------
+echo "Mise à jour des linux-firmware vers la dernière version git
+"; sleep 2
 
-Job start : Updating linux-firmware to latest git
-
------------------------------------------------------------------
-
-"
-sleep 2
-echo "installation des dépendances..."
+echo "installation des dépendances...
+"; sleep 2
 apt get install wget tar gzip > /var/log/$LOGNAME.auto-update.txt 2>&1
-echo "Téléchargement en cours..."
+
+echo "Téléchargement en cours...
+"; sleep 2
 wget --no-check-certificate -c https://gitlab.com/kernel-firmware/linux-firmware/-/archive/main/linux-firmware-main.tar.gz -O - | tar -xz
-echo "Installation..."
+
+echo "Installation...
+"; sleep 2
 cp -rf linux-firmware-main/* /usr/lib/firmware
-echo "Nettoyage..."
+
+echo "Nettoyage...
+"; sleep 2
 rm -rf linux-firmware-main
 
 echo "
-
-Job done
-"
-echo "
 Veuillez REBOOT la machine !!
 "
-sleep 2
-
-
-
-
-
-
-
-
-
-
-
-
-exit 1
+echo "
+Job done
+"; sleep 2
