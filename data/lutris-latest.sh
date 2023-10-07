@@ -21,6 +21,7 @@ echo "Rafraichissement des dépôts"
 apt update > /var/log/$LOGNAME.auto-update.txt 2>&1
 
 echo "Installation de Lutris"
+apt install -y python3-gi-cairo >> /var/log/$LOGNAME.auto-update.txt 2>&1
 apt install -y lutris >> /var/log/$LOGNAME.auto-update.txt 2>&1
 
 echo "
