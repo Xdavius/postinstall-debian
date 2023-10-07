@@ -9,12 +9,11 @@ if [[ $EUID -ne 0 ]]; then
 fi
 
 
-echo "Job start : Installing deb-get"
-sleep 2
+echo "Job start : Installation de deb-get"; sleep 2
 
 apt-get install -y curl lsb-release wget
 curl -sL https://raw.githubusercontent.com/wimpysworld/deb-get/main/deb-get | bash -s install deb-get
 
-echo "Job done"
-
-sleep 2
+echo "
+Job done
+"; sleep 2
