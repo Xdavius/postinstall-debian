@@ -9,8 +9,7 @@ if [[ $EUID -ne 0 ]]; then
 fi
 
 clear
-echo "
-Installation de Vulkan AMD/Intel
+echo "Installation de Vulkan AMD/Intel
 "; sleep 2
 
 echo "Vérification des dépôts additionnels"; sleep 1
