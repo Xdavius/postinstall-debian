@@ -9,8 +9,7 @@ if [[ $EUID -ne 0 ]]; then
 fi
 
 clear
-echo "
-Installation des repos Sid en pin 10 pour Debian Testing
+echo "Installation des repos Sid en pin 10 pour Debian Testing
 " ; sleep 2
 
 if [ ! -x /etc/apt/sources.list.d/sid.list ]
@@ -29,9 +28,9 @@ else
 	echo "Le fichier /etc/apt/preferences.d/sid existe déjà !!"
 fi
 
-apt update
+echo "Raffraichissemtn des dépôts"; sleep 1
+apt update > /var/log/$LOGNAME.auto-update.txt 2>&1
 
 echo "
 Job done
-"
-sleep 2
+"; sleep 2
