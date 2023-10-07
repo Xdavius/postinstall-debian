@@ -8,19 +8,22 @@ if [[ $EUID -ne 0 ]]; then
 	exit 1
 fi
 
-echo "Job start : Installing wine-staging
+echo "Installation de wine-staging
+"; sleep 2
 
-Patientez...
-" 
-sleep 2 > /var/log/$LOGNAME.auto-update.txt 2>&1
-
+echo "Verification du multilib"
 dpkg --add-architecture i386
+
+echo "Installation du dépôt"
 wget -O /etc/apt/keyrings/winehq-archive.key https://dl.winehq.org/wine-builds/winehq.key
 wget -NP /etc/apt/sources.list.d/ https://dl.winehq.org/wine-builds/debian/dists/bookworm/winehq-bookworm.sources
-apt update >> /var/log/$LOGNAME.auto-update.txt 2>&1
-apt install -y python3-gi-cairo >> /var/log/$LOGNAME.auto-update.txt 2>&1
+
+echo "Rafraichissement des dépôts"
+apt update > /var/log/$LOGNAME.auto-update.txt 2>&1
+
+echo "Installation..."
 apt install -y --install-recommends winehq-staging >> /var/log/$LOGNAME.auto-update.txt 2>&1
 
-echo "Job done"
-
-sleep 2
+echo "
+Job done
+"; sleep 2
