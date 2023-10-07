@@ -9,22 +9,23 @@ if [[ $EUID -ne 0 ]]; then
 fi
 
 clear
-
-echo "Job start : Installation de Steam
+echo "Installation de Steam
 "; sleep 2
-echo "
-Préparation des dépendances :
+
+echo "Préparation des dépendances :
 "; sleep 2
 
 dpkg --add-architecture i386 > /var/log/$LOGNAME.auto-update.txt 2>&1
 add-apt-repository -y contrib >> /var/log/$LOGNAME.auto-update.txt 2>&1
 add-apt-repository -y non-free >> /var/log/$LOGNAME.auto-update.txt 2>&1
 
-echo "
-Installation... Veuillez patienter
+echo "Installation... Veuillez patienter
 "; sleep 2
 
-apt install -y steam >> /var/log/$LOGNAME.auto-update.txt 2>&1
+apt install -y steam-installer >> /var/log/$LOGNAME.auto-update.txt 2>&1
+
+echo "Vous devrez terminer l'installation en exécutant steam-installer dans le menu des jeux
+"; sleep 2
 
 echo "
 Job done
