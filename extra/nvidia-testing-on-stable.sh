@@ -24,7 +24,7 @@ NOTE : Un clean de vulkan/mesa/nvidia sera effectué pour éviter tout conflit. 
 apt autopurge -y raspi-firmware > /var/log/$LOGNAME.auto-update.txt 2>&1
 rm /etc/initramfs/post-update.d/z50-raspi-firmware
 
-echo "Préparation des dépendances :
+echo "Préparation des dépendances 
 "; sleep 2
 
 dpkg --add-architecture i386 >> /var/log/$LOGNAME.auto-update.txt 2>&1
@@ -33,12 +33,12 @@ add-apt-repository -y non-free >> /var/log/$LOGNAME.auto-update.txt 2>&1
 
 apt install -y linux-headers-amd64 build-essential dkms libglvnd-dev firmware-misc-nonfree pkg-config wget >> /var/log/$LOGNAME.auto-update.txt 2>&1
 
-echo "Nettoyage du système :
+echo "Nettoyage du système 
 "; sleep 2
 
 apt autopurge -y nvidia-driver nvidia-settings nvidia-driver-libs:i386 cuda nvidia-gds mesa-vulkan-drivers mesa-vulkan-drivers:i386 nvidia-* nvidia*:i386 >> /var/log/$LOGNAME.auto-update.txt 2>&1
 
-echo "Ajout de testing :
+echo "Ajout du dépôt testing 
 "; sleep 2
 
 if [ ! -x /etc/apt/sources.list.d/testing.list ]
@@ -59,9 +59,11 @@ fi
 
 echo "Rafraichissement des dépôts
 "; sleep 2
+
+dpkg --add-architecture i386 >> /var/log/$LOGNAME.auto-update.txt 2>&1
 apt update >> /var/log/$LOGNAME.auto-update.txt 2>&1
 
-echo "Installation du driver et de Vulkan + Lib32 :
+echo "Installation du driver et de Vulkan + Lib32 (LONG !)
 "; sleep 2
 
 apt install -y -t testing nvidia-driver vulkan-tools libglvnd-dev firmware-misc-nonfree linux-headers-amd64 linux-image-amd64 >> /var/log/$LOGNAME.auto-update.txt 2>&1
