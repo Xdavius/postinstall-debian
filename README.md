@@ -12,7 +12,7 @@ SI VOUS AVEZ INSTALLÉ DEBIAN DEPUIS UNE **ISO LIVE**, SUDO EST DÉjÀ CONFIGUR�
 
          su - -c "usermod -aG sudo $(who | grep tty | cut -d " " -f 1)"
 
-   - Entrez le mot de passe ROOT (Super Utilisateur) pour valider la commande puis redémarrez la machine.
+   - Entrez le mot de passe **ROOT (Super Utilisateur)** pour valider la commande puis **redémarrez la machine**.
 
 
 ## INSTALLATION
