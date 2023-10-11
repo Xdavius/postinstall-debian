@@ -81,11 +81,11 @@ esac
 
 function nvidia2() {
 clear
-echo "          -------------------------- NVIDIA --------------------------
+echo "          -------------------------- NVIDIA EXPERIENCES --------------------------
 
-1- Installer driver Nvidia Experimental (Nvidia-dev)
-2- Installer driver depuis le depot Nvidia Cuda (Nvidia-Latest Stable)
-3- Installer driver Nvidia de Testing en pin 10 (Pour Debian Stable)
+1- Installer driver depuis le depot Nvidia Cuda (Nvidia-Latest Stable)
+2- Installer driver Nvidia de Testing en pin 10 (Pour Debian Stable)
+3- Installer driver Nvidia Experimental (Nvidia-dev, Necessite Sid pin 10 !)
 
 0- Retour
 
@@ -95,11 +95,11 @@ read -n1 -p "Choix ? " choix
 
 case "$choix" in
 
-1)  nvidia-experimental
+1)  nvidia-cuda
     ;;
-2)  nvidia-cuda
+2)  nvidia-testing-on-stable
     ;;
-3)  nvidia-testing-on-stable
+3)  nvidia-experimental
     ;;
 0)  menu1
     ;;
