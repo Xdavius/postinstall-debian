@@ -25,7 +25,7 @@ apt autopurge -y raspi-firmware > /var/log/$LOGNAME.auto-update.txt 2>&1
 rm /etc/initramfs/post-update.d/z50-raspi-firmware
 
 echo "
-Préparation des dépendances :
+Préparation des dépendances 
 "
 sleep 2
 dpkg --add-architecture i386 >> /var/log/$LOGNAME.auto-update.txt 2>&1
@@ -34,7 +34,7 @@ add-apt-repository -y non-free >> /var/log/$LOGNAME.auto-update.txt 2>&1
 
 apt install -y linux-headers-amd64 build-essential dkms libglvnd-dev firmware-misc-nonfree pkg-config wget >> /var/log/$LOGNAME.auto-update.txt 2>&1
 
-echo "Nettoyage du système :
+echo "Nettoyage du système 
 "; sleep 2
 
 apt autopurge -y nvidia-driver nvidia-settings nvidia-driver-libs:i386 cuda nvidia-gds mesa-vulkan-drivers mesa-vulkan-drivers:i386 nvidia-* nvidia*:i386 >> /var/log/$LOGNAME.auto-update.txt 2>&1
@@ -43,13 +43,15 @@ if [ ! -x /etc/apt/sources.list.d/experimental.list ]
 then
     echo "deb http://deb.debian.org/debian experimental non-free-firmware contrib non-free main" > /etc/apt/sources.list.d/experimental.list
 fi
+
+dpkg --add-architecture i386 >> /var/log/$LOGNAME.auto-update.txt 2>&1
 apt update >> /var/log/$LOGNAME.auto-update.txt 2>&1
 
-echo "Installation du driver et de Vulkan + Lib32 :
+echo "Installation du driver et de Vulkan + Lib32 (LONG !)
 "; sleep 2
 
 apt update >> /var/log/$LOGNAME.auto-update.txt 2>&1
-apt install -y -t experimental nvidia-driver vulkan-tools vulkan-tools firmware-misc-nonfree nvidia-settings libglvnd-dev >> /var/log/$LOGNAME.auto-update.txt 2>&1
+apt install -y -t experimental nvidia-driver vulkan-tools firmware-misc-nonfree nvidia-settings libglvnd-dev >> /var/log/$LOGNAME.auto-update.txt 2>&1
 apt install -y -t experimental nvidia-driver-libs:i386 >> /var/log/$LOGNAME.auto-update.txt 2>&1
 
 echo "Installation de Cuda (LONG !)
