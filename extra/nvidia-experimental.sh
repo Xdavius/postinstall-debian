@@ -50,17 +50,23 @@ apt update >> /var/log/$LOGNAME.auto-update.txt 2>&1
 echo "Installation du driver et de Vulkan + Lib32 (LONG !)
 "; sleep 2
 
+export DEBIAN_FRONTEND=noninteractive
 apt update >> /var/log/$LOGNAME.auto-update.txt 2>&1
-apt install -y -t experimental nvidia-driver vulkan-tools firmware-misc-nonfree nvidia-settings libglvnd-dev >> /var/log/$LOGNAME.auto-update.txt 2>&1
-apt install -y -t experimental nvidia-driver-libs:i386 >> /var/log/$LOGNAME.auto-update.txt 2>&1
+apt-mark unhold dkms
+apt install -y -t sid dkms
+apt install -y -t experimental nvidia-driver vulkan-tools firmware-misc-nonfree nvidia-settings libglvnd-dev
+apt install -y -t experimental nvidia-driver-libs:i386 
 
 echo "Installation de Cuda (LONG !)
 "; sleep 2
 
-apt install -y -t experimental nvidia-cuda-toolkit nvidia-cuda-dev >> /var/log/$LOGNAME.auto-update.txt 2>&1
-#  nvidia-cuda-mps
+apt install -y -t experimental nvidia-cuda-toolkit
+# nvidia-cuda-dev
+# nvidia-cuda-mps
 
-echo "Veuillez REBOOT la machine !!
+echo "SI VOUS UTILISEZ SECUREBOOT, VEUILLEZ RELANCER LA PRECEDURE !
+
+Veuillez REBOOT la machine !!
 "; sleep 2
 
 echo "
