@@ -27,10 +27,8 @@ L'interface graphique est optimisée pour GNOME et KDE uniquement.
 
    - Décompressez le zip, puis double cliquez sur **"postinstall-debian-gui.run"**
    
-
-<< Ce logiciel dépend de YAD. Son installation s'effectue automatiquement de façon transparente. >>
-
-<< L'activation du Multilib, Contrib et Non-free est effectuée au lancement de la GUI pour améliorer l'expérience utilisateur. Si vous ne le souhaitez pas, utilisez la TUI >>
+***Ce logiciel dépend de YAD. Son installation s'effectue automatiquement de façon transparente.***
+***L'activation du Multilib, Contrib et Non-free est effectuée au lancement de la GUI pour améliorer l'expérience utilisateur. Si vous ne le souhaitez pas, utilisez la TUI***
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
