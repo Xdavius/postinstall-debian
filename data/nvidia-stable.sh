@@ -46,6 +46,7 @@ echo "
 Installation du driver et de Vulkan + Lib32 :
 "; sleep 2
 
+mkdir -p /var/run/nvpd/
 apt install -y nvidia-driver vulkan-tools nvidia-settings >> /var/log/$LOGNAME.auto-update.txt 2>&1
 apt install -y vulkan-tools:i386 nvidia-driver-libs:i386 >> /var/log/$LOGNAME.auto-update.txt 2>&1
 
