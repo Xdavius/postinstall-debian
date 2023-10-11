@@ -68,6 +68,7 @@ echo "Installation du driver et de Vulkan + Lib32 (LONG !)
 
 export DEBIAN_FRONTEND=noninteractive
 apt-mark unhold dkms
+mkdir -p /var/run/nvpd/
 apt install -y -t testing dkms nvidia-driver vulkan-tools libglvnd-dev firmware-misc-nonfree linux-headers-amd64 linux-image-amd64 >> /var/log/$LOGNAME.auto-update.txt 2>&1
 apt install -y -t testing nvidia-driver-libs:i386 >> /var/log/$LOGNAME.auto-update.txt 2>&1
 
