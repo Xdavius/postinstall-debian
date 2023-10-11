@@ -59,7 +59,7 @@ Vous devez exécuter l'application depuis un terminal en root :
 - Vous pouvez utiliser **POSTINSTALL-DEBIAN-GUI**.
 
 
-<< Une compatibilité existe si vous avez Zenity d'installé sur votre système. >>
+***Une compatibilité existe si vous avez Zenity d'installé sur votre système.***
 
 **Pour les autres DE :**
 
