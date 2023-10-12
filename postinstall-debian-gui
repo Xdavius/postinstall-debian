@@ -36,9 +36,9 @@ chmod +x extra/*.sh
 chmod +x SECUREBOOT/*.sh
 
 if [ -f /usr/bin/zenity ]; then
-(echo $password | sudo -S apt -y install yad bash-completion) | zenity --progress --pulsate --title="Préparation de YAD" --text="Installation de YAD"
+(echo $password | sudo -S apt -y install yad bash-completion) | zenity --progress --pulsate --title="Préparation de YAD" --text="Installation de YAD" --auto-close
 elif [ -f /usr/bin/kdialog ]; then
-(echo $password | sudo -S apt -y install yad bash-completion pkexec) | zenity --progress --pulsate --title="Préparation de YAD" --text="Installation de YAD"
+(echo $password | sudo -S apt -y install yad bash-completion pkexec) | zenity --progress --pulsate --title="Préparation de YAD" --text="Installation de YAD" --auto-close
 fi
 
 (echo $password | sudo -S apt-add-repository -y contrib && \
