@@ -14,15 +14,17 @@ chmod u+rx /etc/kernel/postinst.d/zz-signing
 
 if [[ $patch_dkms == o ]] ; then
 	ins_mod_sing="/etc/kernel/postinst.d/zz-signing"
-	cat<<EOF>>$ins_mod_sign
+	cat_eof=${cat<<EOF
 	kernel_mod_name=$(echo $KERNEL_IMAGE | cut -c 15-)
 	echo "Signature des modules dans /usr/lib/modules/$kernel_mod_name/"
 
 	find /usr/lib/modules/$kernel_mod_name/ -name \*.ko | while read i; \
 	do sudo --preserve-env=KBUILD_SIGN_PIN \
 	/opt/signtool/sign-file sha256 /var/lib/shim-signed/mok/MOK.priv /var/lib/shim-signed/mok/MOK.der "$i"\
-	|| break; done"
+	|| break; done
 	EOF
+	}
+	echo $cat_eof >> $ins_mod_sign
 fi
 
 echo "
