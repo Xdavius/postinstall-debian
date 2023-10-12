@@ -42,13 +42,19 @@ if [ ! -r "$MOK_DIRECTORY/$MOK_CERT_NAME.pem" ] ; then
     openssl x509 -in "$MOK_DIRECTORY/$MOK_CERT_NAME.der" -inform DER -outform PEM -out "$MOK_DIRECTORY/$MOK_CERT_NAME.pem" || { echo "Conversion failed. Bailing." >&2; exit 1 ; }
 fi
 
-echo "Signing $KERNEL_IMAGE..."
+echo "Signature de $KERNEL_IMAGE..."
 sbsign --key "$MOK_DIRECTORY/$MOK_CERT_NAME.priv" --cert "$MOK_DIRECTORY/$MOK_CERT_NAME.pem" --output "$KERNEL_IMAGE" "$KERNEL_IMAGE"
 
 kernel_mod_name=$(echo $KERNEL_IMAGE | cut -c 15-)
-echo "Signing modules /usr/lib/modules/$kernel_mod_name/"
+echo "Signature des modules dans /usr/lib/modules/$kernel_mod_name/"
 
 find /usr/lib/modules/$kernel_mod_name/ -name \*.ko | while read i; \
+do sudo --preserve-env=KBUILD_SIGN_PIN \
+/opt/signtool/sign-file sha256 /var/lib/shim-signed/mok/MOK.priv /var/lib/shim-signed/mok/MOK.der "$i"\
+|| break; done
+
+echo "Signature des modules DKMS"
+find /var/lib/dkms/ -name \*.ko | while read i; \
 do sudo --preserve-env=KBUILD_SIGN_PIN \
 /opt/signtool/sign-file sha256 /var/lib/shim-signed/mok/MOK.priv /var/lib/shim-signed/mok/MOK.der "$i"\
 || break; done
