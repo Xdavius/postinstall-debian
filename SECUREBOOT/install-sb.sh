@@ -27,14 +27,25 @@ installation de sign-file pour les Kernels Customs...
 mkdir -p /opt/signtool/
 cp /lib/modules/$kernel_ver/build/scripts/sign-file /opt/signtool
 
-echo "
-Patch de dkms pour les kernels Customs, blocage des mises à jour du paquet
-" ; sleep 1
-# patch -i $srcdir/data/dkms.patch /usr/sbin/dkms
-# En cas de changement de version de dkms
-cp $srcdir/SECUREBOOT/data/src/dkms.patched /usr/sbin/dkms
-chmod +x /usr/sbin/dkms
-apt-mark hold dkms
+read -n1 "Voulez-vous patcher DKMS pour utiliser avec les kernels customs non signés ?
+ATTENTION : le paquet DKMS sera marqué en HOLD. En cas de MISE A NIVEAU DU SYSTEME, IL FAUDRA LE DEBLOQUER AVEC LA COMMANDE :
+
+sudo apt-mark unhold dkms
+
+PUIS? IL FAUDRA REEXECUTER L'INSTALLATION DE SECUREBOOT ET ENROLL LA NOUVLLE CLE
+
+[o/N] : " patch_dkms
+
+if [[ $patch_dkms == o ]] ; then
+	echo "
+	Patch de dkms pour les kernels Customs, blocage des mises à jour du paquet
+	" ; sleep 1
+	# patch -i $srcdir/data/dkms.patch /usr/sbin/dkms
+	# En cas de changement de version de dkms
+	cp $srcdir/SECUREBOOT/data/src/dkms.patched /usr/sbin/dkms
+	chmod +x /usr/sbin/dkms
+	apt-mark hold dkms
+fi
 
 echo "
 Installation...
