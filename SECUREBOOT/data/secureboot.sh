@@ -90,9 +90,19 @@ sbsign --key /var/lib/shim-signed/mok/MOK.priv --cert /var/lib/shim-signed/mok/M
 mv /boot/vmlinuz-$VERSION.tmp /boot/vmlinuz-$VERSION
 }
 
+function sign_modules() {
+echo "Signature des modules existants"
+
+find /usr/lib/modules/ -name \*.ko | while read i; \
+do sudo --preserve-env=KBUILD_SIGN_PIN \
+/opt/signtool/sign-file sha256 /var/lib/shim-signed/mok/MOK.priv /var/lib/shim-signed/mok/MOK.der "$i"\
+|| break; done
+}
+
 create_key
 sign_helper
 import_mok
 sign_kernel
-#function
+sign_modules
+
 #mokutil --import /var/lib/dkms/mok.pub
