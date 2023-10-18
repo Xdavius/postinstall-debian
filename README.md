@@ -1,5 +1,14 @@
 # POSTINSTALL-DEBIAN - Configurer Facilement Debian !
 
+Cet outils a été conçu pour être lus facilement utilisable avec les ISO Lives de Debian et l'installateur graphique.
+Les isos lives sont disponibles ici :
+
+      https://cdimage.debian.org/debian-cd/current-live/amd64/iso-hybrid/
+
+Le mot de passe ROOT/SUDO des Isos live est : **live**
+
+**L'interface GUI à été pensée pour fonctionner avec GNOME et KDE. Une compatibilié est en cours pour prendre en charge CINNAMON,
+et a terme, un support complet pour Linux Mint Debian Edition.**
 
 ## AVANT DE COMMENCER :
 
@@ -80,15 +89,20 @@ Vous devez exécuter l'application depuis un terminal en root :
 ## Contenu des scripts :
 
 
-- install-sb :                Installer la configuration pour utiliser Secureboot de façon transparente 
+- install-sb :                Installer la configuration pour utiliser Secureboot de façon transparente. **ATTENTION** le paquet DKMS se fait patcher !
+                              **POUR LA MIGRATION VERS UNE NOUVELLE VERSION DE DKMS, IL FAUDRA DÉBLOQUER LE PAQUET ET RECOMMENCER LA PROCEDURE !**
+                              **UTILISEZ : sudo apt-mark unhold dkms**
 
 - nvidia-stable :             Installer le driver Nvidia officiel Debian Stable **RECOMMANDÉ** (Actuellement : Branche 525)
 - nvidia-cuda :               Installer le driver Nvidia Curent Stable en provenance des dépots de NVIDIA (Actuellement : Branche 535)
                               **NVIDIA RECOMMANDE UN KERNEL LTS, PEUT FONCTIONNER AVEC KERNEL CURRENT, MAIS PEUT AUSSI CASSER**
 - nvidia-experimental :       Installer le dépôt EXPERIMENTAL pour debian pour avoir le dernier driver EXPERIMENTAL (Actuellement : Branche 530-dev)
                               **NECESSITE D'AVOIR ACTIVER LE DEPOT SID EN PIN 10 MINIMUM, POUR LES AVENTURIERS**
+                              **NECESSITE DE RELANCER LA PROCÉDURE SECUREBOOT SI ACTIVE !**
+  
 - nvidia-testing-on-stable :  Installer le FUTUR driver Nvidia pour Debian Stable +1
                               **AJOUTE LE TEPOT TESTING EN PIN 10, POUR LES TESTEURS !**
+                              **PEUT NECESSITER UNE MISE A JOUR DE DKMS ! SI UTILISÉ AVEC SECUREBOOT, MEFIANCE !**
 - nvidia-rollback :           Desinstaller vos drivers Nvidia et faire le ménage !
   
 - mesa-kisak-fresh :          Installer le dernier Mesa Stable pour AMD/INTEL
