@@ -102,7 +102,7 @@ Vous devez exécuter l'application depuis un terminal en root :
                               **NECESSITE DE RELANCER LA PROCÉDURE SECUREBOOT SI ACTIVE !**
   
 - nvidia-testing-on-stable :  Installer le FUTUR driver Nvidia pour Debian Stable +1
-                              **AJOUTE LE TEPOT TESTING EN PIN 10, POUR LES TESTEURS !**
+                              **AJOUTE LE DEPOT TESTING EN PIN 10, POUR LES TESTEURS !**
                               **PEUT NECESSITER UNE MISE A JOUR DE DKMS ! SI UTILISÉ AVEC SECUREBOOT, MEFIANCE !**
 - nvidia-rollback :           Desinstaller vos drivers Nvidia et faire le ménage !
   
