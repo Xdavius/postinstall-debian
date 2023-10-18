@@ -80,7 +80,7 @@ Vous devez exécuter l'application depuis un terminal en root :
 
   ATTENTION A QWERTY/AZERTY ! Vous pouvez utiliser uniquement la lettre "t" ou "r" ou bien le mot "root". Ce mot de passe ne servant qu'une seule fois.
 
-- Redémarrez la machine. Vous aurais un écran bleu. Appuyez sur une touche dans les 10 secondes puis
+- Redémarrez la machine. Vous aurez un écran bleu. Appuyez sur une touche dans les 10 secondes puis
   choissez ENROLL MOK, puis CONTINUE, puis YES (Suivez les instructions en Anglais hélas) le mot de passe à usage unique vous sera demandé.
   
 - Il n'y a pas d'avertissement de reussite mais la première option aura disparu, choisissez REBOOT
@@ -89,45 +89,57 @@ Vous devez exécuter l'application depuis un terminal en root :
 ## Contenu des scripts :
 
 
-- install-sb :                Installer la configuration pour utiliser Secureboot de façon transparente. **ATTENTION** le paquet DKMS se fait patcher !
+- install-sb :                Installe la configuration pour utiliser Secureboot de façon transparente. **ATTENTION** le paquet DKMS se fait patcher !
                               **POUR LA MIGRATION VERS UNE NOUVELLE VERSION DE DKMS OU UNE MISE A NIVEAU DE DEBIAN,**
                               **IL FAUDRA DÉBLOQUER LE PAQUET ET RECOMMENCER LA PROCEDURE !**
                               **UTILISEZ : sudo apt-mark unhold dkms**
 
-- nvidia-stable :             Installer le driver Nvidia officiel Debian Stable **RECOMMANDÉ** (Actuellement : Branche 525)
-- nvidia-cuda :               Installer le driver Nvidia Curent Stable en provenance des dépots de NVIDIA (Actuellement : Branche 535)
+- nvidia-stable :             Installe le driver Nvidia officiel Debian Stable **RECOMMANDÉ** (Actuellement : Branche 525)
+  
+- nvidia-cuda :               Installe le driver Nvidia Curent Stable en provenance des dépots de NVIDIA (Actuellement : Branche 535)
                               **NVIDIA RECOMMANDE UN KERNEL LTS, PEUT FONCTIONNER AVEC KERNEL CURRENT, MAIS PEUT AUSSI CASSER**
-- nvidia-experimental :       Installer le dépôt EXPERIMENTAL pour debian pour avoir le dernier driver EXPERIMENTAL (Actuellement : Branche 530-dev)
+  
+- nvidia-experimental :       Installe le dépôt EXPERIMENTAL pour debian pour avoir le dernier driver EXPERIMENTAL (Actuellement : Branche 530-dev)
                               **NECESSITE D'AVOIR ACTIVER LE DEPOT SID EN PIN 10 MINIMUM, POUR LES AVENTURIERS**
                               **NECESSITE DE RELANCER LA PROCÉDURE SECUREBOOT SI ACTIVE !**
   
-- nvidia-testing-on-stable :  Installer le FUTUR driver Nvidia pour Debian Stable +1
+- nvidia-testing-on-stable :  Installe le FUTUR driver Nvidia pour Debian Stable +1
                               **AJOUTE LE DEPOT TESTING EN PIN 10, POUR LES TESTEURS !**
                               **PEUT NECESSITER UNE MISE A JOUR DE DKMS ! SI UTILISÉ AVEC SECUREBOOT, MEFIANCE !**
-- nvidia-rollback :           Desinstaller vos drivers Nvidia et faire le ménage !
   
-- mesa-kisak-fresh :          Installer le dernier Mesa Stable pour AMD/INTEL
+- nvidia-rollback :           Desinstalle vos drivers Nvidia et faire le ménage !
+  
+- mesa-kisak-fresh :          Installe le dernier Mesa Stable pour AMD/INTEL
+  
 - amd-vulkan :                Installe Vulkan pour les GPU AMD/INTEL
+  
 - rocm :                      Installe le dépot AMD et installe ROCM Opencl et HIP.
 
 - steam :                     Installe le Steam-Installer pour procéder à l'installation de steam et des dépendances.
-- lutris-latest :             Installer la dernière version de lutris et le dépôt officiel 
-- wine-staging :              Installer la dernière version de wine ainsi que toutes les dépendances nécessaire, et le dépôt officiel 
+  
+- lutris-latest :             Installe la dernière version de lutris et le dépôt officiel
+  
+- wine-staging :              Installe la dernière version de wine ainsi que toutes les dépendances nécessaire, et le dépôt officiel 
 
-- deb-get :                   Installer deb-get pour installer facilement des logiciels .deb externe aux dépots Debian (heroic, discord, lutris (github version), et d'autres) (UNIQUEMENT POUR DEBIAN STABLE)
+- deb-get :                   Installer deb-get pour installer facilement des logiciels .deb externe aux dépots Debian (heroic, discord, lutris (github version),
+                              et d'autres) (UNIQUEMENT POUR DEBIAN STABLE)
                               (https://github.com/wimpysworld/deb-get)
   
 - pacstall :                  Une alternative à deb-get, parmet d'accèder à de nombreux logiciels supplémentaires et de les maintenir à jour
                               (https://github.com/pacstall/pacstall - https://pacstall.dev/packages?page=0&size=25&sortBy=default&sort=asc&filter=&filterBy=name)
 
-- backports :                 Permet d'activer le dépôt stable-backports. Celui ci est activé en mode Rolling. Lorsque une nouvelle version de Debian sortira, il ne sera pas nécessaire de le reconfigurer.
+- backports :                 Permet d'activer le dépôt stable-backports. Celui ci est activé en mode Rolling. Lorsque une nouvelle version de Debian sortira,
+                              il  ne sera pas nécessaire de le reconfigurer.
                               Il est recommandé de passer votre sources.list en branche Stable pour en profiter de façon optimale.
-- update-firmware :           Met à jour les firmwares Linux à la dernière version GIT (Support du matériel très récent comme les dernière cartes Wifi ou les derniers GPU)
+  
+- update-firmware :           Met à jour les firmwares Linux à la dernière version GIT (Support du matériel très récent comme les dernières cartes Wifi ou les
+                              derniers GPU)
+  
 - install-sid :               Configure Sid avec un Pin 10 (Debian stable ou Testing)
 
 
 ## REMERCIEMENTS :
 
-Merci à Bazogueur Tobal, cptcavern, Pandatomikk, christophe et la Team GLF Pour leur participations et tests sur ce projet !
+Merci à Bazogueur Tobal, Cptcavern, Pandatomikk, Christophe et la Team GLF Pour leur participations et tests sur ce projet !
 
 **Merci à tous les développeurs sur GitHub qui partagent leur travail sans lesquels ce projet n'aurait jamais abouti !**
