@@ -1,6 +1,6 @@
 # POSTINSTALL-DEBIAN - Configurer Facilement Debian !
 
-Cet outils a été conçu pour être lus facilement utilisable avec les ISO Lives de Debian et l'installateur graphique.
+Cet outils a été conçu pour être plus facilement utilisable avec les ISO Lives de Debian et l'installateur graphique.
 Les isos lives sont disponibles ici :
 
       https://cdimage.debian.org/debian-cd/current-live/amd64/iso-hybrid/
