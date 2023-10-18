@@ -9,15 +9,8 @@ if [[ $EUID -ne 0 ]]; then
 fi
 
 clear
-echo "
-----------------------------------------------------
-
-Job start : Installing Nvidia Experimental Drivers
-
-----------------------------------------------------
-
-"
-sleep 2
+echo "Job start : Installing Nvidia Experimental Drivers
+"; sleep 2
 
 echo "*** BUG DEBIAN 12 LIVE ISOS :
 
@@ -26,60 +19,57 @@ Par sécurité, il sera désinstallé et nettoyé. Si vous en avez besoin, consi
 
 NOTE : Un clean de vulkan/mesa/nvidia sera effectué pour éviter tout conflit. En cas de necessité, vous devrez reinstaller mesa-vulkan-drivers mesa-vulkan-drivers:i386 (INTEL/AMD).
 
+"; sleep 5
 
-"
-sleep 5
-
-apt autopurge -y raspi-firmware
+apt autopurge -y raspi-firmware > /var/log/$LOGNAME.auto-update.txt 2>&1
 rm /etc/initramfs/post-update.d/z50-raspi-firmware
 
 echo "
-Préparation des dépendances :
+Préparation des dépendances 
 "
 sleep 2
-dpkg --add-architecture i386
-add-apt-repository -y contrib
-add-apt-repository -y non-free
+dpkg --add-architecture i386 >> /var/log/$LOGNAME.auto-update.txt 2>&1
+add-apt-repository -y contrib >> /var/log/$LOGNAME.auto-update.txt 2>&1
+add-apt-repository -y non-free >> /var/log/$LOGNAME.auto-update.txt 2>&1
 
-apt install -y linux-headers-amd64 build-essential dkms libglvnd-dev firmware-misc-nonfree pkg-config wget
+apt install -y linux-headers-amd64 build-essential dkms libglvnd-dev firmware-misc-nonfree pkg-config wget >> /var/log/$LOGNAME.auto-update.txt 2>&1
 
-echo "
-Nettoyage du système :
-"
-sleep 2
+echo "Nettoyage du système 
+"; sleep 2
 
-apt autopurge -y nvidia-driver nvidia-settings nvidia-driver-libs:i386 cuda nvidia-gds mesa-vulkan-drivers mesa-vulkan-drivers:i386 nvidia-* nvidia*:i386
+apt autopurge -y nvidia-driver nvidia-settings nvidia-driver-libs:i386 cuda nvidia-gds mesa-vulkan-drivers mesa-vulkan-drivers:i386 nvidia-* nvidia*:i386 >> /var/log/$LOGNAME.auto-update.txt 2>&1
 
 if [ ! -x /etc/apt/sources.list.d/experimental.list ]
 then
     echo "deb http://deb.debian.org/debian experimental non-free-firmware contrib non-free main" > /etc/apt/sources.list.d/experimental.list
 fi
-apt update
 
-echo "
-Installation du driver et de Vulkan + Lib32 :
-"
-sleep 2
+dpkg --add-architecture i386 >> /var/log/$LOGNAME.auto-update.txt 2>&1
+apt update >> /var/log/$LOGNAME.auto-update.txt 2>&1
 
-apt update
-apt install -y -t experimental nvidia-driver vulkan-tools vulkan-tools firmware-misc-nonfree nvidia-settings libglvnd-dev
-apt install -y -t experimental nvidia-driver-libs:i386
+echo "Installation du driver et de Vulkan + Lib32 (LONG !)
+"; sleep 2
 
-echo "
-Installation de Cuda :
-"
-sleep 2
+export DEBIAN_FRONTEND=noninteractive
+apt update >> /var/log/$LOGNAME.auto-update.txt 2>&1
+apt-mark unhold dkms
+mkdir -p /var/run/nvpd/
+apt install -y -t sid dkms
+apt install -y -t experimental nvidia-driver vulkan-tools firmware-misc-nonfree nvidia-settings libglvnd-dev
+apt install -y -t experimental nvidia-driver-libs:i386 
 
-apt install -y -t experimental nvidia-cuda-toolkit nvidia-cuda-dev nvidia-cuda-mps
-apt autoremove -y
+echo "Installation de Cuda (LONG !)
+"; sleep 2
 
-echo "
+apt install -y -t experimental nvidia-cuda-toolkit
+# nvidia-cuda-dev
+# nvidia-cuda-mps
 
-Job done
-"
+echo "SI VOUS UTILISEZ SECUREBOOT, VEUILLEZ RELANCER LA PRECEDURE !
 
-echo "
 Veuillez REBOOT la machine !!
-"
+"; sleep 2
 
-sleep 2
+echo "
+Job done
+"; sleep 2

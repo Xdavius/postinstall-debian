@@ -124,3 +124,7 @@ else
 	echo "Utility to add PPA repositories in your debian machine"
 	echo "$0 ppa:user/ppa-name"
 fi
+
+echo "
+Job done
+"; sleep 2

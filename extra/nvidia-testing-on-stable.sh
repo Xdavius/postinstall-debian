@@ -9,10 +9,8 @@ if [[ $EUID -ne 0 ]]; then
 fi
 
 clear
-
-echo "Job start : Installing Nvidia Testing Driver ON STABLE + Cuda
-"
-sleep 2
+echo "Installation des drivers Debian Nvidia Testing Driver + Cuda
+"; sleep 2
 
 echo "*** BUG DEBIAN 12 LIVE ISOS :
 
@@ -21,34 +19,27 @@ Par sécurité, il sera désinstallé et nettoyé. Si vous en avez besoin, consi
 
 NOTE : Un clean de vulkan/mesa/nvidia sera effectué pour éviter tout conflit. En cas de necessité, vous devrez reinstaller mesa-vulkan-drivers mesa-vulkan-drivers:i386 (INTEL/AMD).
 
+"; sleep 5
 
-"
-sleep 5
-
-apt autopurge -y raspi-firmware
+apt autopurge -y raspi-firmware > /var/log/$LOGNAME.auto-update.txt 2>&1
 rm /etc/initramfs/post-update.d/z50-raspi-firmware
 
-echo "
-Préparation des dépendances :
-"
-sleep 2
+echo "Préparation des dépendances 
+"; sleep 2
 
-dpkg --add-architecture i386
-add-apt-repository -y contrib
-add-apt-repository -y non-free
+dpkg --add-architecture i386 >> /var/log/$LOGNAME.auto-update.txt 2>&1
+add-apt-repository -y contrib >> /var/log/$LOGNAME.auto-update.txt 2>&1
+add-apt-repository -y non-free >> /var/log/$LOGNAME.auto-update.txt 2>&1
 
-apt install -y linux-headers-amd64 build-essential dkms libglvnd-dev firmware-misc-nonfree pkg-config wget
+apt install -y linux-headers-amd64 build-essential dkms libglvnd-dev firmware-misc-nonfree pkg-config wget >> /var/log/$LOGNAME.auto-update.txt 2>&1
 
-echo "
-Nettoyage du système :
-"
-sleep 2
+echo "Nettoyage du système 
+"; sleep 2
 
-apt autopurge -y nvidia-driver nvidia-settings nvidia-driver-libs:i386 cuda nvidia-gds mesa-vulkan-drivers mesa-vulkan-drivers:i386 nvidia-* nvidia*:i386
+apt autopurge -y nvidia-driver nvidia-settings nvidia-driver-libs:i386 cuda nvidia-gds mesa-vulkan-drivers mesa-vulkan-drivers:i386 nvidia-* nvidia*:i386 >> /var/log/$LOGNAME.auto-update.txt 2>&1
 
-echo "
-Ajout de testing :
-"
+echo "Ajout du dépôt testing 
+"; sleep 2
 
 if [ ! -x /etc/apt/sources.list.d/testing.list ]
 then
@@ -66,30 +57,31 @@ else
 	echo "Le fichier /etc/apt/preferences.d/testing existe déjà !!"
 fi
 
-apt update
+echo "Rafraichissement des dépôts
+"; sleep 2
 
-echo "
-Installation du driver et de Vulkan + Lib32 :
-"
-sleep 2
+dpkg --add-architecture i386 >> /var/log/$LOGNAME.auto-update.txt 2>&1
+apt update >> /var/log/$LOGNAME.auto-update.txt 2>&1
 
-apt install -y -t testing nvidia-driver vulkan-tools libglvnd-dev firmware-misc-nonfree linux-headers-amd64 linux-image-amd64
-apt install -y -t testing nvidia-driver-libs:i386
+echo "Installation du driver et de Vulkan + Lib32 (LONG !)
+"; sleep 2
 
-echo "
-Installation de Cuda :
-"
-sleep 2
+export DEBIAN_FRONTEND=noninteractive
+apt-mark unhold dkms
+mkdir -p /var/run/nvpd/
+apt install -y -t testing dkms nvidia-driver vulkan-tools libglvnd-dev firmware-misc-nonfree linux-headers-amd64 linux-image-amd64 >> /var/log/$LOGNAME.auto-update.txt 2>&1
+apt install -y -t testing nvidia-driver-libs:i386 >> /var/log/$LOGNAME.auto-update.txt 2>&1
 
-apt install -y -t testing nvidia-cuda-toolkit nvidia-cuda-dev
+echo "Installation de Cuda (LONG !)
+"; sleep 2
 
-echo "
+apt install -y -t testing nvidia-cuda-toolkit nvidia-cuda-dev >> /var/log/$LOGNAME.auto-update.txt 2>&1
 
-Job done
-"
+echo "SI VOUS UTILISEZ SECUREBOOT, VEUILLEZ RELANNCER LA PROCEDURE !
 
-echo "
 Veuillez REBOOT la machine !!
-"
+"; sleep 2
 
-sleep 2
+echo "
+Job done
+"; sleep 2

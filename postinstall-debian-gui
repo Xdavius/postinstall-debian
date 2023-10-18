@@ -1,24 +1,22 @@
 #!/bin/bash
 
-## ON AJOUTE ICI LES SOURCES
-
 function main() {
-# Script need curl
+
 if [ $DESKTOP_SESSION == "plasma" ]; then
-  pwd=$( kdialog --password "Entrez votre mot de passe SUDO" )
+  password=$( kdialog --password "Entrez votre mot de passe SUDO" )
 elif  [ $DESKTOP_SESSION == "plasmawayland" ]; then
-  pwd=$( kdialog --password "Entrez votre mot de passe SUDO" )
+  password=$( kdialog --password "Entrez votre mot de passe SUDO" )
 elif  [ $DESKTOP_SESSION == "gnome" ]; then
-  pwd=$( zenity --password --text="Entrez votre mot de passe SUDO" )
+  password=$( zenity --password --text="Entrez votre mot de passe SUDO" )
 elif [ -f /usr/bin/zenity ]; then
-  pwd=$( zenity --password --text="Entrez votre mot de passe SUDO" )
+  password=$( zenity --password --text="Entrez votre mot de passe SUDO" )
 fi
-password=$(echo $pwd)
-chmod +x data/*.sh
-chmod +x extra/*.sh
-chmod +x SECUREBOOT/*.sh
+
+#password=$(echo $pwd)
+
 chkroot=$(echo $password | sudo -S whoami)
 if [ "$password" = "" ]; then
+main
 exit
 elif [ "$chkroot" != "root" ]; then
   if [ $DESKTOP_SESSION == "plasma" ]; then
@@ -33,12 +31,21 @@ elif [ "$chkroot" != "root" ]; then
 exit
 fi
 
-echo $password | sudo -S apt -y install yad bash-completion
+chmod +x data/*.sh
+chmod +x extra/*.sh
+chmod +x SECUREBOOT/*.sh
 
-(echo $password | sudo -S dpkg --add-architecture i386 && \
-echo $password | sudo -S apt-add-repository -y contrib && \
-echo $password | sudo -S apt-add-repository -y non-free) | yad --progress --pulsate --title "Préparation de système" --progress-text="installation des dépôts additionnels" --width 500 --height 100 --no-buttons --auto-close
-## ON CALL LA FONCTION CONTENU DANS ./source/menu-gui.sh
+if [ -f /usr/bin/zenity ]; then
+(echo $password | sudo -S apt -y install yad bash-completion) | zenity --progress --pulsate --title="Préparation de YAD" --text="Installation de YAD" --auto-close
+elif [ -f /usr/bin/kdialog ]; then
+echo $password | sudo -S apt install -y zenity
+(echo $password | sudo -S apt -y install yad bash-completion pkexec) | zenity --progress --pulsate --title="Préparation de YAD" --text="Installation de YAD" --auto-close
+fi
+
+(echo $password | sudo -S apt-add-repository -y contrib && \
+echo $password | sudo -S apt-add-repository -y non-free && \
+echo $password | sudo -S dpkg --add-architecture i386) | yad --progress --pulsate --title "Préparation de système" --progress-text="installation des dépôts additionnels" --width 500 --height 100 --no-buttons --auto-close
+
 echo $password | sudo -S bash -e ./source/menu-gui.sh
 }
 

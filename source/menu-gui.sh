@@ -208,14 +208,14 @@ nvidia=$(yad --window-icon="$logo" --title="Gestionnaire nvidia" --width 500 --h
 function nvidia2 () {
 logo
 ferme_yad
-COM_EXPERIMENTAL="Installer driver Nvidia Experimental"
+COM_EXPERIMENTAL="Installer driver Nvidia Experimental (Necessite l'activation de Sid pin 10)"
 COM_CUDA="Installer driver depuis le depot Nvidia Cuda"
 COM_TESTING="Installer driver Nvidia de Testing en pin 10 (Pour Debian Stable)"
 nvidia2=$(yad --window-icon="$logo" --title="Gestionnaire nvidia" --width 500 --height 170 --text-align="center" --button="Retour:bash -c nvidia" --button="OK:0" --button="Cancel:1" \
  --form \
- --field "Experimental ! ! $COM_EXPERIMENTAL:fbtn" "bash -c nvidia_exp" \
- --field "Cuda ! ! $COM_CUDA:fbtn" "bash -c nvidia_cuda" \
- --field "Testing ! ! $COM_TESTING:fbtn" "bash -c nvidia_test"\
+ --field "Dépôt Officiel Nvidia Cuda (Debian stable ou plus)! ! $COM_CUDA:fbtn" "bash -c nvidia_cuda" \
+ --field "Nvidia Experimental (Debian Sid)! ! $COM_EXPERIMENTAL:fbtn" "bash -c nvidia_exp" \
+ --field "Nvidia Testing (Debian Stable)! ! $COM_TESTING:fbtn" "bash -c nvidia_test"\
 )
 }
 

@@ -1,5 +1,14 @@
 # POSTINSTALL-DEBIAN - Configurer Facilement Debian !
 
+Cet outils a été conçu pour être lus facilement utilisable avec les ISO Lives de Debian et l'installateur graphique.
+Les isos lives sont disponibles ici :
+
+      https://cdimage.debian.org/debian-cd/current-live/amd64/iso-hybrid/
+
+Le mot de passe ROOT/SUDO des Isos live est : **live**
+
+**L'interface GUI à été pensée pour fonctionner avec GNOME et KDE. Une compatibilié est en cours pour prendre en charge CINNAMON,
+et a terme, un support complet pour Linux Mint Debian Edition.**
 
 ## AVANT DE COMMENCER :
 
@@ -12,7 +21,7 @@ SI VOUS AVEZ INSTALLÉ DEBIAN DEPUIS UNE **ISO LIVE**, SUDO EST DÉjÀ CONFIGUR�
 
          su - -c "usermod -aG sudo $(who | grep tty | cut -d " " -f 1)"
 
-   - Entrez le mot de passe ROOT (Super Utilisateur) pour valider la commande puis redémarrez la machine.
+   - Entrez le mot de passe **ROOT (Super Utilisateur)** pour valider la commande puis **redémarrez la machine**.
 
 
 ## INSTALLATION
@@ -27,10 +36,8 @@ L'interface graphique est optimisée pour GNOME et KDE uniquement.
 
    - Décompressez le zip, puis double cliquez sur **"postinstall-debian-gui.run"**
    
-
-<< Ce logiciel dépend de YAD. Son installation s'effectue automatiquement de façon transparente. >>
-
-<< L'activation du Multilib, Contrib et Non-free est effectuée au lancement de la GUI pour améliorer l'expérience utilisateur. Si vous ne le souhaitez pas, utilisez la TUI >>
+***Ce logiciel dépend de YAD. Son installation s'effectue automatiquement de façon transparente.***
+***L'activation du Multilib, Contrib et Non-free est effectuée au lancement de la GUI pour améliorer l'expérience utilisateur. Si vous ne le souhaitez pas, utilisez la TUI***
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -61,7 +68,7 @@ Vous devez exécuter l'application depuis un terminal en root :
 - Vous pouvez utiliser **POSTINSTALL-DEBIAN-GUI**.
 
 
-<< Une compatibilité existe si vous avez Zenity d'installé sur votre système. >>
+***Une compatibilité existe si vous avez Zenity d'installé sur votre système.***
 
 **Pour les autres DE :**
 
@@ -82,31 +89,41 @@ Vous devez exécuter l'application depuis un terminal en root :
 ## Contenu des scripts :
 
 
-- install-sb :       Installer la configuration pour utiliser Secureboot de façon transparente 
+- install-sb :                Installer la configuration pour utiliser Secureboot de façon transparente. **ATTENTION** le paquet DKMS se fait patcher !
+                              **POUR LA MIGRATION VERS UNE NOUVELLE VERSION DE DKMS OU UNE MISE A NIVEAU DE DEBIAN,**
+                              **IL FAUDRA DÉBLOQUER LE PAQUET ET RECOMMENCER LA PROCEDURE !**
+                              **UTILISEZ : sudo apt-mark unhold dkms**
 
-- nvidia-stable :    Installer le driver Nvidia officiel Debian Stable **RECOMMANDÉ** (Actuellement : Branche 525)
-- nvidia-cuda :      Installer le driver Nvidia Curent Stable en provenance des dépots de NVIDIA (Actuellement : Branche 535)
-- nvidia-testing :   Installer le dépôt EXPERIMENTAL pour debian pour avoir le dernier driver EXPERIMENTAL (Actuellement : Branche 530-dev)
-- nvidia-rollback :  Desinstaller vos drivers Nvidia et faire le ménage !
+- nvidia-stable :             Installer le driver Nvidia officiel Debian Stable **RECOMMANDÉ** (Actuellement : Branche 525)
+- nvidia-cuda :               Installer le driver Nvidia Curent Stable en provenance des dépots de NVIDIA (Actuellement : Branche 535)
+                              **NVIDIA RECOMMANDE UN KERNEL LTS, PEUT FONCTIONNER AVEC KERNEL CURRENT, MAIS PEUT AUSSI CASSER**
+- nvidia-experimental :       Installer le dépôt EXPERIMENTAL pour debian pour avoir le dernier driver EXPERIMENTAL (Actuellement : Branche 530-dev)
+                              **NECESSITE D'AVOIR ACTIVER LE DEPOT SID EN PIN 10 MINIMUM, POUR LES AVENTURIERS**
+                              **NECESSITE DE RELANCER LA PROCÉDURE SECUREBOOT SI ACTIVE !**
   
-- mesa-kisak-fresh : Installer le dernier Mesa Stable pour AMD/INTEL
-- amd-vulkan :       Installe Vulkan pour les GPU AMD/INTEL
-- rocm :             Installe le dépot AMD et installe ROCM Opencl et HIP.
-
-- steam :            Installe le Steam-Installer pour procéder à l'installation de steam et des dépendances.
-- lutris-latest :    Installer la dernière version de lutris et le dépôt officiel 
-- wine-staging :     Installer la dernière version de wine ainsi que toutes les dépendances nécessaire, et le dépôt officiel 
-
-- deb-get :          Installer deb-get pour installer facilement des logiciels .deb externe aux dépots Debian (heroic, discord, lutris (github version), et d'autres) (UNIQUEMENT POUR DEBIAN STABLE)
-                     (https://github.com/wimpysworld/deb-get)
+- nvidia-testing-on-stable :  Installer le FUTUR driver Nvidia pour Debian Stable +1
+                              **AJOUTE LE DEPOT TESTING EN PIN 10, POUR LES TESTEURS !**
+                              **PEUT NECESSITER UNE MISE A JOUR DE DKMS ! SI UTILISÉ AVEC SECUREBOOT, MEFIANCE !**
+- nvidia-rollback :           Desinstaller vos drivers Nvidia et faire le ménage !
   
-- pacstall :         Une alternative à deb-get, parmet d'accèder à de nombreux logiciels supplémentaires et de les maintenir à jour
-                     (https://github.com/pacstall/pacstall - https://pacstall.dev/packages?page=0&size=25&sortBy=default&sort=asc&filter=&filterBy=name)
+- mesa-kisak-fresh :          Installer le dernier Mesa Stable pour AMD/INTEL
+- amd-vulkan :                Installe Vulkan pour les GPU AMD/INTEL
+- rocm :                      Installe le dépot AMD et installe ROCM Opencl et HIP.
 
-- backports :        Permet d'activer le dépôt stable-backports. Celui ci est activé en mode Rolling. Lorsque une nouvelle version de Debian sortira, il ne sera pas nécessaire de le reconfigurer.
-                     Il est recommandé de passer votre sources.list en branche Stable pour en profiter de façon optimale.
-- update-firmware :  Met à jour les firmwares Linux à la dernière version GIT (Support du matériel très récent comme les dernière cartes Wifi ou les derniers GPU)
-- install-sid :      Configure Sid avec un Pin 10 (UNIQUEMENT POUR DEBIAN TESTING)
+- steam :                     Installe le Steam-Installer pour procéder à l'installation de steam et des dépendances.
+- lutris-latest :             Installer la dernière version de lutris et le dépôt officiel 
+- wine-staging :              Installer la dernière version de wine ainsi que toutes les dépendances nécessaire, et le dépôt officiel 
+
+- deb-get :                   Installer deb-get pour installer facilement des logiciels .deb externe aux dépots Debian (heroic, discord, lutris (github version), et d'autres) (UNIQUEMENT POUR DEBIAN STABLE)
+                              (https://github.com/wimpysworld/deb-get)
+  
+- pacstall :                  Une alternative à deb-get, parmet d'accèder à de nombreux logiciels supplémentaires et de les maintenir à jour
+                              (https://github.com/pacstall/pacstall - https://pacstall.dev/packages?page=0&size=25&sortBy=default&sort=asc&filter=&filterBy=name)
+
+- backports :                 Permet d'activer le dépôt stable-backports. Celui ci est activé en mode Rolling. Lorsque une nouvelle version de Debian sortira, il ne sera pas nécessaire de le reconfigurer.
+                              Il est recommandé de passer votre sources.list en branche Stable pour en profiter de façon optimale.
+- update-firmware :           Met à jour les firmwares Linux à la dernière version GIT (Support du matériel très récent comme les dernière cartes Wifi ou les derniers GPU)
+- install-sid :               Configure Sid avec un Pin 10 (Debian stable ou Testing)
 
 
 ## REMERCIEMENTS :
