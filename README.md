@@ -90,7 +90,8 @@ Vous devez exécuter l'application depuis un terminal en root :
 
 
 - install-sb :                Installer la configuration pour utiliser Secureboot de façon transparente. **ATTENTION** le paquet DKMS se fait patcher !
-                              **POUR LA MIGRATION VERS UNE NOUVELLE VERSION DE DKMS, IL FAUDRA DÉBLOQUER LE PAQUET ET RECOMMENCER LA PROCEDURE !**
+                              **POUR LA MIGRATION VERS UNE NOUVELLE VERSION DE DKMS OU UNE MISE A NIVEAU DE DEBIAN,**
+                              **IL FAUDRA DÉBLOQUER LE PAQUET ET RECOMMENCER LA PROCEDURE !**
                               **UTILISEZ : sudo apt-mark unhold dkms**
 
 - nvidia-stable :             Installer le driver Nvidia officiel Debian Stable **RECOMMANDÉ** (Actuellement : Branche 525)
