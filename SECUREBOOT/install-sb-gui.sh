@@ -13,36 +13,36 @@ Configuration du système SECUREBOOT
 
 Installation des dépendances...
 " ; sleep 1
-apt install -f dkms patch > /var/log/$LOGNAME.auto-update.txt 2>&1
+apt install -f dkms patch > /var/log/"$LOGNAME".auto-update.txt 2>&1
 
 kernel_ver=$(uname -r)
 srcdir=$(pwd)
 export srcdir
-chmod +x $srcdir/SECUREBOOT/data/*.sh
-chmod +x $srcdir/SECUREBOOT/data/src/zz-signing
+chmod +x "$srcdir"/SECUREBOOT/data/*.sh
+chmod +x "$srcdir"/SECUREBOOT/data/src/zz-signing
 
 echo "
 installation de sign-file pour les Kernels Customs...
 " ; sleep 1
 mkdir -p /opt/signtool/
-cp /lib/modules/$kernel_ver/build/scripts/sign-file /opt/signtool
+cp /lib/modules/"$kernel_ver"/build/scripts/sign-file /opt/signtool
 
 echo "
 Patch de dkms pour les kernels Customs, blocage des mises à jour du paquet
 " ; sleep 1
-# patch -i $srcdir/data/dkms.patch /usr/sbin/dkms
+# patch -i "$srcdir"/data/dkms.patch /usr/sbin/dkms
 # En cas de changement de version de dkms
-cp $srcdir/SECUREBOOT/data/src/dkms.patched /usr/sbin/dkms
+cp "$srcdir"/SECUREBOOT/data/src/dkms.patched /usr/sbin/dkms
 chmod +x /usr/sbin/dkms
 apt-mark hold dkms
 
 echo "
 Installation...
 " ; sleep 1
-cd $srcdir
+cd "$srcdir"
 
-source $srcdir/SECUREBOOT/data/secureboot.sh
-source $srcdir/SECUREBOOT/data/install-kernel-autosign-gui.sh
+source "$srcdir"/SECUREBOOT/data/secureboot.sh
+source "$srcdir"/SECUREBOOT/data/install-kernel-autosign-gui.sh
 
 echo "
 Job done
