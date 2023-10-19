@@ -10,6 +10,13 @@ Le mot de passe ROOT/SUDO des Isos live est : **live**
 **L'interface GUI à été pensée pour fonctionner avec GNOME et KDE. Une compatibilié est en cours pour prendre en charge CINNAMON,
 et a terme, un support complet pour Linux Mint Debian Edition.**
 
+
+***Vidéos sur postinstall-debian :***
+
+[**Un programme de post install debian en graphique ! by Davius**](https://www.youtube.com/watch?v=6h65fzd0yBE)
+
+[**Installation Debian + Script post-installation feat Davius**](https://youtu.be/jQMO9XDORp0?si=EZZWUi24OyEwvwQ8)
+
 ## AVANT DE COMMENCER :
 
 
