@@ -192,15 +192,13 @@ fi
 function nvidia() {
 logo
 ferme_yad
-COM_STABLE="Installer driver Nvidia Stable (Recommandé)"
+COM_STABLE="Installer driver Nvidia Stable fournit par Debian, ainsi que CUDA (Recommandé)"
 COM_AUTRE="Autres drivers Nvidia (Pour utilisateurs Expérimentés !!)"
-COM_SECUREBOOT="Configurer Secureboot pour Nvidia"
-COM_REMOVE="Supprimer driver Nvidia"
+#COM_SECUREBOOT="Configurer Secureboot pour Nvidia"
 nvidia=$(yad --window-icon="$logo" --title="Gestionnaire nvidia" --width 500 --height 170 --text-align="center" --button="Retour:bash -c menu" --button="Quitter:1" \
  --form \
  --field "Installer le driver Nvidia + Cuda de Debian (RECOMMANDÉ) ! ! $COM_STABLE:fbtn" "bash -c nvidia_stable" \
  --field "Autres options ! ! $COM_AUTRE:fbtn" "bash -c nvidia_autre" \
- --field "Supprimer le driver Nvidia ! ! $COM_REMOVE:fbtn" "bash -c nvidia_remove"\
 )
 }
 
@@ -208,11 +206,13 @@ function nvidia2 () {
 logo
 ferme_yad
 COM_EXPERIMENTAL="Installer driver Nvidia Experimental (Necessite l'activation de Sid pin 10)"
-COM_CUDA="Installer le dépôt Officiel Nvidia et le dernier driver Nvidia Officiel"
+COM_CUDA="Installer le dépôt Officiel Nvidia et le dernier driver Nvidia Officiel ainsi que le dernier CUDA"
 COM_TESTING="Installer driver Nvidia de Testing en pin 10 (Pour Debian Stable)"
+COM_REMOVE="Supprimer le driver Nvidia Propriétaire et nettoyer le système"
 nvidia2=$(yad --window-icon="$logo" --title="Gestionnaire nvidia" --width 500 --height 170 --text-align="center" --button="Retour:bash -c nvidia" --button="Quitter:1" \
  --form \
- --field "Installer le driver Officiel Nvidia (Debian stable ou plus)! ! $COM_CUDA:fbtn" "bash -c nvidia_cuda" \
+ --field "Installer le driver du dépôt Nvidia (Debian stable ou plus)! ! $COM_CUDA:fbtn" "bash -c nvidia_cuda" \
+ --field "Supprimer le driver Nvidia ! ! $COM_REMOVE:fbtn" "bash -c nvidia_remove"\
  #--field "Nvidia Experimental (Debian Sid)! ! $COM_EXPERIMENTAL:fbtn" "bash -c nvidia_exp" \
  #--field "Nvidia Testing (Debian Stable)! ! $COM_TESTING:fbtn" "bash -c nvidia_test"\
 )
