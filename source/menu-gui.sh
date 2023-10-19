@@ -198,10 +198,9 @@ COM_SECUREBOOT="Configurer Secureboot pour Nvidia"
 COM_REMOVE="Supprimer driver Nvidia"
 nvidia=$(yad --window-icon="$logo" --title="Gestionnaire nvidia" --width 500 --height 170 --text-align="center" --button="Retour:bash -c menu" --button="OK:0" --button="Cancel:1" \
  --form \
- --field "Stable ! ! $COM_STABLE:fbtn" "bash -c nvidia_stable" \
- --field "Autre ! ! $COM_AUTRE:fbtn" "bash -c nvidia_autre" \
- #--field "Secureboot ! ! $COM_SECUREBOOT:fbtn" "bash -c nvidia_secureboot" \
- --field "Remove ! ! $COM_REMOVE:fbtn" "bash -c nvidia_remove"\
+ --field "Installer le driver Nvidia + Cuda de Debian (RECOMMANDÉ) ! ! $COM_STABLE:fbtn" "bash -c nvidia_stable" \
+ --field "Autres options ! ! $COM_AUTRE:fbtn" "bash -c nvidia_autre" \
+ --field "Supprimer le driver Nvidia ! ! $COM_REMOVE:fbtn" "bash -c nvidia_remove"\
 )
 }
 
@@ -209,27 +208,27 @@ function nvidia2 () {
 logo
 ferme_yad
 COM_EXPERIMENTAL="Installer driver Nvidia Experimental (Necessite l'activation de Sid pin 10)"
-COM_CUDA="Installer driver depuis le depot Nvidia Cuda"
+COM_CUDA="Installer le dépôt Officiel Nvidia et le dernier driver Nvidia Officiel"
 COM_TESTING="Installer driver Nvidia de Testing en pin 10 (Pour Debian Stable)"
 nvidia2=$(yad --window-icon="$logo" --title="Gestionnaire nvidia" --width 500 --height 170 --text-align="center" --button="Retour:bash -c nvidia" --button="OK:0" --button="Cancel:1" \
  --form \
- --field "Dépôt Officiel Nvidia Cuda (Debian stable ou plus)! ! $COM_CUDA:fbtn" "bash -c nvidia_cuda" \
- --field "Nvidia Experimental (Debian Sid)! ! $COM_EXPERIMENTAL:fbtn" "bash -c nvidia_exp" \
- --field "Nvidia Testing (Debian Stable)! ! $COM_TESTING:fbtn" "bash -c nvidia_test"\
+ --field "Installer le driver Officiel Nvidia (Debian stable ou plus)! ! $COM_CUDA:fbtn" "bash -c nvidia_cuda" \
+ #--field "Nvidia Experimental (Debian Sid)! ! $COM_EXPERIMENTAL:fbtn" "bash -c nvidia_exp" \
+ #--field "Nvidia Testing (Debian Stable)! ! $COM_TESTING:fbtn" "bash -c nvidia_test"\
 )
 }
 
 function amd () {
 logo
 ferme_yad
-COM_VULKAN="Installer Mesa Kisak Fresh"
-COM_KISAK="Installer amd Vulkan"
+COM_VULKAN="Installer Vulkan pour les cartes AMD ou Intel"
+COM_KISAK="Installer le dépôt Mesa Kisak Fresh pour être sur le dernier Mesa Stable"
 COM_ROCM="Installer Rocm OpenCL et Hip (DavinciResolve, Blender,InvokeAI etc...)"
 amd=$(yad --window-icon="$logo" --title="Gestionnaire amd" --width 500 --height 170 --text-align="center" --button="Retour:bash -c menu" --button="OK:0" --button="Cancel:1" \
  --form \
- --field "Vulkan ! ! $COM_VULKAN:fbtn" "bash -c amd_vulkan" \
- --field "Mesa Kisak ! ! $COM_KISAK:fbtn" "bash -c amd_kisak" \
- --field "OpenCL et HIP ! ! $COM_ROCM:fbtn" "bash -c amd_rocm"\
+ --field "Installer le driver Vulkan ! ! $COM_VULKAN:fbtn" "bash -c amd_vulkan" \
+ --field "Installer Mesa-Kisak Fresh ! ! $COM_KISAK:fbtn" "bash -c amd_kisak" \
+ --field "Installer AMD ROCm OpenCL et HIP ! ! $COM_ROCM:fbtn" "bash -c amd_rocm"\
 )
 }
 
@@ -237,8 +236,8 @@ function utilitaire () {
 logo
 ferme_yad
 COM_Deb_get="Installer deb-get (Debian Stable uniquement)"
-COM_Steam="Installer Steam"
-COM_Wine="Installer wine-staging"
+COM_Steam="Installer Steam et toutes ses dépendances"
+COM_Wine="Installer wine-staging et son dépôt officiel"
 COM_Lutris="Installer Lutris et son dépôt officiel de OBS"
 COM_Pacstall="Installer pacstall"
 COM_Backports="Installer le dépôt Backports pour debian Stable"
@@ -247,14 +246,14 @@ COM_PPA="Utiliser l'outil d'ajout de PPA pour Debian"
 COM_sid="Installer les repository de Sid (pin 10) pour Debian Testing"
 utilitaire=$(yad --window-icon="$logo" --title="Gestionnaire des app utilitaires" --width 500 --height 170 --text-align="center" --button="Retour:bash -c menu" --button="OK:0" --button="Cancel:1" \
  --form \
- --field "Steam ! ! $COM_Steam:fbtn" "bash -c steam" \
- --field "Wine-Staging ! ! $COM_Wine:fbtn" "bash -c wine" \
- --field "Lutris-latest ! ! $COM_Lutris:fbtn" "bash -c lutris" \
- --field "Deb-get ! ! $COM_Deb_get:fbtn" "bash -c deb_get" \
- --field "Pacstall ! ! $COM_Pacstall:fbtn" "bash -c pacstall" \
- --field "Debian Stable Backports ! ! $COM_Backports:fbtn" "bash -c backports" \
- --field "Linux-Firmware-GIT ! ! $COM_Linux_Firmware_GIT:fbtn" "bash -c update-firmware" \
- --field "Sid-for-Testing ! ! $COM_sid:fbtn" "bash -c sid"\
+ --field "Installer Steam ! ! $COM_Steam:fbtn" "bash -c steam" \
+ --field "Installer Wine-Staging ! ! $COM_Wine:fbtn" "bash -c wine" \
+ --field "Installer Lutris-latest ! ! $COM_Lutris:fbtn" "bash -c lutris" \
+ --field "Installer Deb-get (Debian Stable) ! ! $COM_Deb_get:fbtn" "bash -c deb_get" \
+ --field "Installer Pacstall ! ! $COM_Pacstall:fbtn" "bash -c pacstall" \
+ --field "Activer le dépôt Stable Backports ! ! $COM_Backports:fbtn" "bash -c backports" \
+ --field "Installer Linux-Firmware-GIT ! ! $COM_Linux_Firmware_GIT:fbtn" "bash -c update-firmware" \
+ --field "Ajouter le Dépot SID pour Testing (pin 10) ! ! $COM_sid:fbtn" "bash -c sid"\
 )
 }
 #--------------------------------------------------------------------------------------------------------------------------------------------------
@@ -304,8 +303,8 @@ logo
 CG=$(yad --window-icon="$logo" --title="POSTINSTALL FOR DEBIAN" --width 500 --height 140 --text-align="center" --no-buttons \
  --form \
  --field "Configurer SECUREBOOT:fbtn" "bash -c secureboot" \
- --field "Gesiton des pilotes NVIDIA:fbtn" "bash -c nvidia" \
- --field "Gesiton des pilotes AMD:fbtn" "bash -c amd" \
+ --field "Gestion des pilotes NVIDIA:fbtn" "bash -c nvidia" \
+ --field "Gestion des pilotes AMD:fbtn" "bash -c amd" \
  --field "Applications et Utilitaires:fbtn" "bash -c utilitaire"\
 )
 }
