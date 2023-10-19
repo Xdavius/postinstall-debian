@@ -1,6 +1,6 @@
 # POSTINSTALL-DEBIAN - Configurer Facilement Debian !
 
-Cet outils a été conçu pour être plus facilement utilisable avec les ISO Lives de Debian et l'installateur graphique.
+Cet outil a été conçu pour être plus facilement utilisable avec les ISO Lives de Debian et l'installateur graphique.
 Les isos lives sont disponibles ici :
 
       https://cdimage.debian.org/debian-cd/current-live/amd64/iso-hybrid/
@@ -9,6 +9,13 @@ Le mot de passe ROOT/SUDO des Isos live est : **live**
 
 **L'interface GUI à été pensée pour fonctionner avec GNOME et KDE. Une compatibilié est en cours pour prendre en charge CINNAMON,
 et a terme, un support complet pour Linux Mint Debian Edition.**
+
+
+***Vidéos sur postinstall-debian :***
+
+[**Un programme de post install debian en graphique ! by Davius**](https://www.youtube.com/watch?v=6h65fzd0yBE)
+
+[**Installation Debian + Script post-installation feat Davius**](https://youtu.be/jQMO9XDORp0?si=EZZWUi24OyEwvwQ8)
 
 ## AVANT DE COMMENCER :
 
@@ -52,7 +59,7 @@ Vous devez exécuter l'application depuis un terminal en root :
 
        sudo -i (ou su -)
 
-- pour exécuter l'application :
+- Pour exécuter l'application :
 
        bash postinstall-debian-tui
 
@@ -76,23 +83,27 @@ Vous devez exécuter l'application depuis un terminal en root :
 
 **Instruction et aide pour Secureboot :**
       
-- Suivez les indication à l'écran. Renseignez votre nom lorsque demandé puis, renseignez le mot de passe à usage unique.
+- Suivez les indications à l'écran. Renseignez votre nom lorsque demandé puis, renseignez le mot de passe à usage unique.
 
-  ATTENTION A QWERTY/AZERTY ! Vous pouvez utiliser uniquement la lettre "t" ou "r" ou bien le mot "root". Ce mot de passe ne servant qu'une seule fois.
+  **ATTENTION A QWERTY/AZERTY !** Vous pouvez utiliser uniquement la lettre "t" ou "r" ou bien le mot "root". Ce mot de passe ne servant qu'une seule fois.
 
 - Redémarrez la machine. Vous aurez un écran bleu. Appuyez sur une touche dans les 10 secondes puis
-  choissez ENROLL MOK, puis CONTINUE, puis YES (Suivez les instructions en Anglais hélas) le mot de passe à usage unique vous sera demandé.
+  choissez ENROLL MOK, puis CONTINUE, puis YES (Suivez les instructions en Anglais hélas) le mot de passe à usage unique vous sera demandé (celui que vous avez choisi un peu plus tôt.
   
-- Il n'y a pas d'avertissement de reussite mais la première option aura disparu, choisissez REBOOT
+- Il n'y a pas d'avertissement de réussite mais la première option aura disparu, choisissez REBOOT
 
 
 ## Contenu des scripts :
+
+## Secure Boot
 
 
 - install-sb :                Installe la configuration pour utiliser Secureboot de façon transparente. **ATTENTION** le paquet DKMS se fait patcher !
                               **POUR LA MIGRATION VERS UNE NOUVELLE VERSION DE DKMS OU UNE MISE A NIVEAU DE DEBIAN,**
                               **IL FAUDRA DÉBLOQUER LE PAQUET ET RECOMMENCER LA PROCEDURE !**
                               **UTILISEZ : sudo apt-mark unhold dkms**
+
+## Nvidia
 
 - nvidia-stable :             Installe le driver Nvidia officiel Debian Stable **RECOMMANDÉ** (Actuellement : Branche 525)
   
@@ -107,19 +118,27 @@ Vous devez exécuter l'application depuis un terminal en root :
                               **AJOUTE LE DEPOT TESTING EN PIN 10, POUR LES TESTEURS !**
                               **PEUT NECESSITER UNE MISE A JOUR DE DKMS ! SI UTILISÉ AVEC SECUREBOOT, MEFIANCE !**
   
-- nvidia-rollback :           Desinstalle vos drivers Nvidia et faire le ménage !
-  
+- nvidia-rollback :           Desinstalle vos drivers Nvidia et fait le ménage !
+
+## AMD / Intel
+
 - mesa-kisak-fresh :          Installe le dernier Mesa Stable pour AMD/INTEL
   
 - amd-vulkan :                Installe Vulkan pour les GPU AMD/INTEL
+
+## ROCM https://www.amd.com/fr/graphics/servers-solutions-rocm
   
 - rocm :                      Installe le dépot AMD et installe ROCM Opencl et HIP.
+
+## Jeux :
 
 - steam :                     Installe le Steam-Installer pour procéder à l'installation de steam et des dépendances.
   
 - lutris-latest :             Installe la dernière version de lutris et le dépôt officiel
-  
-- wine-staging :              Installe la dernière version de wine ainsi que toutes les dépendances nécessaire, et le dépôt officiel 
+
+- wine-staging :              Installe la dernière version de wine ainsi que toutes les dépendances nécessaire, et le dépôt officiel
+      
+## gestionaires de paquets
 
 - deb-get :                   Installer deb-get pour installer facilement des logiciels .deb externe aux dépots Debian (heroic, discord, lutris (github version),
                               et d'autres) (UNIQUEMENT POUR DEBIAN STABLE)
@@ -128,14 +147,18 @@ Vous devez exécuter l'application depuis un terminal en root :
 - pacstall :                  Une alternative à deb-get, parmet d'accèder à de nombreux logiciels supplémentaires et de les maintenir à jour
                               (https://github.com/pacstall/pacstall - https://pacstall.dev/packages?page=0&size=25&sortBy=default&sort=asc&filter=&filterBy=name)
 
-- backports :                 Permet d'activer le dépôt stable-backports. Celui ci est activé en mode Rolling. Lorsque une nouvelle version de Debian sortira,
-                              il  ne sera pas nécessaire de le reconfigurer.
-                              Il est recommandé de passer votre sources.list en branche Stable pour en profiter de façon optimale.
-  
+## firmware
+
 - update-firmware :           Met à jour les firmwares Linux à la dernière version GIT (Support du matériel très récent comme les dernières cartes Wifi ou les
                               derniers GPU)
+
+## Backport ou Sid
+
+- backports :                 Permet d'activer le dépôt stable-backports. Celui-ci est activé en mode Rolling. Lorsque une nouvelle version de Debian sortira,
+                              il ne sera pas nécessaire de le reconfigurer.
+                              Il est recommandé de passer votre sources.list en branche Stable pour en profiter de façon optimale.
   
-- install-sid :               Configure Sid avec un Pin 10 (Debian stable ou Testing)
+- install-sid :               Configure Sid avec un Pin 10, cette moddification utile sur Debian **Stable** et **Testing** permet en cas de dépendances cassées de permettre à votre Debian d'aller chercher uniquement les paquets nécéssaires dans Sid. https://debian-facile.org/doc:systeme:apt:pinning
 
 
 ## REMERCIEMENTS :
