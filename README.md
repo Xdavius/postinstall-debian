@@ -92,12 +92,12 @@ Vous devez exécuter l'application depuis un terminal en root :
   
 - Il n'y a pas d'avertissement de réussite mais la première option aura disparu, choisissez REBOOT
 
-** ATTENTION ! **
+**ATTENTION !**
 
 
-** LE PAQUET DKMS DEVRA ÊTRE PATCHÉ ET BLOQUÉ ! POUR LA MIGRATION VERS UNE NOUVELLE VERSION DE DKMS OU UNE MISE A NIVEAU DE DEBIAN, IL FAUDRA DÉBLOQUER LE PAQUET ET RECOMMENCER LA PROCEDURE !**
+**LE PAQUET DKMS DEVRA ÊTRE PATCHÉ ET BLOQUÉ ! POUR LA MIGRATION VERS UNE NOUVELLE VERSION DE DKMS OU UNE MISE A NIVEAU DE DEBIAN, IL FAUDRA DÉBLOQUER LE PAQUET ET RECOMMENCER LA PROCEDURE **
 
-**UTILISEZ : sudo apt-mark unhold dkms**
+**UTILISEZ : "sudo apt-mark unhold dkms"**
 
 **AFIN DE DÉBLOQUER LE PAQUET**
 
