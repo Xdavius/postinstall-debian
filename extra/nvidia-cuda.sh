@@ -55,7 +55,7 @@ apt update >> /var/log/$LOGNAME.auto-update.txt 2>&1
 echo "Mise à niveau du système"
 apt full-upgrade -y >> /var/log/$LOGNAME.auto-update.txt 2>&1
 
-echo "Installation... (LONG !)
+echo "Installation... (LONG !)"
 mkdir -p /var/run/nvpd/
 apt install -y cuda nvidia-driver nvidia-settings vulkan-tools libglvnd-dev nvidia-driver-libs:i386
 # apt install nvidia-gds
