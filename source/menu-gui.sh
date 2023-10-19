@@ -303,7 +303,7 @@ logo
 CG=$(yad --window-icon="$logo" --title="POSTINSTALL FOR DEBIAN" --width 500 --height 140 --text-align="center" --no-buttons \
  --form \
  --field "Configurer SECUREBOOT:fbtn" "bash -c secureboot" \
- --field "Gestion des pilotes NVIDIA:fbtn" "bash -c nvidia" \
+ --field "Gestion des pilotes NVIDIA (GTX 930 ou plus):fbtn" "bash -c nvidia" \
  --field "Gestion des pilotes AMD:fbtn" "bash -c amd" \
  --field "Applications et Utilitaires:fbtn" "bash -c utilitaire"\
 )
