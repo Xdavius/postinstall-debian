@@ -17,10 +17,10 @@ apt-key adv --keyserver keyserver.ubuntu.com --recv-keys F63F0F2B90935439 && \
 mv /etc/apt/trusted.gpg /etc/apt/trusted.gpg.d/mesa-kisak-fresh.gpg
 
 echo "Rafraichissement des dépôts"; sleep 1
-apt-get update > /var/log/$LOGNAME.auto-update.txt 2>&1
+apt-get update > /var/log/"$LOGNAME".auto-update.txt 2>&1
 
 echo "Mise a niveau du système"; sleep 1
-apt-get full-upgrade -y >> /var/log/$LOGNAME.auto-update.txt 2>&1
+apt-get full-upgrade -y >> /var/log/"$LOGNAME".auto-update.txt 2>&1
 
 echo "
 Job done

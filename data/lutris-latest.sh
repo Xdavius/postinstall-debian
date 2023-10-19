@@ -8,7 +8,7 @@ if [[ $EUID -ne 0 ]]; then
 	exit 1
 fi
 
-echo "Job start : Installing Lutris Latest
+echo "Job start : Installation de la dernière version Lutris
 " ; sleep 2
 
 echo "Ajout du dépôt lutris.list"
@@ -17,12 +17,12 @@ echo "deb [signed-by=/etc/apt/keyrings/lutris.gpg] https://download.opensuse.org
 echo "Installation de la clé GPG"
 wget -q -O- https://download.opensuse.org/repositories/home:/strycore/Debian_12/Release.key | gpg --dearmor | sudo tee /etc/apt/keyrings/lutris.gpg > /dev/null
 
-echo "Rafraichissement des dépôts"
-apt update > /var/log/$LOGNAME.auto-update.txt 2>&1
+echo "Rafraîchissement des dépôts"
+apt update > /var/log/"$LOGNAME".auto-update.txt 2>&1
 
 echo "Installation de Lutris"
-apt install -y python3-gi-cairo >> /var/log/$LOGNAME.auto-update.txt 2>&1
-apt install -y lutris >> /var/log/$LOGNAME.auto-update.txt 2>&1
+apt install -y python3-gi-cairo >> /var/log/"$LOGNAME".auto-update.txt 2>&1
+apt install -y lutris >> /var/log/"$LOGNAME".auto-update.txt 2>&1
 
 echo "
 Job done

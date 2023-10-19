@@ -18,11 +18,11 @@ echo "Installation du dépôt"
 wget -O /etc/apt/keyrings/winehq-archive.key https://dl.winehq.org/wine-builds/winehq.key
 wget -NP /etc/apt/sources.list.d/ https://dl.winehq.org/wine-builds/debian/dists/bookworm/winehq-bookworm.sources
 
-echo "Rafraichissement des dépôts"
-apt update > /var/log/$LOGNAME.auto-update.txt 2>&1
+echo "Rafraîchissement des dépôts"
+apt update > /var/log/"$LOGNAME".auto-update.txt 2>&1
 
 echo "Installation..."
-apt install -y --install-recommends winehq-staging >> /var/log/$LOGNAME.auto-update.txt 2>&1
+apt install -y --install-recommends winehq-staging >> /var/log/"$LOGNAME".auto-update.txt 2>&1
 
 echo "
 Job done
