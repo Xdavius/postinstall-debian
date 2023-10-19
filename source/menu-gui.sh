@@ -6,7 +6,7 @@ logo="./source/logo.png"
 
 #--------------------------------------------------------------------------------------------------------------------------------------------------
 #
-#                   FONCIOTNS POUR LANCER LES INSTALLATIONS ET LES CHARGEMENTS
+#                   FONCTIONS POUR LANCER LES INSTALLATIONS ET LES CHARGEMENTS
 #
 #--------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -32,25 +32,25 @@ counter=0
 $data_loc | while read -r line ;
     do
     echo "# ${line}"
-    max_line=$(wc -l $data_loc | cut -d " " -f 1)
+    max_line=$(wc -l "$data_loc" | cut -d " " -f 1)
     max_line2=$(echo "$max_line / 2" | bc -l)
     one_line_percent=$(echo "scale=4; 100 / $max_line2" | bc -l)
     counter=$(echo "$counter + $one_line_percent" | bc -l)
-    counter=$(echo $counter | cut -d "." -f 1)
-    echo $counter ;
+    counter=$(echo "$counter" | cut -d "." -f 1)
+    echo "$counter" ;
         if [ "${line}" = "Job done" ]; then
         counter="100"
-        echo $counter
+        echo "$counter"
         sleep 5
         yad --window-icon="$logo" --width 300 --height 170 --title="FINI" --text-align="center" --text="Installation terminée" --button="OK:bash -c menu"
         fi
     done | yad --progress --percentage=$counter --title "installation de $app_name" --progress-text="installation en cours " --width 500 --height 200 --no-buttons --enable-log --log-expanded
 }
 
-function ferme_yad () { PidYad=$(pgrep yad); kill $PidYad;}
+function ferme_yad () { PidYad=$(pgrep yad); kill "$PidYad";}
 #--------------------------------------------------------------------------------------------------------------------------------------------------
 #
-#                   FONCIOTNS POUR BOUTTONS DU MENU nvidia
+#                   FONCTIONS POUR BOUTTONS DU MENU nvidia
 #
 #--------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -74,7 +74,7 @@ function nvidia_secureboot () {
 }
 #--------------------------------------------------------------------------------------------------------------------------------------------------
 #
-#                   FONCIOTNS POUR BOUTTONS DU MENU nvidia2
+#                   FONCTIONS POUR BOUTTONS DU MENU nvidia2
 #
 #--------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -95,7 +95,7 @@ function nvidia_test () {
 }
 #--------------------------------------------------------------------------------------------------------------------------------------------------
 #
-#                   FONCIOTNS POUR BOUTTONS DU MENU amd
+#                   FONCTIONS POUR BOUTTONS DU MENU amd
 #
 #--------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -117,7 +117,7 @@ function amd_rocm () {
 }
 #--------------------------------------------------------------------------------------------------------------------------------------------------
 #
-#                   FONCIOTNS POUR BOUTTONS DU MENU UTILITAIRES
+#                   FONCTIONS POUR BOUTTONS DU MENU UTILITAIRES
 #
 #--------------------------------------------------------------------------------------------------------------------------------------------------
 function deb_get () {
@@ -168,7 +168,7 @@ function sid () {
 
 #--------------------------------------------------------------------------------------------------------------------------------------------------
 #
-#                   SOUS MENU POUR ACCEDER A L'EXECUTION DES SCTIPTS
+#                   SOUS MENU POUR ACCEDER A L'EXECUTION DES SCRIPTS
 #
 #--------------------------------------------------------------------------------------------------------------------------------------------------
 function secureboot () {
@@ -176,13 +176,13 @@ if [[ -f /usr/bin/konsole ]] ; then
     ferme_yad
     app_name="INSTALLATION DE SECUREBOOT"
     var1="bash -c $localdir/SECUREBOOT/install-sb-gui.sh"
-    konsole -- -e $var1
+    konsole -- -e "$var1"
     menu
 elif [[ -f /usr/bin/gnome-terminal ]] ; then
     ferme_yad
     app_name="INSTALLATION DE SECUREBOOT"
     var1="bash -c $localdir/SECUREBOOT/install-sb-gui.sh"
-    gnome-terminal -x $var1
+    gnome-terminal -x "$var1"
     menu
 else
 yad --window-icon="$logo" --width 300 --height 170 --title="Désolé..." --text-align="center" --text="La GUI ne supporte que KDE. Utilisez la version TUI." --button="OK:bash -c menu"
@@ -194,22 +194,21 @@ logo
 ferme_yad
 COM_STABLE="Installer driver Nvidia Stable (Recommandé)"
 COM_AUTRE="Autres drivers Nvidia (Pour utilisateurs Expérimentés !!)"
-COM_SECUREBOOT="Configurer Secureboot pour Nvidia"
+# COM_SECUREBOOT="Configurer Secureboot pour Nvidia"
 COM_REMOVE="Supprimer driver Nvidia"
 nvidia=$(yad --window-icon="$logo" --title="Gestionnaire nvidia" --width 500 --height 170 --text-align="center" --button="Retour:bash -c menu" --button="OK:0" --button="Cancel:1" \
  --form \
  --field "Stable ! ! $COM_STABLE:fbtn" "bash -c nvidia_stable" \
  --field "Autre ! ! $COM_AUTRE:fbtn" "bash -c nvidia_autre" \
- #--field "Secureboot ! ! $COM_SECUREBOOT:fbtn" "bash -c nvidia_secureboot" \
  --field "Remove ! ! $COM_REMOVE:fbtn" "bash -c nvidia_remove"\
-)
+) #--field "Secureboot ! ! $COM_SECUREBOOT:fbtn" "bash -c nvidia_secureboot" \
 }
 
 function nvidia2 () {
 logo
 ferme_yad
-COM_EXPERIMENTAL="Installer driver Nvidia Experimental (Necessite l'activation de Sid pin 10)"
-COM_CUDA="Installer driver depuis le depot Nvidia Cuda"
+COM_EXPERIMENTAL="Installer driver Nvidia Experimental (Nécessite l'activation de Sid pin 10)"
+COM_CUDA="Installer driver depuis le dépôt Nvidia Cuda"
 COM_TESTING="Installer driver Nvidia de Testing en pin 10 (Pour Debian Stable)"
 nvidia2=$(yad --window-icon="$logo" --title="Gestionnaire nvidia" --width 500 --height 170 --text-align="center" --button="Retour:bash -c nvidia" --button="OK:0" --button="Cancel:1" \
  --form \
@@ -259,7 +258,7 @@ utilitaire=$(yad --window-icon="$logo" --title="Gestionnaire des app utilitaires
 }
 #--------------------------------------------------------------------------------------------------------------------------------------------------
 #
-#                   FONCIOTNS POUR MENU PRINCIPALE
+#                   FONCTIONS POUR MENU PRINCIPAL
 #
 #--------------------------------------------------------------------------------------------------------------------------------------------------
 function menu() {
@@ -298,14 +297,14 @@ ferme_yad
 fi
 count=1
 localdir=$(pwd)
-echo $localdir
+echo "$localdir"
 export localdir
 logo
 CG=$(yad --window-icon="$logo" --title="POSTINSTALL FOR DEBIAN" --width 500 --height 140 --text-align="center" --no-buttons \
  --form \
- --field "Configurer SECUREBOOT:fbtn" "bash -c secureboot" \
- --field "Gesiton des pilotes NVIDIA:fbtn" "bash -c nvidia" \
- --field "Gesiton des pilotes AMD:fbtn" "bash -c amd" \
+ --field "Configurer le SECUREBOOT:fbtn" "bash -c secureboot" \
+ --field "Gestion des pilotes NVIDIA:fbtn" "bash -c nvidia" \
+ --field "Gestion des pilotes AMD:fbtn" "bash -c amd" \
  --field "Applications et Utilitaires:fbtn" "bash -c utilitaire"\
 )
 }

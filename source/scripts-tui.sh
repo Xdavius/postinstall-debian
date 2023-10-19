@@ -84,8 +84,8 @@ function add-ppa-debian() {
 clear
 echo "------------------------------------------------------
 "
-read -p 'Saisir le nom du ppa au format "ppa:nom/repository" : ' $1
-bash ./data/add-ppa-debian.sh $1
+read -p 'Saisir le nom du ppa au format "ppa:nom/repository" : ' "$1"
+bash ./data/add-ppa-debian.sh "$1"
 sleep 2
 tools1
 }
