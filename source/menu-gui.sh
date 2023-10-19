@@ -196,7 +196,7 @@ COM_STABLE="Installer driver Nvidia Stable (Recommandé)"
 COM_AUTRE="Autres drivers Nvidia (Pour utilisateurs Expérimentés !!)"
 COM_SECUREBOOT="Configurer Secureboot pour Nvidia"
 COM_REMOVE="Supprimer driver Nvidia"
-nvidia=$(yad --window-icon="$logo" --title="Gestionnaire nvidia" --width 500 --height 170 --text-align="center" --button="Retour:bash -c menu" --button="OK:0" --button="Cancel:1" \
+nvidia=$(yad --window-icon="$logo" --title="Gestionnaire nvidia" --width 500 --height 170 --text-align="center" --button="Retour:bash -c menu" --button="Quitter:1" \
  --form \
  --field "Installer le driver Nvidia + Cuda de Debian (RECOMMANDÉ) ! ! $COM_STABLE:fbtn" "bash -c nvidia_stable" \
  --field "Autres options ! ! $COM_AUTRE:fbtn" "bash -c nvidia_autre" \
@@ -210,7 +210,7 @@ ferme_yad
 COM_EXPERIMENTAL="Installer driver Nvidia Experimental (Necessite l'activation de Sid pin 10)"
 COM_CUDA="Installer le dépôt Officiel Nvidia et le dernier driver Nvidia Officiel"
 COM_TESTING="Installer driver Nvidia de Testing en pin 10 (Pour Debian Stable)"
-nvidia2=$(yad --window-icon="$logo" --title="Gestionnaire nvidia" --width 500 --height 170 --text-align="center" --button="Retour:bash -c nvidia" --button="OK:0" --button="Cancel:1" \
+nvidia2=$(yad --window-icon="$logo" --title="Gestionnaire nvidia" --width 500 --height 170 --text-align="center" --button="Retour:bash -c nvidia" --button="Quitter:1" \
  --form \
  --field "Installer le driver Officiel Nvidia (Debian stable ou plus)! ! $COM_CUDA:fbtn" "bash -c nvidia_cuda" \
  #--field "Nvidia Experimental (Debian Sid)! ! $COM_EXPERIMENTAL:fbtn" "bash -c nvidia_exp" \
@@ -224,7 +224,7 @@ ferme_yad
 COM_VULKAN="Installer Vulkan pour les cartes AMD ou Intel"
 COM_KISAK="Installer le dépôt Mesa Kisak Fresh pour être sur le dernier Mesa Stable"
 COM_ROCM="Installer Rocm OpenCL et Hip (DavinciResolve, Blender,InvokeAI etc...)"
-amd=$(yad --window-icon="$logo" --title="Gestionnaire amd" --width 500 --height 170 --text-align="center" --button="Retour:bash -c menu" --button="OK:0" --button="Cancel:1" \
+amd=$(yad --window-icon="$logo" --title="Gestionnaire amd" --width 500 --height 170 --text-align="center" --button="Retour:bash -c menu" --button="Quitter:1" \
  --form \
  --field "Installer le driver Vulkan ! ! $COM_VULKAN:fbtn" "bash -c amd_vulkan" \
  --field "Installer Mesa-Kisak Fresh ! ! $COM_KISAK:fbtn" "bash -c amd_kisak" \
@@ -244,7 +244,7 @@ COM_Backports="Installer le dépôt Backports pour debian Stable"
 COM_Linux_Firmware_GIT="Mettre à jour les firmwares Linux pour le support du matériel dernière génération"
 COM_PPA="Utiliser l'outil d'ajout de PPA pour Debian"
 COM_sid="Installer les repository de Sid (pin 10) pour Debian Testing"
-utilitaire=$(yad --window-icon="$logo" --title="Gestionnaire des app utilitaires" --width 500 --height 170 --text-align="center" --button="Retour:bash -c menu" --button="OK:0" --button="Cancel:1" \
+utilitaire=$(yad --window-icon="$logo" --title="Gestionnaire des app utilitaires" --width 500 --height 170 --text-align="center" --button="Retour:bash -c menu" --button="Quitter:1" \
  --form \
  --field "Installer Steam ! ! $COM_Steam:fbtn" "bash -c steam" \
  --field "Installer Wine-Staging ! ! $COM_Wine:fbtn" "bash -c wine" \
