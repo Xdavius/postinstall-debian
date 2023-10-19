@@ -14,7 +14,7 @@ echo "Mise à jour des linux-firmware vers la dernière version git
 
 echo "installation des dépendances...
 "; sleep 2
-apt get install wget tar gzip > /var/log/$LOGNAME.auto-update.txt 2>&1
+apt get install wget tar gzip > /var/log/"$LOGNAME".auto-update.txt 2>&1
 
 echo "Téléchargement en cours...
 "; sleep 2

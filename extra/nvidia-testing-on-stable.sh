@@ -14,29 +14,29 @@ echo "Installation des drivers Debian Nvidia Testing Driver + Cuda
 
 echo "*** BUG DEBIAN 12 LIVE ISOS :
 
-Le paquet raspi-firmware installé par défaut dans ces isos est cassée, empêchant la mise à jour de l'initramfs.
+Le paquet raspi-firmware installé par défaut dans ces isos est cassé, empêchant la mise à jour de l'initramfs.
 Par sécurité, il sera désinstallé et nettoyé. Si vous en avez besoin, considérez le bug et prenez un paquet plus récent en provenance de Sid sur pkgs.org ***
 
-NOTE : Un clean de vulkan/mesa/nvidia sera effectué pour éviter tout conflit. En cas de necessité, vous devrez reinstaller mesa-vulkan-drivers mesa-vulkan-drivers:i386 (INTEL/AMD).
+NOTE : Un clean de vulkan/mesa/nvidia sera effectué pour éviter tout conflit. En cas de nécessité, vous devrez réinstaller mesa-vulkan-drivers mesa-vulkan-drivers:i386 (INTEL/AMD).
 
 "; sleep 5
 
-apt autopurge -y raspi-firmware > /var/log/$LOGNAME.auto-update.txt 2>&1
+apt autopurge -y raspi-firmware > /var/log/"$LOGNAME".auto-update.txt 2>&1
 rm /etc/initramfs/post-update.d/z50-raspi-firmware
 
 echo "Préparation des dépendances 
 "; sleep 2
 
-dpkg --add-architecture i386 >> /var/log/$LOGNAME.auto-update.txt 2>&1
-add-apt-repository -y contrib >> /var/log/$LOGNAME.auto-update.txt 2>&1
-add-apt-repository -y non-free >> /var/log/$LOGNAME.auto-update.txt 2>&1
+dpkg --add-architecture i386 >> /var/log/"$LOGNAME".auto-update.txt 2>&1
+add-apt-repository -y contrib >> /var/log/"$LOGNAME".auto-update.txt 2>&1
+add-apt-repository -y non-free >> /var/log/"$LOGNAME".auto-update.txt 2>&1
 
-apt install -y linux-headers-amd64 build-essential dkms libglvnd-dev firmware-misc-nonfree pkg-config wget >> /var/log/$LOGNAME.auto-update.txt 2>&1
+apt install -y linux-headers-amd64 build-essential dkms libglvnd-dev firmware-misc-nonfree pkg-config wget >> /var/log/"$LOGNAME".auto-update.txt 2>&1
 
 echo "Nettoyage du système 
 "; sleep 2
 
-apt autopurge -y nvidia-driver nvidia-settings nvidia-driver-libs:i386 cuda nvidia-gds mesa-vulkan-drivers mesa-vulkan-drivers:i386 nvidia-* nvidia*:i386 >> /var/log/$LOGNAME.auto-update.txt 2>&1
+apt autopurge -y nvidia-driver nvidia-settings nvidia-driver-libs:i386 cuda nvidia-gds mesa-vulkan-drivers mesa-vulkan-drivers:i386 nvidia-* nvidia*:i386 >> /var/log/"$LOGNAME".auto-update.txt 2>&1
 
 echo "Ajout du dépôt testing 
 "; sleep 2
@@ -60,8 +60,8 @@ fi
 echo "Rafraichissement des dépôts
 "; sleep 2
 
-dpkg --add-architecture i386 >> /var/log/$LOGNAME.auto-update.txt 2>&1
-apt update >> /var/log/$LOGNAME.auto-update.txt 2>&1
+dpkg --add-architecture i386 >> /var/log/"$LOGNAME".auto-update.txt 2>&1
+apt update >> /var/log/"$LOGNAME".auto-update.txt 2>&1
 
 echo "Installation du driver et de Vulkan + Lib32 (LONG !)
 "; sleep 2
@@ -69,13 +69,13 @@ echo "Installation du driver et de Vulkan + Lib32 (LONG !)
 export DEBIAN_FRONTEND=noninteractive
 apt-mark unhold dkms
 mkdir -p /var/run/nvpd/
-apt install -y -t testing dkms nvidia-driver vulkan-tools libglvnd-dev firmware-misc-nonfree linux-headers-amd64 linux-image-amd64 >> /var/log/$LOGNAME.auto-update.txt 2>&1
-apt install -y -t testing nvidia-driver-libs:i386 >> /var/log/$LOGNAME.auto-update.txt 2>&1
+apt install -y -t testing dkms nvidia-driver vulkan-tools libglvnd-dev firmware-misc-nonfree linux-headers-amd64 linux-image-amd64 >> /var/log/"$LOGNAME".auto-update.txt 2>&1
+apt install -y -t testing nvidia-driver-libs:i386 >> /var/log/"$LOGNAME".auto-update.txt 2>&1
 
 echo "Installation de Cuda (LONG !)
 "; sleep 2
 
-apt install -y -t testing nvidia-cuda-toolkit nvidia-cuda-dev >> /var/log/$LOGNAME.auto-update.txt 2>&1
+apt install -y -t testing nvidia-cuda-toolkit nvidia-cuda-dev >> /var/log/"$LOGNAME".auto-update.txt 2>&1
 
 echo "SI VOUS UTILISEZ SECUREBOOT, VEUILLEZ RELANNCER LA PROCEDURE !
 

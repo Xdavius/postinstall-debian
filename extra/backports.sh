@@ -9,7 +9,7 @@ if [[ $EUID -ne 0 ]]; then
 fi
 
 clear
-echo "Configuration des Backports
+echo "Configuration des dépôts Backports
 "; sleep 2
 
 if [ ! -x /etc/apt/sources.list.d/sid.list ]
@@ -19,8 +19,8 @@ else
 	echo "Le fichier /etc/apt/sources.list.d/backports.list existe déjà !!"
 fi
 
-echo "Rafraichissement des dépôts"
-sudo apt update > /var/log/$LOGNAME.auto-update.txt 2>&1
+echo "Rafraîchissement des dépôts"
+apt update > /var/log/"$LOGNAME".auto-update.txt 2>&1
 
 echo "
 Job done
