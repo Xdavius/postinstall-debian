@@ -57,7 +57,8 @@ apt full-upgrade -y >> /var/log/$LOGNAME.auto-update.txt 2>&1
 
 echo "Installation... (LONG !)"
 mkdir -p /var/run/nvpd/
-apt install -y cuda-toolkit-12-3 cuda-drivers nvidia-driver nvidia-settings vulkan-tools libglvnd-dev nvidia-driver-libs:i386
+apt install -y cuda nvidia-driver nvidia-settings vulkan-tools libglvnd-dev nvidia-driver-libs:i386
+# apt install -y cuda-drivers
 # apt install nvidia-gds
 
 echo "
