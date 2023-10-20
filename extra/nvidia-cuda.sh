@@ -20,7 +20,8 @@ Par sécurité, il sera désinstallé et nettoyé. Si vous en avez besoin, consi
 NOTE : Un clean de vulkan/mesa/nvidia sera effectué pour éviter tout conflit. En cas de necessité, vous devrez reinstaller mesa-vulkan-drivers mesa-vulkan-drivers:i386 (INTEL/AMD).
 "; sleep 5
 
-apt autopurge -y raspi-firmware > /var/log/$LOGNAME.auto-update.txt 2>&1
+
+export DEBIAN_FRONTEND=noninteractiveapt autopurge -y raspi-firmware > /var/log/$LOGNAME.auto-update.txt 2>&1
 rm /etc/initramfs/post-update.d/z50-raspi-firmware
 
 echo "Préparation des dépendances...
