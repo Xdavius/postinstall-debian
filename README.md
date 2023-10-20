@@ -104,19 +104,20 @@ Vous devez exécuter l'application depuis un terminal en root :
 
 ## Kernels Customs
 
-Il existe 3 principaux fournisseurs de Kernels Gaming :
+Il existe 2 principaux fournisseurs de Kernels Gaming :
 
-- Liquorix
-- Xanmod
 - TKG
+- Liquorix
 
 Si vous avez une carte graphique NVIDIA, il se peut que des incompatibilités se produise et que le pilote Nvidia ne soit pas encore rendu compatible avec ces kernels très récents et mis a jour en continu.
 
-**Je vous recommande plutôt l'utilisation du Xanmod-lts, ou bien de faire des kernels TKG vous mêmes afin de vous assurer que tout se passe bien à l'installation.**
+**Je vous recommande plutôt l'utilisation du kernels TKG avec Nvidia vous mêmes afin de vous assurer que tout se passe bien à l'installation. Il ne se met pas à jour tout seul et permet de choisir la branche LTS ou Current voir une branche intermédiaire. Cela offre plus de contrôle et permet d'éviter la casse.**
+
+Si vous possédez une carte AMD, le Liquorix est plus simple à mettre en place (Une ligne à copier coller dans le terminal, nécessite d'avoir installé curl)
 
 Si vous avez besoin d'un kernel plus récent, privilégiez avant tout les backports.
 
-Les Kernels Customs sont entièrement supportés avec secureboot activé après avoir configuré celui-ci.
+Les Kernels Customs sont entièrement supportés avec secureboot activé après avoir configuré celui-ci avec l'outil fourni par cet utilitaire.
 
 ## Kernel Backports
 
