@@ -119,7 +119,7 @@ Si vous avez besoin d'un kernel plus récent, privilégiez avant tout les backpo
 
 Les Kernels Customs sont entièrement supportés avec secureboot activé après avoir configuré celui-ci avec l'outil fourni par cet utilitaire.
 
-## Kernel Backports
+## Kernels Backports
 
 Pour utiliser les backports, vous pouvez les configurer en 1 clic dans la section Utilitaires.
 
