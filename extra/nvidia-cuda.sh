@@ -45,7 +45,7 @@ OPERATION TRÈS LONGUE. NE PAS FERMER LA FENÊTRE !!!!
 "; sleep 2
 
 echo "Préparation et ajout du dépôt..."
-wget https://developer.download.nvidia.com/compute/cuda/repos/debian12/x86_64/cuda-keyring_1.1-1_all.deb
+wget https://developer.download.nvidia.com/compute/cuda/repos/debian11/x86_64/cuda-keyring_1.1-1_all.deb
 dpkg -i cuda-keyring_1.1-1_all.deb 
 rm cuda-keyring_1.1-1_all.deb
 
@@ -55,9 +55,9 @@ dpkg -i libtinfo5_6.4-4_amd64.deb
 rm libtinfo5_6.4-4_amd64.deb
 
 echo "Workarround des conneries Nvidia..."
-apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/repos/debian12/x86_64/3bf863cc.pub
-cp /etc/apt/trusted.gpg /usr/share/keyrings/cuda-archive-keyring.gpg
-rm /etc/apt/trusted.gpg
+#apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/repos/debian12/x86_64/3bf863cc.pub
+#cp /etc/apt/trusted.gpg /usr/share/keyrings/cuda-archive-keyring.gpg
+#rm /etc/apt/trusted.gpg
 
 echo "deb [signed-by=/usr/share/keyrings/cuda-archive-keyring.gpg] https://developer.download.nvidia.com/compute/cuda/repos/debian12/x86_64/ /" > /etc/apt/sources.list.d/cuda-debian12-x86_64.list
 
