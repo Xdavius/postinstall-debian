@@ -132,7 +132,7 @@ Une fois terminé, redémarrez la machine.
 
 ## Contenu des scripts :
 
-## Secure Boot
+## SecureBoot
 
 
 - install-sb :                Installe la configuration pour utiliser Secureboot de façon transparente. **ATTENTION** le paquet DKMS se fait patcher !
@@ -175,7 +175,7 @@ Une fois terminé, redémarrez la machine.
 
 - wine-staging :              Installe la dernière version de wine ainsi que toutes les dépendances nécessaire, et le dépôt officiel
       
-## gestionaires de paquets
+## Gestionaires de paquets
 
 - deb-get :                   Installer deb-get pour installer facilement des logiciels .deb externe aux dépots Debian (heroic, discord, lutris (github version),
                               et d'autres) (UNIQUEMENT POUR DEBIAN STABLE)
@@ -184,12 +184,12 @@ Une fois terminé, redémarrez la machine.
 - pacstall :                  Une alternative à deb-get, parmet d'accèder à de nombreux logiciels supplémentaires et de les maintenir à jour
                               (https://github.com/pacstall/pacstall - https://pacstall.dev/packages?page=0&size=25&sortBy=default&sort=asc&filter=&filterBy=name)
 
-## firmware
+## Firmwares
 
 - update-firmware :           Met à jour les firmwares Linux à la dernière version GIT (Support du matériel très récent comme les dernières cartes Wifi ou les
                               derniers GPU)
 
-## Backport ou Sid
+## Backports ou Sid
 
 - backports :                 Permet d'activer le dépôt stable-backports. Celui-ci est activé en mode Rolling. Lorsque une nouvelle version de Debian sortira,
                               il ne sera pas nécessaire de le reconfigurer.
@@ -200,6 +200,6 @@ Une fois terminé, redémarrez la machine.
 
 ## REMERCIEMENTS :
 
-Merci à Bazogueur Tobal, Cptcavern, Pandatomikk, Christophe et la Team GLF Pour leur participations et tests sur ce projet !
+Merci à Bazogueur Tobal, Cptcavern, Pandatomikk, Christophe, Cfrancky77, Piaf-jaune pour le logo de l'application, et toute la Team GLF pour leur participation et tests sur ce projet !
 
 **Merci à tous les développeurs sur GitHub qui partagent leur travail sans lesquels ce projet n'aurait jamais abouti !**
