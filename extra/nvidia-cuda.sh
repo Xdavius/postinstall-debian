@@ -52,11 +52,12 @@ rm cuda-keyring_1.1-1_all.deb
 echo "Ajout compatibilité Testing/Sid..."
 wget http://ftp.de.debian.org/debian/pool/main/n/ncurses/libtinfo5_6.4-4_amd64.deb
 dpkg -i libtinfo5_6.4-4_amd64.deb
+rm libtinfo5_6.4-4_amd64.deb
 
 echo "Workarround des conneries Nvidia..."
-wget https://developer.download.nvidia.com/compute/cuda/repos/debian12/x86_64/3bf863cc.pub
-cp 3bf863cc.pub /usr/share/keyrings/cuda-archive-keyring.gpg
-rm 3bf863cc.pub
+wget https://developer.download.nvidia.com/compute/cuda/repos/debian12/x86_64/Release.gpg
+cp Release.gpg /usr/share/keyrings/cuda-archive-keyring.gpg
+rm Release.gpg
 
 echo "deb [signed-by=/usr/share/keyrings/cuda-archive-keyring.gpg] https://developer.download.nvidia.com/compute/cuda/repos/debian12/x86_64/ /" > /etc/apt/sources.list.d/cuda-debian12-x86_64.list
 
