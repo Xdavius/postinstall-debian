@@ -49,6 +49,14 @@ wget https://developer.download.nvidia.com/compute/cuda/repos/debian12/x86_64/cu
 dpkg -i cuda-keyring_1.1-1_all.deb 
 rm cuda-keyring_1.1-1_all.deb
 
+wget https://developer.download.nvidia.com/compute/cuda/repos/debian12/x86_64/3bf863cc.pub
+
+cp 3bf863cc.pub /usr/share/keyrings/cuda-archive-keyring.gpg
+
+rm 3bf863cc.pub
+
+echo "deb [signed-by=/usr/share/keyrings/cuda-archive-keyring.gpg] https://developer.download.nvidia.com/compute/cuda/repos/debian12/x86_64/ /" > /cuda-debian12-x86_64.list
+
 echo "Rafraichissement des dépôts"
 apt update >> /var/log/$LOGNAME.auto-update.txt 2>&1
 
