@@ -7,7 +7,7 @@ Les isos lives sont disponibles ici :
 
 Le mot de passe ROOT/SUDO des Isos live est : **live**
 
-**L'interface GUI a été pensée pour fonctionner avec GNOME et KDE. Une compatibilié est en cours pour prendre en charge CINNAMON,
+**L'interface GUI a été pensé pour fonctionner avec GNOME et KDE. Une compatibilié est en cours pour prendre en charge CINNAMON,
 et à terme, un support complet pour Linux Mint Debian Edition.**
 
 
