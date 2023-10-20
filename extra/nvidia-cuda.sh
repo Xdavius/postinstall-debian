@@ -35,7 +35,7 @@ apt install -y linux-headers-amd64 build-essential dkms firmware-misc-nonfree pk
 echo "Nettoyage du système :
 "; sleep 2
 
-apt autopurge -y nvidia-driver nvidia-settings nvidia-driver-libs:i386 cuda nvidia-gds mesa-vulkan-drivers mesa-vulkan-drivers:i386 >> /var/log/$LOGNAME.auto-update.txt 2>&1
+apt autopurge -y cuda-keyring nvidia-driver nvidia-settings nvidia-driver-libs:i386 cuda nvidia-gds mesa-vulkan-drivers mesa-vulkan-drivers:i386 >> /var/log/$LOGNAME.auto-update.txt 2>&1
  
 
 echo "
@@ -55,7 +55,7 @@ cp 3bf863cc.pub /usr/share/keyrings/cuda-archive-keyring.gpg
 
 rm 3bf863cc.pub
 
-echo "deb [signed-by=/usr/share/keyrings/cuda-archive-keyring.gpg] https://developer.download.nvidia.com/compute/cuda/repos/debian12/x86_64/ /" > /cuda-debian12-x86_64.list
+echo "deb [signed-by=/usr/share/keyrings/cuda-archive-keyring.gpg] https://developer.download.nvidia.com/compute/cuda/repos/debian12/x86_64/ /" > /etc/apt/sources.list.d/cuda-debian12-x86_64.list
 
 echo "Rafraichissement des dépôts"
 apt update >> /var/log/$LOGNAME.auto-update.txt 2>&1
