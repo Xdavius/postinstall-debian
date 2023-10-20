@@ -23,7 +23,7 @@ NOTE : Un clean de vulkan/mesa/nvidia sera effectué pour éviter tout conflit. 
 apt autopurge -y raspi-firmware > /var/log/$LOGNAME.auto-update.txt 2>&1
 rm /etc/initramfs/post-update.d/z50-raspi-firmware
 
-echo "Préparation des dépendances :
+echo "Préparation des dépendances...
 "; sleep 2
 
 dpkg --add-architecture i386 >> /var/log/$LOGNAME.auto-update.txt 2>&1
@@ -32,35 +32,38 @@ add-apt-repository -y non-free >> /var/log/$LOGNAME.auto-update.txt 2>&1
 
 apt install -y linux-headers-amd64 build-essential dkms firmware-misc-nonfree pkg-config wget >> /var/log/$LOGNAME.auto-update.txt 2>&1
 
-echo "Nettoyage du système :
+echo "Nettoyage du système...
 "; sleep 2
 
-apt autopurge -y cuda-keyring nvidia-driver nvidia-settings nvidia-driver-libs:i386 cuda nvidia-gds mesa-vulkan-drivers mesa-vulkan-drivers:i386 >> /var/log/$LOGNAME.auto-update.txt 2>&1
+apt autopurge -y cuda-keyring nvidia-driver nvidia-settings nvidia-driver-libs:i386 cuda nvidia-gds mesa-vulkan-drivers mesa-vulkan-drivers:i386 cuda-* >> /var/log/$LOGNAME.auto-update.txt 2>&1
  
 
 echo "
-Installation du driver Nvidia LTS Cuda FROM Nvidia, Vulkan + Lib32 :
+Installation du driver Nvidia LTS Cuda FROM Nvidia, Vulkan + Lib32 
 
 OPERATION TRÈS LONGUE. NE PAS FERMER LA FENÊTRE !!!!
 "; sleep 2
 
-echo "Préparation et ajout du dépôt"
+echo "Préparation et ajout du dépôt..."
 wget https://developer.download.nvidia.com/compute/cuda/repos/debian12/x86_64/cuda-keyring_1.1-1_all.deb
 dpkg -i cuda-keyring_1.1-1_all.deb 
 rm cuda-keyring_1.1-1_all.deb
 
+echo "Ajout compatibilité Testing/Sid..."
+wget http://ftp.de.debian.org/debian/pool/main/n/ncurses/libtinfo5_6.4-4_amd64.deb
+dpkg -i libtinfo5_6.4-4_amd64.deb
+
+echo "Workarround des conneries Nvidia..."
 wget https://developer.download.nvidia.com/compute/cuda/repos/debian12/x86_64/3bf863cc.pub
-
 cp 3bf863cc.pub /usr/share/keyrings/cuda-archive-keyring.gpg
-
 rm 3bf863cc.pub
 
 echo "deb [signed-by=/usr/share/keyrings/cuda-archive-keyring.gpg] https://developer.download.nvidia.com/compute/cuda/repos/debian12/x86_64/ /" > /etc/apt/sources.list.d/cuda-debian12-x86_64.list
 
-echo "Rafraichissement des dépôts"
+echo "Rafraichissement des dépôts..."
 apt update >> /var/log/$LOGNAME.auto-update.txt 2>&1
 
-echo "Mise à niveau du système"
+echo "Mise à niveau du système..."
 apt full-upgrade -y >> /var/log/$LOGNAME.auto-update.txt 2>&1
 
 echo "Installation... (LONG !)"
