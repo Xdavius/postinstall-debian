@@ -1,14 +1,14 @@
 # POSTINSTALL-DEBIAN - Configurer Facilement Debian !
 
-Cet outil a été conçu pour être plus facilement utilisable avec les ISO Lives de Debian et l'installateur graphique.
+Cet outil a été conçu pour être plus facilement utilisable avec les ISOs Lives de Debian et l'installateur graphique.
 Les isos lives sont disponibles ici :
 
       https://cdimage.debian.org/debian-cd/current-live/amd64/iso-hybrid/
 
 Le mot de passe ROOT/SUDO des Isos live est : **live**
 
-**L'interface GUI à été pensée pour fonctionner avec GNOME et KDE. Une compatibilié est en cours pour prendre en charge CINNAMON,
-et a terme, un support complet pour Linux Mint Debian Edition.**
+**L'interface GUI a été pensée pour fonctionner avec GNOME et KDE. Une compatibilié est en cours pour prendre en charge CINNAMON,
+et à terme, un support complet pour Linux Mint Debian Edition.**
 
 
 ***Vidéos sur postinstall-debian :***
