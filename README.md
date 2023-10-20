@@ -88,9 +88,45 @@ Vous devez exécuter l'application depuis un terminal en root :
   **ATTENTION A QWERTY/AZERTY !** Vous pouvez utiliser uniquement la lettre "t" ou "r" ou bien le mot "root". Ce mot de passe ne servant qu'une seule fois.
 
 - Redémarrez la machine. Vous aurez un écran bleu. Appuyez sur une touche dans les 10 secondes puis
-  choissez ENROLL MOK, puis CONTINUE, puis YES (Suivez les instructions en Anglais hélas) le mot de passe à usage unique vous sera demandé (celui que vous avez choisi un peu plus tôt.
+  choissez ENROLL MOK, puis CONTINUE, puis YES (Suivez les instructions en Anglais hélas) le mot de passe à usage unique vous sera demandé (celui que vous avez choisi un peu plus tôt).
   
 - Il n'y a pas d'avertissement de réussite mais la première option aura disparu, choisissez REBOOT
+
+**ATTENTION !**
+
+
+**LE PAQUET DKMS DEVRA ÊTRE PATCHÉ ET BLOQUÉ ! POUR LA MIGRATION VERS UNE NOUVELLE VERSION DE DKMS OU UNE MISE A NIVEAU DE DEBIAN, IL FAUDRA DÉBLOQUER LE PAQUET ET RECOMMENCER LA PROCEDURE**
+
+**UTILISEZ : "sudo apt-mark unhold dkms"**
+
+**AFIN DE DÉBLOQUER LE PAQUET**
+
+
+## Kernels Customs
+
+Il existe 3 principaux fournisseurs de Kernels Gaming :
+
+- Liquorix
+- Xanmod
+- TKG
+
+Si vous avez une carte graphique NVIDIA, il se peut que des incompatibilités se produise et que le pilote Nvidia ne soit pas encore rendu compatible avec ces kernels très récents et mis a jour en continu.
+
+**Je vous recommande plutôt l'utilisation du Xanmod-lts, ou bien de faire des kernels TKG vous mêmes afin de vous assurer que tout se passe bien à l'installation.**
+
+Si vous avez besoin d'un kernel plus récent, privilégiez avant tout les backports.
+
+Les Kernels Customs sont entièrement supportés avec secureboot activé après avoir configuré celui-ci.
+
+## Kernel Backports
+
+Pour utiliser les backports, vous pouvez les configurer en 1 clic dans la section Utilitaires.
+
+Pour mettre à niveau votre kernel en 1 commande :
+
+      sudo apt install -t stable-backports linux-image-amd64 linux-headers-amd64 
+
+Une fois terminé, redémarrez la machine.
 
 
 ## Contenu des scripts :
