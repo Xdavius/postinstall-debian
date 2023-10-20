@@ -125,7 +125,7 @@ Pour utiliser les backports, vous pouvez les configurer en 1 clic dans la sectio
 
 Pour mettre à niveau votre kernel en 1 commande :
 
-      sudo apt install -t stable-backports linux-image-amd64 linux-headers-amd64 
+    sudo apt install -t stable-backports linux-image-amd64 linux-headers-amd64 
 
 Une fois terminé, redémarrez la machine.
 
