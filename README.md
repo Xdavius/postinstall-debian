@@ -143,7 +143,7 @@ Une fois terminé, redémarrez la machine.
 
 - nvidia-stable :             Installe le driver Nvidia officiel Debian Stable **RECOMMANDÉ** (Actuellement : Branche 525)
   
-- nvidia-cuda :               Installe le driver Nvidia Curent Stable en provenance des dépots de NVIDIA (Actuellement : Branche 535)
+- nvidia-cuda :               Installe le driver Nvidia Curent Stable en provenance des dépots de NVIDIA (Actuellement : Branche 545)
                               **NVIDIA RECOMMANDE UN KERNEL LTS, PEUT FONCTIONNER AVEC KERNEL CURRENT, MAIS PEUT AUSSI CASSER**
   
 - nvidia-experimental :       Installe le dépôt EXPERIMENTAL pour debian pour avoir le dernier driver EXPERIMENTAL (Actuellement : Branche 530-dev)
