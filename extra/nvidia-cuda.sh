@@ -60,6 +60,7 @@ echo "Workarround des conneries Nvidia..."
 #cp /etc/apt/trusted.gpg /usr/share/keyrings/cuda-archive-keyring.gpg
 #rm /etc/apt/trusted.gpg
 
+rm /etc/apt/sources.list.d/cuda-debian11-x86_64.list
 echo "deb [signed-by=/usr/share/keyrings/cuda-archive-keyring.gpg] https://developer.download.nvidia.com/compute/cuda/repos/debian12/x86_64/ /" > /etc/apt/sources.list.d/cuda-debian12-x86_64.list
 
 echo "Rafraichissement des dépôts..."
