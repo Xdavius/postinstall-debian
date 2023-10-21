@@ -1,14 +1,14 @@
 # POSTINSTALL-DEBIAN - Configurer Facilement Debian !
 
-Cet outil a été conçu pour être plus facilement utilisable avec les ISO Lives de Debian et l'installateur graphique.
+Cet outil a été conçu pour être plus facilement utilisable avec les ISOs Lives de Debian et l'installateur graphique.
 Les isos lives sont disponibles ici :
 
       https://cdimage.debian.org/debian-cd/current-live/amd64/iso-hybrid/
 
 Le mot de passe ROOT/SUDO des Isos live est : **live**
 
-**L'interface GUI à été pensée pour fonctionner avec GNOME et KDE. Une compatibilié est en cours pour prendre en charge CINNAMON,
-et a terme, un support complet pour Linux Mint Debian Edition.**
+**L'interface GUI a été pensée pour fonctionner avec GNOME et KDE. Une compatibilié est en cours pour prendre en charge CINNAMON,
+et à terme, un support complet pour Linux Mint Debian Edition.**
 
 
 ***Vidéos sur postinstall-debian :***
@@ -104,34 +104,35 @@ Vous devez exécuter l'application depuis un terminal en root :
 
 ## Kernels Customs
 
-Il existe 3 principaux fournisseurs de Kernels Gaming :
+Il existe 2 principaux fournisseurs de Kernels Gaming :
 
-- Liquorix
-- Xanmod
 - TKG
+- Liquorix
 
 Si vous avez une carte graphique NVIDIA, il se peut que des incompatibilités se produise et que le pilote Nvidia ne soit pas encore rendu compatible avec ces kernels très récents et mis a jour en continu.
 
-**Je vous recommande plutôt l'utilisation du Xanmod-lts, ou bien de faire des kernels TKG vous mêmes afin de vous assurer que tout se passe bien à l'installation.**
+**Je vous recommande plutôt l'utilisation du kernels TKG avec Nvidia vous mêmes afin de vous assurer que tout se passe bien à l'installation. Il ne se met pas à jour tout seul et permet de choisir la branche LTS ou Current voir une branche intermédiaire. Cela offre plus de contrôle et permet d'éviter la casse.**
+
+Si vous possédez une carte AMD, le Liquorix est plus simple à mettre en place (Une ligne à copier coller dans le terminal, nécessite d'avoir installé curl)
 
 Si vous avez besoin d'un kernel plus récent, privilégiez avant tout les backports.
 
-Les Kernels Customs sont entièrement supportés avec secureboot activé après avoir configuré celui-ci.
+Les Kernels Customs sont entièrement supportés avec secureboot activé après avoir configuré celui-ci avec l'outil fourni par cet utilitaire.
 
-## Kernel Backports
+## Kernels Backports
 
 Pour utiliser les backports, vous pouvez les configurer en 1 clic dans la section Utilitaires.
 
 Pour mettre à niveau votre kernel en 1 commande :
 
-      sudo apt install -t stable-backports linux-image-amd64 linux-headers-amd64 
+    sudo apt install -t stable-backports linux-image-amd64 linux-headers-amd64 
 
 Une fois terminé, redémarrez la machine.
 
 
 ## Contenu des scripts :
 
-## Secure Boot
+## SecureBoot
 
 
 - install-sb :                Installe la configuration pour utiliser Secureboot de façon transparente. **ATTENTION** le paquet DKMS se fait patcher !
@@ -143,7 +144,7 @@ Une fois terminé, redémarrez la machine.
 
 - nvidia-stable :             Installe le driver Nvidia officiel Debian Stable **RECOMMANDÉ** (Actuellement : Branche 525)
   
-- nvidia-cuda :               Installe le driver Nvidia Curent Stable en provenance des dépots de NVIDIA (Actuellement : Branche 535)
+- nvidia-cuda :               Installe le driver Nvidia Curent Stable en provenance des dépots de NVIDIA (Actuellement : Branche 545)
                               **NVIDIA RECOMMANDE UN KERNEL LTS, PEUT FONCTIONNER AVEC KERNEL CURRENT, MAIS PEUT AUSSI CASSER**
   
 - nvidia-experimental :       Installe le dépôt EXPERIMENTAL pour debian pour avoir le dernier driver EXPERIMENTAL (Actuellement : Branche 530-dev)
@@ -174,7 +175,7 @@ Une fois terminé, redémarrez la machine.
 
 - wine-staging :              Installe la dernière version de wine ainsi que toutes les dépendances nécessaire, et le dépôt officiel
       
-## gestionaires de paquets
+## Gestionaires de paquets
 
 - deb-get :                   Installer deb-get pour installer facilement des logiciels .deb externe aux dépots Debian (heroic, discord, lutris (github version),
                               et d'autres) (UNIQUEMENT POUR DEBIAN STABLE)
@@ -183,12 +184,12 @@ Une fois terminé, redémarrez la machine.
 - pacstall :                  Une alternative à deb-get, parmet d'accèder à de nombreux logiciels supplémentaires et de les maintenir à jour
                               (https://github.com/pacstall/pacstall - https://pacstall.dev/packages?page=0&size=25&sortBy=default&sort=asc&filter=&filterBy=name)
 
-## firmware
+## Firmwares
 
 - update-firmware :           Met à jour les firmwares Linux à la dernière version GIT (Support du matériel très récent comme les dernières cartes Wifi ou les
                               derniers GPU)
 
-## Backport ou Sid
+## Backports ou Sid
 
 - backports :                 Permet d'activer le dépôt stable-backports. Celui-ci est activé en mode Rolling. Lorsque une nouvelle version de Debian sortira,
                               il ne sera pas nécessaire de le reconfigurer.
@@ -199,6 +200,6 @@ Une fois terminé, redémarrez la machine.
 
 ## REMERCIEMENTS :
 
-Merci à Bazogueur Tobal, Cptcavern, Pandatomikk, Christophe et la Team GLF Pour leur participations et tests sur ce projet !
+Merci à Bazogueur Tobal, Cptcavern, Pandatomikk, Christophe, Cfrancky77, Piaf-jaune pour le logo de l'application, et toute la Team GLF pour leur participation et tests sur ce projet !
 
 **Merci à tous les développeurs sur GitHub qui partagent leur travail sans lesquels ce projet n'aurait jamais abouti !**

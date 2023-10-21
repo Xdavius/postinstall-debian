@@ -37,7 +37,7 @@ apt install -y linux-headers-amd64 build-essential dkms libglvnd-dev firmware-mi
 echo "Nettoyage du système 
 "; sleep 2
 
-apt autopurge -y nvidia-driver nvidia-settings nvidia-driver-libs:i386 cuda nvidia-gds mesa-vulkan-drivers mesa-vulkan-drivers:i386 nvidia-* nvidia*:i386 >> /var/log/$LOGNAME.auto-update.txt 2>&1
+apt autopurge -y nvidia-driver nvidia-settings nvidia-driver-libs:i386 cuda nvidia-gds mesa-vulkan-drivers mesa-vulkan-drivers:i386 nvidia-* nvidia*:i386 cuda-* >> /var/log/$LOGNAME.auto-update.txt 2>&1
 
 if [ ! -x /etc/apt/sources.list.d/experimental.list ]
 then
