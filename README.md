@@ -106,8 +106,8 @@ Vous devez exécuter l'application depuis un terminal en root :
 
 Il existe 2 principaux fournisseurs de Kernels Gaming :
 
-- TKG
-- Liquorix
+- [**TKG**](https://github.com/Frogging-Family/linux-tkg)
+- [**Liquorix**](https://liquorix.net/)
 
 Si vous avez une carte graphique NVIDIA, il se peut que des incompatibilités se produisent et que le pilote Nvidia ne soit pas encore rendu compatible avec ces kernels très récents et mis à jour en continu.
 
@@ -153,7 +153,7 @@ Une fois terminé, redémarrez la machine.
                               **AJOUTE LE DEPOT TESTING EN PIN 10, POUR LES TESTEURS !**
                               **PEUT NECESSITER UNE MISE A JOUR DE DKMS ! SI UTILISÉ AVEC SECUREBOOT, MEFIANCE !**
   
-- nvidia-rollback :           Desinstalle vos drivers Nvidia et fait le ménage !
+- nvidia-rollback :           Désinstalle vos drivers Nvidia et fait le ménage !
 
 ## AMD / Intel :
 
@@ -178,10 +178,10 @@ Une fois terminé, redémarrez la machine.
 
 - deb-get :                   Installer deb-get pour installer facilement des logiciels .deb externes aux dépots Debian (heroic, discord, lutris (github version),
                               et d'autres), pour Debian Stable uniquement.
-                              [**Github deb-get**](https://github.com/wimpysworld/deb-get)
+                              [**Github deb-get**](https://github.com/wimpysworld/deb-get).
   
-- pacstall :                  Une alternative à deb-get, permet d'accèder à de nombreux logiciels supplémentaires et de les maintenir à jour
-                              [**Github pacstall**](https://github.com/pacstall/pacstall)[**Liste des paquets pacstall**](https://pacstall.dev/packages?page=0&size=25&sortBy=default&sort=asc&filter=&filterBy=name)
+- pacstall :                  Une alternative à deb-get, permet d'accèder à de nombreux logiciels supplémentaires et de les maintenir à jour.
+                              [**Github pacstall**](https://github.com/pacstall/pacstall) / [**Liste des paquets pacstall**](https://pacstall.dev/packages?page=0&size=25&sortBy=default&sort=asc&filter=&filterBy=name).
 
 ## Firmwares :
 
@@ -194,7 +194,7 @@ Une fois terminé, redémarrez la machine.
                               il ne sera pas nécessaire de le reconfigurer.
                               Il est recommandé de passer votre sources.list en branche Stable pour en profiter de façon optimale.
   
-- install-sid :               Configure Sid avec un Pin 10, cette moddification utile sur Debian **Stable** et **Testing** permet en cas de dépendances cassées de permettre à votre Debian d'aller chercher uniquement les paquets nécéssaires dans Sid. [**Explication de pinning par Devian Facile.**](https://debian-facile.org/doc:systeme:apt:pinning)
+- install-sid :               Configure Sid avec un Pin 10, cette moddification utile sur Debian **Stable** et **Testing** permet en cas de dépendances cassées de permettre à votre Debian d'aller chercher uniquement les paquets nécéssaires dans Sid. [**Explication de pinning par Debian Facile**](https://debian-facile.org/doc:systeme:apt:pinning).
 
 
 ## REMERCIEMENTS :
