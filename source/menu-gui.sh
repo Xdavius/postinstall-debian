@@ -6,7 +6,7 @@ logo="./source/logo.png"
 
 #--------------------------------------------------------------------------------------------------------------------------------------------------
 #
-#                   FONCIOTNS POUR LANCER LES INSTALLATIONS ET LES CHARGEMENTS
+#                   FONCTIONS POUR LANCER LES INSTALLATIONS ET LES CHARGEMENTS
 #
 #--------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -50,7 +50,7 @@ $data_loc | while read -r line ;
 function ferme_yad () { PidYad=$(pgrep yad); kill $PidYad;}
 #--------------------------------------------------------------------------------------------------------------------------------------------------
 #
-#                   FONCIOTNS POUR BOUTTONS DU MENU nvidia
+#                   FONCTIONS POUR BOUTTONS DU MENU nvidia
 #
 #--------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -74,7 +74,7 @@ function nvidia_secureboot () {
 }
 #--------------------------------------------------------------------------------------------------------------------------------------------------
 #
-#                   FONCIOTNS POUR BOUTTONS DU MENU nvidia2
+#                   FONCTIONS POUR BOUTTONS DU MENU nvidia2
 #
 #--------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -95,7 +95,7 @@ function nvidia_test () {
 }
 #--------------------------------------------------------------------------------------------------------------------------------------------------
 #
-#                   FONCIOTNS POUR BOUTTONS DU MENU amd
+#                   FONCTIONS POUR BOUTTONS DU MENU amd
 #
 #--------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -117,7 +117,7 @@ function amd_rocm () {
 }
 #--------------------------------------------------------------------------------------------------------------------------------------------------
 #
-#                   FONCIOTNS POUR BOUTTONS DU MENU UTILITAIRES
+#                   FONCTIONS POUR BOUTTONS DU MENU UTILITAIRES
 #
 #--------------------------------------------------------------------------------------------------------------------------------------------------
 function deb_get () {
@@ -251,9 +251,9 @@ utilitaire=$(yad --window-icon="$logo" --title="Gestionnaire des app utilitaires
  --field "Installer Lutris-latest ! ! $COM_Lutris:fbtn" "bash -c lutris" \
  --field "Installer Deb-get (Debian Stable) ! ! $COM_Deb_get:fbtn" "bash -c deb_get" \
  --field "Installer Pacstall ! ! $COM_Pacstall:fbtn" "bash -c pacstall" \
- --field "Activer le dépôt Stable Backports ! ! $COM_Backports:fbtn" "bash -c backports" \
+ --field "Ajouter le dépôt Stable Backports ! ! $COM_Backports:fbtn" "bash -c backports" \
  --field "Installer Linux-Firmware-GIT ! ! $COM_Linux_Firmware_GIT:fbtn" "bash -c update-firmware" \
- --field "Ajouter le Dépot SID pour Testing (pin 10) ! ! $COM_sid:fbtn" "bash -c sid"\
+ --field "Ajouter le dépot SID pour Testing (pin 10) ! ! $COM_sid:fbtn" "bash -c sid"\
 )
 }
 #--------------------------------------------------------------------------------------------------------------------------------------------------
