@@ -161,7 +161,8 @@ Une fois terminé, redémarrez la machine.
   
 - amd-vulkan :                Installe Vulkan pour les GPU AMD/INTEL.
 
-## ROCM : [**Page officielle ROCM**](https://www.amd.com/fr/graphics/servers-solutions-rocm)
+## ROCM : 
+[**Page officielle ROCM**](https://www.amd.com/fr/graphics/servers-solutions-rocm)
   
 - rocm :                      Installe le dépot AMD et installe ROCM Opencl et HIP.
 
