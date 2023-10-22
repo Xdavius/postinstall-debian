@@ -41,6 +41,7 @@ Nettoyage du système :
 "; sleep 2
 
 apt autopurge -y nvidia-* cuda-* nvidia*:i386 mesa-vulkan-drivers mesa-vulkan-drivers:i386 >> /var/log/$LOGNAME.auto-update.txt 2>&1
+rm /etc/apt/sources.list.d/cuda*.list 
 
 echo "
 Installation du driver et de Vulkan + Lib32 :
