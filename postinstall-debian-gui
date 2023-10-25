@@ -49,8 +49,12 @@ echo $password | sudo -S apt-add-repository -y non-free && \
 echo $password | sudo -S dpkg --add-architecture i386) | yad --window-icon="$logo" --progress --pulsate --title "Préparation de système" --progress-text="installation des dépôts additionnels" --width 500 --height 100 --no-buttons --auto-close
 
 if [ $DESKTOP_SESSION == "gnome" ]; then
-(echo $password | sudo -S apt -y install gnome-software-plugin-flatpak flatpak && \
-flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo) | yad --window-icon="$logo" --progress --pulsate --title "Préparation de système Gnome" --progress-text="Configuration de Flatpak pour Gnome" --width 500 --height 100 --no-buttons --auto-close
+  if [ -f /usr/bin/flatpak ]; then
+  echo "Rien à faire."
+  else
+  (echo $password | sudo -S apt -y install gnome-software-plugin-flatpak flatpak && \
+  flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo) | yad --window-icon="$logo" --progress --pulsate --title "Préparation de système Gnome" --progress-text="Configuration de Flatpak pour Gnome" --width 500 --height 100 --no-buttons --auto-close
+  fi
 fi
 
 echo $password | sudo -S bash -e ./source/menu-gui.sh
