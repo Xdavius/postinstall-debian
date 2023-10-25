@@ -35,7 +35,7 @@ SI VOUS AVEZ INSTALLÉ DEBIAN DEPUIS UNE **ISO LIVE**, SUDO EST DÉjÀ CONFIGUR�
 ## INSTALLATION :
 
 
-**UTILISATION AVEC INTERFACE GRAPHIQUE :**
+**UTILISATION AVEC INTERFACE GRAPHIQUE (MODE SIMPLIFIÉ) :**
 
 
 L'interface graphique est optimisée pour GNOME et KDE uniquement.
@@ -43,15 +43,20 @@ L'interface graphique est optimisée pour GNOME et KDE uniquement.
    - Rendez-vous dans la section **"Releases"** puis télécharger le logiciel (**postinstall-debian-{VERSION}.zip**)
 
    - Décompressez le zip, puis double cliquez sur **"postinstall-debian-gui.run"**
-   
+
+**NOTE IMPORTANTE !!**
+
 ***Ce logiciel dépend de YAD. Son installation s'effectue automatiquement de façon transparente.***
-***L'activation du Multilib, Contrib et Non-free est effectuée au lancement de la GUI pour améliorer l'expérience utilisateur. Si vous ne le souhaitez pas, utilisez la TUI***
+***Bash-completions et curl sont installés automatiquements pour combler les différences entre l'installation live et en ligne.***
+***Si Gnome est détecté, l'installation et configuration de flatpak sera effectuée.***
+***L'activation du Multilib, Contrib et Non-free est effectuée au lancement de la GUI pour améliorer l'expérience utilisateur.***
+***SI VOUS NE LE SOUHAITEZ PAS, UTILISEZ LA TUI !!***
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
-**POUR CEUX SOUHAITANT UTILISER L'INTERFACE TUI :**
+**POUR CEUX SOUHAITANT UTILISER L'INTERFACE TUI (MODE EXPERT) :**
 
   
 Vous devez exécuter l'application depuis un terminal en root :
