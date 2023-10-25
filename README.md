@@ -44,12 +44,17 @@ L'interface graphique est optimisée pour GNOME et KDE uniquement.
 
    - Décompressez le zip, puis double cliquez sur **"postinstall-debian-gui.run"**
 
+
 **NOTE IMPORTANTE !!**
 
 ***Ce logiciel dépend de YAD. Son installation s'effectue automatiquement de façon transparente.***
+
 ***Bash-completions et curl sont installés automatiquements pour combler les différences entre l'installation live et en ligne.***
+
 ***Si Gnome est détecté, l'installation et configuration de flatpak sera effectuée.***
+
 ***L'activation du Multilib, Contrib et Non-free est effectuée au lancement de la GUI pour améliorer l'expérience utilisateur.***
+
 ***SI VOUS NE LE SOUHAITEZ PAS, UTILISEZ LA TUI !!***
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
