@@ -35,16 +35,23 @@ chmod +x data/*.sh
 chmod +x extra/*.sh
 chmod +x SECUREBOOT/*.sh
 
+logo="./source/logo.png"
+
 if [ -f /usr/bin/zenity ]; then
-(echo $password | sudo -S apt -y install yad bash-completion) | zenity --progress --pulsate --title="Préparation de YAD" --text="Installation de YAD" --auto-close
-elif [ -f /usr/bin/kdialog ]; then
+(echo $password | sudo -S apt -y install yad bash-completion curl) | zenity --progress --pulsate --title="Préparation de YAD" --text="Installation de YAD" --auto-close
+else
 echo $password | sudo -S apt install -y zenity
-(echo $password | sudo -S apt -y install yad bash-completion) | zenity --progress --pulsate --title="Préparation de YAD" --text="Installation de YAD" --auto-close
+(echo $password | sudo -S apt -y install yad bash-completion curl) | zenity --progress --pulsate --title="Préparation de YAD" --text="Installation de YAD" --auto-close
 fi
 
 (echo $password | sudo -S apt-add-repository -y contrib && \
 echo $password | sudo -S apt-add-repository -y non-free && \
-echo $password | sudo -S dpkg --add-architecture i386) | yad --progress --pulsate --title "Préparation de système" --progress-text="installation des dépôts additionnels" --width 500 --height 100 --no-buttons --auto-close
+echo $password | sudo -S dpkg --add-architecture i386) | yad --window-icon="$logo" --progress --pulsate --title "Préparation de système" --progress-text="installation des dépôts additionnels" --width 500 --height 100 --no-buttons --auto-close
+
+if [ $DESKTOP_SESSION == "gnome" ]; then
+(echo $password | sudo -S apt -y install gnome-software-plugin-flatpak flatpak && \
+flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo) | yad --window-icon="$logo" --progress --pulsate --title "Préparation de système Gnome" --progress-text="Configuration de Flatpak pour Gnome" --width 500 --height 100 --no-buttons --auto-close
+fi
 
 echo $password | sudo -S bash -e ./source/menu-gui.sh
 }
