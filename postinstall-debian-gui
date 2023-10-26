@@ -37,11 +37,26 @@ chmod +x SECUREBOOT/*.sh
 
 logo="./source/logo.png"
 
+install_zenity="echo $password | sudo -S apt install -y zenity"
+
 if [ -f /usr/bin/zenity ]; then
-(echo $password | sudo -S apt -y install yad bash-completion curl) | zenity --progress --pulsate --title="Préparation de YAD" --text="Installation de YAD" --auto-close
+  if [ -f /usr/bin/yad ]; then
+    echo "rien à faire"
+  else
+    (echo $password | sudo -S apt -y install yad bash-completion curl) | zenity --progress --pulsate --title="Préparation de YAD" --text="Installation de YAD" --auto-close
+  fi
 else
-echo $password | sudo -S apt install -y zenity
-(echo $password | sudo -S apt -y install yad bash-completion curl) | zenity --progress --pulsate --title="Préparation de YAD" --text="Installation de YAD" --auto-close
+  if [[ -f /usr/bin/konsole ]] ; then
+    konsole -- -e $install_zenity
+    menu
+  elif [[ -f /usr/bin/gnome-terminal ]] ; then
+    gnome-terminal -x $install_zenity
+  fi
+  if [ -f /usr/bin/yad ]; then
+    echo "rien à faire"
+  else
+    (echo $password | sudo -S apt -y install yad bash-completion curl) | zenity --progress --pulsate --title="Préparation de YAD" --text="Installation de YAD" --auto-close
+  fi
 fi
 
 (echo $password | sudo -S apt-add-repository -y contrib && \
