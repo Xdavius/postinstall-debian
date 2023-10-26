@@ -43,7 +43,7 @@ if [ -f /usr/bin/zenity ]; then
   if [ -f /usr/bin/yad ]; then
     echo "rien à faire"
   else
-    (echo $password | sudo -S apt -y install yad bash-completion curl) | zenity --center --progress --pulsate --title="Préparation de YAD" --text="Installation de YAD" --auto-close
+    (echo $password | sudo -S apt -y install yad bash-completion curl) | zenity --progress --pulsate --title="Préparation de YAD" --text="Installation de YAD" --auto-close
   fi
 else
   if [[ -f /usr/bin/konsole ]] ; then
@@ -55,7 +55,7 @@ else
   if [ -f /usr/bin/yad ]; then
     echo "rien à faire"
   else
-    (echo $password | sudo -S apt -y install yad bash-completion curl) | zenity --center --progress --pulsate --title="Préparation de YAD" --text="Installation de YAD" --auto-close
+    (echo $password | sudo -S apt -y install yad bash-completion curl) | zenity --progress --pulsate --title="Préparation de YAD" --text="Installation de YAD" --auto-close
   fi
 fi
 
