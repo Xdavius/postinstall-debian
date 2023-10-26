@@ -209,7 +209,7 @@ COM_TESTING="Installer driver Nvidia de Testing en pin 10 (Pour Debian Stable)"
 COM_REMOVE="Supprimer le driver Nvidia Propriétaire et nettoyer le système"
 nvidia2=$(yad --window-icon="$logo" --title="Gestionnaire nvidia" --width 500 --height 170 --text-align="center" --button="Retour:bash -c nvidia" --button="Quitter:1" \
  --form \
- --field "Installer le driver du dépôt Nvidia (Debian stable ou plus) !./source/nvidia_logo.png! $COM_CUDA:fbtn" "bash -c nvidia_cuda" \
+ --field "Installer le driver du dépôt Nvidia !./source/nvidia_logo.png! $COM_CUDA:fbtn" "bash -c nvidia_cuda" \
  --field "Supprimer le driver Nvidia !./source/package-delete.png! $COM_REMOVE:fbtn" "bash -c nvidia_remove"\
  #--field "Nvidia Experimental (Debian Sid) ! ! $COM_EXPERIMENTAL:fbtn" "bash -c nvidia_exp" \
  #--field "Nvidia Testing (Debian Stable) ! ! $COM_TESTING:fbtn" "bash -c nvidia_test"\
@@ -244,12 +244,12 @@ COM_PPA="Utiliser l'outil d'ajout de PPA pour Debian"
 COM_sid="Installer les repository de Sid (pin 10) pour Debian Testing"
 utilitaire=$(yad --window-icon="$logo" --title="Gestionnaire des app utilitaires" --width 500 --height 170 --text-align="center" --button="Retour:bash -c menu" --button="Quitter:1" \
  --form \
- --field "Installer Steam !./source/joystick.png! $COM_Steam:fbtn" "bash -c steam" \
- --field "Installer Wine-Staging !./source/joystick.png! $COM_Wine:fbtn" "bash -c wine" \
- --field "Installer Lutris-latest !./source/joystick.png! $COM_Lutris:fbtn" "bash -c lutris" \
- --field "Installer Deb-get (Debian Stable) !./source/software_debian.png! $COM_Deb_get:fbtn" "bash -c deb_get" \
- --field "Installer Pacstall !./source/software_debian.png! $COM_Pacstall:fbtn" "bash -c pacstall" \
- --field "Ajouter le dépôt Stable Backports !./source/debian_logo.png! $COM_Backports:fbtn" "bash -c backports" \
+ --field "           Installer Steam !./source/joystick.png! $COM_Steam:fbtn" "bash -c steam" \
+ --field "      Installer Wine-Staging !./source/joystick.png! $COM_Wine:fbtn" "bash -c wine" \
+ --field "      Installer Lutris-latest !./source/joystick.png! $COM_Lutris:fbtn" "bash -c lutris" \
+ --field "           Installer Deb-get !./source/software_debian.png! $COM_Deb_get:fbtn" "bash -c deb_get" \
+ --field "           Installer Pacstall !./source/software_debian.png! $COM_Pacstall:fbtn" "bash -c pacstall" \
+ --field "  Ajouter le dépôt Backports !./source/debian_logo.png! $COM_Backports:fbtn" "bash -c backports" \
  --field "Installer Linux-Firmware-GIT !./source/package_debian.png! $COM_Linux_Firmware_GIT:fbtn" "bash -c update-firmware" \
  #--field "Ajouter le dépot SID pour Testing (pin 10) ! ! $COM_sid:fbtn" "bash -c sid"\
 )
