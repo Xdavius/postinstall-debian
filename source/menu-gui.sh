@@ -18,7 +18,7 @@ localdir=$(pwd)
 echo $localdir
 export localdir
 logo
-CG=$(yad --window-icon="$logo" --title="POSTINSTALL FOR DEBIAN" --width 500 --height 140 --text-align="center" --no-buttons \
+CG=$(yad --center --window-icon="$logo" --title="POSTINSTALL FOR DEBIAN" --width 500 --height 140 --text-align="center" --no-buttons \
  --form \
  --field " Configurer SECUREBOOT !./source/secureboot.png!:fbtn" "bash -c secureboot" \
  --field "Gestion des pilotes NVIDIA !./source/nvidia_logo.png!:fbtn" "bash -c nvidia" \

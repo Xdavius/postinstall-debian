@@ -41,9 +41,9 @@ $data_loc | while read -r line ;
         counter="100"
         echo $counter
         sleep 5
-        yad --window-icon="$logo" --width 300 --height 170 --title="FINI" --text-align="center" --text="Installation terminée" --button="OK:bash -c menu"
+        yad --center --window-icon="$logo" --width 300 --height 170 --title="FINI" --text-align="center" --text="Installation terminée" --button="OK:bash -c menu"
         fi
-    done | yad --progress --percentage=$counter --title "installation de $app_name" --progress-text="installation en cours " --width 500 --height 200 --no-buttons --enable-log --log-expanded
+    done | yad --center --progress --percentage=$counter --title "installation de $app_name" --progress-text="installation en cours " --width 500 --height 200 --no-buttons --enable-log --log-expanded
 }
 
 function ferme_yad () { PidYad=$(pgrep yad); kill $PidYad;}
@@ -184,7 +184,7 @@ elif [[ -f /usr/bin/gnome-terminal ]] ; then
     gnome-terminal -x $var1
     menu
 else
-yad --window-icon="$logo" --width 300 --height 170 --title="Désolé..." --text-align="center" --text="La GUI ne supporte pas vôtre DE. Utilisez la version TUI." --button="OK:bash -c menu"
+yad --center --window-icon="$logo" --width 300 --height 170 --title="Désolé..." --text-align="center" --text="La GUI ne supporte pas vôtre DE. Utilisez la version TUI." --button="OK:bash -c menu"
 fi
 }
 
@@ -193,7 +193,7 @@ logo
 ferme_yad
 COM_STABLE="Installer driver Nvidia Stable fournit par Debian, ainsi que CUDA (Recommandé)"
 COM_AUTRE="Autres drivers Nvidia (Pour utilisateurs Expérimentés !!)"
-nvidia=$(yad --window-icon="$logo" --title="Gestionnaire nvidia" --width 500 --height 170 --text-align="center" --button="Retour:bash -c menu" --button="Quitter:1" \
+nvidia=$(yad --center --window-icon="$logo" --title="Gestionnaire nvidia" --width 500 --height 170 --text-align="center" --button="Retour:bash -c menu" --button="Quitter:1" \
  --form \
  --field "Installer le driver Nvidia + Cuda de Debian (RECOMMANDÉ) !./source/debian_logo.png! $COM_STABLE:fbtn" "bash -c nvidia_stable" \
  --field "Autres options !./source/package_debian.png! $COM_AUTRE:fbtn" "bash -c nvidia_autre" \
@@ -207,7 +207,7 @@ COM_EXPERIMENTAL="Installer driver Nvidia Experimental (Necessite l'activation d
 COM_CUDA="Installer le dépôt Officiel Nvidia et le dernier driver Nvidia Officiel ainsi que le dernier CUDA"
 COM_TESTING="Installer driver Nvidia de Testing en pin 10 (Pour Debian Stable)"
 COM_REMOVE="Supprimer le driver Nvidia Propriétaire et nettoyer le système"
-nvidia2=$(yad --window-icon="$logo" --title="Gestionnaire nvidia" --width 500 --height 170 --text-align="center" --button="Retour:bash -c nvidia" --button="Quitter:1" \
+nvidia2=$(yad --center --window-icon="$logo" --title="Gestionnaire nvidia" --width 500 --height 170 --text-align="center" --button="Retour:bash -c nvidia" --button="Quitter:1" \
  --form \
  --field "Installer le driver du dépôt Nvidia !./source/nvidia_logo.png! $COM_CUDA:fbtn" "bash -c nvidia_cuda" \
  --field "Supprimer le driver Nvidia !./source/package-delete.png! $COM_REMOVE:fbtn" "bash -c nvidia_remove"\
@@ -222,7 +222,7 @@ ferme_yad
 COM_VULKAN="Installer Vulkan pour les cartes AMD ou Intel"
 COM_KISAK="Installer le dépôt Mesa Kisak Fresh pour être sur le dernier Mesa Stable"
 COM_ROCM="Installer Rocm OpenCL et Hip (DavinciResolve, Blender,InvokeAI etc...)"
-amd=$(yad --window-icon="$logo" --title="Gestionnaire amd" --width 500 --height 170 --text-align="center" --button="Retour:bash -c menu" --button="Quitter:1" \
+amd=$(yad --center --window-icon="$logo" --title="Gestionnaire amd" --width 500 --height 170 --text-align="center" --button="Retour:bash -c menu" --button="Quitter:1" \
  --form \
  --field "Installer le driver Vulkan !./source/debian_logo.png! $COM_VULKAN:fbtn" "bash -c amd_vulkan" \
  --field "Installer Mesa-Kisak Fresh !./source/package_debian.png! $COM_KISAK:fbtn" "bash -c amd_kisak" \
@@ -242,7 +242,7 @@ COM_Backports="Installer le dépôt Backports pour debian Stable"
 COM_Linux_Firmware_GIT="Mettre à jour les firmwares Linux pour le support du matériel dernière génération"
 COM_PPA="Utiliser l'outil d'ajout de PPA pour Debian"
 COM_sid="Installer les repository de Sid (pin 10) pour Debian Testing"
-utilitaire=$(yad --window-icon="$logo" --title="Gestionnaire des app utilitaires" --width 500 --height 170 --text-align="center" --button="Retour:bash -c menu" --button="Quitter:1" \
+utilitaire=$(yad --center --window-icon="$logo" --title="Gestionnaire des app utilitaires" --width 500 --height 170 --text-align="center" --button="Retour:bash -c menu" --button="Quitter:1" \
  --form \
  --field "           Installer Steam !./source/joystick.png! $COM_Steam:fbtn" "bash -c steam" \
  --field "      Installer Wine-Staging !./source/joystick.png! $COM_Wine:fbtn" "bash -c wine" \
