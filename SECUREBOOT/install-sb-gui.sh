@@ -47,3 +47,9 @@ source $srcdir/SECUREBOOT/data/install-kernel-autosign-gui.sh
 echo "
 Job done
 " ; sleep 2
+
+read -n1 -p "Appuyer sur Entrée pour quitter, puis, pensez à redémarrer !" end
+if [[ $end = "" ]] ; then
+    exit 1
+fi
+exit 1
