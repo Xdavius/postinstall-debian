@@ -30,6 +30,8 @@ counter=0
 ferme_yad
 $data_loc | while read -r line ;
     do
+    logo2="./source/logo.png"
+    export logo2
     echo "# ${line}"
     max_line=$(wc -l $data_loc | cut -d " " -f 1)
     max_line2=$(echo "$max_line / 2" | bc -l)
@@ -41,7 +43,7 @@ $data_loc | while read -r line ;
         counter="100"
         echo $counter
         sleep 5
-        yad --center --window-icon="$logo" --width 300 --height 170 --title="FINI" --text-align="center" --text="Installation terminée" --button="OK:bash -c menu"
+        yad --center --window-icon="$logo2" --width 300 --height 170 --title="FINI" --text-align="center" --text="Installation terminée" --button="OK:bash -c menu"
         fi
     done | yad --center --window-icon="$logo" --progress --percentage=$counter --title "installation de $app_name" --progress-text="installation en cours " --width 500 --height 200 --no-buttons --enable-log --log-expanded
 }
