@@ -15,7 +15,6 @@ ferme_yad
 fi
 count=1
 localdir=$(pwd)
-echo $localdir
 export localdir
 logo
 CG=$(yad --center --window-icon="$logo" --title="POSTINSTALL FOR DEBIAN" --width 500 --height 140 --text-align="center" --no-buttons \

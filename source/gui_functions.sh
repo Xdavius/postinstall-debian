@@ -45,7 +45,7 @@ $data_loc | while read -r line ;
         sleep 5
         yad --center --window-icon="$logo2" --width 300 --height 170 --title="FINI" --text-align="center" --text="Installation terminée" --button="OK:bash -c menu"
         fi
-    done | yad --center --window-icon="$logo" --progress --percentage=$counter --title "installation de $app_name" --progress-text="installation en cours " --width 500 --height 200 --no-buttons --enable-log --log-expanded
+    done | yad --center --window-icon=/tmp/logo.png --progress --percentage=$counter --title "installation de $app_name" --progress-text="installation en cours " --width 500 --height 200 --no-buttons --enable-log --log-expanded
 }
 
 function ferme_yad () { PidYad=$(pgrep yad); kill $PidYad;}
