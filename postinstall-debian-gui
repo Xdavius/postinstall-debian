@@ -72,6 +72,7 @@ if [ $DESKTOP_SESSION == "gnome" ]; then
   fi
 fi
 
+cp ./source/logo.png /tmp/
 echo $password | sudo -S bash -e ./source/menu-gui.sh
 }
 
