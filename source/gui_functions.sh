@@ -27,7 +27,7 @@ function yad_progress () {
 
 # Compteur pour afficher le chiffre dans le sous-processus
 counter=0
-
+ferme_yad
 $data_loc | while read -r line ;
     do
     echo "# ${line}"
