@@ -12,13 +12,18 @@ clear
 echo "Job start : Uninstalling Nvidia Drivers
 "; sleep 2
 
+echo "Désinstallation des clés"
 apt autopurge -y cuda-keyring nvidia-cuda-toolkit nvidia-cuda-dev nvidia-cuda-mps > /var/log/$LOGNAME.auto-update.txt 2>&1
+echo "Désinstallation des drivers"
 apt autopurge -y nvidia-driver cuda cuda-drivers vulkan-tools firmware-misc-nonfree nvidia-settings libglvnd-dev libvulkan*:i386 nvidia-driver-libs:i386 nvidia-cuda-toolkit nvidia-cuda-dev nvidia-cuda-mps >> /var/log/$LOGNAME.auto-update.txt 2>&1
+echo "Purge des traces éventuelles"
 apt autopurge -y cuda-* nvidia-* >> /var/log/$LOGNAME.auto-update.txt 2>&1
+echo "Suppression des sources résiduelles"
 rm /etc/apt/sources.list.d/cuda*.list 
+echo "Raffraichissement des dépôts"
 apt update >> /var/log/$LOGNAME.auto-update.txt 2>&1
 
-echo "Veuillez REBOOT la machine !!"
+echo "Veuillez REBOOT la machine !!"; sleep 1
 
 echo "
 Job done
