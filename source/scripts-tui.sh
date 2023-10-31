@@ -121,3 +121,10 @@ bash ./extra/update-firmware.sh
 sleep 2
 tools1
 }
+
+function neofrog() {
+clear
+bash ./data/.neofrog
+sleep 5
+menu1
+}
