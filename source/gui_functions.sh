@@ -229,7 +229,7 @@ amd=$(yad --center --window-icon="$logo" --title="Gestionnaire AMD" --width 500 
 function utilitaire () {
 logo
 ferme_yad
-utilitaire=$(yad --center --window-icon="$logo" --title="Utilitaires" --width 500 --height 170 --text-align="center" --button="Retour:bash -c utilitaire" --button="Quitter:1" \
+utilitaire=$(yad --center --window-icon="$logo" --title="Utilitaires" --width 500 --height 170 --text-align="center" --button="Retour:bash -c menu" --button="Quitter:1" \
  --form \
  --field " Applications Gaming !./source/joystick.png! $COM_Deb_get:fbtn" "bash -c gaming" \
  --field " Magasins d'Applications !./source/software_debian.png! $COM_Pacstall:fbtn" "bash -c software_manager" \
