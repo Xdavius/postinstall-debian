@@ -42,7 +42,7 @@ $data_loc | while read -r line ;
         if [ "${line}" = "Job done" ]; then
         counter="100"
         echo $counter
-        sleep 5
+        sleep 2
         yad --center --window-icon="$logo2" --width 300 --height 170 --title="FINI" --text-align="center" --text="Installation terminée" --button="OK:bash -c menu"
         fi
     done | yad --center --window-icon=/tmp/logo.png --progress --percentage=$counter --title "installation de $app_name" --progress-text="installation en cours " --width 500 --height 200 --no-buttons --enable-log --log-expanded
@@ -68,11 +68,7 @@ function nvidia_remove () {
     data_loc="./data/nvidia-rollback.sh"
     yad_progress
 }
-function nvidia_secureboot () {
-    app_name="SECUREBOOT"
-    data_loc="./data/secureboot.sh"
-    yad_progress
-}
+
 #--------------------------------------------------------------------------------------------------------------------------------------------------
 #
 #                   FONCTIONS POUR BOUTTONS DU MENU nvidia2
@@ -182,7 +178,7 @@ if [[ -f /usr/bin/konsole ]] ; then
 elif [[ -f /usr/bin/gnome-terminal ]] ; then
     ferme_yad
     app_name="INSTALLATION DE SECUREBOOT"
-    var1="bash -c $localdir/SECUREBOOT/install-sb-gui.sh"
+    var1="bash -c $localdir/SECUREBOOT/install-sb.sh"
     gnome-terminal -x $var1
     menu
 else
