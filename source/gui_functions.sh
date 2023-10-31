@@ -191,7 +191,7 @@ logo
 ferme_yad
 COM_STABLE="Installer driver Nvidia Stable fournit par Debian, ainsi que CUDA (Recommandé)"
 COM_AUTRE="Autres drivers Nvidia (Pour utilisateurs Expérimentés !!)"
-nvidia=$(yad --center --window-icon="$logo" --title="Gestionnaire nvidia" --width 500 --height 170 --text-align="center" --button="Retour:bash -c menu" --button="Quitter:1" \
+nvidia=$(yad --center --window-icon="$logo" --title="Gestionnaire NVIDIA" --width 500 --height 170 --text-align="center" --button="Retour:bash -c menu" --button="Quitter:1" \
  --form \
  --field "Installer le driver Nvidia + Cuda de Debian (RECOMMANDÉ) !./source/debian_logo.png! $COM_STABLE:fbtn" "bash -c nvidia_stable" \
  --field "Autres options !./source/package_debian.png! $COM_AUTRE:fbtn" "bash -c nvidia_autre" \
@@ -205,12 +205,10 @@ COM_EXPERIMENTAL="Installer driver Nvidia Experimental (Necessite l'activation d
 COM_CUDA="Installer le dépôt Officiel Nvidia et le dernier driver Nvidia Officiel ainsi que le dernier CUDA"
 COM_TESTING="Installer driver Nvidia de Testing en pin 10 (Pour Debian Stable)"
 COM_REMOVE="Supprimer le driver Nvidia Propriétaire et nettoyer le système"
-nvidia2=$(yad --center --window-icon="$logo" --title="Gestionnaire nvidia" --width 500 --height 170 --text-align="center" --button="Retour:bash -c nvidia" --button="Quitter:1" \
+nvidia2=$(yad --center --window-icon="$logo" --title="Gestionnaire NVIDIA" --width 500 --height 170 --text-align="center" --button="Retour:bash -c nvidia" --button="Quitter:1" \
  --form \
  --field "Installer le driver du dépôt Nvidia !./source/nvidia_logo.png! $COM_CUDA:fbtn" "bash -c nvidia_cuda" \
  --field "Supprimer le driver Nvidia !./source/package-delete.png! $COM_REMOVE:fbtn" "bash -c nvidia_remove"\
- #--field "Nvidia Experimental (Debian Sid) ! ! $COM_EXPERIMENTAL:fbtn" "bash -c nvidia_exp" \
- #--field "Nvidia Testing (Debian Stable) ! ! $COM_TESTING:fbtn" "bash -c nvidia_test"\
 )
 }
 
@@ -220,7 +218,7 @@ ferme_yad
 COM_VULKAN="Installer Vulkan pour les cartes AMD ou Intel"
 COM_KISAK="Installer le dépôt Mesa Kisak Fresh pour être sur le dernier Mesa Stable"
 COM_ROCM="Installer Rocm OpenCL et Hip (DavinciResolve, Blender,InvokeAI etc...)"
-amd=$(yad --center --window-icon="$logo" --title="Gestionnaire amd" --width 500 --height 170 --text-align="center" --button="Retour:bash -c menu" --button="Quitter:1" \
+amd=$(yad --center --window-icon="$logo" --title="Gestionnaire AMD" --width 500 --height 170 --text-align="center" --button="Retour:bash -c menu" --button="Quitter:1" \
  --form \
  --field "Installer le driver Vulkan !./source/debian_logo.png! $COM_VULKAN:fbtn" "bash -c amd_vulkan" \
  --field "Installer Mesa-Kisak Fresh !./source/package_debian.png! $COM_KISAK:fbtn" "bash -c amd_kisak" \
@@ -231,24 +229,48 @@ amd=$(yad --center --window-icon="$logo" --title="Gestionnaire amd" --width 500 
 function utilitaire () {
 logo
 ferme_yad
+utilitaire=$(yad --center --window-icon="$logo" --title="Utilitaires" --width 500 --height 170 --text-align="center" --button="Retour:bash -c utilitaire" --button="Quitter:1" \
+ --form \
+ --field " Applications Gaming !./source/joystick.png! $COM_Deb_get:fbtn" "bash -c gaming" \
+ --field " Magasins d'Applications !./source/software_debian.png! $COM_Pacstall:fbtn" "bash -c software_manager" \
+ --field " Configuration Système !./source/debian_logo.png! $COM_Pacstall:fbtn" "bash -c system" \
+)
+}
+
+function software_manager () {
+logo
+ferme_yad
 COM_Deb_get="Installer deb-get (Debian Stable uniquement)"
+COM_Pacstall="Installer pacstall"
+software_manager=$(yad --center --window-icon="$logo" --title="Gestionnaires de Paquets" --width 500 --height 170 --text-align="center" --button="Retour:bash -c utilitaire" --button="Quitter:1" \
+ --form \
+ --field " Installer Deb-get !./source/software_debian.png! $COM_Deb_get:fbtn" "bash -c deb_get" \
+ --field " Installer Pacstall !./source/software_debian.png! $COM_Pacstall:fbtn" "bash -c pacstall" \
+)
+}
+
+function gaming () {
+logo
+ferme_yad
 COM_Steam="Installer Steam et toutes ses dépendances"
 COM_Wine="Installer wine-staging et son dépôt officiel"
 COM_Lutris="Installer Lutris et son dépôt officiel de OBS"
-COM_Pacstall="Installer pacstall"
+gaming=$(yad --center --window-icon="$logo" --title="Applications Gaming" --width 500 --height 170 --text-align="center" --button="Retour:bash -c utilitaire" --button="Quitter:1" \
+ --form \
+ --field " Installer Steam !./source/joystick.png! $COM_Steam:fbtn" "bash -c steam" \
+ --field " Installer Wine-Staging !./source/joystick.png! $COM_Wine:fbtn" "bash -c wine" \
+ --field " Installer Lutris-latest !./source/joystick.png! $COM_Lutris:fbtn" "bash -c lutris"\
+ )
+ }
+
+function system () {
+logo
+ferme_yad
 COM_Backports="Installer le dépôt Backports pour debian Stable"
 COM_Linux_Firmware_GIT="Mettre à jour les firmwares Linux pour le support du matériel dernière génération"
-COM_PPA="Utiliser l'outil d'ajout de PPA pour Debian"
-COM_sid="Installer les repository de Sid (pin 10) pour Debian Testing"
-utilitaire=$(yad --center --window-icon="$logo" --title="Gestionnaire des app utilitaires" --width 500 --height 170 --text-align="center" --button="Retour:bash -c menu" --button="Quitter:1" \
+system=$(yad --center --window-icon="$logo" --title="Configuration du Système" --width 500 --height 170 --text-align="center" --button="Retour:bash -c utilitaire" --button="Quitter:1" \
  --form \
- --field "           Installer Steam !./source/joystick.png! $COM_Steam:fbtn" "bash -c steam" \
- --field "      Installer Wine-Staging !./source/joystick.png! $COM_Wine:fbtn" "bash -c wine" \
- --field "      Installer Lutris-latest !./source/joystick.png! $COM_Lutris:fbtn" "bash -c lutris" \
- --field "           Installer Deb-get !./source/software_debian.png! $COM_Deb_get:fbtn" "bash -c deb_get" \
- --field "           Installer Pacstall !./source/software_debian.png! $COM_Pacstall:fbtn" "bash -c pacstall" \
- --field "  Ajouter le dépôt Backports !./source/debian_logo.png! $COM_Backports:fbtn" "bash -c backports" \
- --field "Installer Linux-Firmware-GIT !./source/package_debian.png! $COM_Linux_Firmware_GIT:fbtn" "bash -c update-firmware" \
- #--field "Ajouter le dépot SID pour Testing (pin 10) ! ! $COM_sid:fbtn" "bash -c sid"\
-)
-}
+ --field " Ajouter le dépôt Backports !./source/debian_logo.png! $COM_Backports:fbtn" "bash -c backports" \
+ --field " Installer Linux-Firmware-GIT !./source/package_debian.png! $COM_Linux_Firmware_GIT:fbtn" "bash -c update-firmware"\
+ )
+ }
