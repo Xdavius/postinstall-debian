@@ -207,8 +207,8 @@ COM_TESTING="Installer driver Nvidia de Testing en pin 10 (Pour Debian Stable)"
 COM_REMOVE="Supprimer le driver Nvidia Propriétaire et nettoyer le système"
 nvidia2=$(yad --center --window-icon="$logo" --title="Gestionnaire NVIDIA" --width 500 --height 170 --text-align="center" --button="Retour:bash -c nvidia" --button="Quitter:1" \
  --form \
- --field "Installer le driver du dépôt Nvidia !./source/nvidia_logo.png! $COM_CUDA:fbtn" "bash -c nvidia_cuda" \
- --field "Supprimer le driver Nvidia !./source/package-delete.png! $COM_REMOVE:fbtn" "bash -c nvidia_remove"\
+ --field "Installer le driver + Cuda du dépôt Nvidia !./source/nvidia_logo.png! $COM_CUDA:fbtn" "bash -c nvidia_cuda" \
+ --field "Purger les drivers Nvidia !./source/package-delete.png! $COM_REMOVE:fbtn" "bash -c nvidia_remove"\
 )
 }
 
