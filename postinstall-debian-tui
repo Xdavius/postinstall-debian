@@ -40,6 +40,8 @@ case "$choix" in
     ;;
 4)  tools1
     ;;
+f|F)  neofrog
+      ;;
 0)  clear && exit 1
     ;;
 *)  menu1
