@@ -161,8 +161,10 @@ echo "          ---------------------------- TOOLS --------------------------
 --- Outils Supplémentaires ---
 
 6- Mettre à jour les Firmware-Linux à la dernière version GIT
+
 7- Ajouter les dépôts Backports pour Debian Stable
-8- Installer les repository de Sid (pin 10) pour Debian Testing
+8- Installer les repository de Sid (pin 10) 
+
 9- Utiliser l'outil d'ajout de PPA pour Debian (EXPERTS !!)
 
 0- Retour
