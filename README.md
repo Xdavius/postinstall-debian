@@ -1,5 +1,7 @@
 # POSTINSTALL-DEBIAN - Configurer Facilement Debian !
 
+[**English version**](https://github.com/Cardiacman13/postinstall-debian/blob/main/lang/README.en.md)
+
 Cet outil a été conçu pour être plus facilement utilisable avec les ISOs Lives de Debian et l'installateur graphique.
 Les ISOs lives sont disponibles ici :
 
