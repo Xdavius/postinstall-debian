@@ -20,7 +20,10 @@ else
 fi
 
 echo "Rafraichissement des dépôts"
-sudo apt update > /var/log/$LOGNAME.auto-update.txt 2>&1
+apt update -y > /var/log/$LOGNAME.auto-update.txt 2>&1
+
+echo "Installation de synaptic"
+apt install -y synaptic > /var/log/$LOGNAME.auto-update.txt 2>&1
 
 echo "
 Job done

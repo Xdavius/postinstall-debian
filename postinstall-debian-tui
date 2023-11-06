@@ -83,9 +83,12 @@ esac
 
 function nvidia2() {
 clear
-echo "          -------------------------- NVIDIA EXPERIENCES --------------------------
+echo "          -------------------------- NVIDIA - Autres Drivers --------------------------
 
-1- Installer driver depuis le depot Nvidia Cuda (Nvidia-Latest Stable)
+1- Installer driver depuis le depot Nvidia Cuda (Nvidia-Latest Stable) (Recommandé/Officiel Nvidia)
+
+          ----------------------- NVIDIA - Version TEST/DEV -----------------------
+
 2- Installer driver Nvidia de Testing en pin 10 (Pour Debian Stable)
 3- Installer driver Nvidia Experimental (Nvidia-dev, Necessite Sid pin 10 !)
 
@@ -157,6 +160,7 @@ echo "          ---------------------------- TOOLS --------------------------
 3- Installer Steam
 4- Installer Lutris (Dépôt additionnel OBS officiel)
 5- Installer Wine-Staging (Dépôt additionnel officiel)
+D- Installer Discord (Dépot additionnel "Javinator9889")
 
 --- Outils Supplémentaires ---
 
@@ -182,6 +186,8 @@ case "$choix" in
 3)  steam
     ;;
 4)  lutris
+    ;;
+d|D)  discord
     ;;
 5)  wine-staging
     ;;

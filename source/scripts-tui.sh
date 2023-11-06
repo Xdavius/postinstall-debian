@@ -66,6 +66,13 @@ sleep 2
 tools1
 }
 
+function discord() {
+clear
+bash ./data/discord.sh
+sleep 2
+tools1
+}
+
 function install-sid() {
 clear
 bash ./data/install-sid.sh

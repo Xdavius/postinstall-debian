@@ -10,9 +10,14 @@ fi
 
 echo "
 Configuration de Secureboot
-" ; sleep 2
+" ; sleep 1
 
 function create_key() {
+
+echo "
+Création de la clé MOK
+" ; sleep 1
+
 apt install -y sbsigntool dkms
 
 mkdir -p /var/lib/shim-signed/mok/
@@ -34,11 +39,12 @@ openssl x509 -inform der -in MOK.der -out MOK.pem
 
 function import_mok() {
 echo "
+IMPORTATION DE LA CLE
 
 -----------------------------------------------------------------------------
 
 CREATION DU MOT DE PASSE UNIQUE POUR ENROLL.
-ATTENTION AVEC AZERTY/QWERTY !!! 
+ATTENTION AVEC AZERTY/QWERTY !!!
 Pour ne pas faire d'erreur, vous pouvez utiliser - root - comme mot de passe.
 
 -----------------------------------------------------------------------------
@@ -48,14 +54,13 @@ Pour ne pas faire d'erreur, vous pouvez utiliser - root - comme mot de passe.
 
 mokutil --import /var/lib/shim-signed/mok/MOK.der
 
-echo "
-
-REBOOTEZ LA MACHINE MAINTENANT POUR ENROLL LA CLE
-
-" ; sleep 2
 }
 
 function sign_helper() {
+
+echo "
+Configuration du Sign Helper
+" ; sleep 1
 
 sign1='mok_signing_key="/var/lib/shim-signed/mok/MOK.priv"'
 sign2='mok_certificate="/var/lib/shim-signed/mok/MOK.der"'
@@ -81,6 +86,7 @@ function sign_kernel() {
 echo "
 Signature du kernel actuel en cours
 "
+
 VERSION="$(uname -r)"
 SHORT_VERSION="$(uname -r | cut -d . -f 1-2)"
 MODULES_DIR=/lib/modules/$VERSION
@@ -91,7 +97,8 @@ mv /boot/vmlinuz-$VERSION.tmp /boot/vmlinuz-$VERSION
 }
 
 function sign_modules() {
-echo "Signature des modules existants"
+echo "Signature des modules existants
+"; sleep 1
 
 find /usr/lib/modules/ -name \*.ko | while read i; \
 do sudo --preserve-env=KBUILD_SIGN_PIN \
@@ -99,10 +106,47 @@ do sudo --preserve-env=KBUILD_SIGN_PIN \
 || break; done
 }
 
+function install_kernel_autosign() {
+
+echo "
+Configuration de la signature automatique
+"; sleep 1
+
+cd $working_dir
+find_zz=$(find . -name zz-signing)
+echo "Installation de $find_zz"
+
+cp $find_zz /etc/kernel/postinst.d/zz-signing
+chown root:root /etc/kernel/postinst.d/zz-signing
+chmod u+rx /etc/kernel/postinst.d/zz-signing
+
+# Uncomment to use with ubuntu mainline
+#cp sbin/zz-mainline-signing /etc/kernel/postinst.d
+#chown root:root /etc/kernel/postinst.d/zz-mainline-signing
+#chmod u+rx /etc/kernel/postinst.d/zz-mainline-signing
+
+sleep 2
+}
+
+function patch_dkms() {
+echo "
+Patch de dkms pour les kernels Customs, blocage des mises à jour du paquet
+" ; sleep 1
+
+cd $working_dir
+find_dkms=$(find . -name dkms.patched)
+echo "Installation de $find_dkms"
+
+cp $find_dkms /usr/sbin/dkms
+chmod +x /usr/sbin/dkms
+apt-mark hold dkms
+
+}
+working_dir=$(pwd)
 create_key
 sign_helper
 import_mok
 sign_kernel
 sign_modules
-
-#mokutil --import /var/lib/dkms/mok.pub
+install_kernel_autosign
+patch_dkms

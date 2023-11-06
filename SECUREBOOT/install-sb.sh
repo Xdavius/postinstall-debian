@@ -27,22 +27,13 @@ installation de sign-file pour les Kernels Customs...
 mkdir -p /opt/signtool/
 cp /lib/modules/$kernel_ver/build/scripts/sign-file /opt/signtool
 
-echo "
-Patch de dkms pour les kernels Customs, blocage des mises à jour du paquet
-" ; sleep 1
-# patch -i $srcdir/data/dkms.patch /usr/sbin/dkms
-# En cas de changement de version de dkms
-cp $srcdir/SECUREBOOT/data/src/dkms.patched /usr/sbin/dkms
-chmod +x /usr/sbin/dkms
-apt-mark hold dkms
 
 echo "
 Installation...
 " ; sleep 1
-cd $srcdir
 
-source $srcdir/SECUREBOOT/data/secureboot.sh
-source $srcdir/SECUREBOOT/data/install-kernel-autosign.sh
+find_securebootsh=$(find . -name secureboot.sh)
+source $find_securebootsh
 
 echo "
 Job done
