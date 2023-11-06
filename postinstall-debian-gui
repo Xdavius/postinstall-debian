@@ -75,7 +75,7 @@ fi
 if [ -f /etc/sysctl.d/80-gamecompatibility.conf ]; then
   echo "vm.max_map_count déjà configuré"
   else
-  echo $password | sudo -S echo "vm.max_map_count = 2147483642" > /etc/sysctl.d/80-gamecompatibility.conf
+  echo $password | sudo -S echo "vm.max_map_count = 2147483642" | sudo tee /etc/sysctl.d/80-gamecompatibility.conf && \
   echo $password | sudo -S sysctl --system
 fi
 
