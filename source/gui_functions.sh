@@ -129,6 +129,11 @@ function steam () {
     data_loc="./data/steam.sh"
     yad_progress
 }
+function discord () {
+    app_name="DISCORD"
+    data_loc="./data/discord.sh"
+    yad_progress
+}
 function wine () {
     app_name="WINE-STAGING"
     data_loc="./data/wine-staging.sh"
@@ -174,7 +179,7 @@ function secureboot () {
 if [[ -f /usr/bin/konsole ]] ; then
     ferme_yad
     app_name="INSTALLATION DE SECUREBOOT"
-    var1="bash -c $localdir/SECUREBOOT/install-sb.sh"
+    var1="bash -c $localdir/SECUREBOOT/install-sb-gui.sh"
     konsole -- -e $var1
     menu
 elif [[ -f /usr/bin/gnome-terminal ]] ; then
@@ -257,11 +262,13 @@ ferme_yad
 COM_Steam="Installer Steam et toutes ses dépendances"
 COM_Wine="Installer wine-staging et son dépôt officiel"
 COM_Lutris="Installer Lutris et son dépôt officiel de OBS"
+COM_Discord="Installer Discord et le dépôt Javinator9889"
 gaming=$(yad --center --window-icon="$logo" --title="Applications Gaming" --width 500 --height 170 --text-align="center" --button="Retour:bash -c utilitaire" --button="Quitter:1" \
  --form \
  --field " Installer Steam !./source/joystick.png! $COM_Steam:fbtn" "bash -c steam" \
  --field " Installer Wine-Staging !./source/joystick.png! $COM_Wine:fbtn" "bash -c wine" \
- --field " Installer Lutris-latest !./source/joystick.png! $COM_Lutris:fbtn" "bash -c lutris"\
+ --field " Installer Lutris-latest !./source/joystick.png! $COM_Lutris:fbtn" "bash -c lutris" \
+ --field " Installer Discord !./source/package_debian.png! $COM_Discord:fbtn" "bash -c discord"\
  )
  }
 
