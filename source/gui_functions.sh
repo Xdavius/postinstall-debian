@@ -269,11 +269,11 @@ gaming=$(yad --center --window-icon="$logo" --title="Applications Gaming" --widt
  --form \
  --field " Installer Discord !./source/discord.png! $COM_Discord:fbtn" "bash -c discord" \
  --field " Installer Steam !./source/steam.png! $COM_Steam:fbtn" "bash -c steam" \
- --field " Installer Wine-Staging !./source/wine.png! $COM_Wine:fbtn" "bash -c wine" \
  --field " Installer Lutris-latest !./source/lutris.png! $COM_Lutris:fbtn" "bash -c lutris" \
+ --field " Installer Wine-Staging !./source/wine.png! $COM_Wine:fbtn" "bash -c wine" \
 
- )
- }
+)
+}
 
 function system () {
 logo
@@ -284,5 +284,5 @@ system=$(yad --center --window-icon="$logo" --title="Configuration du Système" 
  --form \
  --field " Ajouter le dépôt Backports !./source/debian_logo.png! $COM_Backports:fbtn" "bash -c backports" \
  --field " Installer Linux-Firmware-GIT !./source/package_debian.png! $COM_Linux_Firmware_GIT:fbtn" "bash -c update-firmware"\
- )
- }
+)
+}
