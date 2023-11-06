@@ -43,9 +43,11 @@ $data_loc | while read -r line ;
         counter="100"
         echo $counter
         sleep 2
-        yad --center --window-icon="$logo2" --width 300 --height 170 --title="FINI" --text-align="center" --text="
-        Installation terminée.
-        Pensez à redémarrer !" --button="OK:bash -c menu"
+        yad --center --window-icon="$logo2" --width 300 --height 170 --title="Installation terminée !" --text-align="center" --text="
+        
+        Les informations complémentaires d'installation sont accessibles dans /var/log/root.auto-update.txt
+        
+        N'OUBLIEZ PAS DE REDÉMARRER L'ORDINATEUR !!" --button="OK:bash -c menu"
         fi
     done | yad --center --window-icon=/tmp/logo.png --progress --percentage=$counter --title "installation de $app_name" --progress-text="installation en cours " --width 500 --height 200 --no-buttons --enable-log --log-expanded
 }
@@ -265,10 +267,11 @@ COM_Lutris="Installer Lutris et son dépôt officiel de OBS"
 COM_Discord="Installer Discord et le dépôt Javinator9889"
 gaming=$(yad --center --window-icon="$logo" --title="Applications Gaming" --width 500 --height 170 --text-align="center" --button="Retour:bash -c utilitaire" --button="Quitter:1" \
  --form \
- --field " Installer Steam !./source/joystick.png! $COM_Steam:fbtn" "bash -c steam" \
- --field " Installer Wine-Staging !./source/joystick.png! $COM_Wine:fbtn" "bash -c wine" \
- --field " Installer Lutris-latest !./source/joystick.png! $COM_Lutris:fbtn" "bash -c lutris" \
- --field " Installer Discord !./source/package_debian.png! $COM_Discord:fbtn" "bash -c discord"\
+ --field " Installer Discord !./source/discord.png! $COM_Discord:fbtn" "bash -c discord" \
+ --field " Installer Steam !./source/steam.png! $COM_Steam:fbtn" "bash -c steam" \
+ --field " Installer Wine-Staging !./source/wine.png! $COM_Wine:fbtn" "bash -c wine" \
+ --field " Installer Lutris-latest !./source/lutris.png! $COM_Lutris:fbtn" "bash -c lutris" \
+
  )
  }
 
