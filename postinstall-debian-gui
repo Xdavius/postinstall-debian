@@ -61,7 +61,7 @@ fi
 
 (echo $password | sudo -S apt-add-repository -y contrib && \
 echo $password | sudo -S apt-add-repository -y non-free && \
-echo $password | sudo -S dpkg --add-architecture i386) | yad --center --window-icon="$logo" --progress --pulsate --title "Préparation de système" --progress-text="installation des dépôts additionnels" --width 500 --height 100 --no-buttons --auto-close
+echo $password | sudo -S dpkg --add-architecture i386) | yad --center --window-icon="$logo" --progress --pulsate --title "Préparation de système" --progress-text="Vérification des dépôts additionnels" --width 500 --height 100 --no-buttons --auto-close
 
 if [ $DESKTOP_SESSION == "gnome" ]; then
   if [ -f /usr/bin/flatpak ]; then
@@ -71,6 +71,15 @@ if [ $DESKTOP_SESSION == "gnome" ]; then
   flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo) | yad --center --window-icon="$logo" --progress --pulsate --title "Préparation de système Gnome" --progress-text="Configuration de Flatpak pour Gnome" --width 500 --height 100 --no-buttons --auto-close
   fi
 fi
+
+if [ -f /etc/sysctl.d/80-gamecompatibility.conf ]; then
+  echo "vm.max_map_count déjà configuré"
+  else
+  echo $password | sudo -S echo "vm.max_map_count = 2147483642" > /etc/sysctl.d/80-gamecompatibility.conf
+  echo $password | sudo -S sysctl --system
+fi
+
+
 
 cp ./source/logo.png /tmp/
 echo $password | sudo -S bash -e ./source/menu-gui.sh
