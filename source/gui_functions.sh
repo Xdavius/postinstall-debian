@@ -43,9 +43,11 @@ $data_loc | while read -r line ;
         counter="100"
         echo $counter
         sleep 2
-        yad --center --window-icon="$logo2" --width 300 --height 170 --title="FINI" --text-align="center" --text="
-        Installation terminée.
-        Pensez à redémarrer !" --button="OK:bash -c menu"
+        yad --center --window-icon="$logo2" --width 300 --height 170 --title="Installation terminée !" --text-align="center" --text="
+        
+        Les informations complémentaires d'installation sont accessibles dans /var/log/root.auto-update.txt
+        
+        N'OUBLIEZ PAS DE REDÉMARRER L'ORDINATEUR !!" --button="OK:bash -c menu"
         fi
     done | yad --center --window-icon=/tmp/logo.png --progress --percentage=$counter --title "installation de $app_name" --progress-text="installation en cours " --width 500 --height 200 --no-buttons --enable-log --log-expanded
 }
