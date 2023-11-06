@@ -265,10 +265,11 @@ COM_Lutris="Installer Lutris et son dépôt officiel de OBS"
 COM_Discord="Installer Discord et le dépôt Javinator9889"
 gaming=$(yad --center --window-icon="$logo" --title="Applications Gaming" --width 500 --height 170 --text-align="center" --button="Retour:bash -c utilitaire" --button="Quitter:1" \
  --form \
- --field " Installer Steam !./source/joystick.png! $COM_Steam:fbtn" "bash -c steam" \
- --field " Installer Wine-Staging !./source/joystick.png! $COM_Wine:fbtn" "bash -c wine" \
- --field " Installer Lutris-latest !./source/joystick.png! $COM_Lutris:fbtn" "bash -c lutris" \
- --field " Installer Discord !./source/package_debian.png! $COM_Discord:fbtn" "bash -c discord"\
+ --field " Installer Discord !./source/discord.png! $COM_Discord:fbtn" "bash -c discord" \
+ --field " Installer Steam !./source/steam.png! $COM_Steam:fbtn" "bash -c steam" \
+ --field " Installer Wine-Staging !./source/wine.png! $COM_Wine:fbtn" "bash -c wine" \
+ --field " Installer Lutris-latest !./source/lutris.png! $COM_Lutris:fbtn" "bash -c lutris" \
+
  )
  }
 
