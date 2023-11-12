@@ -206,8 +206,13 @@ Une fois terminé, redémarrez la machine.
                               il ne sera pas nécessaire de le reconfigurer.
                               Il est recommandé de passer votre sources.list en branche Stable pour en profiter de façon optimale.
   
-- install-sid :               Configure Sid avec un Pin 10, cette moddification utile sur Debian **Stable** et **Testing** permet en cas de dépendances cassées de permettre à votre Debian d'aller chercher uniquement les paquets nécéssaires dans Sid. [**Explication de pinning par Debian Facile**](https://debian-facile.org/doc:systeme:apt:pinning).
+- install-sid :               Configure Sid avec un Pin 10, cette moddification utile sur Debian **Stable** et **Testing** permet en cas de dépendances cassées de permettre à votre Debian d'aller chercher uniquement les paquets                                          nécéssaires dans Sid. [**Explication de pinning par Debian Facile**](https://debian-facile.org/doc:systeme:apt:pinning).
 
+## Laptops
+
+- envycontrol :                Permet de controler un laptop Optimus et de chosir le mode dédié/hybride. Fonctionne pour laptops nvidia/intel et amd/amd.
+                               Le dossier ENVYCONTROL-GUI contient des scripts d'installations d'extensions graphiques pour GNOME et KDE 
+                               [**Readme**](https://github.com/Xdavius/envycontrol/blob/main/README.md)
 
 ## REMERCIEMENTS :
 
