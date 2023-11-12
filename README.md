@@ -49,13 +49,16 @@ L'interface graphique est optimisée pour GNOME et KDE uniquement.
 
 **NOTE IMPORTANTE !!**
 
-***Ce logiciel dépend de YAD. Son installation s'effectue automatiquement de façon transparente.***
+***- Ce logiciel dépend de YAD. Son installation s'effectue automatiquement de façon transparente.***
 
-***Bash-completions et curl sont installés automatiquements pour combler les différences entre l'installation live et en ligne.***
+***- Bash-completions et curl sont installés automatiquements pour combler les différences entre l'installation live et en ligne.***
 
-***Si Gnome est détecté, l'installation et configuration de flatpak sera effectuée. Pour KDE, l'installation se fait en 3 clics dans Discover/Configuration.***
+***- Si Gnome est détecté, l'installation et configuration de flatpak sera effectuée. Pour KDE, l'installation se fait en 3 clics dans Discover/Configuration.***
 
-***L'activation du Multilib, Contrib et Non-free est effectuée au lancement de la GUI pour améliorer l'expérience utilisateur.***
+***- L'activation du Multilib, Contrib et Non-free est effectuée au lancement de la GUI pour améliorer l'expérience utilisateur.***
+
+***- La valeure vm_map.max.count est automatiquement montée pour assurer la meilleure compatibilitée pour les jeux vidéos.***
+
 
 ***SI VOUS NE LE SOUHAITEZ PAS, UTILISEZ LA TUI !!***
 
