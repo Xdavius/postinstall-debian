@@ -160,6 +160,7 @@ echo "          ---------------------------- TOOLS --------------------------
 3- Installer Steam
 4- Installer Lutris (Dépôt additionnel OBS officiel)
 5- Installer Wine-Staging (Dépôt additionnel officiel)
+
 D- Installer Discord (Dépot additionnel "Javinator9889")
 
 --- Outils Supplémentaires ---
@@ -170,6 +171,10 @@ D- Installer Discord (Dépot additionnel "Javinator9889")
 8- Installer les repository de Sid (pin 10) 
 
 9- Utiliser l'outil d'ajout de PPA pour Debian (EXPERTS !!)
+
+--- Outils Laptop ---
+
+E- Installer Envycontrol
 
 0- Retour
 
@@ -198,6 +203,8 @@ d|D)  discord
 8)  install-sid
     ;;
 9)  add-ppa-debian
+    ;;
+e|E)  envycontrol
     ;;
 0)  menu1
     ;;
