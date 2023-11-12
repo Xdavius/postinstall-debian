@@ -216,7 +216,7 @@ Une fois terminé, redémarrez la machine.
 
 - envycontrol :                Permet de controler un laptop Optimus et de chosir le mode dédié/hybride. Fonctionne pour laptops nvidia/intel et amd/amd.
                                Le dossier ENVYCONTROL-GUI contient des scripts d'installations d'extensions graphiques pour GNOME et KDE 
-                               [**Readme**](https://github.com/Xdavius/envycontrol/blob/main/README.md)
+                               [**Documantation Complète ICI**](https://github.com/Xdavius/envycontrol/blob/main/README.md)
 
 ## REMERCIEMENTS :
 
