@@ -77,6 +77,16 @@ echo "Installation de Cuda (LONG !)
 
 apt install -y -t testing nvidia-cuda-toolkit nvidia-cuda-dev >> /var/log/$LOGNAME.auto-update.txt 2>&1
 
+echo "
+Installation drm-modeset=1
+"
+
+if [[ -f /etc/modprobe.d/nvidia.conf ]]; then
+    rm /etc/modprobe.d/nvidia.conf
+fi
+touch /etc/modprobe.d/nvidia.conf
+echo "options nvidia-drm modeset=1" > /etc/modprobe.d/nvidia.conf
+
 echo "SI VOUS UTILISEZ SECUREBOOT, VEUILLEZ RELANNCER LA PROCEDURE !
 
 Veuillez REBOOT la machine !!

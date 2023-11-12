@@ -57,6 +57,15 @@ Installation de Cuda :
 
 apt install -y nvidia-cuda-toolkit nvidia-cuda-dev >> /var/log/$LOGNAME.auto-update.txt 2>&1
 
+echo "
+Installation drm-modeset=1
+"
+if [[ -f /etc/modprobe.d/nvidia.conf ]]; then
+    rm /etc/modprobe.d/nvidia.conf
+fi
+touch /etc/modprobe.d/nvidia.conf
+echo "options nvidia-drm modeset=1" > /etc/modprobe.d/nvidia.conf
+
 echo "Veuillez REBOOT la machine !!"
 
 echo "
