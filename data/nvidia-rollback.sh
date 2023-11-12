@@ -19,7 +19,10 @@ apt autopurge -y nvidia-driver cuda cuda-drivers vulkan-tools firmware-misc-nonf
 echo "Purge des traces éventuelles"
 apt autopurge -y cuda-* nvidia-* >> /var/log/$LOGNAME.auto-update.txt 2>&1
 echo "Suppression des sources résiduelles"
-rm /etc/apt/sources.list.d/cuda*.list 
+rm /etc/apt/sources.list.d/cuda*.list
+if [[ -f /etc/modprobe.d/nvidia.conf ]]; then
+    rm /etc/modprobe.d/nvidia.conf
+fi
 echo "Raffraichissement des dépôts"
 apt update >> /var/log/$LOGNAME.auto-update.txt 2>&1
 
