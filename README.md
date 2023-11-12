@@ -53,7 +53,8 @@ L'interface graphique est optimisée pour GNOME et KDE uniquement.
 
 ***- Bash-completions et curl sont installés automatiquements pour combler les différences entre l'installation live et en ligne.***
 
-***- Si Gnome est détecté, l'installation et configuration de flatpak sera effectuée. Pour KDE, l'installation se fait en 3 clics dans Discover/Configuration.***
+***- Si Gnome est détecté, l'installation et configuration de flatpak sera effectuée.***
+     ***Pour KDE, l'installation se fait en 3 clics dans Discover/Configuration.***
 
 ***- L'activation du Multilib, Contrib et Non-free est effectuée au lancement de la GUI pour améliorer l'expérience utilisateur.***
 
