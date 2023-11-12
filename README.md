@@ -49,13 +49,17 @@ L'interface graphique est optimisée pour GNOME et KDE uniquement.
 
 **NOTE IMPORTANTE !!**
 
-***Ce logiciel dépend de YAD. Son installation s'effectue automatiquement de façon transparente.***
+***- Ce logiciel dépend de YAD. Son installation s'effectue automatiquement de façon transparente.***
 
-***Bash-completions et curl sont installés automatiquements pour combler les différences entre l'installation live et en ligne.***
+***- Bash-completions et curl sont installés automatiquements pour combler les différences entre l'installation live et en ligne.***
 
-***Si Gnome est détecté, l'installation et configuration de flatpak sera effectuée. Pour KDE, l'installation se fait en 3 clics dans Discover/Configuration.***
+***- Si Gnome est détecté, l'installation et configuration de flatpak sera effectuée.***
+     ***Pour KDE, l'installation se fait en 3 clics dans Discover/Configuration.***
 
-***L'activation du Multilib, Contrib et Non-free est effectuée au lancement de la GUI pour améliorer l'expérience utilisateur.***
+***- L'activation du Multilib, Contrib et Non-free est effectuée au lancement de la GUI pour améliorer l'expérience utilisateur.***
+
+***- La valeure vm_map.max.count est automatiquement montée pour assurer la meilleure compatibilitée pour les jeux vidéos.***
+
 
 ***SI VOUS NE LE SOUHAITEZ PAS, UTILISEZ LA TUI !!***
 
@@ -155,7 +159,7 @@ Une fois terminé, redémarrez la machine.
 - nvidia-stable :             Installe le driver Nvidia officiel Debian Stable **RECOMMANDÉ**. (Actuellement : Branche 525)
   
 - nvidia-cuda :               Installe le driver Nvidia Curent Stable en provenance des dépots de NVIDIA. (Actuellement : Branche 545)
-                              **NVIDIA RECOMMANDE UN KERNEL LTS, PEUT FONCTIONNER AVEC KERNEL CURRENT, MAIS PEUT AUSSI CASSER !**
+                              **NVIDIA RECOMMANDE UN KERNEL LTS ou BACKPORTÉ, PEUT FONCTIONNER AVEC KERNEL CURRENT, MAIS PEUT AUSSI CASSER !**
   
 - nvidia-experimental :       Installe le dépôt EXPERIMENTAL pour debian pour avoir le dernier driver EXPERIMENTAL (Actuellement : Branche 530-dev)
                               **NECESSITE D'AVOIR ACTIVER LE DEPOT SID EN PIN 10 MINIMUM, POUR LES AVENTURIERS !**
@@ -206,8 +210,13 @@ Une fois terminé, redémarrez la machine.
                               il ne sera pas nécessaire de le reconfigurer.
                               Il est recommandé de passer votre sources.list en branche Stable pour en profiter de façon optimale.
   
-- install-sid :               Configure Sid avec un Pin 10, cette moddification utile sur Debian **Stable** et **Testing** permet en cas de dépendances cassées de permettre à votre Debian d'aller chercher uniquement les paquets nécéssaires dans Sid. [**Explication de pinning par Debian Facile**](https://debian-facile.org/doc:systeme:apt:pinning).
+- install-sid :               Configure Sid avec un Pin 10, cette moddification utile sur Debian **Stable** et **Testing** permet en cas de dépendances cassées de permettre à votre Debian d'aller chercher uniquement les paquets                                          nécéssaires dans Sid. [**Explication de pinning par Debian Facile**](https://debian-facile.org/doc:systeme:apt:pinning).
 
+## Laptops
+
+- envycontrol :                Permet de controler un laptop Optimus et de chosir le mode dédié/hybride. Fonctionne pour laptops nvidia/intel et amd/amd.
+                               Le dossier ENVYCONTROL-GUI contient des scripts d'installations d'extensions graphiques pour GNOME et KDE 
+                               [**Documantation Complète ICI**](https://github.com/Xdavius/envycontrol/blob/main/README.md)
 
 ## REMERCIEMENTS :
 

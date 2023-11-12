@@ -75,7 +75,16 @@ echo "Installation du driver vidéo. Patientez..."
 apt install -y cuda-drivers nvidia-driver nvidia-settings vulkan-tools libglvnd-dev nvidia-driver-libs:i386 >> /var/log/$LOGNAME.auto-update.txt 2>&1
 echo "Installation de Cuda... Patientez ENCORE !! (Très long !)"
 apt install -y cuda
-# apt install nvidia-gds
+
+echo "
+Installation drm-modeset=1
+"
+
+if [[ -f /etc/modprobe.d/nvidia.conf ]]; then
+    rm /etc/modprobe.d/nvidia.conf
+fi
+touch /etc/modprobe.d/nvidia.conf
+echo "options nvidia-drm modeset=1" > /etc/modprobe.d/nvidia.conf
 
 echo "
 Veuillez REBOOT la machine !!

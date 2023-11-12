@@ -62,8 +62,16 @@ echo "Installation de Cuda (LONG !)
 "; sleep 2
 
 apt install -y -t experimental nvidia-cuda-toolkit
-# nvidia-cuda-dev
-# nvidia-cuda-mps
+
+echo "
+Installation drm-modeset=1
+"
+
+if [[ -f /etc/modprobe.d/nvidia.conf ]]; then
+    rm /etc/modprobe.d/nvidia.conf
+fi
+touch /etc/modprobe.d/nvidia.conf
+echo "options nvidia-drm modeset=1" > /etc/modprobe.d/nvidia.conf
 
 echo "SI VOUS UTILISEZ SECUREBOOT, VEUILLEZ RELANCER LA PRECEDURE !
 

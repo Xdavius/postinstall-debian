@@ -171,6 +171,10 @@ function sid () {
     data_loc="./data/install-sid.sh"
     yad_progress
 }
+function envycontrol () {
+    app_name="EVYCONTROL"
+    data_loc="./extra/envycontrol.sh"
+    yad_progress
 
 #--------------------------------------------------------------------------------------------------------------------------------------------------
 #
@@ -280,9 +284,12 @@ logo
 ferme_yad
 COM_Backports="Installer le dépôt Backports pour debian Stable"
 COM_Linux_Firmware_GIT="Mettre à jour les firmwares Linux pour le support du matériel dernière génération"
+COM_Envycontrol="Installer Envycontrol pour les Laptop Optimus"
+
 system=$(yad --center --window-icon="$logo" --title="Configuration du Système" --width 500 --height 170 --text-align="center" --button="Retour:bash -c utilitaire" --button="Quitter:1" \
  --form \
  --field " Ajouter le dépôt Backports !./source/debian_logo.png! $COM_Backports:fbtn" "bash -c backports" \
  --field " Installer Linux-Firmware-GIT !./source/package_debian.png! $COM_Linux_Firmware_GIT:fbtn" "bash -c update-firmware"\
+ --field " Installer Envycontrol !./source/package_debian.png! $COM_Envycontrol:fbtn" "bash -c envycontrol"\
 )
 }

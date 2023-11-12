@@ -118,6 +118,12 @@ sleep 2
 nvidia2
 }
 
+function envycontrol() {
+bash ./extra/envycontrol.sh
+sleep 2
+tools1
+}
+
 function backports() {
 bash ./extra/backports.sh
 sleep 2
