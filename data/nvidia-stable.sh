@@ -34,7 +34,7 @@ dpkg --add-architecture i386 >> /var/log/$LOGNAME.auto-update.txt 2>&1
 add-apt-repository -y contrib >> /var/log/$LOGNAME.auto-update.txt 2>&1
 add-apt-repository -y non-free >> /var/log/$LOGNAME.auto-update.txt 2>&1
 
-apt install -y linux-headers-amd64 build-essential dkms libglvnd-dev firmware-misc-nonfree pkg-config wget >> /var/log/$LOGNAME.auto-update.txt 2>&1
+apt install -y linux-headers-amd64 build-essential dkms libglvnd-dev pkg-config firmware-misc-nonfree pkg-config wget >> /var/log/$LOGNAME.auto-update.txt 2>&1
 
 echo "
 Nettoyage du système :
