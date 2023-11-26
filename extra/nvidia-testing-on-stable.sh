@@ -24,6 +24,12 @@ NOTE : Un clean de vulkan/mesa/nvidia sera effectué pour éviter tout conflit. 
 apt autopurge -y raspi-firmware > /var/log/$LOGNAME.auto-update.txt 2>&1
 rm /etc/initramfs/post-update.d/z50-raspi-firmware
 
+echo "Nettoyage du système 
+"; sleep 2
+
+apt autopurge -y nvidia-driver nvidia-settings nvidia-driver-libs:i386 cuda cuda-* nvidia-gds mesa-vulkan-drivers mesa-vulkan-drivers:i386 nvidia-* nvidia*:i386 >> /var/log/$LOGNAME.auto-update.txt 2>&1
+
+
 echo "Préparation des dépendances 
 "; sleep 2
 
@@ -32,11 +38,6 @@ add-apt-repository -y contrib >> /var/log/$LOGNAME.auto-update.txt 2>&1
 add-apt-repository -y non-free >> /var/log/$LOGNAME.auto-update.txt 2>&1
 
 apt install -y linux-headers-amd64 build-essential dkms libglvnd-dev firmware-misc-nonfree pkg-config wget >> /var/log/$LOGNAME.auto-update.txt 2>&1
-
-echo "Nettoyage du système 
-"; sleep 2
-
-apt autopurge -y nvidia-driver nvidia-settings nvidia-driver-libs:i386 cuda cuda-* nvidia-gds mesa-vulkan-drivers mesa-vulkan-drivers:i386 nvidia-* nvidia*:i386 >> /var/log/$LOGNAME.auto-update.txt 2>&1
 
 echo "Ajout du dépôt testing 
 "; sleep 2
