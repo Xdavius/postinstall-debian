@@ -95,6 +95,14 @@ then
 		then
     		codename=jammy
 
+		elif [ "$(lsb_release -cs)" == "trixie" ];
+		then
+    		codename=jammy
+      
+		elif [ "$(lsb_release -cs)" == "faye" ];
+		then
+    		codename=jammy
+
 		elif [ "$(lsb_release -cs)" == "sid" ];
 		then
 		codename=jammy
