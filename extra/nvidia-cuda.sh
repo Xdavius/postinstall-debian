@@ -36,7 +36,7 @@ apt install -y linux-headers-amd64 build-essential dkms firmware-misc-nonfree pk
 echo "Nettoyage du système...
 "; sleep 2
 
-apt autopurge -y cuda-keyring nvidia-driver nvidia-settings nvidia-driver-libs:i386 cuda nvidia-gds mesa-vulkan-drivers mesa-vulkan-drivers:i386 cuda-* nvidia-* >> /var/log/$LOGNAME.auto-update.txt 2>&1
+apt autopurge -y cuda-keyring nvidia-driver nvidia-settings nvidia-driver-libs:i386 cuda nvidia-gds mesa-vulkan-drivers mesa-vulkan-drivers:i386 cuda-* nvidia-* libnvidia* >> /var/log/$LOGNAME.auto-update.txt 2>&1
 rm /etc/apt/sources.list.d/cuda*.list 
 
 echo "
