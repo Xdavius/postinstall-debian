@@ -24,16 +24,6 @@ NOTE : Un clean de vulkan/mesa/nvidia sera effectué pour éviter tout conflit. 
 apt autopurge -y raspi-firmware > /var/log/$LOGNAME.auto-update.txt 2>&1
 rm /etc/initramfs/post-update.d/z50-raspi-firmware
 
-echo "
-Préparation des dépendances 
-"
-sleep 2
-dpkg --add-architecture i386 >> /var/log/$LOGNAME.auto-update.txt 2>&1
-add-apt-repository -y contrib >> /var/log/$LOGNAME.auto-update.txt 2>&1
-add-apt-repository -y non-free >> /var/log/$LOGNAME.auto-update.txt 2>&1
-
-apt install -y linux-headers-amd64 build-essential dkms libglvnd-dev firmware-misc-nonfree pkg-config wget >> /var/log/$LOGNAME.auto-update.txt 2>&1
-
 echo "Nettoyage du système 
 "; sleep 2
 
@@ -46,6 +36,16 @@ fi
 
 dpkg --add-architecture i386 >> /var/log/$LOGNAME.auto-update.txt 2>&1
 apt update >> /var/log/$LOGNAME.auto-update.txt 2>&1
+
+echo "
+Préparation des dépendances 
+"
+sleep 2
+dpkg --add-architecture i386 >> /var/log/$LOGNAME.auto-update.txt 2>&1
+add-apt-repository -y contrib >> /var/log/$LOGNAME.auto-update.txt 2>&1
+add-apt-repository -y non-free >> /var/log/$LOGNAME.auto-update.txt 2>&1
+
+apt install -y linux-headers-amd64 build-essential dkms libglvnd-dev firmware-misc-nonfree pkg-config wget >> /var/log/$LOGNAME.auto-update.txt 2>&1
 
 echo "Installation du driver et de Vulkan + Lib32 (LONG !)
 "; sleep 2
