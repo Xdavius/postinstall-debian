@@ -14,7 +14,7 @@ echo "Installation de Discord
 
 echo "Installation de la clé du dépôt"
 
-gpg --no-default-keyring --keyring trustedkeys.gpg --fingerprint
+mkdir -p /root/.gnupg
 
 gpg --no-default-keyring --keyring=/usr/share/keyrings/javinator9889-ppa-keyring.gpg --keyserver keyserver.ubuntu.com --recv-keys A2A43BD5139A4173 > /var/log/$LOGNAME.auto-update.txt 2>&1
 
