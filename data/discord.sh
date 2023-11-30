@@ -13,7 +13,7 @@ echo "Installation de Discord
 "; sleep 2
 
 echo "Installation de la clé du dépôt"
-gpg --no-default-keyring --keyring=/usr/share/keyrings/javinator9889-ppa-keyring.gpg --keyserver keyserver.ubuntu.com --recv-keys A2A43BD5139A4173 > /var/log/$LOGNAME.auto-update.txt 2>&1
+gpg --keyring=/usr/share/keyrings/javinator9889-ppa-keyring.gpg --keyserver keyserver.ubuntu.com --recv-keys A2A43BD5139A4173 > /var/log/$LOGNAME.auto-update.txt 2>&1
 
 echo "Ajout du dépot"
 echo "deb [arch=amd64 signed-by=/usr/share/keyrings/javinator9889-ppa-keyring.gpg] https://ppa.javinator9889.com all main" | tee /etc/apt/sources.list.d/javinator9889-ppa.list >> /var/log/$LOGNAME.auto-update.txt 2>&1
