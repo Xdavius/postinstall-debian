@@ -1,0 +1,44 @@
+#!/bin/bash
+
+clear
+# Root checker
+if [[ $EUID -ne 0 ]]; then
+	echo -e "\n---------------------------------------\n"
+    echo -e "Setup: must be run logged as root (su - / sudo -i)" 1>&2
+    echo -e "\n---------------------------------------\n"
+	exit 1
+fi
+
+RED="\e[31m"
+GREEN="\e[32m"
+ENDCOLOR="\e[0m"
+rootdir=$(pwd)
+
+choice_yes=$(echo -e [${GREEN}O${ENDCOLOR}/${RED}n${ENDCOLOR}])
+choice_no=$(echo -e [${GREEN}o${ENDCOLOR}/${RED}N${ENDCOLOR}])
+
+read -p "Ajouter votre utilisateur au groupe SUDO $choice_yes ? " _sudo
+
+read -p "Ajouter les dépôts Contrib et Non-free $choice_yes ? " _repos
+
+read -p "Ajouter le Multilib $choice_yes ? " _multilib
+
+read -p "Ajouter Sid en PIN 10 $choice_yes ? " _sid
+
+read -p "Installer Flatpak et le dépôt Flathub (GNOME) $choice_yes ? " _flatpak
+
+read -p "Avez-vous un GPU Nvidia ? $choice_no ? " gpu
+
+case $gpu in
+o|O)
+read -p "Installer le driver Nvidia $choice_yes ? " _nvidia
+read -p "Installer Cuda $choice_no ? " _cuda
+read -p "Installer Envycontrol (Optimus) $choice_no ? " _envycontrol
+;;
+*)
+read -p "Installer Mesa Vulkan $choice_yes ? " _mesa
+read -p "Installer le driver AMD ROCm $choice_no ? " _rocm
+;;
+esac
+
+source ./cases

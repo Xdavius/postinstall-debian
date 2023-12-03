@@ -1,0 +1,148 @@
+case $_sudo in
+n|N)
+sleep 0.1
+;;
+o|O|*) 
+su - -c "usermod -aG sudo $(who | grep tty | cut -d " " -f 1)"
+echo "Utilisateur ajouté au groupe %SUDO"
+sleep 1
+;;
+esac
+
+case $_repos in
+n|N) 
+sleep 0.1
+;;
+o|O|*)
+apt-add-repository -y contrib > /dev/null
+apt-add-repository -y non-free > /dev/null
+apt-update -y > /dev/null
+echo "Contrib et Non-free ajoutés"
+sleep 1
+;;
+esac
+
+case $_multilib in
+n|N) 
+sleep 0.1
+;;
+o|O|*)
+dpkg --add-architecture i386 > /dev/null
+apt update -y > /dev/null
+echo "Multilib ajouté"
+sleep 1
+;;
+esac
+
+case $_sid in
+n|N) 
+sleep 0.1
+;;
+o|O|*)
+source ./src/install-sid.sh > /dev/null
+echo "Sid Pin 10 Ajouté"
+sleep 1
+;;
+esac
+
+case $_flatpak in
+n|N) 
+sleep 0.1
+;;
+o|O|*)
+apt install -y flatpak
+apt -y install gnome-software-plugin-flatpak
+flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+echo "Flatpak Configuré"
+sleep 1
+;;
+esac
+
+case $_nvidia in
+n|N|*) 
+sleep 0.1
+;;
+o|O)
+debian_version="12"
+keyring_version="1.1.1_all"
+apt remove -y cuda-keyring > /dev/null
+wget https://developer.download.nvidia.com/compute/cuda/repos/debian${debian_version}/x86_64/cuda-keyring_${keyring_version}.deb > /dev/null
+dpkg -i cuda-keyring_1.1-1_all.deb  > /dev/null
+rm cuda-keyring_1.1-1_all.deb > /dev/null
+echo "Installation du driver Nvidia en cours, patientez..."
+apt install -y nvidia-driver nvidia-settings vulkan-tools libglvnd-dev > /dev/null
+
+case $_multilib in
+	o|O)
+	apt install nvidia-driver-libs:i386 > /dev/nul
+	echo "Multilib instlallé"
+	;;
+	n|N)
+	sleep 0.1
+	;;
+esac
+	
+echo "Installation drm-modeset=1"
+if [[ -f /etc/modprobe.d/nvidia.conf ]]; then
+    rm /etc/modprobe.d/nvidia.conf
+fi
+touch /etc/modprobe.d/nvidia.conf
+echo "options nvidia-drm modeset=1" > /etc/modprobe.d/nvidia.conf
+echo "Driver Nvidia instalé"
+sleep 1
+;;
+esac
+
+case $_cuda in
+n|N|*) 
+sleep 0.1
+;;
+o|O)
+case $_nvidia in
+	n|N)
+	echo "Driver Nvidia non installé"
+	;;
+	*)
+	echo "Installation de Cuda (Téléchargement 2Go), Patientez !!"
+	apt install -y cuda > /dev/null
+	echo "Cuda installé"
+	sleep 1
+	;;
+	esac
+;;
+esac
+
+case $_envycontrol in
+n|N|*) 
+sleep 0.1
+;;
+o|O)
+	if [ $_nvidia = "o" ] || [ $nvidia = "O" ]; then
+	source ./src/envycontrol.sh > /dev/null
+	fi
+;;
+esac
+
+case $_mesa in
+n|N) 
+sleep 0.1
+;;
+o|O|*)
+apt install -y libgl1-mesa-dri mesa-vulkan-drivers vulkan-tools > /dev/null
+	if [ $_multilib = "o" ] || [ $_multilib = "O" ]; then
+	apt install libgl1-mesa-dri:i386 mesa-vulkan-drivers:i386 > /dev/null
+	echo "Mesa Vulkan installé"
+	fi
+;;
+esac
+
+case $_rocm in
+o|O)
+echo $rootdir
+bash ./src/rocm.sh
+;;
+n|N|*)
+sleep 0.1
+;;	
+esac
+
