@@ -12,14 +12,14 @@ clear
 echo "Installation des repos Sid en pin 10 pour Debian Testing
 " ; sleep 2
 
-if [ ! -x /etc/apt/sources.list.d/sid.list ]
+if [ ! -f /etc/apt/sources.list.d/sid.list ]
 then
 	echo "deb http://deb.debian.org/debian/ sid main contrib non-free-firmware non-free" >> /etc/apt/sources.list.d/sid.list
 else
 	echo "Le fichier /etc/apt/sources.list.d/sid.list existe déjà !!"
 fi
 
-if [ ! -x /etc/apt/preferences.d/sid ]
+if [ ! -f /etc/apt/preferences.d/sid ]
 then
 	echo "Package : *" > /etc/apt/preferences.d/sid
 	echo "Pin : release a=unstable" >> /etc/apt/preferences.d/sid
