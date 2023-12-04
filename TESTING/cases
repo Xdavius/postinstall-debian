@@ -16,7 +16,7 @@ sleep 0.1
 o|O|*)
 apt-add-repository -y contrib > /dev/null
 apt-add-repository -y non-free > /dev/null
-apt-update -y > /dev/null
+apt update -y > /dev/null
 echo "Contrib et Non-free ajoutés"
 sleep 1
 ;;
@@ -59,9 +59,6 @@ sleep 1
 esac
 
 case $_nvidia in
-n|N|*) 
-sleep 0.1
-;;
 o|O)
 debian_version="12"
 keyring_version="1.1.1_all"
@@ -72,15 +69,13 @@ rm cuda-keyring_1.1-1_all.deb > /dev/null
 echo "Installation du driver Nvidia en cours, patientez..."
 apt install -y nvidia-driver nvidia-settings vulkan-tools libglvnd-dev > /dev/null
 
-case $_multilib in
-	o|O)
+if [ $_multilib = "o" ] || [ $_multilib = "O" ]; then
 	apt install nvidia-driver-libs:i386 > /dev/nul
 	echo "Multilib instlallé"
-	;;
-	n|N)
-	sleep 0.1
-	;;
-esac
+else
+	echo "Multilib non demandé à l'installation"
+	
+fi
 	
 echo "Installation drm-modeset=1"
 if [[ -f /etc/modprobe.d/nvidia.conf ]]; then
@@ -91,24 +86,24 @@ echo "options nvidia-drm modeset=1" > /etc/modprobe.d/nvidia.conf
 echo "Driver Nvidia instalé"
 sleep 1
 ;;
-esac
-
-case $_cuda in
 n|N|*) 
 sleep 0.1
 ;;
+esac
+
+case $_cuda in
 o|O)
-case $_nvidia in
-	n|N)
-	echo "Driver Nvidia non installé"
-	;;
-	*)
+if [ $_nvidia = "o" ] || [ $_nvidia = "O" ]; then
 	echo "Installation de Cuda (Téléchargement 2Go), Patientez !!"
 	apt install -y cuda > /dev/null
 	echo "Cuda installé"
 	sleep 1
-	;;
-	esac
+else
+	echo "Driver Nvidia non installé"
+fi
+;;
+n|N|*) 
+sleep 0.1
 ;;
 esac
 
@@ -124,15 +119,15 @@ o|O)
 esac
 
 case $_mesa in
-n|N) 
-sleep 0.1
-;;
-o|O|*)
+o|O)
 apt install -y libgl1-mesa-dri mesa-vulkan-drivers vulkan-tools > /dev/null
 	if [ $_multilib = "o" ] || [ $_multilib = "O" ]; then
 	apt install libgl1-mesa-dri:i386 mesa-vulkan-drivers:i386 > /dev/null
 	echo "Mesa Vulkan installé"
 	fi
+;;
+n|N|*) 
+sleep 0.1
 ;;
 esac
 

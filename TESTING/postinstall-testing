@@ -36,7 +36,7 @@ read -p "Installer Cuda $choice_no ? " _cuda
 read -p "Installer Envycontrol (Optimus) $choice_no ? " _envycontrol
 ;;
 *)
-read -p "Installer Mesa Vulkan $choice_yes ? " _mesa
+read -p "Installer Mesa Vulkan $choice_no ? " _mesa
 read -p "Installer le driver AMD ROCm $choice_no ? " _rocm
 ;;
 esac
