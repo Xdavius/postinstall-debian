@@ -61,15 +61,16 @@ esac
 case $_nvidia in
 o|O)
 debian_version="12"
-keyring_version="1.1.1_all"
+keyring_version="1.1-1_all"
 apt remove -y cuda-keyring > /dev/null
 wget https://developer.download.nvidia.com/compute/cuda/repos/debian${debian_version}/x86_64/cuda-keyring_${keyring_version}.deb > /dev/null
-dpkg -i cuda-keyring_1.1-1_all.deb  > /dev/null
-rm cuda-keyring_1.1-1_all.deb > /dev/null
+dpkg -i cuda-keyring_${keyring_version}.deb  > /dev/null
+rm cuda-keyring_${keyring_version}.deb > /dev/null
+apt-get update -y > /dev/null
 echo "Installation du driver Nvidia en cours, patientez..."
 apt install -y nvidia-driver nvidia-settings vulkan-tools libglvnd-dev > /dev/null
 
-if [ $_multilib = "o" ] || [ $_multilib = "O" ]; then
+if [[ $_multilib = "o" ]] || [[ $_multilib = "O" ]]; then
 	apt install nvidia-driver-libs:i386 > /dev/nul
 	echo "Multilib instlallé"
 else
@@ -93,9 +94,9 @@ esac
 
 case $_cuda in
 o|O)
-if [ $_nvidia = "o" ] || [ $_nvidia = "O" ]; then
+if [[ $_nvidia = "o" ]] || [[ $_nvidia = "O" ]]; then
 	echo "Installation de Cuda (Téléchargement 2Go), Patientez !!"
-	apt install -y cuda > /dev/null
+	apt install -y nvidia-cuda-dev nvidia-cuda-toolkit > /dev/null
 	echo "Cuda installé"
 	sleep 1
 else
@@ -112,7 +113,7 @@ n|N|*)
 sleep 0.1
 ;;
 o|O)
-	if [ $_nvidia = "o" ] || [ $nvidia = "O" ]; then
+	if [[ $_nvidia = "o" ]] || [[ $nvidia = "O" ]]; then
 	source ./src/envycontrol.sh > /dev/null
 	fi
 ;;
