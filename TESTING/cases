@@ -139,7 +139,7 @@ esac
 case $_rocm in
 o|O)
 echo $rootdir
-source ./src/rocm.sh > /dev/null
+source ./src/rocm.sh
 ;;
 n|N|*)
 sleep 0.1

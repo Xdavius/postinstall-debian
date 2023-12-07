@@ -15,7 +15,7 @@ Installation de ROCM HIP et OPENCL Runtimes
 
 localdir=$(pwd)
 echo "Copie de la clé du dépot AMD"
-cp $localdir/src/rocm-keyring.gpg /etc/apt/trusted.gpg.d/
+cp $localdir/src/keyring/rocm-keyring.gpg /etc/apt/trusted.gpg.d/
 sleep 1
 
 echo "Ajout des dépots rocm et amdgpu"
