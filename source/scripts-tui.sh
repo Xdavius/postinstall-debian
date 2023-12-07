@@ -142,3 +142,12 @@ bash ./data/.neofrog
 sleep 5
 menu1
 }
+
+function debian_testing() {
+clear
+cd ./TESTING
+bash postinstall-testing
+cd ..
+sleep 2
+menu1
+}
