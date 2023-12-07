@@ -24,6 +24,8 @@ echo "          ------------------ POSTINSTALL DEBIAN TUI ------------------
 3- Installer les drivers AMD
 4- Programmes Utilitaires / Additionnels 
 
+T- Postinstall Debian TESTING (Bêta)
+
 0- Quitter
 
 "
@@ -40,6 +42,8 @@ case "$choix" in
     ;;
 4)  tools1
     ;;
+t|T) debian_testing
+      ;;
 f|F)  neofrog
       ;;
 0)  clear && exit 1
