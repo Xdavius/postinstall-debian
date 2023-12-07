@@ -14,30 +14,48 @@ GREEN="\e[32m"
 ENDCOLOR="\e[0m"
 rootdir=$(pwd)
 
-choice_yes=$(echo -e [${GREEN}O${ENDCOLOR}/${RED}n${ENDCOLOR}])
-choice_no=$(echo -e [${GREEN}o${ENDCOLOR}/${RED}N${ENDCOLOR}])
+choice_yes=$(echo -e [${GREEN}O${ENDCOLOR}/${ENDCOLOR}n])
+choice_no=$(echo -e [${ENDCOLOR}o${ENDCOLOR}/${RED}N${ENDCOLOR}])
+unsure=$(echo -e ${RED}Say NO if unsure${ENDCOLOR})
+task_ok=$(echo -e [${GREEN}OK${ENDCOLOR}])
 
-read -p "Ajouter votre utilisateur au groupe SUDO $choice_yes ? " _sudo
+echo -e "${RED}----------------------------------------------------------------------------------------------${ENDCOLOR}
 
-read -p "Ajouter les dépôts Contrib et Non-free $choice_yes ? " _repos
+                                ${GREEN}POSTINSTALL DEBIAN TESTING${ENDCOLOR}
 
-read -p "Ajouter le Multilib $choice_yes ? " _multilib
+${RED}----------------------------------------------------------------------------------------------${ENDCOLOR}
 
-read -p "Ajouter Sid en PIN 10 $choice_yes ? " _sid
 
-read -p "Installer Flatpak et le dépôt Flathub (GNOME) $choice_yes ? " _flatpak
+Veuillez répondre au questionnaire. L'installation se fera une fois celui-ci complété.
 
-read -p "Avez-vous un GPU Nvidia ? $choice_no ? " gpu
+"
+
+read -p "- Ajouter votre utilisateur au groupe SUDO $choice_yes ? " _sudo
+
+read -p "- Ajouter les dépôts Contrib et Non-free $choice_yes ? " _repos
+
+read -p "- Ajouter le Multilib $choice_yes ? " _multilib
+if [[ $_multilib = "o" ]] || [[ $_multilib = "O" ]] || [[ $_multilib = "" ]]; then
+    read -p "- Installer les applications Gaming (Steam, Lutris Wine) $choice_yes ? " _gaming
+else
+    _gaming=$(echo "n")
+fi
+
+read -p "- Ajouter Sid en PIN 10 (Ex: Virtualbox) $choice_yes ? " _sid
+
+read -p "- Installer Flatpak et le dépôt Flathub (GNOME) $choice_yes ? " _flatpak
+
+read -p "- Avez-vous un GPU Nvidia ? $choice_no ? " gpu
 
 case $gpu in
 o|O)
-read -p "Installer le driver Nvidia $choice_yes ? " _nvidia
-read -p "Installer Cuda $choice_yes ? " _cuda
-read -p "Installer Envycontrol (Optimus) $choice_no ? " _envycontrol
+read -p "- Installer le driver Nvidia $choice_yes ? " _nvidia
+read -p "- Installer Cuda $choice_yes ? " _cuda
+read -p "- Installer Envycontrol (Laptop Optimus) $unsure $choice_no ? " _envycontrol
 ;;
 *)
-read -p "Installer Mesa Vulkan $choice_yes ? " _mesa
-read -p "Installer le driver AMD ROCm $choice_no ? " _rocm
+read -p "- Installer Mesa Vulkan $choice_yes ? " _mesa
+read -p "- Installer le driver AMD ROCm $choice_no ? " _rocm
 ;;
 esac
 
