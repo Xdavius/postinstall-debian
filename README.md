@@ -190,6 +190,9 @@ Une fois terminé, redémarrez la machine.
 - lutris-latest :             Installe la dernière version de lutris et le dépôt officiel.
 
 - wine-staging :              Installe la dernière version de wine ainsi que toutes les dépendances nécessaire, et le dépôt officiel.
+  
+- Discord :                   Installe le dépôt automatique de Javinator9889 pour avoir discord toujours à jour.
+                              [**Github javinator9889**](https://github.com/Javinator9889/Discord-PPA)
       
 ## Gestionaires de paquets
 
