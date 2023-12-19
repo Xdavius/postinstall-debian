@@ -1,0 +1,176 @@
+case $_sudo in
+n|N)
+sleep 0.1
+;;
+o|O|*) 
+echo "Ajout de l'utilisateur au groupe SUDO"
+su - -c "usermod -aG sudo $(who | grep tty | cut -d " " -f 1)"
+echo $task_ok
+sleep 1
+;;
+esac
+
+case $_repos in
+n|N) 
+sleep 0.1
+;;
+o|O|*)
+echo "Ajout des dépôts Contrib et Non-free"
+apt-add-repository -y contrib > /dev/null
+apt-add-repository -y non-free > /dev/null
+apt-get update -y > /dev/null
+echo $task_ok
+sleep 1
+;;
+esac
+
+case $_multilib in
+n|N) 
+sleep 0.1
+;;
+o|O|*)
+echo "Ajout du dépôt Multilib"
+dpkg --add-architecture i386 > /dev/null
+apt-get update -y > /dev/null
+echo $task_ok
+sleep 1
+;;
+esac
+
+case $_gaming in
+n|N)
+sleep 0.1
+;;
+o|O|*)
+echo "Installation des applications Gaming"
+sudo apt-get install -y steam wine lutris
+echo $task_ok
+sleep 1
+;;
+esac
+
+case $_sid in
+n|N) 
+sleep 0.1
+;;
+o|O|*)
+echo "Ajout du dépôt Sid Pin 10"
+source ./src/install-sid.sh > /dev/null
+echo $task_ok
+sleep 1
+;;
+esac
+
+case $_flatpak in
+n|N) 
+sleep 0.1
+;;
+o|O|*)
+echo "Installation du système Flatpak"
+apt-get install -y flatpak > /dev/null
+apt-get install -y gnome-software-plugin-flatpak > /dev/null 
+flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo > /dev/null
+echo $task_ok
+sleep 1
+;;
+esac
+
+case $_nvidia in
+o|O)
+echo "Installation des derniers drivers Nvidia"
+debian_version="12"
+keyring_version="1.1-1_all"
+apt-get remove -y cuda-keyring > /dev/null
+wget https://developer.download.nvidia.com/compute/cuda/repos/debian${debian_version}/x86_64/cuda-keyring_${keyring_version}.deb > /dev/null
+dpkg -i cuda-keyring_${keyring_version}.deb  > /dev/null
+rm cuda-keyring_${keyring_version}.deb > /dev/null
+apt-get update -y > /dev/null
+echo "Installation du driver Nvidia en cours, patientez..."
+apt-get install -y nvidia-driver nvidia-settings vulkan-tools libglvnd-dev > /dev/null
+
+if [[ $_multilib = "o" ]] || [[ $_multilib = "O" ]] || [[ $_multilib = "" ]]; then
+	echo "Installation des lib32"
+	apt-get install nvidia-driver-libs:i386 > /dev/nul
+	echo -e "${GREEN}Nvidia i386 instlallé${ENDCOLOR}"
+else
+	echo -e "{{RED}Multilib non demandé à l'installation${ENDCOLOR}"
+fi
+	
+echo "Installation drm-modeset=1"
+if [[ -f /etc/modprobe.d/nvidia.conf ]]; then
+    rm /etc/modprobe.d/nvidia.conf
+fi
+touch /etc/modprobe.d/nvidia.conf
+echo "options nvidia-drm modeset=1" > /etc/modprobe.d/nvidia.conf
+echo "${GREEN}Driver Nvidia installé${ENDCOLOR}"
+echo $task_ok
+sleep 1
+;;
+n|N|*) 
+sleep 0.1
+;;
+esac
+
+case $_cuda in
+o|O)
+if [[ $_nvidia = "o" ]] || [[ $_nvidia = "O" ]] || [[ $_nvidia = "" ]]; then
+	echo -e "Installation de Cuda {RED}(Téléchargement 2Go)${ENDCOLOR}, Patientez !!"
+	apt-get install -y nvidia-cuda-dev nvidia-cuda-toolkit > /dev/null
+	echo "${GREEN}Cuda installé${ENDCOLOR}"
+	echo $task_ok
+	sleep 1
+else
+	echo "${RED}Driver Nvidia non installé${ENDCOLOR}"
+fi
+sleep 1
+;;
+n|N|*) 
+sleep 0.1
+;;
+esac
+
+case $_envycontrol in
+n|N|*) 
+sleep 0.1
+;;
+o|O)
+echo "Installation de Envycontrol"
+if [[ $_nvidia = "o" ]] || [[ $nvidia = "O" ]]; then
+source ./src/envycontrol.sh > /dev/null
+echo $task_ok
+else
+echo "${RED}Driver Nvidia non installé${ENDCOLOR}"
+fi
+sleep 1
+;;
+esac
+
+case $_mesa in
+n|N) 
+sleep 0.1
+;;
+o|O|*)
+echo "Installation de Mesa"
+apt-get install -y libgl1-mesa-dri mesa mesa-vulkan-drivers vulkan-tools > /dev/null
+echo -e "${GREEN}Mesa Vulkan installé${ENDCOLOR}"
+if [[ $_multilib = "o" ]] || [[ $_multilib = "O" ]] || [[ $_multilib = "" ]]; then
+	apt-get install -y libgl1-mesa-dri:i386 mesa-vulkan-drivers:i386 > /dev/null
+	echo -e "${GREEN}Mesa Vulkan i386 installé${ENDCOLOR}"
+fi
+echo $task_ok
+sleep 1
+;;
+esac
+
+case $_rocm in
+o|O)
+echo -e "Installation de ROCm ${RED}(Téléchargement 2Go)${ENDCOLOR}"
+echo $rootdir
+source ./src/rocm.sh
+echo $task_ok
+;;
+n|N|*)
+sleep 0.1
+;;	
+esac
+
