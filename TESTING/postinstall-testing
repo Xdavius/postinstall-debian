@@ -21,12 +21,14 @@ task_ok=$(echo -e [${GREEN}OK${ENDCOLOR}])
 
 echo -e "${RED}----------------------------------------------------------------------------------------------${ENDCOLOR}
 
-                                ${GREEN}POSTINSTALL DEBIAN TESTING${ENDCOLOR}
+                                        POSTINSTALL DEBIAN TESTING
 
 ${RED}----------------------------------------------------------------------------------------------${ENDCOLOR}
 
 
 Veuillez répondre au questionnaire. L'installation se fera une fois celui-ci complété.
+
+${RED}Cet outil est toujours en dévelloppement ! En cas de problème, merci d'ouvrir une issue !${ENDCOLOR}
 
 "
 
@@ -41,13 +43,17 @@ else
     _gaming=$(echo "n")
 fi
 
+read -p "- Augmenter la valeur du vm.max_map_count (Compatibilité augmentée pour les jeux vidéos) $choice_yes ? " _vmmap
+
 read -p "- Ajouter Sid en PIN 10 (Ex: Virtualbox) $choice_yes ? " _sid
 
 read -p "- Installer Flatpak et le dépôt Flathub (GNOME) $choice_yes ? " _flatpak
 
-read -p "- Avez-vous un GPU Nvidia ? $choice_no ? " gpu
+read -p "- Installer Pacstall (AUR pour Debian) $choice_no ? " _pacstall
 
-case $gpu in
+read -p "- Avez-vous un GPU Nvidia ? $choice_no ? " _gpu
+
+case $_gpu in
 o|O)
 read -p "- Installer le driver Nvidia $choice_yes ? " _nvidia
 read -p "- Installer Cuda $choice_yes ? " _cuda
@@ -59,4 +65,14 @@ read -p "- Installer le driver AMD ROCm $choice_no ? " _rocm
 ;;
 esac
 
+read -p "Le système va maintenant être modifié. Etes vous certains de vos réponses $choice_no ? " _final
+
+case $_final in
+O|o)
 source ./cases
+;;
+N|n|*)
+echo "Installation intérrompue par l'utilisateur"
+exit 2
+;;
+esac
