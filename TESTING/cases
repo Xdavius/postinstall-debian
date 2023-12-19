@@ -37,6 +37,21 @@ sleep 1
 ;;
 esac
 
+case $_vmmap
+n|N)
+echo "vm.max_map_count laissé par défaut"
+;;
+o|O|*)
+echo "Configuration de vm.max_map_count"
+if [ -f /etc/sysctl.d/80-gamecompatibility.conf ]; then
+  echo "vm.max_map_count déjà configuré"
+  else
+  echo "vm.max_map_count = 2147483642" | tee /etc/sysctl.d/80-gamecompatibility.conf && \
+  sysctl --system
+fi
+;;
+esac
+
 case $_gaming in
 n|N)
 sleep 0.1
@@ -72,6 +87,16 @@ apt-get install -y gnome-software-plugin-flatpak > /dev/null
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo > /dev/null
 echo $task_ok
 sleep 1
+;;
+esac
+
+case $_pacstall in
+n|N)
+echo "Pacstall non installé"
+;;
+o|O|*)
+apt install -y curl
+bash -c "$(curl -fsSL https://pacstall.dev/q/install)"
 ;;
 esac
 
