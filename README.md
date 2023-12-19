@@ -126,6 +126,7 @@ Il existe 2 principaux fournisseurs de Kernels Gaming :
 - [**Liquorix**](https://liquorix.net/)
 
 Si vous avez une carte graphique NVIDIA, il se peut que des incompatibilités se produisent et que le pilote Nvidia ne soit pas encore rendu compatible avec ces kernels très récents et mis à jour en continu.
+COMPATIBLE UNIQUEMENT AVEC LE DRIVER FOURNIT PAR NVIDIA !
 
 **Je vous recommande plutôt l'utilisation du kernel TKG avec Nvidia, à installer vous mêmes, afin de vous assurer que tout se passe bien à l'installation. Il ne se metra pas à jour tout seul et permet de choisir la branche LTS ou Current voir une branche intermédiaire. Cela offre plus de contrôle et permet d'éviter la casse.**
 
@@ -156,18 +157,18 @@ Une fois terminé, redémarrez la machine.
 
 ## Nvidia :
 
-- nvidia-stable :             Installe le driver Nvidia officiel Debian Stable **RECOMMANDÉ**. (Actuellement : Branche 525)
+- nvidia-stable :             Installe le driver Nvidia officiel Debian Stable **RECOMMANDÉ/KERNEL LTS UNIQUEMENT**. (Actuellement : Branche 525)
   
 - nvidia-cuda :               Installe le driver Nvidia Curent Stable en provenance des dépots de NVIDIA. (Actuellement : Branche 545)
-                              **NVIDIA RECOMMANDE UN KERNEL LTS ou BACKPORTÉ, PEUT FONCTIONNER AVEC KERNEL CURRENT, MAIS PEUT AUSSI CASSER !**
+                              **NVIDIA RECOMMANDE UN KERNEL LTS ou BACKPORTÉ, PEUT FONCTIONNER AVEC KERNEL CURRENT (Liquorix/TKG), MAIS PEUT AUSSI CASSER !**
   
 - nvidia-experimental :       Installe le dépôt EXPERIMENTAL pour debian pour avoir le dernier driver EXPERIMENTAL (Actuellement : Branche 530-dev)
-                              **NECESSITE D'AVOIR ACTIVER LE DEPOT SID EN PIN 10 MINIMUM, POUR LES AVENTURIERS !**
+                              **NECESSITE D'AVOIR ACTIVER LE DEPOT SID EN PIN 10 MINIMUM, POUR LES AVENTURIERS ! RISQUE ELEVE DE CASSE !**
                               **NECESSITE DE RELANCER LA PROCÉDURE SECUREBOOT SI ACTIVE !**
   
 - nvidia-testing-on-stable :  Installe le FUTUR driver Nvidia pour Debian Stable +1.
-                              **AJOUTE LE DEPOT TESTING EN PIN 10, POUR LES TESTEURS !**
-                              **PEUT NECESSITER UNE MISE A JOUR DE DKMS ! SI UTILISÉ AVEC SECUREBOOT, MEFIANCE !**
+                              **AJOUTE LE DEPOT TESTING EN PIN 10, POUR LES TESTEURS ! Supporte les kernels en provencance de stable-backports**
+                              **PEUT NECESSITER UNE MISE A JOUR DE DKMS ! SI UTILISÉ AVEC SECUREBOOT, PRUDENCE !**
   
 - nvidia-rollback :           Désinstalle vos drivers Nvidia et fait le ménage !
 
