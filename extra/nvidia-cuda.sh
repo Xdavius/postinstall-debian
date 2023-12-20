@@ -55,7 +55,7 @@ wget http://ftp.de.debian.org/debian/pool/main/n/ncurses/libtinfo5_6.4-4_amd64.d
 dpkg -i libtinfo5_6.4-4_amd64.deb
 rm libtinfo5_6.4-4_amd64.deb
 
-echo "Workarround des conneries Nvidia..."
+#echo "Workarround des conneries Nvidia..."
 #apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/repos/debian12/x86_64/3bf863cc.pub
 #cp /etc/apt/trusted.gpg /usr/share/keyrings/cuda-archive-keyring.gpg
 #rm /etc/apt/trusted.gpg
@@ -73,8 +73,9 @@ echo "Installation... (LONG !)"
 mkdir -p /var/run/nvpd/
 echo "Installation du driver vidéo. Patientez..."
 apt install -y cuda-drivers nvidia-driver nvidia-settings vulkan-tools libglvnd-dev nvidia-driver-libs:i386 >> /var/log/$LOGNAME.auto-update.txt 2>&1
-echo "Installation de Cuda... Patientez ENCORE !! (Très long !)"
-apt install -y cuda
+
+#echo "Installation de Cuda... Patientez ENCORE !! (Très long !)"
+#apt install -y cuda
 
 echo "
 Installation drm-modeset=1
