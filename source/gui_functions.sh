@@ -186,7 +186,7 @@ function secureboot () {
 if [[ -f /usr/bin/konsole ]] ; then
     ferme_yad
     app_name="INSTALLATION DE SECUREBOOT"
-    var1="bash -c $localdir/SECUREBOOT/install-sb-gui.sh"
+    var1="bash -c $localdir/SECUREBOOT/install-sb.sh"
     konsole -- -e $var1
     menu
 elif [[ -f /usr/bin/gnome-terminal ]] ; then
