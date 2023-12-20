@@ -160,7 +160,7 @@ Une fois terminé, redémarrez la machine.
 - nvidia-stable :             Installe le driver Nvidia officiel Debian Stable **RECOMMANDÉ/KERNEL LTS UNIQUEMENT**. (Actuellement : Branche 525)
   
 - nvidia-cuda :               Installe le driver Nvidia Curent Stable en provenance des dépots de NVIDIA. (Actuellement : Branche 545)
-                              **NVIDIA RECOMMANDE UN KERNEL LTS ou BACKPORTÉ, PEUT FONCTIONNER AVEC KERNEL CURRENT (Liquorix/TKG), MAIS PEUT AUSSI CASSER !**
+                              **NVIDIA CONSEILLE UN KERNEL LTS ou BACKPORTÉ, PEUT FONCTIONNER AVEC KERNEL CURRENT (Liquorix/TKG), MAIS PEUT AUSSI CASSER !**
   
 - nvidia-experimental :       Installe le dépôt EXPERIMENTAL pour debian pour avoir le dernier driver EXPERIMENTAL (Actuellement : Branche 530-dev)
                               **NECESSITE D'AVOIR ACTIVER LE DEPOT SID EN PIN 10 MINIMUM, POUR LES AVENTURIERS ! RISQUE ELEVE DE CASSE !**
@@ -174,9 +174,9 @@ Une fois terminé, redémarrez la machine.
 
 ## AMD / Intel :
 
-- mesa-kisak-fresh :          Installe le dernier Mesa Stable pour AMD/INTEL.
+- mesa-kisak-fresh :          Installe le dernier Mesa Stable pour AMD/INTEL. **RECOMMANDÉ**
   
-- amd-vulkan :                Installe Vulkan pour les GPU AMD/INTEL.
+- amd-vulkan :                Installe Vulkan pour les GPU AMD/INTEL. **RECOMMANDÉ**
 
 ## ROCM : 
 [**Page officielle ROCM**](https://www.amd.com/fr/graphics/servers-solutions-rocm)
