@@ -68,8 +68,12 @@ if [ $DESKTOP_SESSION == "gnome" ]; then
   echo "Rien à faire."
   else
   (echo $password | sudo -S apt -y install gnome-software-plugin-flatpak flatpak && \
-  flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo) | yad --center --window-icon="$logo" --progress --pulsate --title "Préparation de système Gnome" --progress-text="Configuration de Flatpak pour Gnome" --width 500 --height 100 --no-buttons --auto-close
+  flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo) | yad --center --window-icon="$logo" --progress --pulsate --title "Préparation du système Gnome" --progress-text="Configuration de Flatpak pour Gnome" --width 500 --height 100 --no-buttons --auto-close
   fi
+fi
+
+if [[ -f /usr/bin/konsole ]] ; then
+  (echo $password | sudo -S apt -y install pipewire-audio) | yad --center --window-icon="$logo" --progress --pulsate --title "Préparation du système..." --progress-text="Installation de pipewire" --width 500 --height 100 --no-buttons --auto-close
 fi
 
 if [ -f /etc/sysctl.d/80-gamecompatibility.conf ]; then
