@@ -124,15 +124,6 @@ Vous devez exécuter l'application depuis un terminal en root :
   
 - Il n'y a pas d'avertissement de réussite mais la première option aura disparu, choisissez REBOOT.
 
-**ATTENTION !**
-
-**LE PAQUET DKMS DEVRA ÊTRE PATCHÉ ET BLOQUÉ ! POUR LA MIGRATION VERS UNE NOUVELLE VERSION DE DKMS OU UNE MISE À NIVEAU DE DEBIAN, IL FAUDRA DÉBLOQUER LE PAQUET ET RECOMMENCER LA PROCEDURE,**
-
-**UTILISEZ : "sudo apt-mark unhold dkms"**
-
-**AFIN DE DÉBLOQUER LE PAQUET.**
-
-
 ## Kernels Customs :
 
 Il existe 2 principaux fournisseurs de Kernels Gaming :
@@ -147,7 +138,9 @@ COMPATIBLE UNIQUEMENT AVEC LE DRIVER FOURNIT PAR NVIDIA !
 
 Si vous possédez une carte AMD, le Liquorix est plus simple à mettre en place (Une ligne à copier coller dans le terminal, nécessite d'avoir installé curl)
 
-***Seul le kernel TKG est entièrement supportés avec secureboot activé après avoir configuré celui-ci avec l'outil fourni par cet utilitaire. L'outil ne prend plus en charge Liquorix !***
+## SECUREBOOT + Kernels Customs :
+
+***Seul le kernel TKG est entièrement supportés avec secureboot activé après avoir configuré celui-ci avec l'outil fourni par cet utilitaire. L'outil ne prend plus en charge Liquorix ni Xanmod !***
 
 ## Kernels Backports Debian Stable :
 
