@@ -21,11 +21,11 @@ export srcdir
 chmod +x $srcdir/SECUREBOOT/data/*.sh
 chmod +x $srcdir/SECUREBOOT/data/src/zz-signing
 
-echo "
-installation de sign-file pour les Kernels Customs...
-" ; sleep 1
-mkdir -p /opt/signtool/
-cp /lib/modules/$kernel_ver/build/scripts/sign-file /opt/signtool
+#echo "
+#installation de sign-file pour les Kernels Customs...
+#" ; sleep 1
+#mkdir -p /opt/signtool/
+#cp /lib/modules/$kernel_ver/build/scripts/sign-file /opt/signtool
 
 
 echo "
