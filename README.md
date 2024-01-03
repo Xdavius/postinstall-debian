@@ -33,6 +33,20 @@ SI VOUS AVEZ INSTALLÉ DEBIAN DEPUIS UNE **ISO LIVE**, SUDO EST DÉjÀ CONFIGUR�
 
    - Entrez le mot de passe **ROOT (Super Utilisateur)** pour valider la commande, puis **redémarrez la machine**.
 
+**Utiliser la console de dépannage avec Debian**
+
+Si vous avez installé Debian avec sudo sans compte root, il faudra l'activer après l'installation pour avoir accès à 
+la console de dépannage (menu avancé de grub) ou bien en cas d'une erreur sur un fichier de configuration empèchant
+le démarrage du système. Pour activer le compte ROOT (Superutilisateur) :
+
+      sudo passwd root
+
+Saisissez un nouveau mot de passe. Puis vérifiez que tout est OK en vous connectant :
+      
+      su -
+
+Pour quitter l'invite de commande root, tapez 'exit'.
+
 
 ## INSTALLATION :
 
@@ -60,10 +74,11 @@ L'interface graphique est optimisée pour GNOME et KDE uniquement.
 
 ***- La valeure vm_map.max.count est automatiquement montée pour assurer la meilleure compatibilitée pour les jeux vidéos.***
 
+***- KDE est livré avec PulseAudio et Wayland, contrairement à Gnome. Le script remplacera automatiquement PulseAudio par Pipewire.***
 
 ***SI VOUS NE LE SOUHAITEZ PAS, UTILISEZ LA TUI !!***
 
----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
