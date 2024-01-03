@@ -147,7 +147,7 @@ COMPATIBLE UNIQUEMENT AVEC LE DRIVER FOURNIT PAR NVIDIA !
 
 Si vous possédez une carte AMD, le Liquorix est plus simple à mettre en place (Une ligne à copier coller dans le terminal, nécessite d'avoir installé curl)
 
-Les Kernels Customs sont entièrement supportés avec secureboot activé après avoir configuré celui-ci avec l'outil fourni par cet utilitaire.
+***Seul le kernel TKG est entièrement supportés avec secureboot activé après avoir configuré celui-ci avec l'outil fourni par cet utilitaire. L'outil ne prend plus en charge Liquorix !***
 
 ## Kernels Backports Debian Stable :
 
