@@ -73,10 +73,10 @@ mkdir -p /var/run/nvpd/
 apt install -y -t testing dkms nvidia-driver vulkan-tools libglvnd-dev firmware-misc-nonfree linux-headers-amd64 linux-image-amd64 >> /var/log/$LOGNAME.auto-update.txt 2>&1
 apt install -y -t testing nvidia-driver-libs:i386 >> /var/log/$LOGNAME.auto-update.txt 2>&1
 
-echo "Installation de Cuda (LONG !)
-"; sleep 2
+#echo "Installation de Cuda (LONG !)
+#"; sleep 2
 
-apt install -y -t testing nvidia-cuda-toolkit nvidia-cuda-dev >> /var/log/$LOGNAME.auto-update.txt 2>&1
+#apt install -y -t testing nvidia-cuda-toolkit nvidia-cuda-dev >> /var/log/$LOGNAME.auto-update.txt 2>&1
 
 echo "
 Installation drm-modeset=1

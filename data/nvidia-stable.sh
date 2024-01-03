@@ -51,11 +51,11 @@ mkdir -p /var/run/nvpd/
 apt install -y nvidia-driver vulkan-tools nvidia-settings >> /var/log/$LOGNAME.auto-update.txt 2>&1
 apt install -y vulkan-tools:i386 nvidia-driver-libs:i386 >> /var/log/$LOGNAME.auto-update.txt 2>&1
 
-echo "
-Installation de Cuda :
-"; sleep 2
+#echo "
+#Installation de Cuda :
+#"; sleep 2
 
-apt install -y nvidia-cuda-toolkit nvidia-cuda-dev >> /var/log/$LOGNAME.auto-update.txt 2>&1
+#apt install -y nvidia-cuda-toolkit nvidia-cuda-dev >> /var/log/$LOGNAME.auto-update.txt 2>&1
 
 echo "
 Installation drm-modeset=1

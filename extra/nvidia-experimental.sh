@@ -58,10 +58,10 @@ apt install -y -t sid dkms
 apt install -y -t experimental nvidia-driver vulkan-tools firmware-misc-nonfree nvidia-settings libglvnd-dev
 apt install -y -t experimental nvidia-driver-libs:i386 
 
-echo "Installation de Cuda (LONG !)
-"; sleep 2
+#echo "Installation de Cuda (LONG !)
+#"; sleep 2
 
-apt install -y -t experimental nvidia-cuda-toolkit
+#apt install -y -t experimental nvidia-cuda-toolkit
 
 echo "
 Installation drm-modeset=1

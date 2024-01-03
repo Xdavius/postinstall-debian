@@ -245,9 +245,9 @@ logo
 ferme_yad
 utilitaire=$(yad --center --window-icon="$logo" --title="Utilitaires" --width 500 --height 170 --text-align="center" --button="Retour:bash -c menu" --button="Quitter:1" \
  --form \
- --field " Applications Gaming !./source/joystick.png! $COM_Deb_get:fbtn" "bash -c gaming" \
- --field " Magasins d'Applications !./source/software_debian.png! $COM_Pacstall:fbtn" "bash -c software_manager" \
- --field " Configuration Système !./source/debian_logo.png! $COM_Pacstall:fbtn" "bash -c system" \
+ --field " Applications Gaming !./source/joystick.png!:fbtn" "bash -c gaming" \
+ --field " Magasins d'Applications !./source/software_debian.png!:fbtn" "bash -c software_manager" \
+ --field " Configuration Système !./source/debian_logo.png!:fbtn" "bash -c system" \
 )
 }
 

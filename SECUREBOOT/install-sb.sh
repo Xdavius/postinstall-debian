@@ -13,7 +13,7 @@ Configuration du système SECUREBOOT
 
 Installation des dépendances...
 " ; sleep 1
-apt install -f dkms patch > /var/log/$LOGNAME.auto-update.txt 2>&1
+apt install -y dkms patch > /var/log/$LOGNAME.auto-update.txt 2>&1
 
 kernel_ver=$(uname -r)
 srcdir=$(pwd)
