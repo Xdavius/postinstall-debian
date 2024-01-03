@@ -159,10 +159,8 @@ Une fois terminé, redémarrez la machine.
 
 
 - install-sb :                Installe la configuration pour utiliser Secureboot de façon transparente. **ATTENTION** le paquet DKMS se fait patcher !
-                              **POUR LA MIGRATION VERS UNE NOUVELLE VERSION DE DKMS OU UNE MISE A NIVEAU DE DEBIAN,**
-                              **IL FAUDRA DÉBLOQUER LE PAQUET ET RECOMMENCER LA PROCEDURE !**
-                              **UTILISEZ : sudo apt-mark unhold dkms**
 
+                              
 ## Nvidia :
 
 - nvidia-stable :             Installe le driver Nvidia officiel Debian Stable **RECOMMANDÉ/KERNEL LTS UNIQUEMENT**. (Actuellement : Branche 525)
@@ -170,13 +168,13 @@ Une fois terminé, redémarrez la machine.
 - nvidia-cuda :               Installe le driver Nvidia Curent Stable en provenance des dépots de NVIDIA. (Actuellement : Branche 545)
                               **NVIDIA CONSEILLE UN KERNEL LTS ou BACKPORTÉ, PEUT FONCTIONNER AVEC KERNEL CURRENT (Liquorix/TKG), MAIS PEUT AUSSI CASSER !**
   
-- nvidia-experimental :       Installe le dépôt EXPERIMENTAL pour debian pour avoir le dernier driver EXPERIMENTAL (Actuellement : Branche 530-dev)
-                              **NECESSITE D'AVOIR ACTIVER LE DEPOT SID EN PIN 10 MINIMUM, POUR LES AVENTURIERS ! RISQUE ELEVE DE CASSE !**
+- nvidia-experimental :       Installe le dépôt EXPERIMENTAL pour debian pour avoir le dernier driver EXPERIMENTAL de Debian
+                              **NECESSITE D'AVOIR ACTIVER LE DEPOT SID EN PIN 10 MINIMUM, POUR LES AVENTURIERS ! RISQUE TRES ELEVE DE CASSE !**
                               **NECESSITE DE RELANCER LA PROCÉDURE SECUREBOOT SI ACTIVE !**
   
 - nvidia-testing-on-stable :  Installe le FUTUR driver Nvidia pour Debian Stable +1.
                               **AJOUTE LE DEPOT TESTING EN PIN 10, POUR LES TESTEURS ! Supporte les kernels en provencance de stable-backports**
-                              **PEUT NECESSITER UNE MISE A JOUR DE DKMS ! SI UTILISÉ AVEC SECUREBOOT, PRUDENCE !**
+                              **PEUT NECESSITER UNE MISE A JOUR DE DKMS !**
   
 - nvidia-rollback :           Désinstalle vos drivers Nvidia et fait le ménage !
 
