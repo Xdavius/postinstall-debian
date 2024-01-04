@@ -37,7 +37,7 @@ sleep 1
 ;;
 esac
 
-case $_vmmap
+case $_vmmap in
 n|N)
 echo "vm.max_map_count laissé par défaut"
 ;;
