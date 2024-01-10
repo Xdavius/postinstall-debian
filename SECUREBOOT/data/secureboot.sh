@@ -72,11 +72,11 @@ sign6='modprobe_on_install="true"'
 echo $sign1 > /etc/dkms/framework.conf
 echo $sign2 >> /etc/dkms/framework.conf
 echo $sign3 >> /etc/dkms/framework.conf
-echo $sign4 >> /etc/dkms/framework.conf
+#echo $sign4 >> /etc/dkms/framework.conf
 echo $sign5 >> /etc/dkms/framework.conf
 echo $sign6 >> /etc/dkms/framework.conf
 
-sign_helper='/opt/signtool/sign-file sha256 /var/lib/shim-signed/mok/MOK.priv /var/lib/shim-signed/mok/MOK.der "$2"'
+sign_helper='"$1" sha256 /var/lib/shim-signed/mok/MOK.priv /var/lib/shim-signed/mok/MOK.der "$2"'
 echo $sign_helper > /etc/dkms/sign_helper.sh
 chmod +x /etc/dkms/sign_helper.sh
 }
@@ -99,10 +99,14 @@ mv /boot/vmlinuz-$VERSION.tmp /boot/vmlinuz-$VERSION
 function sign_modules() {
 echo "Signature des modules existants
 "; sleep 1
+VERSION="$(uname -r)"
+SHORT_VERSION="$(uname -r | cut -d . -f 1-2)"
+MODULES_DIR=/lib/modules/$VERSION
+KBUILD_DIR=/usr/lib/linux-kbuild-$SHORT_VERSION
 
 find /usr/lib/modules/ -name \*.ko | while read i; \
 do sudo --preserve-env=KBUILD_SIGN_PIN \
-/opt/signtool/sign-file sha256 /var/lib/shim-signed/mok/MOK.priv /var/lib/shim-signed/mok/MOK.der "$i"\
+$KBUILD_DIR/scripts/sign-file sha256 /var/lib/shim-signed/mok/MOK.priv /var/lib/shim-signed/mok/MOK.der "$i"\
 || break; done
 }
 
@@ -149,4 +153,4 @@ import_mok
 sign_kernel
 sign_modules
 install_kernel_autosign
-patch_dkms
+#patch_dkms

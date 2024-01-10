@@ -37,7 +37,7 @@ sleep 1
 ;;
 esac
 
-case $_vmmap
+case $_vmmap in
 n|N)
 echo "vm.max_map_count laissé par défaut"
 ;;
@@ -176,7 +176,7 @@ sleep 0.1
 ;;
 o|O|*)
 echo "Installation de Mesa"
-apt-get install -y libgl1-mesa-dri mesa mesa-vulkan-drivers vulkan-tools > /dev/null
+apt-get install -y libgl1-mesa-dri mesa-va-drivers mesa-vdpau-drivers mesa-vulkan-drivers vulkan-tools > /dev/null
 echo -e "${GREEN}Mesa Vulkan installé${ENDCOLOR}"
 if [[ $_multilib = "o" ]] || [[ $_multilib = "O" ]] || [[ $_multilib = "" ]]; then
 	apt-get install -y libgl1-mesa-dri:i386 mesa-vulkan-drivers:i386 > /dev/null
