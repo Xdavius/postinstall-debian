@@ -89,4 +89,19 @@ cp ./source/logo.png /tmp/
 echo $password | sudo -S bash -e ./source/menu-gui.sh
 }
 
+debian_version="$(cat /etc/os-release | grep VERSION_CODENAME | cut -d '=' -f 2)"
+
+if [[ $debian_version != "bookworm" ]]; then
+  if [ $DESKTOP_SESSION == "plasma" ]; then
+    kdialog --error "Version de Debian non-supportée. Veuillez utiliser la TUI."
+  elif  [ $DESKTOP_SESSION == "plasmawayland" ]; then
+    kdialog --error "Version de Debian non-supportée. Veuillez utiliser la TUI."
+  elif  [ $DESKTOP_SESSION == "gnome" ]; then
+    zenity --error --text="Version de Debian non-supportée. Veuillez utiliser la TUI."
+  elif [ -f /usr/bin/zenity ]; then
+    zenity --error --text="Version de Debian non-supportée. Veuillez utiliser la TUI."
+  fi
+  exit 1
+fi
+
 main

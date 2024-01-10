@@ -32,6 +32,18 @@ ${RED}Cet outil est toujours en dévelloppement ! En cas de problème, merci d'o
 
 "
 
+read -p "- Installer les dépendances recommandées $choice_yes ? " _deps
+if [[ $_deps == "n" ]] || [[ $_deps == "N" ]]; then
+    echo "${RED}Impossible de continuer l'installation sans les dépendances. Fin de l'installation.${ENDCOLOR}"
+    sleep 3
+    exit 1
+fi
+
+sbstate="$(mokutil --sb-state)"
+if [[ $sbstate == "SecureBoot enabled" ]]; then
+    read -p "- SECUREBOOT ACTIF : Voulez-vous configurer le système de signature des modules/kernel $choice_yes ? " _secureboot
+fi
+
 read -p "- Ajouter votre utilisateur au groupe SUDO $choice_yes ? " _sudo
 
 read -p "- Ajouter les dépôts Contrib et Non-free $choice_yes ? " _repos
@@ -47,9 +59,9 @@ read -p "- Augmenter la valeur du vm.max_map_count (Compatibilité augmentée po
 
 read -p "- Ajouter Sid en PIN 10 (Ex: Virtualbox) $choice_yes ? " _sid
 
-read -p "- Installer Flatpak et le dépôt Flathub (GNOME) $choice_yes ? " _flatpak
+read -p "- Installer Flatpak et le dépôt Flathub (GNOME) $choice_no ? " _flatpak
 
-read -p "- Installer Pacstall (AUR pour Debian) $choice_no ? " _pacstall
+read -p "- Installer Pacstall (AUR pour Debian) $choice_yes ? " _pacstall
 
 read -p "- Avez-vous un GPU Nvidia ? $choice_no ? " _gpu
 
