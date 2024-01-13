@@ -3,14 +3,14 @@
 # Root checker
 if [[ $EUID -ne 0 ]]; then
 	echo -e "\n---------------------------------------\n"
-    echo -e "You need to be logged as root (su- / sudo -i)" 1>&2
+    echo -e "Vous devez executer la commande en root (su- / sudo -i)" 1>&2
     echo -e "\n---------------------------------------\n"
 	exit 1
 fi
 
 clear
 
-echo "Installation des drivers Nvidia Cuda LTS (dépôt Nvidia)
+echo "Installation des drivers Nvidia
 "; sleep 2
 
 echo "Nettoyage du système...
@@ -44,25 +44,18 @@ apt update >> /var/log/$LOGNAME.auto-update.txt 2>&1
 echo "Mise à niveau du système..."
 apt full-upgrade -y >> /var/log/$LOGNAME.auto-update.txt 2>&1
 
-echo "Installation... (LONG !)"
-mkdir -p /var/run/nvpd/
-echo "Installation du driver vidéo. Patientez..."
+echo "Installation du driver Nvidia. Patientez..."
 apt install -y nvidia-driver nvidia-settings nvidia-driver-libs:i386 >> /var/log/$LOGNAME.auto-update.txt 2>&1
 
 echo "
-Installation drm-modeset=1
+Ajout de l'option kernel nvidia-drm modeset=1
 "
 
-if [[ -f /etc/modprobe.d/nvidia.conf ]]; then
-    rm /etc/modprobe.d/nvidia.conf
-fi
 touch /etc/modprobe.d/nvidia.conf
 echo "options nvidia-drm modeset=1" > /etc/modprobe.d/nvidia.conf
 
 echo "
-Veuillez REBOOT la machine !!
+Installation réussie, veuillez redémarrer l'ordinateur !!
 "
 
-echo "
-Job done
 "; sleep 2
