@@ -4,6 +4,7 @@ case $_deps in
 o|O)
 
 echo $task_ok
+;;
 n|N|*)
 echo "${RED}Impossible de continuer l'installation sans les dépendances. Fin de l'installation.${ENDCOLOR}"
 sleep 3
