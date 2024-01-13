@@ -1,25 +1,26 @@
 #!/bin/bash
 
 case $_deps in
-o|O)
-
-echo $task_ok
-;;
-n|N|*)
-echo "${RED}Impossible de continuer l'installation sans les dépendances. Fin de l'installation.${ENDCOLOR}"
+n|N)
+echo -e "${RED}Impossible de continuer l'installation sans les dépendances. Fin de l'installation.${ENDCOLOR}"
 sleep 3
 exit 1
+;;
+o|O|*)
+
+echo $task_ok
 ;;
 esac
 
 case $_secureboot in
-o|O)
+n|N)
+echo ""
+;;
+o|O|*)
 source ./SECUREBOOT/install-sb.sh
 echo $task_ok
 ;;
-n|N|*)
-echo ""
-;;
+
 esac
 
 case $_sudo in

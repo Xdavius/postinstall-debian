@@ -34,7 +34,7 @@ ${RED}Cet outil est toujours en dévelloppement ! En cas de problème, merci d'o
 
 read -p "- Installer les dépendances recommandées $choice_yes ? " _deps
 if [[ $_deps == "n" ]] || [[ $_deps == "N" ]]; then
-    echo "${RED}Impossible de continuer l'installation sans les dépendances. Fin de l'installation.${ENDCOLOR}"
+    echo -e "${RED}Impossible de continuer l'installation sans les dépendances. Fin de l'installation.${ENDCOLOR}"
     sleep 3
     exit 1
 fi
