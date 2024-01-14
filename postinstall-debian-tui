@@ -89,11 +89,11 @@ function nvidia2() {
 clear
 echo "          -------------------------- NVIDIA - Autres Drivers --------------------------
 
-1- Installer driver depuis le depot Nvidia Cuda (Nvidia-Latest Stable) (Recommandé/Officiel Nvidia)
+1- Installer driver (DERNIERE VERSION) + dépôt Nvidia (Recommandé/Officiel Nvidia) (Compatible Testing/Sid/Backports)
 
           ----------------------- NVIDIA - Version TEST/DEV -----------------------
 
-2- Installer driver Nvidia de Testing en pin 10 (Pour Debian Stable)
+2- Installer driver Nvidia de Testing en pin 10 (Pour Debian Stable UNIQUEMENT !!)
 3- Installer driver Nvidia Experimental (Nvidia-dev, Necessite Sid pin 10 !)
 
 0- Retour
@@ -159,13 +159,18 @@ echo "          ---------------------------- TOOLS --------------------------
 1- Installer Deb-Get (Debian Stable uniquement)
 2- Installer Pacstall (AUR pour Debian)
 
+
 --- Applications Gaming ---
 
 3- Installer Steam
 4- Installer Lutris (Dépôt additionnel OBS officiel)
 5- Installer Wine-Staging (Dépôt additionnel officiel)
 
+
+--- Applications Supplémentaires ---
+
 D- Installer Discord (Dépot additionnel "Javinator9889")
+
 
 --- Outils Supplémentaires ---
 
@@ -175,6 +180,7 @@ D- Installer Discord (Dépot additionnel "Javinator9889")
 8- Installer les repository de Sid (pin 10) 
 
 9- Utiliser l'outil d'ajout de PPA pour Debian (EXPERTS !!)
+
 
 --- Outils Laptop ---
 

@@ -2,30 +2,37 @@
 
 function main() {
 
-if [ $DESKTOP_SESSION == "plasma" ]; then
-  password=$( kdialog --password "Entrez votre mot de passe SUDO" )
-elif  [ $DESKTOP_SESSION == "plasmawayland" ]; then
-  password=$( kdialog --password "Entrez votre mot de passe SUDO" )
-elif  [ $DESKTOP_SESSION == "gnome" ]; then
-  password=$( zenity --password --text="Entrez votre mot de passe SUDO" )
-elif [ -f /usr/bin/zenity ]; then
-  password=$( zenity --password --text="Entrez votre mot de passe SUDO" )
+if [[ -f /usr/bin/konsole ]]; then
+  if [[ -f /usr/bin/kdialog ]]; then
+    password=$( kdialog --password "Entrez votre mot de passe SUDO" )
+  else
+    konsole -- -e "sudo apt install -y kdialog"
+    main
+  fi
+elif  [[ -f /usr/bin/gnome-terminal ]]; then
+  if  [[ -f /usr/bin/zenity ]]; then
+    password=$( zenity --password --text="Entrez votre mot de passe SUDO" )
+  else
+    gnome-terminal -x "sudo apt install -y zenity"
+    main
+  fi
+else
+  echo "Configuration du script non possible. Installez manuellement zenity (sudo apt install zenity)"
+  exit 1
 fi
 
-#password=$(echo $pwd)
-
 chkroot=$(echo $password | sudo -S whoami)
-if [ "$password" = "" ]; then
+if [[ "$password" = "" ]]; then
 main
 exit
-elif [ "$chkroot" != "root" ]; then
-  if [ $DESKTOP_SESSION == "plasma" ]; then
+elif [[ "$chkroot" != "root" ]]; then
+  if [[ $DESKTOP_SESSION == "plasma" ]]; then
     kdialog --error "Mauvais mot de passe"
-  elif  [ $DESKTOP_SESSION == "plasmawayland" ]; then
+  elif  [[ $DESKTOP_SESSION == "plasmawayland" ]]; then
     kdialog --error "Mauvais mot de passe"
-  elif  [ $DESKTOP_SESSION == "gnome" ]; then
+  elif  [[ $DESKTOP_SESSION == "gnome" ]]; then
     zenity --error --text="Mauvais mot de passe"
-  elif [ -f /usr/bin/zenity ]; then
+  elif [[ -f /usr/bin/zenity ]]; then
     zenity --error --text="Mauvais mot de passe"
   fi
 exit
@@ -39,8 +46,8 @@ logo="./source/logo.png"
 
 install_zenity="echo $password | sudo -S apt install -y zenity"
 
-if [ -f /usr/bin/zenity ]; then
-  if [ -f /usr/bin/yad ]; then
+if [[ -f /usr/bin/zenity ]]; then
+  if [[ -f /usr/bin/yad ]]; then
     echo "rien à faire"
   else
     (echo $password | sudo -S apt -y install yad bash-completion curl dbus-x11) | zenity --progress --pulsate --title="Préparation de YAD" --text="Installation de YAD" --auto-close
@@ -48,11 +55,10 @@ if [ -f /usr/bin/zenity ]; then
 else
   if [[ -f /usr/bin/konsole ]] ; then
     konsole -- -e $install_zenity
-    menu
   elif [[ -f /usr/bin/gnome-terminal ]] ; then
     gnome-terminal -x $install_zenity
   fi
-  if [ -f /usr/bin/yad ]; then
+  if [[ -f /usr/bin/yad ]]; then
     echo "rien à faire"
   else
     (echo $password | sudo -S apt -y install yad bash-completion curl dbus-x11) | zenity --progress --pulsate --title="Préparation de YAD" --text="Installation de YAD" --auto-close
@@ -63,8 +69,8 @@ fi
 echo $password | sudo -S apt-add-repository -y non-free && \
 echo $password | sudo -S dpkg --add-architecture i386) | yad --center --window-icon="$logo" --progress --pulsate --title "Préparation de système" --progress-text="Vérification des dépôts additionnels" --width 500 --height 100 --no-buttons --auto-close
 
-if [ $DESKTOP_SESSION == "gnome" ]; then
-  if [ -f /usr/bin/flatpak ]; then
+if [[ $DESKTOP_SESSION == "gnome" ]]; then
+  if [[ -f /usr/bin/flatpak ]]; then
   echo "Rien à faire."
   else
   (echo $password | sudo -S apt -y install gnome-software-plugin-flatpak flatpak && \
@@ -76,7 +82,7 @@ if [[ -f /usr/bin/konsole ]] ; then
   (echo $password | sudo -S apt -y install pipewire-audio) | yad --center --window-icon="$logo" --progress --pulsate --title "Préparation du système..." --progress-text="Installation de pipewire" --width 500 --height 100 --no-buttons --auto-close
 fi
 
-if [ -f /etc/sysctl.d/80-gamecompatibility.conf ]; then
+if [[ -f /etc/sysctl.d/80-gamecompatibility.conf ]]; then
   echo "vm.max_map_count déjà configuré"
   else
   echo $password | sudo -S echo "vm.max_map_count = 2147483642" | sudo tee /etc/sysctl.d/80-gamecompatibility.conf && \
@@ -92,13 +98,13 @@ echo $password | sudo -S bash -e ./source/menu-gui.sh
 debian_version="$(cat /etc/os-release | grep VERSION_CODENAME | cut -d '=' -f 2)"
 
 if [[ $debian_version != "bookworm" ]]; then
-  if [ $DESKTOP_SESSION == "plasma" ]; then
+  if [[ $DESKTOP_SESSION == "plasma" ]]; then
     kdialog --error "Version de Debian non-supportée. Veuillez utiliser la TUI."
-  elif  [ $DESKTOP_SESSION == "plasmawayland" ]; then
+  elif  [[ $DESKTOP_SESSION == "plasmawayland" ]]; then
     kdialog --error "Version de Debian non-supportée. Veuillez utiliser la TUI."
-  elif  [ $DESKTOP_SESSION == "gnome" ]; then
+  elif  [[ $DESKTOP_SESSION == "gnome" ]]; then
     zenity --error --text="Version de Debian non-supportée. Veuillez utiliser la TUI."
-  elif [ -f /usr/bin/zenity ]; then
+  elif [[ -f /usr/bin/zenity ]]; then
     zenity --error --text="Version de Debian non-supportée. Veuillez utiliser la TUI."
   fi
   exit 1

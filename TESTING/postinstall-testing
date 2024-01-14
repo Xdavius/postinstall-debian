@@ -67,7 +67,7 @@ read -p "- Avez-vous un GPU Nvidia ? $choice_no ? " _gpu
 
 case $_gpu in
 o|O)
-read -p "- Installer le driver Nvidia $choice_yes ? " _nvidia
+read -p "- Installer le driver Nvidia (Dépot Nvidia - Dernière Version) $choice_yes ? " _nvidia
 read -p "- Installer Cuda $choice_yes ? " _cuda
 read -p "- Installer Envycontrol (Laptop Optimus) $unsure $choice_no ? " _envycontrol
 ;;

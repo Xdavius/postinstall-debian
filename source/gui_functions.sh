@@ -60,15 +60,13 @@ function ferme_yad () { PidYad=$(pgrep yad); kill $PidYad;}
 #--------------------------------------------------------------------------------------------------------------------------------------------------
 
 function nvidia_stable () {
-    app_name="STABLE"
+    app_name="NVIDIA LTS STABLE"
     data_loc="./data/nvidia-stable.sh"
     yad_progress
 }
-function nvidia_autre() {
-    nvidia2
-}
+
 function nvidia_remove () {
-    app_name="REMOVE"
+    app_name="NVIDIA REMOVE"
     data_loc="./data/nvidia-rollback.sh"
     yad_progress
 }
@@ -85,7 +83,7 @@ function nvidia_exp () {
     yad_progress
 }
 function nvidia_cuda () {
-    app_name="NVIDIA-CUDA"
+    app_name="NVIDIA DRIVER (LATEST)"
     data_loc="./extra/nvidia-cuda.sh"
     yad_progress
 }
@@ -147,12 +145,12 @@ function lutris () {
     yad_progress
 }
 function pacstall () {
-    app_name="pacstall"
+    app_name="PACSTALL"
     data_loc="./data/pacstall.sh"
     yad_progress
 }
 function backports () {
-    app_name="Stable Backports"
+    app_name="STABLE BACKPORTS"
     data_loc="./extra/backports.sh"
     yad_progress
 }
@@ -167,7 +165,7 @@ function ppa () {
     yad_progress
 }
 function sid () {
-    app_name="Ajouter dépôt SID (PIN 10)"
+    app_name="DEPOT SID (PIN 10)"
     data_loc="./data/install-sid.sh"
     yad_progress
 }
@@ -207,12 +205,12 @@ COM_STABLE="Installer driver Nvidia Stable fournit par Debian, ainsi que CUDA (R
 COM_AUTRE="Autres drivers Nvidia (Pour utilisateurs Expérimentés !!)"
 nvidia=$(yad --center --window-icon="$logo" --title="Gestionnaire NVIDIA" --width 500 --height 170 --text-align="center" --button="Retour:bash -c menu" --button="Quitter:1" \
  --form \
- --field "Installer le driver Nvidia + Cuda de Debian (RECOMMANDÉ) !./source/debian_logo.png! $COM_STABLE:fbtn" "bash -c nvidia_stable" \
- --field "Autres options !./source/package_debian.png! $COM_AUTRE:fbtn" "bash -c nvidia_autre" \
+ --field "Installer le driver Nvidia de Debian (RECOMMANDÉ) !./source/debian_logo.png! $COM_STABLE:fbtn" "bash -c nvidia_stable" \
+ --field "Options avancée (EXPERT) !./source/package_debian.png! $COM_AUTRE:fbtn" "bash -c nvidia2" \
 )
 }
 
-function nvidia2 () {
+function nvidia2() {
 logo
 ferme_yad
 COM_EXPERIMENTAL="Installer driver Nvidia Experimental (Necessite l'activation de Sid pin 10)"
@@ -221,7 +219,7 @@ COM_TESTING="Installer driver Nvidia de Testing en pin 10 (Pour Debian Stable)"
 COM_REMOVE="Supprimer le driver Nvidia Propriétaire et nettoyer le système"
 nvidia2=$(yad --center --window-icon="$logo" --title="Gestionnaire NVIDIA" --width 500 --height 170 --text-align="center" --button="Retour:bash -c nvidia" --button="Quitter:1" \
  --form \
- --field "Installer le driver + Cuda du dépôt Nvidia !./source/nvidia_logo.png! $COM_CUDA:fbtn" "bash -c nvidia_cuda" \
+ --field "Installer le driver (DERNIERE VERSION) + dépôt Nvidia !./source/nvidia_logo.png! $COM_CUDA:fbtn" "bash -c nvidia_cuda" \
  --field "Purger les drivers Nvidia !./source/package-delete.png! $COM_REMOVE:fbtn" "bash -c nvidia_remove"\
 )
 }
