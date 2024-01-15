@@ -9,7 +9,7 @@ Les ISOs lives sont disponibles ici :
 
 Le mot de passe ROOT/SUDO des ISOs live est : **live**
 
-**L'interface GUI a été pensée pour fonctionner avec GNOME et KDE. Une compatibilié est en cours pour prendre en charge CINNAMON,
+**L'interface GUI a été pensée pour fonctionner avec GNOME et KDE et Debian 12/Stable. Une compatibilié est en cours pour prendre en charge CINNAMON,
 et à terme, un support complet pour Linux Mint Debian Edition.**
 
 
@@ -21,7 +21,6 @@ et à terme, un support complet pour Linux Mint Debian Edition.**
 
 
 ## AVANT DE COMMENCER :
-
 
 **Il est nécessaire d'avoir configuré SUDO pour utiliser la version GUI.**
 
@@ -51,7 +50,11 @@ Pour quitter l'invite de commande root, tapez 'exit'.
 ## INSTALLATION :
 
 
-**UTILISATION AVEC INTERFACE GRAPHIQUE (MODE SIMPLIFIÉ) :**
+**UTILISATION AVEC INTERFACE GRAPHIQUE (MODE SIMPLIFIÉ/Débutants - Debian 12/STABLE Uniquement) :**
+
+
+**L'utilisation de la GUI est volairement bloquée sur Testing/Sid.**
+**Si vous utilisez ces version, c'est que vous avez déjà les bases. Vous devrez alors utiliser la TUI**
 
 
 L'interface graphique est optimisée pour GNOME et KDE uniquement.
@@ -83,19 +86,14 @@ L'interface graphique est optimisée pour GNOME et KDE uniquement.
 
 
 **POUR CEUX SOUHAITANT UTILISER L'INTERFACE TUI (MODE EXPERT) :**
-
   
-Vous devez exécuter l'application depuis un terminal en root :
-
-- Pour passer root : 
-
-       sudo -i (ou su -)
+Vous devez exécuter l'application depuis un terminal en root ou en utilisateur :
 
 - Pour exécuter l'application :
 
        bash postinstall-debian-tui
 
-- Alternativement, vous pouvez aussi lancer en sudo :
+Alternativement, vous pouvez aussi lancer en sudo ou en root (su -) :
    
        sudo bash postinstall-debian-tui
 
@@ -123,6 +121,16 @@ Vous devez exécuter l'application depuis un terminal en root :
   choissez ENROLL MOK, puis CONTINUE, puis YES (Suivez les instructions en Anglais hélas) le mot de passe à usage unique vous sera demandé (celui que vous avez choisi un peu plus tôt).
   
 - Il n'y a pas d'avertissement de réussite mais la première option aura disparu, choisissez REBOOT.
+
+## Debian Testing/Sid
+
+Si vous utilisez ces versions, il est recommandé d'utiliser le script **Postinstall-Testing AIO** depuis l'interface TUI.
+Toutefois pour les plus experts, les autres options restent disponible malgrès le risque d'incompatibilités.
+
+Le script est toujours en Bêta et de nouvelles options vont continuer à arriver.
+Si vous avez besoin des derniers firmwares AMD/Linux, choisissez les options 4 puis 6 de l'interface TUI.
+
+**N'utilisez pas DEBIAN TESTING/SID sans avoir acquis les bases de Debian**
 
 ## Kernels Customs :
 
