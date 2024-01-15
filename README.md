@@ -167,7 +167,8 @@ Une fois terminé, redémarrez la machine.
   - faites :
     
           chroot /target bash
-          apt install git
+          cd /root
+          apt install git wget
           git clone -b dev https://github.com/xdavius/postinstall-debian.git
           cd postinstall-debian
           bash postinstall-debian-tui
