@@ -166,17 +166,17 @@ Une fois terminé, redémarrez la machine.
   - Démarrer un sheel
   - faites :
     
-                chroot /target bash
-                apt install git
-                git clone -b dev https://github.com/xdavius/postinstall-debian.git
-                cd postinstall-debian
-                bash postinstall-debian-tui
+          chroot /target bash
+          apt install git
+          git clone -b dev https://github.com/xdavius/postinstall-debian.git
+          cd postinstall-debian
+          bash postinstall-debian-tui
   
   - Puis installez les linux-firmwares-git (option 4 puis 6)
   - Installez un kernel récent au besoin (exemple liquorix, sans secureboot)
     
-                apt install curl
-                curl -s 'https://liquorix.net/install-liquorix.sh' | sudo bash
+          apt install curl
+          curl -s 'https://liquorix.net/install-liquorix.sh' | sudo bash
 
 ## Contenu des scripts :
 
