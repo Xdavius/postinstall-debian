@@ -29,50 +29,51 @@ fi
 
 function sudo_help() {
 
-	echo -e "\n---------------------------------------\n
-	"
-    echo -e 'Veuillez exécuter le script en tant que ROOT (su - / sudo -i)
-
-    Exemple : "sudo bash postinstall-tui"
-
-    Configurer Sudo : Votre utilisateur doit faire partie du groupe Sudo.
-    '
-    read -p "Voulez vous ajouter votre utilisateur maintenant au groupe SUDO ou lancer le script avec ROOT ? [sudo/root/n] " sudo_configure
+clear
+echo "Le script necessite les droits d'administration pour fonctionner.
+"
+is_user_sudo=$(sudo -k)
+if [[ $is_user_sudo == "" ]] ; then
+    echo "Votre utilisateur ne fait pas partie du groupe Sudo."
+    echo "Cette configuration est optionnelle mais recommandée."
+    read -p "Voulez vous ajouter votre utilisateur maintenant au groupe SUDO [o/N] ? " sudo_configure
     case $sudo_configure in
-    sudo|SUDO|Sudo)
+    o|O)
     if [[ ! -f /usr/bin/sudo ]]; then
-        su - -c "apt install -y sudo"
+        echo "Sudo non installé, installation..."
+        su - -c "apt install -y sudo > /dev/null"
     fi
-        su - -c "usermod -aG sudo $(who | grep tty | cut -d " " -f 1)"
-        echo "
-        Vous devez vous relogguer pour que les modifications prennent effet. Lancement du script avec root.
-        "
-        sleep 2
-        run_script
-        exit 1
-    ;;
-    root|ROOT|Root)
+    echo "Ajout de l'utilisateur au groupe SUDO"
+    su - -c "usermod -aG sudo $(who | grep tty | cut -d " " -f 1)"
+    echo "
+    Vous devrez vous relogguer pour que les modifications prennent effet. Lancement du script avec root.
+    "
+    sleep 2
     run_script
     exit 1
     ;;
-    *)
-    echo "Arret du script."
-    echo -e "\n---------------------------------------\n"
-	exit 1
-	;;
-	esac
+    n|N|*)
+    run_script
+    exit 1
+    ;;
+    esac
+fi
+run_script
+exit 1
 }
 
 function run_script() {
 clear
 echo "Lancementdu script avec le compte ROOT "
 su root -c "bash $homedir/postinstall-debian-tui"
+exit 1
 }
 
 function run_with_sudo() {
 echo "
 Le script à besoin des droits ROOT pour fonctionner. Utilisation de sudo pour exécuter le script.
 "
+sudo chmod +x $homedir/postinstall-debian-tui
 sudo $homedir/postinstall-debian-tui
 exit 1
 }

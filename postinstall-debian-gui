@@ -23,8 +23,8 @@ fi
 
 chkroot=$(echo $password | sudo -S whoami)
 if [[ "$password" = "" ]]; then
-main
-exit
+  main
+  exit
 elif [[ "$chkroot" != "root" ]]; then
   if [[ $DESKTOP_SESSION == "plasma" ]]; then
     kdialog --error "Mauvais mot de passe"
@@ -98,15 +98,21 @@ echo $password | sudo -S bash -e ./source/menu-gui.sh
 debian_version="$(cat /etc/os-release | grep VERSION_CODENAME | cut -d '=' -f 2)"
 
 if [[ $debian_version != "bookworm" ]]; then
-  if [[ $DESKTOP_SESSION == "plasma" ]]; then
+  if [[ -f /usr/bin/kdialog ]]; then
     kdialog --error "Version de Debian non-supportée. Veuillez utiliser la TUI."
-  elif  [[ $DESKTOP_SESSION == "plasmawayland" ]]; then
-    kdialog --error "Version de Debian non-supportée. Veuillez utiliser la TUI."
-  elif  [[ $DESKTOP_SESSION == "gnome" ]]; then
-    zenity --error --text="Version de Debian non-supportée. Veuillez utiliser la TUI."
+    exit 1
   elif [[ -f /usr/bin/zenity ]]; then
     zenity --error --text="Version de Debian non-supportée. Veuillez utiliser la TUI."
+    exit 1
+  elif [[ -f /usr/bin/konsole ]]; then
+    konsole -- -e "echo 'Version de Debian non-supportée. Veuillez utiliser la TUI'" &
+    exit 1
+  elif [[ -f /usr/bin/gnome-terminal ]]; then
+    gnome-terminal -x "echo 'Version de Debian non-supportée. Veuillez utiliser la TUI'" &
+    exit 1
   fi
+else
+  echo "Version de Debian non-supportée. Veuillez utiliser la TUI"
   exit 1
 fi
 

@@ -2,12 +2,11 @@
 
 case $_deps in
 n|N)
-echo -e "${RED}Impossible de continuer l'installation sans les dépendances. Fin de l'installation.${ENDCOLOR}"
-sleep 3
-exit 1
+echo ""
 ;;
 o|O|*)
-
+echo "Installation des dépendances recommandées"
+apt install -y dbus-x11 pipewire-audio firmware-sof-signed > /dev/null
 echo $task_ok
 ;;
 esac
