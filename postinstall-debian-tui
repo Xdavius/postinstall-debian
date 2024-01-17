@@ -4,16 +4,79 @@
 source ./source/scripts-tui.sh
 ######
 
-clear
 # Root checker
+function root_check() {
+echo "Utilisateur du script : $(whoami)"
 if [[ $EUID -ne 0 ]]; then
-	echo -e "\n---------------------------------------\n"
-    echo -e "Setup: must be run logged as root (su - / sudo -i)" 1>&2
-    echo -e "\n---------------------------------------\n"
-	exit 1
+    echo "Accès root interdit."
+    if [[ -f /usr/bin/sudo ]]; then
+        echo "Sudo installé"
+        is_user_sudo=$(sudo -k)
+        if [[ $is_user_sudo == "" ]] ; then
+            echo "Sudo configuré pour l'utilisateur."
+            run_with_sudo
+            exit 1
+        else
+        sudo_help
+        fi
+    else
+    sudo_help
+    fi
+else
+menu1
 fi
+}
 
-chmod +x ./data/*.sh
+function sudo_help() {
+
+clear
+echo "Le script necessite les droits d'administration pour fonctionner.
+"
+is_user_sudo=$(sudo -k)
+if [[ $is_user_sudo == "" ]] ; then
+    echo "Votre utilisateur ne fait pas partie du groupe Sudo."
+    echo "Cette configuration est optionnelle mais recommandée."
+    read -p "Voulez vous ajouter votre utilisateur maintenant au groupe SUDO [o/N] ? " sudo_configure
+    case $sudo_configure in
+    o|O)
+    if [[ ! -f /usr/bin/sudo ]]; then
+        echo "Sudo non installé, installation..."
+        su - -c "apt install -y sudo > /dev/null"
+    fi
+    echo "Ajout de l'utilisateur au groupe SUDO"
+    su - -c "usermod -aG sudo $(who | grep tty | cut -d " " -f 1)"
+    echo "
+    Vous devrez vous relogguer pour que les modifications prennent effet. Lancement du script avec root.
+    "
+    sleep 2
+    run_script
+    exit 1
+    ;;
+    n|N|*)
+    run_script
+    exit 1
+    ;;
+    esac
+fi
+run_script
+exit 1
+}
+
+function run_script() {
+clear
+echo "Lancementdu script avec le compte ROOT "
+su root -c "bash $homedir/postinstall-debian-tui"
+exit 1
+}
+
+function run_with_sudo() {
+echo "
+Le script à besoin des droits ROOT pour fonctionner. Utilisation de sudo pour exécuter le script.
+"
+sudo chmod +x $homedir/postinstall-debian-tui
+sudo $homedir/postinstall-debian-tui
+exit 1
+}
 
 function menu1() {
 clear
@@ -46,7 +109,8 @@ t|T) debian_testing
       ;;
 f|F)  neofrog
       ;;
-0)  clear && exit 1
+0)  export success="2"
+    clear && exit 1
     ;;
 *)  menu1
     ;;
@@ -89,11 +153,11 @@ function nvidia2() {
 clear
 echo "          -------------------------- NVIDIA - Autres Drivers --------------------------
 
-1- Installer driver depuis le depot Nvidia Cuda (Nvidia-Latest Stable) (Recommandé/Officiel Nvidia)
+1- Installer driver (DERNIERE VERSION) + dépôt Nvidia (Recommandé/Officiel Nvidia) (Compatible Testing/Sid/Backports)
 
           ----------------------- NVIDIA - Version TEST/DEV -----------------------
 
-2- Installer driver Nvidia de Testing en pin 10 (Pour Debian Stable)
+2- Installer driver Nvidia de Testing en pin 10 (Pour Debian Stable UNIQUEMENT !!)
 3- Installer driver Nvidia Experimental (Nvidia-dev, Necessite Sid pin 10 !)
 
 0- Retour
@@ -159,13 +223,18 @@ echo "          ---------------------------- TOOLS --------------------------
 1- Installer Deb-Get (Debian Stable uniquement)
 2- Installer Pacstall (AUR pour Debian)
 
+
 --- Applications Gaming ---
 
 3- Installer Steam
 4- Installer Lutris (Dépôt additionnel OBS officiel)
 5- Installer Wine-Staging (Dépôt additionnel officiel)
 
+
+--- Applications Supplémentaires ---
+
 D- Installer Discord (Dépot additionnel "Javinator9889")
+
 
 --- Outils Supplémentaires ---
 
@@ -175,6 +244,7 @@ D- Installer Discord (Dépot additionnel "Javinator9889")
 8- Installer les repository de Sid (pin 10) 
 
 9- Utiliser l'outil d'ajout de PPA pour Debian (EXPERTS !!)
+
 
 --- Outils Laptop ---
 
@@ -218,4 +288,9 @@ esac
 
 }
 
-menu1
+clear
+export homedir=$(pwd)
+chmod +x $homedir/data/*.sh
+root_check
+
+

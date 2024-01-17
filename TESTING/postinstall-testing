@@ -19,6 +19,8 @@ choice_no=$(echo -e [${ENDCOLOR}o${ENDCOLOR}/${RED}N${ENDCOLOR}])
 unsure=$(echo -e ${RED}Say NO if unsure${ENDCOLOR})
 task_ok=$(echo -e [${GREEN}OK${ENDCOLOR}])
 
+debian_version="$(cat /etc/os-release | grep VERSION_CODENAME | cut -d '=' -f 2)"
+
 echo -e "${RED}----------------------------------------------------------------------------------------------${ENDCOLOR}
 
                                         POSTINSTALL DEBIAN TESTING
@@ -30,13 +32,63 @@ Veuillez répondre au questionnaire. L'installation se fera une fois celui-ci co
 
 ${RED}Cet outil est toujours en dévelloppement ! En cas de problème, merci d'ouvrir une issue !${ENDCOLOR}
 
+Dépendances nécessaires au script : bash-completion curl wget
+Dépendances de compatibilité/recommandées : firmware-sof-signed dbus-x11 pipewire-audio
+
+Verion de Debian actuelle : $debian_version
 "
+case $1 in
+debug)
+read -p "Version de Debian à débug : " debian_debug
+if [[ $debian_debug = "testing" ]] ; then
+    debian_version="$(echo testing)"
+elif [[ $debian_debug = "sid" ]] ; then
+    debian_version="$(echo sid)"
+fi
+;;
+esac
 
+case $debian_version in
+testing|sid)
+echo "Version de Debian valide
+"
+;;
+*)
+if [[ "$debian_version" != "testing" ]] || [[ "$debian_version" != "sid" ]] ; then
+    echo -e "${RED}    Ce script ne supporte que les codename testing et sid.
+    Veuillez modifier le fichier /etc/apt/sources.list en conséquence et upgrade votre système.
+    Fin du script${ENDCOLOR}"
+    sleep 2
+    exit 1
+fi
+;;
+esac
+
+read -p "- Installer les dépendances obligatoires $choice_yes ? " _depsobl
+if [[ $_depsobl == "n" ]] || [[ $_depsobl == "N" ]]; then
+    echo -e "${RED}Impossible de continuer l'installation sans les dépendances. Fin de l'installation.${ENDCOLOR}"
+    sleep 2
+    exit 1
+else
+echo "Installation des dépendances"
+apt-get install -y bash-completion curl wget > /dev/null
+fi
+
+read -p "- Installer les dépendances de compatibilité $choice_yes ? " _deps
+
+sbstate="$(mokutil --sb-state)"
+if [[ $sbstate == "SecureBoot enabled" ]]; then
+    read -p "- SECUREBOOT ACTIF : Voulez-vous configurer le système de signature des modules/kernel $choice_yes ? " _secureboot
+fi
+
+is_user_sudo=$(sudo -k)
+if [[ "$is_user_sudo" != "" ]] ; then
 read -p "- Ajouter votre utilisateur au groupe SUDO $choice_yes ? " _sudo
+fi
 
-read -p "- Ajouter les dépôts Contrib et Non-free $choice_yes ? " _repos
+read -p "- Ajouter les dépôts Contrib et Non-free (Obligatoire pour Steam et Nvidia) $choice_yes ? " _repos
 
-read -p "- Ajouter le Multilib $choice_yes ? " _multilib
+read -p "- Ajouter le Multilib (Obligatoire pour le Gaming) $choice_yes ? " _multilib
 if [[ $_multilib = "o" ]] || [[ $_multilib = "O" ]] || [[ $_multilib = "" ]]; then
     read -p "- Installer les applications Gaming (Steam, Lutris Wine) $choice_yes ? " _gaming
 else
@@ -45,9 +97,11 @@ fi
 
 read -p "- Augmenter la valeur du vm.max_map_count (Compatibilité augmentée pour les jeux vidéos) $choice_yes ? " _vmmap
 
-read -p "- Ajouter Sid en PIN 10 (Ex: Virtualbox) $choice_yes ? " _sid
+if [[ $debian_version == "testing" ]]; then
+    read -p "- Ajouter Sid en PIN 10 (Ex: Virtualbox) $choice_yes ? " _sid
+fi
 
-read -p "- Installer Flatpak et le dépôt Flathub (GNOME) $choice_yes ? " _flatpak
+read -p "- Installer Flatpak et le dépôt Flathub (GNOME) $choice_no ? " _flatpak
 
 read -p "- Installer Pacstall (AUR pour Debian) $choice_no ? " _pacstall
 
@@ -55,7 +109,7 @@ read -p "- Avez-vous un GPU Nvidia ? $choice_no ? " _gpu
 
 case $_gpu in
 o|O)
-read -p "- Installer le driver Nvidia $choice_yes ? " _nvidia
+read -p "- Installer le driver Nvidia (Dépot Nvidia - Dernière Version) $choice_yes ? " _nvidia
 read -p "- Installer Cuda $choice_yes ? " _cuda
 read -p "- Installer Envycontrol (Laptop Optimus) $unsure $choice_no ? " _envycontrol
 ;;

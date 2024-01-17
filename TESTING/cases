@@ -1,3 +1,27 @@
+#!/bin/bash
+
+case $_deps in
+n|N)
+echo ""
+;;
+o|O|*)
+echo "Installation des dépendances recommandées"
+apt install -y dbus-x11 pipewire-audio firmware-sof-signed > /dev/null
+echo $task_ok
+;;
+esac
+
+case $_secureboot in
+n|N)
+echo ""
+;;
+o|O|*)
+source ./SECUREBOOT/install-sb.sh
+echo $task_ok
+;;
+
+esac
+
 case $_sudo in
 n|N)
 sleep 0.1
@@ -111,7 +135,7 @@ dpkg -i cuda-keyring_${keyring_version}.deb  > /dev/null
 rm cuda-keyring_${keyring_version}.deb > /dev/null
 apt-get update -y > /dev/null
 echo "Installation du driver Nvidia en cours, patientez..."
-apt-get install -y nvidia-driver nvidia-settings vulkan-tools libglvnd-dev > /dev/null
+apt-get install -y nvidia-driver nvidia-settings vulkan-tools libglvnd-dev pkg-config > /dev/null
 
 if [[ $_multilib = "o" ]] || [[ $_multilib = "O" ]] || [[ $_multilib = "" ]]; then
 	echo "Installation des lib32"
