@@ -99,28 +99,50 @@ cp ./source/logo.png /tmp/
 echo $password | sudo -S bash -e ./source/menu-gui.sh
 }
 
+function error() {
+
+case $1 in
+kdialog)
+kdialog --error "Version de Debian non-supportée. Veuillez utiliser la TUI."
+;;
+zenity)
+zenity --error --text="Version de Debian non-supportée. Veuillez utiliser la TUI."
+;;
+konsole)
+konsole -- -e "bash -c $srcdir/source/error.sh"
+;;
+gnome-terminal)
+gnome-terminal -x "bash -c $srcdir/source/error.sh"
+;;
+*)
+echo "Version de Debian non-supportée. Veuillez utiliser la TUI"
+;;
+esac
+exit 1
+}
+
+srcdir=$(pwd)
+chmod +x $srcdir/source/*.sh
 debian_version="$(cat /etc/os-release | grep VERSION_CODENAME | cut -d '=' -f 2)"
 
+if [[ -f /usr/bin/kdialog ]]; then
+  compat="kdialog"
+elif [[ -f /usr/bin/zenity ]]; then
+  compat="zenity"
+elif [[ -f /usr/bin/konsole ]]; then
+  compat="konsole"
+elif [[ -f /usr/bin/gnome-terminal ]]; then
+  compat="gnome-terminal"
+fi
+
+echo "compat : $compat"
+
 case $debian_version in
-bookworm|stable)
+bookworm|stable|faye)
 main
 ;;
 *)
-if [[ -f /usr/bin/kdialog ]]; then
-  kdialog --error "Version de Debian non-supportée. Veuillez utiliser la TUI."
-  exit 1
-elif [[ -f /usr/bin/zenity ]]; then
-  zenity --error --text="Version de Debian non-supportée. Veuillez utiliser la TUI."
-  exit 1
-elif [[ -f /usr/bin/konsole ]]; then
-  konsole -- -e "echo 'Version de Debian non-supportée. Veuillez utiliser la TUI'" &
-  exit 1
-elif [[ -f /usr/bin/gnome-terminal ]]; then
-  gnome-terminal -x "echo 'Version de Debian non-supportée. Veuillez utiliser la TUI'" &
-  exit 1
-else
-  echo "Version de Debian non-supportée. Veuillez utiliser la TUI"
-  exit 1
-fi
+error $compat
 ;;
 esac
+
