@@ -11,6 +11,9 @@ fi
 echo "Job start : Installing Lutris Latest
 " ; sleep 2
 
+apt-get install -y gpg
+dpkg --add-architecture i386
+
 echo "Ajout du dépôt lutris.list"
 echo "deb [signed-by=/etc/apt/keyrings/lutris.gpg] https://download.opensuse.org/repositories/home:/strycore/Debian_12/ ./" | sudo tee /etc/apt/sources.list.d/lutris.list > /dev/null
 
