@@ -64,7 +64,7 @@ exit 1
 
 function run_script() {
 clear
-echo "Lancementdu script avec le compte ROOT "
+echo "Lancement du script avec le compte ROOT "
 su root -c "bash $homedir/postinstall-debian-tui"
 exit 1
 }
@@ -93,7 +93,7 @@ T- Postinstall Debian TESTING / SID (Bêta)
 
 "
 
-read -n1 -p "Choix ? " choix
+read -n2 -p "Choix ? " choix
 
 case "$choix" in
 
@@ -131,7 +131,7 @@ echo "          -------------------------- NVIDIA --------------------------
 
 "
 
-read -n1 -p "Choix ? " choix
+read -n2 -p "Choix ? " choix
 
 case "$choix" in
 
@@ -164,7 +164,7 @@ echo "          -------------------------- NVIDIA - Autres Drivers -------------
 
 "
 
-read -n1 -p "Choix ? " choix
+read -n2 -p "Choix ? " choix
 
 case "$choix" in
 
@@ -195,7 +195,7 @@ echo "          ---------------------------- AMD ---------------------------
 
 "
 
-read -n1 -p "Choix ? " choix
+read -n2 -p "Choix ? " choix
 
 case "$choix" in
 
@@ -236,13 +236,14 @@ echo "          ---------------------------- TOOLS --------------------------
 D- Installer Discord (Dépot additionnel "Javinator9889")
 
 
---- Outils Supplémentaires ---
+--- Outils Linux ---
 
 6- Mettre à jour les Firmware-Linux à la dernière version GIT
-
 7- Ajouter les dépôts Backports pour Debian Stable
-8- Installer les repository de Sid (pin 10) 
 
+--- Outils Supplémentaires ---
+
+8- Installer les repository de Sid (pin 10) 
 9- Utiliser l'outil d'ajout de PPA pour Debian (EXPERTS !!)
 
 
@@ -254,7 +255,7 @@ E- Installer Envycontrol
 
 "
 
-read -n1 -p "Choix ? " choix
+read -n2 -p "Choix ? " choix
 
 case "$choix" in
 
