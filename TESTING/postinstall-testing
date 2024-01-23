@@ -32,7 +32,8 @@ Veuillez répondre au questionnaire. L'installation se fera une fois celui-ci co
 
 ${RED}Cet outil est toujours en dévelloppement ! En cas de problème, merci d'ouvrir une issue !${ENDCOLOR}
 
-Dépendances nécessaires au script : bash-completion curl wget
+Dépendances nécessaires au script : bash-completion curl wget software-properties-common
+
 Dépendances de compatibilité/recommandées : firmware-sof-signed dbus-x11 pipewire-audio
 
 Verion de Debian actuelle : $debian_version
@@ -71,7 +72,7 @@ if [[ $_depsobl == "n" ]] || [[ $_depsobl == "N" ]]; then
     exit 1
 else
 echo "Installation des dépendances"
-apt-get install -y bash-completion curl wget > /dev/null
+apt-get install -y bash-completion curl wget software-properties-common > /dev/null
 fi
 
 read -p "- Installer les dépendances de compatibilité $choice_yes ? " _deps
