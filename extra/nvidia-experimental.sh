@@ -12,38 +12,26 @@ clear
 echo "Job start : Installing Nvidia Experimental Drivers
 "; sleep 2
 
-echo "*** BUG DEBIAN 12 LIVE ISOS :
-
-Le paquet raspi-firmware installé par défaut dans ces isos est cassée, empêchant la mise à jour de l'initramfs.
-Par sécurité, il sera désinstallé et nettoyé. Si vous en avez besoin, considérez le bug et prenez un paquet plus récent en provenance de Sid sur pkgs.org ***
-
-NOTE : Un clean de vulkan/mesa/nvidia sera effectué pour éviter tout conflit. En cas de necessité, vous devrez reinstaller mesa-vulkan-drivers mesa-vulkan-drivers:i386 (INTEL/AMD).
-
-"; sleep 5
-
-apt autopurge -y raspi-firmware > /var/log/$LOGNAME.auto-update.txt 2>&1
-rm /etc/initramfs/post-update.d/z50-raspi-firmware
-
 echo "Nettoyage du système 
 "; sleep 2
 
-apt autopurge -y nvidia-driver nvidia-settings nvidia-driver-libs:i386 cuda nvidia-gds mesa-vulkan-drivers mesa-vulkan-drivers:i386 nvidia-* nvidia*:i386 cuda-* >> /var/log/$LOGNAME.auto-update.txt 2>&1
+apt autopurge -y nvidia-driver nvidia-settings nvidia-driver-libs:i386 cuda nvidia-gds mesa-vulkan-drivers mesa-vulkan-drivers:i386 nvidia-* nvidia*:i386 cuda-* > /var/log/$LOGNAME.auto-update.txt 2>&1
 
 if [ ! -x /etc/apt/sources.list.d/experimental.list ]
 then
     echo "deb http://deb.debian.org/debian experimental non-free-firmware contrib non-free main" > /etc/apt/sources.list.d/experimental.list
 fi
-
-dpkg --add-architecture i386 >> /var/log/$LOGNAME.auto-update.txt 2>&1
-apt update >> /var/log/$LOGNAME.auto-update.txt 2>&1
+apt update -y >> /var/log/$LOGNAME.auto-update.txt 2>&1
 
 echo "
 Préparation des dépendances 
 "
 sleep 2
+apt-get install -y software-properties-common >> /var/log/$LOGNAME.auto-update.txt 2>&1
 dpkg --add-architecture i386 >> /var/log/$LOGNAME.auto-update.txt 2>&1
 add-apt-repository -y contrib >> /var/log/$LOGNAME.auto-update.txt 2>&1
 add-apt-repository -y non-free >> /var/log/$LOGNAME.auto-update.txt 2>&1
+
 
 apt install -y linux-headers-amd64 build-essential dkms libglvnd-dev firmware-misc-nonfree pkg-config wget >> /var/log/$LOGNAME.auto-update.txt 2>&1
 
