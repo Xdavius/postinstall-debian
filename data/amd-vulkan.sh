@@ -13,6 +13,8 @@ echo "Installation de Vulkan AMD/Intel
 "; sleep 2
 
 echo "Vérification des dépôts additionnels"; sleep 1
+
+apt-get install -y software-properties-common >> /var/log/$LOGNAME.auto-update.txt 2>&1
 dpkg --add-architecture i386
 apt-add-repository -y contrib > /var/log/$LOGNAME.auto-update.txt 2>&1
 apt-add-repository -y non-free >> /var/log/$LOGNAME.auto-update.txt 2>&1
