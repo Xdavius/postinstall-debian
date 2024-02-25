@@ -10,9 +10,11 @@ fi
 
 clear
 echo "Installation de Discord
-"; sleep 2
+"; sleep 2 | tee /var/log/$LOGNAME.auto-update.txt 2>&1
 
 echo "Installation de la clé du dépôt"
+
+apt-get install -y gpg >> /var/log/$LOGNAME.auto-update.txt 2>&1
 
 mkdir -p /root/.gnupg
 
@@ -25,7 +27,7 @@ echo "Rafraîchissement des dépôts"
 apt update -y >> /var/log/$LOGNAME.auto-update.txt 2>&1
 
 echo "Installation de Discord"
-apt install -y discord >> /var/log/$LOGNAME.auto-update.txt 2>&1
+apt-get install -y discord >> /var/log/$LOGNAME.auto-update.txt 2>&1
 
 echo "
 Job done

@@ -201,12 +201,32 @@ fi
 function nvidia() {
 logo
 ferme_yad
-COM_STABLE="Installer driver Nvidia Stable fournit par Debian, ainsi que CUDA (Recommandé)"
-COM_AUTRE="Autres drivers Nvidia (Pour utilisateurs Expérimentés !!)"
-nvidia=$(yad --center --window-icon="$logo" --title="Gestionnaire NVIDIA" --width 500 --height 170 --text-align="center" --button="Retour:bash -c menu" --button="Quitter:1" \
- --form \
- --field "Installer le driver Nvidia de Debian (RECOMMANDÉ) !./source/debian_logo.png! $COM_STABLE:fbtn" "bash -c nvidia_stable" \
- --field "Options avancée (EXPERT) !./source/package_debian.png! $COM_AUTRE:fbtn" "bash -c nvidia2" \
+#COM_STABLE="Installer driver Nvidia Stable fournit par Debian, ainsi que CUDA (Recommandé)"
+#COM_AUTRE="Autres drivers Nvidia (Pour utilisateurs Expérimentés !!)"
+#nvidia=$(yad --center --window-icon="$logo" --title="Gestionnaire NVIDIA" --width 500 --height 170 --text-align="center" --button="Retour:bash -c menu" --button="Quitter:1" \
+# --form \
+# --field "Installer le driver Nvidia de Debian (RECOMMANDÉ) !./source/debian_logo.png! $COM_STABLE:fbtn" "bash -c nvidia_stable" \
+#--field "Options avancée (EXPERT) !./source/package_debian.png! $COM_AUTRE:fbtn" "bash -c nvidia2" \
+nvidia=$(yad --center --window-icon="$logo2" --width 300 --height 170 --title="CHANGEMENT IMPORTANT" --text-align="center" --text="
+        
+       Suite à de nombreux retours et à la refonte du projet, les drivers nvidia ont migrés sur pacstall.
+       Cela permet d'utiliser des drivers plus récents, et proposer toutes les versions du driver.
+
+       1- Rendez vous à cette adresse pour les instructions d'installation :
+
+       https://github.com/Xdavius/vortex-linux/blob/main/vortex-repository/README.md
+        
+       2- Une fois l'installation effectuée, faites :
+       
+                   pacstall -S nvidia
+                   
+       pour rechercher les différents drivers disponibles, puis pour installer :
+
+                   pacstall -I nvidia-driver-<VERSION>-dkms-bundle
+
+        Rebootez la machine une fois terminé.
+        
+        " --button="OK:bash -c menu"
 )
 }
 

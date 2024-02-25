@@ -10,33 +10,19 @@ fi
 
 clear
 
-echo "Installation des Nvidia Drivers Stable + Cuda 
-"; sleep 2
-
-echo "*** BUG DEBIAN 12 LIVE ISOS :
-
-Le paquet raspi-firmware installé par défaut dans ces isos est cassée, empêchant la mise à jour de l'initramfs.
-Par sécurité, il sera désinstallé et nettoyé. Si vous en avez besoin, considérez le bug et prenez un paquet plus récent en provenance de Sid sur pkgs.org ***
-
-NOTE : Un clean de vulkan/mesa/nvidia sera effectué pour éviter tout conflit. En cas de necessité, vous devrez reinstaller mesa-vulkan-drivers mesa-vulkan-drivers:i386 (INTEL/AMD).
-
-Veuillez patienter...
-"; sleep 5
-
-apt autopurge -y raspi-firmware > /var/log/$LOGNAME.auto-update.txt 2>&1
-rm /etc/initramfs/post-update.d/z50-raspi-firmware
+echo "Installation des Nvidia Drivers Stable 
 
 echo "
 Nettoyage du système :
 "; sleep 2
 
-apt autopurge -y nvidia-* libnvidia* cuda-* nvidia*:i386 mesa-vulkan-drivers mesa-vulkan-drivers:i386 >> /var/log/$LOGNAME.auto-update.txt 2>&1
+apt autopurge -y nvidia-* libnvidia* cuda-* nvidia*:i386 mesa-vulkan-drivers mesa-vulkan-drivers:i386 > /var/log/$LOGNAME.auto-update.txt 2>&1
 rm /etc/apt/sources.list.d/cuda*.list 
 
 echo "
 Préparation des dépendances :
 "; sleep 2
-
+apt-get install -y software-properties-common >> /var/log/$LOGNAME.auto-update.txt 2>&1
 dpkg --add-architecture i386 >> /var/log/$LOGNAME.auto-update.txt 2>&1
 add-apt-repository -y contrib >> /var/log/$LOGNAME.auto-update.txt 2>&1
 add-apt-repository -y non-free >> /var/log/$LOGNAME.auto-update.txt 2>&1

@@ -1,5 +1,12 @@
 # POSTINSTALL-DEBIAN - Configurer Facilement Debian !
 
+**CE PROJET EST MAINTENANT EN FIN DE VIE. VEUILLEZ VOUS TOURNER VERS LE PROJET VORTEX. PLUS D'INFOS SUR LE DISCORD GLF.**
+**LE PROJET EST TOUJOURS UTILISABLE EN L'ETAT, MAIS SON UTILISATION N'EST PLUS RECOMMANDÉE CAR IL NE COUVRE PAS CERTAINES**
+**AMELIORATIONS CONCERNANT LA MAINTENANCE, LES DEPOTS ADDITIONNELS, ET LA MISE A NIVEAU DU SYSTEME.**
+**MERCI A TOUS CEUX QUI L'ONT SOUTENU.**
+
+## XDAVIUS
+
 [**English version**](https://github.com/Cardiacman13/postinstall-debian/blob/main/lang/README.en.md)
 
 Cet outil a été conçu pour être plus facilement utilisable avec les ISOs Lives de Debian et l'installateur graphique.

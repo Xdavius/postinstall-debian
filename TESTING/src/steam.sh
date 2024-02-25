@@ -15,6 +15,7 @@ echo "Installation de Steam
 echo "Préparation des dépendances :
 "; sleep 2
 
+apt-get install -y software-properties-common >> /var/log/$LOGNAME.auto-update.txt 2>&1
 dpkg --add-architecture i386 > /var/log/$LOGNAME.auto-update.txt 2>&1
 add-apt-repository -y contrib >> /var/log/$LOGNAME.auto-update.txt 2>&1
 add-apt-repository -y non-free >> /var/log/$LOGNAME.auto-update.txt 2>&1
