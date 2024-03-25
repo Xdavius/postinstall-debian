@@ -207,7 +207,7 @@ ferme_yad
 # --form \
 # --field "Installer le driver Nvidia de Debian (RECOMMANDÉ) !./source/debian_logo.png! $COM_STABLE:fbtn" "bash -c nvidia_stable" \
 #--field "Options avancée (EXPERT) !./source/package_debian.png! $COM_AUTRE:fbtn" "bash -c nvidia2" \
-nvidia=$(yad --center --window-icon="$logo2" --width 300 --height 170 --title="CHANGEMENT IMPORTANT" --text-align="center" --text="
+nvidia=$(yad --center --window-icon="$logo2" --width 300 --height 170 --title="CHANGEMENT IMPORTANT" --text-align="center" --button="OK:bash -c menu" --text="
         
        Suite à de nombreux retours et à la refonte du projet, les drivers nvidia ont migrés sur pacstall.
        Cela permet d'utiliser des drivers plus récents, et proposer toutes les versions du driver.
@@ -226,7 +226,7 @@ nvidia=$(yad --center --window-icon="$logo2" --width 300 --height 170 --title="C
 
         Rebootez la machine une fois terminé.
         
-        " --button="OK:bash -c menu"
+        " 
 )
 }
 
