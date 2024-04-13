@@ -2,10 +2,15 @@
 
 [**English version**](https://github.com/Cardiacman13/postinstall-debian/blob/main/lang/README.en.md)
 
+
 Cet outil a été conçu pour être plus facilement utilisable avec les ISOs Lives de Debian et l'installateur graphique.
 Les ISOs lives sont disponibles ici :
 
       https://cdimage.debian.org/debian-cd/current-live/amd64/iso-hybrid/
+
+Télécharger les images Live Debian Testing :
+
+      https://cdimage.debian.org/cdimage/weekly-live-builds/amd64/iso-hybrid/
 
 Le mot de passe ROOT/SUDO des ISOs live est : **live**
 
