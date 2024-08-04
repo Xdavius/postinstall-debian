@@ -12,9 +12,12 @@ clear
 echo "Configuration des Backports
 "; sleep 2
 
-if [ ! -x /etc/apt/sources.list.d/sid.list ]
+if [ ! -x /etc/apt/sources.list.d/backports.list ]
 then
 	echo "deb http://deb.debian.org/debian/ stable-backports main contrib non-free-firmware non-free" > /etc/apt/sources.list.d/backports.list
+ 	echo "Package: *
+Pin: release a=stable-backports
+Pin-priority: 999" > /etc/apt/preferences.d/backports
 else
 	echo "Le fichier /etc/apt/sources.list.d/backports.list existe déjà !!"
 fi

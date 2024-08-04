@@ -1,18 +1,16 @@
 # POSTINSTALL-DEBIAN - Configurer Facilement Debian !
 
-**CE PROJET EST MAINTENANT EN FIN DE VIE. VEUILLEZ VOUS TOURNER VERS LE PROJET VORTEX. PLUS D'INFOS SUR LE DISCORD GLF.**
-**LE PROJET EST TOUJOURS UTILISABLE EN L'ETAT, MAIS SON UTILISATION N'EST PLUS RECOMMANDÉE CAR IL NE COUVRE PAS CERTAINES**
-**AMELIORATIONS CONCERNANT LA MAINTENANCE, LES DEPOTS ADDITIONNELS, ET LA MISE A NIVEAU DU SYSTEME.**
-**MERCI A TOUS CEUX QUI L'ONT SOUTENU.**
-
-## XDAVIUS
-
 [**English version**](https://github.com/Cardiacman13/postinstall-debian/blob/main/lang/README.en.md)
+
 
 Cet outil a été conçu pour être plus facilement utilisable avec les ISOs Lives de Debian et l'installateur graphique.
 Les ISOs lives sont disponibles ici :
 
       https://cdimage.debian.org/debian-cd/current-live/amd64/iso-hybrid/
+
+Télécharger les images Live Debian Testing :
+
+      https://cdimage.debian.org/cdimage/weekly-live-builds/amd64/iso-hybrid/
 
 Le mot de passe ROOT/SUDO des ISOs live est : **live**
 
@@ -201,14 +199,6 @@ Une fois terminé, redémarrez la machine.
 - nvidia-cuda :               Installe le driver Nvidia Curent Stable en provenance des dépots de NVIDIA. (Actuellement : Branche 545)
                               **NVIDIA CONSEILLE UN KERNEL LTS ou BACKPORTÉ, PEUT FONCTIONNER AVEC KERNEL CURRENT (Liquorix/TKG), MAIS PEUT AUSSI CASSER !**
   
-- nvidia-experimental :       Installe le dépôt EXPERIMENTAL pour debian pour avoir le dernier driver EXPERIMENTAL de Debian
-                              **NECESSITE D'AVOIR ACTIVER LE DEPOT SID EN PIN 10 MINIMUM, POUR LES AVENTURIERS ! RISQUE TRES ELEVE DE CASSE !**
-                              **NECESSITE DE RELANCER LA PROCÉDURE SECUREBOOT SI ACTIVE !**
-  
-- nvidia-testing-on-stable :  Installe le FUTUR driver Nvidia pour Debian Stable +1.
-                              **AJOUTE LE DEPOT TESTING EN PIN 10, POUR LES TESTEURS ! Supporte les kernels en provencance de stable-backports**
-                              **PEUT NECESSITER UNE MISE A JOUR DE DKMS !**
-  
 - nvidia-rollback :           Désinstalle vos drivers Nvidia et fait le ménage !
 
 ## AMD / Intel :
@@ -253,7 +243,8 @@ Une fois terminé, redémarrez la machine.
                               il ne sera pas nécessaire de le reconfigurer.
                               Il est recommandé de passer votre sources.list en branche Stable pour en profiter de façon optimale.
   
-- install-sid :               Configure Sid avec un Pin 10, cette moddification utile sur Debian **Stable** et **Testing** permet en cas de dépendances cassées de permettre à votre Debian d'aller chercher uniquement les paquets                                          nécéssaires dans Sid. [**Explication de pinning par Debian Facile**](https://debian-facile.org/doc:systeme:apt:pinning).
+- install-sid :               [DEPRECATED] Configure Sid avec un Pin 10, cette moddification utile sur Debian **Stable** et **Testing** permet en cas de dépendances cassées de permettre à votre Debian d'aller chercher uniquement les paquets
+                              nécéssaires dans Sid. [**Explication de pinning par Debian Facile**](https://debian-facile.org/doc:systeme:apt:pinning).
 
 ## Laptops
 
