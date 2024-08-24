@@ -61,7 +61,7 @@ apt full-upgrade -y >> /var/log/$LOGNAME.auto-update.txt 2>&1
 echo "Installation... (LONG !)"
 mkdir -p /var/run/nvpd/
 echo "Installation du driver vidéo. Patientez..."
-apt install -y cuda-drivers nvidia-driver nvidia-settings vulkan-tools libglvnd-dev nvidia-driver-libs:i386 >> /var/log/$LOGNAME.auto-update.txt 2>&1
+apt install -y cuda-drivers nvidia-driver libnvidia-ngx1 nvidia-settings vulkan-tools libglvnd-dev nvidia-driver-libs:i386 >> /var/log/$LOGNAME.auto-update.txt 2>&1
 
 #echo "Installation de Cuda... Patientez ENCORE !! (Très long !)"
 #apt install -y cuda
