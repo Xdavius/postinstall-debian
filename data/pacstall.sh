@@ -12,7 +12,7 @@ echo "Installation de pacstall
 "; sleep 2
 
 apt install -y curl
-bash -c "$(curl -fsSL https://pacstall.dev/q/install)"
+bash -c "$(curl -fsSL https://github.com/pacstall/pacstall/raw/develop/install.sh || wget -q https://github.com/pacstall/pacstall/raw/develop/install.sh -O -)"
 
 echo "
 Job done
