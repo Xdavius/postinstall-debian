@@ -12,6 +12,17 @@ clear
 echo "Installation des repos Sid en pin 10 pour Debian Testing
 " ; sleep 2
 
+if [ ! -f /etc/apt/preferences.d/testing ]
+then
+	echo "Package : *" > /etc/apt/preferences.d/testing
+	echo "Pin : release a=testing" >> /etc/apt/preferences.d/testing
+	echo "Pin-Priority : 990" >> /etc/apt/preferences.d/testing
+else
+	echo "Le fichier /etc/apt/preferences.d/testing existe déjà !!"
+ 	echo "Installation annulée"
+  	exit 1
+fi
+
 if [ ! -f /etc/apt/sources.list.d/sid.list ]
 then
 	echo "deb http://deb.debian.org/debian/ sid main contrib non-free-firmware non-free" >> /etc/apt/sources.list.d/sid.list
