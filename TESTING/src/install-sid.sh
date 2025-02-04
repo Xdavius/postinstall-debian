@@ -9,7 +9,7 @@ if [[ $EUID -ne 0 ]]; then
 fi
 
 clear
-echo "Installation des repos Sid en pin 10 pour Debian Testing
+echo "Installation des repos Sid en pin 101 pour Debian Testing
 " ; sleep 2
 
 if [ ! -f /etc/apt/preferences.d/testing ]
@@ -34,7 +34,7 @@ if [ ! -f /etc/apt/preferences.d/sid ]
 then
 	echo "Package : *" > /etc/apt/preferences.d/sid
 	echo "Pin : release a=unstable" >> /etc/apt/preferences.d/sid
-	echo "Pin-Priority : 10" >> /etc/apt/preferences.d/sid
+	echo "Pin-Priority : 101" >> /etc/apt/preferences.d/sid
 else
 	echo "Le fichier /etc/apt/preferences.d/sid existe déjà !!"
 fi
