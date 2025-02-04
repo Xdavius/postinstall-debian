@@ -19,8 +19,6 @@ then
 	echo "Pin-Priority : 990" >> /etc/apt/preferences.d/testing
 else
 	echo "Le fichier /etc/apt/preferences.d/testing existe déjà !!"
- 	echo "Installation annulée"
-  	exit 1
 fi
 
 if [ ! -f /etc/apt/sources.list.d/sid.list ]
