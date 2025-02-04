@@ -9,6 +9,8 @@ if [[ $EUID -ne 0 ]]; then
 	exit 1
 fi
 
+_init() {
+
 RED="\e[31m"
 GREEN="\e[32m"
 ENDCOLOR="\e[0m"
@@ -21,7 +23,7 @@ task_ok=$(echo -e [${GREEN}OK${ENDCOLOR}])
 
 debian_version="$(cat /etc/os-release | grep VERSION_CODENAME | cut -d '=' -f 2)"
 
-echo -e "${RED}----------------------------------------------------------------------------------------------${ENDCOLOR}
+echo -e '${RED}----------------------------------------------------------------------------------------------${ENDCOLOR}
 
                                         POSTINSTALL DEBIAN TESTING
 
@@ -30,14 +32,18 @@ ${RED}--------------------------------------------------------------------------
 
 Veuillez répondre au questionnaire. L'installation se fera une fois celui-ci complété.
 
+Sid en Pin 101 est devenu obligatoire suite aux changements sur Debian.
+Merci de le prendre en considération avant de continuer
+
 ${RED}Cet outil est toujours en dévelloppement ! En cas de problème, merci d'ouvrir une issue !${ENDCOLOR}
 
 Dépendances nécessaires au script : bash-completion curl wget software-properties-common
 
 Dépendances de compatibilité/recommandées : firmware-sof-signed dbus-x11 pipewire-audio
+Vous pouvez les installer manuellement en faisant : "sudo apt install firmware-sof-signed dbus-x11 pipewire-audio"
 
 Verion de Debian actuelle : $debian_version
-"
+'
 case $1 in
 debug)
 read -p "Version de Debian à débug : " debian_debug
@@ -50,7 +56,7 @@ fi
 esac
 
 case $debian_version in
-testing|sid)
+trixie|testing|sid)
 echo "Version de Debian valide
 "
 ;;
@@ -66,25 +72,17 @@ fi
 esac
 
 read -p "- Installer les dépendances obligatoires $choice_yes ? " _depsobl
-if [[ $_depsobl == "n" ]] || [[ $_depsobl == "N" ]]; then
-    echo -e "${RED}Impossible de continuer l'installation sans les dépendances. Fin de l'installation.${ENDCOLOR}"
-    sleep 2
-    exit 1
-else
-echo "Installation des dépendances"
-apt-get install -y bash-completion curl wget software-properties-common > /dev/null
-fi
-
-read -p "- Installer les dépendances de compatibilité $choice_yes ? " _deps
 
 sbstate="$(mokutil --sb-state)"
 if [[ $sbstate == "SecureBoot enabled" ]]; then
-    read -p "- SECUREBOOT ACTIF : Voulez-vous configurer le système de signature des modules/kernel $choice_yes ? " _secureboot
+    read -p "- SECUREBOOT ACTIF : Voulez-vous configurer le système de signature des modules/kernel $choice_no ? " _secureboot
 fi
 
 is_user_sudo=$(sudo -k)
 if [[ "$is_user_sudo" != "" ]] ; then
 read -p "- Ajouter votre utilisateur au groupe SUDO $choice_yes ? " _sudo
+else
+no_sudo="n"
 fi
 
 read -p "- Ajouter les dépôts Contrib et Non-free (Obligatoire pour Steam et Nvidia) $choice_yes ? " _repos
@@ -99,7 +97,7 @@ fi
 read -p "- Augmenter la valeur du vm.max_map_count (Compatibilité augmentée pour les jeux vidéos) $choice_yes ? " _vmmap
 
 if [[ $debian_version == "testing" ]]; then
-    read -p "- Ajouter Sid en PIN 10 (Ex: Virtualbox) $choice_yes ? " _sid
+    echo -e "${red} Sid en PIN 101 sera maintenant ajouté pour les paquets manquants ou non déscendus dans Testing${ENDCOLOR}" _sid
 fi
 
 read -p "- Installer Flatpak et le dépôt Flathub (GNOME) $choice_no ? " _flatpak
@@ -124,10 +122,239 @@ read -p "Le système va maintenant être modifié. Etes vous certains de vos ré
 
 case $_final in
 O|o)
-source ./cases
+_cases
 ;;
 N|n|*)
 echo "Installation intérrompue par l'utilisateur"
 exit 2
 ;;
 esac
+}
+
+_cases() {
+
+case $_secureboot in
+o|O)
+source ./SECUREBOOT/install-sb.sh
+echo $task_ok
+;;
+n|N|*)
+echo ""
+;;
+
+esac
+
+if [[ "${no_sudo}" != "n" ]]; then
+case $_sudo in
+n|N)
+sleep 0.1
+;;
+o|O|*)
+echo "Ajout de l'utilisateur au groupe SUDO"
+su - -c "usermod -aG sudo $(who | grep tty | cut -d " " -f 1)"
+echo $task_ok
+sleep 1
+;;
+esac
+fi
+
+case $_sid in
+*)
+echo "Ajout du dépôt Sid Pin 101"
+source ./src/install-sid.sh > /dev/null
+echo $task_ok
+sleep 1
+;;
+esac
+
+case $_depsobl in
+n|N)
+    echo -e "${RED}Impossible de continuer l'installation sans les dépendances. Fin de l'installation.${ENDCOLOR}"
+    sleep 2
+    exit 1
+;;
+o|O|*)
+echo "Installation des dépendances"
+apt-get install -y bash-completion curl wget software-properties-common > /dev/null
+;;
+esac
+
+case $_repos in
+n|N)
+sleep 0.1
+;;
+o|O|*)
+echo "Ajout des dépôts Contrib et Non-free"
+apt-add-repository -y contrib > /dev/null
+apt-add-repository -y non-free > /dev/null
+apt-get update -y > /dev/null
+echo $task_ok
+sleep 1
+;;
+esac
+
+case $_multilib in
+n|N)
+sleep 0.1
+;;
+o|O|*)
+echo "Ajout du dépôt Multilib"
+dpkg --add-architecture i386 > /dev/null
+apt-get update -y > /dev/null
+echo $task_ok
+sleep 1
+;;
+esac
+
+case $_vmmap in
+n|N)
+echo "vm.max_map_count laissé par défaut"
+;;
+o|O|*)
+echo "Configuration de vm.max_map_count"
+if [ -f /etc/sysctl.d/80-gamecompatibility.conf ]; then
+  echo "vm.max_map_count déjà configuré"
+  else
+  echo "vm.max_map_count = 2147483642" | tee /etc/sysctl.d/80-gamecompatibility.conf && \
+  sysctl --system
+fi
+;;
+esac
+
+case $_gaming in
+n|N)
+sleep 0.1
+;;
+o|O|*)
+echo "Installation des applications Gaming"
+sudo apt-get install -y steam wine lutris
+echo $task_ok
+sleep 1
+;;
+esac
+
+case $_flatpak in
+n|N)
+sleep 0.1
+;;
+o|O|*)
+echo "Installation du système Flatpak"
+apt-get install -y flatpak > /dev/null
+apt-get install -y gnome-software-plugin-flatpak > /dev/null
+flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo > /dev/null
+echo $task_ok
+sleep 1
+;;
+esac
+
+case $_pacstall in
+n|N)
+echo "Pacstall non installé"
+;;
+o|O|*)
+apt install -y curl
+bash -c "$(curl -fsSL https://pacstall.dev/q/install)"
+;;
+esac
+
+case $_nvidia in
+o|O)
+echo "Installation des derniers drivers Nvidia"
+debian_version="12"
+keyring_version="1.1-1_all"
+apt-get remove -y cuda-keyring > /dev/null
+wget https://developer.download.nvidia.com/compute/cuda/repos/debian${debian_version}/x86_64/cuda-keyring_${keyring_version}.deb > /dev/null
+dpkg -i cuda-keyring_${keyring_version}.deb  > /dev/null
+rm cuda-keyring_${keyring_version}.deb > /dev/null
+apt-get update -y > /dev/null
+echo "Installation du driver Nvidia en cours, patientez..."
+apt-get install -y nvidia-driver nvidia-settings vulkan-tools libglvnd-dev pkg-config > /dev/null
+
+if [[ $_multilib = "o" ]] || [[ $_multilib = "O" ]] || [[ $_multilib = "" ]]; then
+	echo "Installation des lib32"
+	apt-get install nvidia-driver-libs:i386 > /dev/nul
+	echo -e "${GREEN}Nvidia i386 instlallé${ENDCOLOR}"
+else
+	echo -e "{{RED}Multilib non demandé à l'installation${ENDCOLOR}"
+fi
+
+echo "Installation drm-modeset=1"
+if [[ -f /etc/modprobe.d/nvidia.conf ]]; then
+    rm /etc/modprobe.d/nvidia.conf
+fi
+touch /etc/modprobe.d/nvidia.conf
+echo "options nvidia-drm modeset=1" > /etc/modprobe.d/nvidia.conf
+echo "${GREEN}Driver Nvidia installé${ENDCOLOR}"
+echo $task_ok
+sleep 1
+;;
+n|N|*)
+sleep 0.1
+;;
+esac
+
+case $_cuda in
+o|O)
+if [[ $_nvidia = "o" ]] || [[ $_nvidia = "O" ]] || [[ $_nvidia = "" ]]; then
+	echo -e "Installation de Cuda {RED}(Téléchargement 2Go)${ENDCOLOR}, Patientez !!"
+	apt-get install -y nvidia-cuda-dev nvidia-cuda-toolkit > /dev/null
+	echo "${GREEN}Cuda installé${ENDCOLOR}"
+	echo $task_ok
+	sleep 1
+else
+	echo "${RED}Driver Nvidia non installé${ENDCOLOR}"
+fi
+sleep 1
+;;
+n|N|*)
+sleep 0.1
+;;
+esac
+
+case $_envycontrol in
+n|N|*)
+sleep 0.1
+;;
+o|O)
+echo "Installation de Envycontrol"
+if [[ $_nvidia = "o" ]] || [[ $nvidia = "O" ]]; then
+source ./src/envycontrol.sh > /dev/null
+echo $task_ok
+else
+echo "${RED}Driver Nvidia non installé${ENDCOLOR}"
+fi
+sleep 1
+;;
+esac
+
+case $_mesa in
+n|N)
+sleep 0.1
+;;
+o|O|*)
+echo "Installation de Mesa"
+apt-get install -y libgl1-mesa-dri mesa-va-drivers mesa-vdpau-drivers mesa-vulkan-drivers vulkan-tools > /dev/null
+echo -e "${GREEN}Mesa Vulkan installé${ENDCOLOR}"
+if [[ $_multilib = "o" ]] || [[ $_multilib = "O" ]] || [[ $_multilib = "" ]]; then
+	apt-get install -y libgl1-mesa-dri:i386 mesa-vulkan-drivers:i386 > /dev/null
+	echo -e "${GREEN}Mesa Vulkan i386 installé${ENDCOLOR}"
+fi
+echo $task_ok
+sleep 1
+;;
+esac
+
+case $_rocm in
+o|O)
+echo -e "Installation de ROCm ${RED}(Téléchargement 2Go)${ENDCOLOR}"
+echo $rootdir
+source ./src/rocm.sh
+echo $task_ok
+;;
+n|N|*)
+sleep 0.1
+;;
+esac
+}
+
+_init
