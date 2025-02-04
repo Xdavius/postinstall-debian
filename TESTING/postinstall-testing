@@ -23,7 +23,7 @@ task_ok=$(echo -e [${GREEN}OK${ENDCOLOR}])
 
 debian_version="$(cat /etc/os-release | grep VERSION_CODENAME | cut -d '=' -f 2)"
 
-echo -e '${RED}----------------------------------------------------------------------------------------------${ENDCOLOR}
+echo -e "${RED}----------------------------------------------------------------------------------------------${ENDCOLOR}
 
                                         POSTINSTALL DEBIAN TESTING
 
@@ -40,10 +40,10 @@ ${RED}Cet outil est toujours en dévelloppement ! En cas de problème, merci d'o
 Dépendances nécessaires au script : bash-completion curl wget software-properties-common
 
 Dépendances de compatibilité/recommandées : firmware-sof-signed dbus-x11 pipewire-audio
-Vous pouvez les installer manuellement en faisant : "sudo apt install firmware-sof-signed dbus-x11 pipewire-audio"
+Vous pouvez les installer manuellement en faisant : \"sudo apt install firmware-sof-signed dbus-x11 pipewire-audio\"
 
 Verion de Debian actuelle : $debian_version
-'
+"
 case $1 in
 debug)
 read -p "Version de Debian à débug : " debian_debug
